@@ -1,10 +1,10 @@
 # Site settings
-title:       Pixyll
-email:       your_email@example.com
-author:      John Otander
-description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
+title:       Tim Varley
+email:       tim.varley@gmail.com
+author:      Tim Varley
+description: "Tim's Personal blog"
 baseurl:     ""
-url:         "http://pixyll.com"
+url:         "http://tvarley.github.io"
 
 # Google analytics
 google_analytics:
@@ -15,11 +15,11 @@ show_related_posts: false
 show_post_footers:  false
 
 # Social icons
-show_social_icons: false
-github_username:
-twitter_username:
-google_plus_id:
-linkedin_username:
+show_social_icons: true
+github_username: tvarley
+twitter_username: varleti
+google_plus_id: tim.varley@gmail.com
+linkedin_username: tim.varley
 bitcoin_url:
 paypal_url:
 flattr_button:
