@@ -15,7 +15,8 @@ This is a personal blog and as such will contain all kinds of subject matter, my
 
 - [Contact me]({{site.baseurl}}/contact/index.html)
 
-#### Source
+##### More Links
 
-- [Pixyll theme](https://github.com/johnotander/pixyll). The basis for this blog's theme.
-- [My Blogs Theme](https://github.com/tvarley/tvarley.github.io)
+- [Pixyll theme on Github](https://github.com/johnotander/pixyll). The basis for this blog's theme.
+- [My Blogs Theme on Github](https://github.com/tvarley/tvarley.github.io)
+- [Jeykll Ideas from Joshua Lande](http://joshualande.com/jekyll-github-pages-poole/)
