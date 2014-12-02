@@ -1,9 +1,8 @@
 ---
 layout:     post
-title:      Welcome blog
+title:      Coming soon
 date:       2014-12-01 19:57:00
-summary:    Welcome to my blog
-categories: comming blog
+categories: coming blog
 ---
 
-The obvious 'More coming post'
+The obvious 'More coming soon post'
