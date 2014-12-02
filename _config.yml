@@ -18,8 +18,8 @@ show_post_footers:  false
 show_social_icons: true
 github_username: tvarley
 twitter_username: varleti
-google_plus_id: tim.varley@gmail.com
-linkedin_username: tim.varley
+google_plus_id:
+linkedin_username: timothyvarley
 bitcoin_url:
 paypal_url:
 flattr_button:
