@@ -4,15 +4,17 @@ title: About
 permalink: /about/
 ---
 
-Most of my career has been spent working with start ups with a focus in financial services.  I held senior technical positions providing development and management which led to sucessful liquations.
+Most of my career has been spent working with start ups with a focus in financial services. I have been responsible for all aspects of system definition, development, quality assurance, delivery and support. My official job descriptions have ranged from individual contributor to C level technical positions.
 
-I have recently become interested in how big data teamed with crowd colaboration can solve problems in interesting ways.  The hard part is not  necessarily creating interesting solutions -- the real issue is finding problems that the crowd wants to solve.  
+I have recently become interested in how big data teamed with crowd colaboration can used in interesting ways. The hard part is not necessarily creating innovative platforms -- the real issue is finding something the crowd wants to swarm to.
 
-Many projects are started with great technical teams and innovative solutions but without an understanding of what the system is supposed to solve these projects are destined to be a solution looking for a problem.  I focus a team enabling it to to deliver value and not waste time on 'show and tell' projects.
-
-This is a personal blog and as such will contain all manner of content.
+This is a personal blog and as such will contain all kinds of subject matter, my discretion.
 
 #### Related
 
 - [Contact me]({{site.baseurl}}/contact/index.html)
-- [R&egrave;sum&egrave;]({{site.baseurl}}/contact/index.html)
+
+#### Source
+
+- [Pixyll theme](https://github.com/johnotander/pixyll). The basis for this blog's theme.
+- [My Blogs Theme](https://github.com/tvarley/tvarley.github.io)

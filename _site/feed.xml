@@ -8,6 +8,15 @@
     
       <item>
         <title>Coming soon</title>
+        <description>&lt;p&gt;The obvious ‘More coming soon’ post.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 01 Dec 2014 14:58:00 -0500</pubDate>
+        <link>http://tvarley.github.io/blog/2014/12/01/coming_soon/</link>
+        <guid isPermaLink="true">http://tvarley.github.io/blog/2014/12/01/coming_soon/</guid>
+      </item>
+    
+      <item>
+        <title>Hello World!</title>
         <description>&lt;p&gt;Hello World!&lt;/p&gt;
 
 &lt;p&gt;This is the obligatory ‘First Post!’.&lt;/p&gt;
@@ -15,15 +24,6 @@
         <pubDate>Mon, 01 Dec 2014 14:57:00 -0500</pubDate>
         <link>http://tvarley.github.io/blog/2014/12/01/welcome/</link>
         <guid isPermaLink="true">http://tvarley.github.io/blog/2014/12/01/welcome/</guid>
-      </item>
-    
-      <item>
-        <title>Coming soon</title>
-        <description>&lt;p&gt;The obvious More coming soon post.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 01 Dec 2014 14:57:00 -0500</pubDate>
-        <link>http://tvarley.github.io/blog/2014/12/01/coming_soon/</link>
-        <guid isPermaLink="true">http://tvarley.github.io/blog/2014/12/01/coming_soon/</guid>
       </item>
     
   </channel>
