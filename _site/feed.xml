@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tim Varleys</title>
+    <title>Tim Varley</title>
     <description>Tim&#39;s Personal blog</description>
     <link>http://tvarley.github.io/</link>
     <atom:link href="http://tvarley.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
         <title>Coming soon</title>
-        <description>&lt;p&gt;The obvious ‘More coming soon post’&lt;/p&gt;
+        <description>&lt;p&gt;Hello World!&lt;/p&gt;
+
+&lt;p&gt;This is the obligatory ‘First Post!’.&lt;/p&gt;
 </description>
         <pubDate>Mon, 01 Dec 2014 14:57:00 -0500</pubDate>
-        <link>http://tvarley.github.io/coming/blog/2014/12/01/coming_soon/</link>
-        <guid isPermaLink="true">http://tvarley.github.io/coming/blog/2014/12/01/coming_soon/</guid>
+        <link>http://tvarley.github.io/blog/2014/12/01/welcome/</link>
+        <guid isPermaLink="true">http://tvarley.github.io/blog/2014/12/01/welcome/</guid>
       </item>
     
       <item>
-        <title>Welcome blog</title>
-        <description>&lt;p&gt;Hello.&lt;/p&gt;
-
-&lt;p&gt;This is the obligatory ‘First Post blog’.&lt;/p&gt;
+        <title>Coming soon</title>
+        <description>&lt;p&gt;The obvious More coming soon post.&lt;/p&gt;
 </description>
-        <pubDate>Mon, 01 Dec 2014 13:40:00 -0500</pubDate>
-        <link>http://tvarley.github.io/welcome/blog/2014/12/01/welcome/</link>
-        <guid isPermaLink="true">http://tvarley.github.io/welcome/blog/2014/12/01/welcome/</guid>
+        <pubDate>Mon, 01 Dec 2014 14:57:00 -0500</pubDate>
+        <link>http://tvarley.github.io/blog/2014/12/01/coming_soon/</link>
+        <guid isPermaLink="true">http://tvarley.github.io/blog/2014/12/01/coming_soon/</guid>
       </item>
     
   </channel>
