@@ -16,4 +16,6 @@ This is a personal blog and as such will contain all kinds of subject matter, my
 
 - [Pixyll theme on Github](https://github.com/johnotander/pixyll). The basis for this blog's theme.
 - [My Blogs Theme on Github](https://github.com/tvarley/tvarley.github.io)
-- [Jeykll Ideas from Joshua Lande](http://joshualande.com/jekyll-github-pages-poole/)
+- Jeykll ideas from:
+  - [Joshua Lande](http://joshualande.com/jekyll-github-pages-poole/)
+  - [Brian Knapp](http://www.madebymarket.com/blog/dev/fun-jekyll-tricks.html)
