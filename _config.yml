@@ -6,9 +6,6 @@ description: "Tim's Personal blog"
 baseurl:     ""
 url:         "http://tvarley.github.io"
 
-# Outputting
-permalink: short-urls-jekyll
-
 # Google analytics
 google_analytics: UA-4653080-9
 
@@ -29,7 +26,7 @@ flattr_button:
 
 # Build settings
 markdown:     kramdown
-permalink:    pretty
+permalink:    short-urls-jekyll
 paginate:     3
 sass:
 compressed: true
