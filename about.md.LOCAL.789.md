@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-Most of my career has been spent working with start ups with a focus in financial services. I have been responsible for all aspects of system definition, development, quality assurance, delivery and support. I have help positions as an individual contributor through senior technical management.
+Most of my career has been spent working with start ups with a focus in financial services. I have been responsible for all aspects of system definition, development, quality assurance, delivery and support. I have been sucessful in positions as an individual contributor through senior technical management positions.
 
 This is a personal blog and as such will contain all kinds of subject matter, my discretion.
 
