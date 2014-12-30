@@ -1,0 +1,44 @@
+---
+layout:     post
+title:      Problem 001 Solution
+date:       2014-12-30 16:24:00
+summary:    Solution to Euler 001 (C++)
+categories: blog euler
+comments:   true
+permalink:  /blog/euler/cpp/problem_001
+#published: false
+#tags:      tag1
+---
+
+## Problem
+
+If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+
+Find the sum of all the multiples of 3 or 5 below 1000.
+
+## Solution
+
+    #include <iostream>
+
+    using namespace std;
+
+    int main(int argc, char* argv[])
+    {
+      int sum(0);
+      for( int i = 1000 ; --i; )
+      {
+        if( 0 == i % 3 )
+        {
+          sum += i;
+        }
+        else if ( 0 == i % 5 )
+        {
+          sum += i;
+        }
+      }
+
+      cout << sum << endl;
+    }
+
+## See Also
+* [Euler project introduction]({{site.baseurl}}/blog/euler/introduction)
