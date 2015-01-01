@@ -2,7 +2,7 @@
 layout:     post
 title:      Problem 001 Solution
 date:       2014-12-30 16:24:00
-summary:    Solution to Euler 001 (C++)
+summary:    Solution to Euler 001 (c++)
 categories: blog euler
 comments:   true
 permalink:  /blog/euler/cpp/problem_001
