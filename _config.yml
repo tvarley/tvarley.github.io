@@ -24,9 +24,14 @@ bitcoin_url:
 paypal_url:
 flattr_button:
 
+redcarpet:
+  extensions: [fenced_code_blocks]
+
 # Build settings
-markdown:     kramdown
-permalink:    short-urls-jekyll
-paginate:     3
+markdown: redcarpet
+permalink: short-urls-jekyll
+highlighter: pygments
+paginate: 3
 sass:
 compressed: true
+use_coderay: true

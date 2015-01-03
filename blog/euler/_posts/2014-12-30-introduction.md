@@ -26,8 +26,12 @@ The motivation for starting Project Euler, and its continuation, is to provide a
 
 * [Project Euler website](https://projecteuler.net/)
 * [Who the heck is Euler](http://en.wikipedia.org/wiki/Leonhard_Euler)
+* [My Euler Repo](https://github.com/tvarley/euler)
 
 ## Solutions
 
 ### C++
 * [Problem 001 Solution]({{site.baseurl}}/blog/euler/cpp/problem_001)
+* [Problem 002 Solution]({{site.baseurl}}/blog/euler/cpp/problem_002)
+* [Problem 004 Solution]({{site.baseurl}}/blog/euler/cpp/problem_004)
+* [Problem 005 Solution]({{site.baseurl}}/blog/euler/cpp/problem_005)
