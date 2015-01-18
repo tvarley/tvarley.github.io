@@ -33,3 +33,4 @@ The motivation for starting Project Euler, and its continuation, is to provide a
 * [Problem 005 Solution]({{site.baseurl}}/blog/euler/cpp/problem_005)
 * [Problem 006 Solution]({{site.baseurl}}/blog/euler/cpp/problem_006)
 * [Problem 007 Solution]({{site.baseurl}}/blog/euler/cpp/problem_007)
+* [Problem 008 Solution]({{site.baseurl}}/blog/euler/cpp/problem_008)
