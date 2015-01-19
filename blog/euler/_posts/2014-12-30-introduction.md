@@ -27,10 +27,11 @@ The motivation for starting Project Euler, and its continuation, is to provide a
 ## Solutions
 
 ### C++
-* [Problem 001 Solution]({{site.baseurl}}/blog/euler/cpp/problem_001)
-* [Problem 002 Solution]({{site.baseurl}}/blog/euler/cpp/problem_002)
-* [Problem 004 Solution]({{site.baseurl}}/blog/euler/cpp/problem_004)
-* [Problem 005 Solution]({{site.baseurl}}/blog/euler/cpp/problem_005)
-* [Problem 006 Solution]({{site.baseurl}}/blog/euler/cpp/problem_006)
-* [Problem 007 Solution]({{site.baseurl}}/blog/euler/cpp/problem_007)
-* [Problem 008 Solution]({{site.baseurl}}/blog/euler/cpp/problem_008)
+* [001 Solution]({{site.baseurl}}/blog/euler/cpp/problem_001)
+* [002 Solution]({{site.baseurl}}/blog/euler/cpp/problem_002)
+* [004 Solution]({{site.baseurl}}/blog/euler/cpp/problem_004)
+* [005 Solution]({{site.baseurl}}/blog/euler/cpp/problem_005)
+* [006 Solution]({{site.baseurl}}/blog/euler/cpp/problem_006)
+* [007 Solution]({{site.baseurl}}/blog/euler/cpp/problem_007)
+* [008 Solution]({{site.baseurl}}/blog/euler/cpp/problem_008)
+* [009 Solution]({{site.baseurl}}/blog/euler/cpp/problem_009)

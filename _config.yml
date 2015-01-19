@@ -29,6 +29,7 @@ redcarpet:
 
 # Build settings
 markdown: redcarpet
+#markdown: kramdown
 permalink: short-urls-jekyll
 highlighter: pygments
 paginate: 3
