@@ -18,15 +18,7 @@ Project Euler is a series of challenging mathematical/computer programming probl
 
 The motivation for starting Project Euler, and its continuation, is to provide a platform for the inquiring mind to delve into unfamiliar areas and learn new concepts in a fun and recreational context.
 
-## See Also
-
-* [Project Euler website](https://projecteuler.net/)
-* [Who the heck is Euler](http://en.wikipedia.org/wiki/Leonhard_Euler)
-* [My Euler Repo](https://github.com/tvarley/euler)
-
-## Solutions
-
-### C++
+## Solutions (C<sup>++</sup>)
 * [001 Solution]({{site.baseurl}}/blog/euler/cpp/problem_001)
 * [002 Solution]({{site.baseurl}}/blog/euler/cpp/problem_002)
 * [004 Solution]({{site.baseurl}}/blog/euler/cpp/problem_004)
@@ -35,3 +27,11 @@ The motivation for starting Project Euler, and its continuation, is to provide a
 * [007 Solution]({{site.baseurl}}/blog/euler/cpp/problem_007)
 * [008 Solution]({{site.baseurl}}/blog/euler/cpp/problem_008)
 * [009 Solution]({{site.baseurl}}/blog/euler/cpp/problem_009)
+
+## Support (C<sup>++</sup>)
+* [Sieve of Eratosthenes]({{site.baseurl}}/blog/euler/cpp/sieve_eratosthenes)
+
+## See Also
+* [Project Euler website](https://projecteuler.net/)
+* [Who the heck is Euler](http://en.wikipedia.org/wiki/Leonhard_Euler)
+* [My Euler Repo](https://github.com/tvarley/euler) :octocat:
