@@ -1,4 +1,4 @@
-Tim Varley's [Personal Blog](http://http://tvarley.github.io/)
+Tim Varley's [Personal Blog](http://tvarley.github.io/)
 
 Based on the elegant Pixyll Jeykll theme
 
