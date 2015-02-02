@@ -20,7 +20,7 @@ The motivation for starting Project Euler, and its continuation, is to provide a
 
 ## Solutions (C<sup>++</sup>)
 * [001 Solution]({{site.baseurl}}/blog/euler/cpp/problem_001)
-* [002 Solution]({{site.baseurl}}/blog/euler/cpp/problem_002)
+* [003 Solution]({{site.baseurl}}/blog/euler/cpp/problem_003)
 * [004 Solution]({{site.baseurl}}/blog/euler/cpp/problem_004)
 * [005 Solution]({{site.baseurl}}/blog/euler/cpp/problem_005)
 * [006 Solution]({{site.baseurl}}/blog/euler/cpp/problem_006)
