@@ -12,5 +12,4 @@ I have been responsible for all aspects of system definition, development, quali
 This is a personal blog and as such will contain all kinds of subject matter, my discretion.
 
 #### Related
-
 - [Contact me]({{site.baseurl}}/contact/index.html)
