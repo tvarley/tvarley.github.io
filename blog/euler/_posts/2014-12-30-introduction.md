@@ -2,7 +2,7 @@
 layout:     post
 title:      Project Euler
 date:       2014-12-30 13:03:00
-summary:    What is project Euler
+summary:    What is project Euler?
 categories: blog euler
 comments:   true
 permalink:  /blog/euler/introduction
