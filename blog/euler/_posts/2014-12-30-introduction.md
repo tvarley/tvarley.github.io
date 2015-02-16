@@ -35,6 +35,7 @@ The motivation for starting Project Euler, and its continuation, is to provide a
 * [015 Solution]({{site.baseurl}}/blog/euler/cpp/problem_015)
 * [016 Solution]({{site.baseurl}}/blog/euler/cpp/problem_016)
 * [017 Solution]({{site.baseurl}}/blog/euler/cpp/problem_017)
+* [018 Solution]({{site.baseurl}}/blog/euler/cpp/problem_018)
 
 ## Support (c++)
 * [Sieve of Eratosthenes]({{site.baseurl}}/blog/euler/cpp/sieve_eratosthenes)
