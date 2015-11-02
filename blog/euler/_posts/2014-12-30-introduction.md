@@ -20,6 +20,7 @@ The motivation for starting Project Euler, and its continuation, is to provide a
 
 ## Solutions (C<sup>++</sup>)
 * [001 Solution]({{site.baseurl}}/blog/euler/cpp/problem_001)
+* [002 Solution]({{site.baseurl}}/blog/euler/cpp/problem_002)
 * [003 Solution]({{site.baseurl}}/blog/euler/cpp/problem_003)
 * [004 Solution]({{site.baseurl}}/blog/euler/cpp/problem_004)
 * [005 Solution]({{site.baseurl}}/blog/euler/cpp/problem_005)
@@ -42,6 +43,10 @@ The motivation for starting Project Euler, and its continuation, is to provide a
 
 ## Support (c++)
 * [Sieve of Eratosthenes]({{site.baseurl}}/blog/euler/cpp/sieve_eratosthenes)
+
+## Solutions (ruby)
+* [001 Solution]({{site.baseurl}}/blog/euler/ruby/problem_001)
+* [002 Solution]({{site.baseurl}}/blog/euler/ruby/problem_002)
 
 ## See Also
 * [Project Euler website](https://projecteuler.net/)
