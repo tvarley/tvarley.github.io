@@ -49,6 +49,7 @@ The motivation for starting Project Euler, and its continuation, is to provide a
 * [002 Solution]({{site.baseurl}}/blog/euler/ruby/problem_002)
 * [003 Solution]({{site.baseurl}}/blog/euler/ruby/problem_003)
 * [004 Solution]({{site.baseurl}}/blog/euler/ruby/problem_004)
+* [005 Solution]({{site.baseurl}}/blog/euler/ruby/problem_005)
 
 ## See Also
 * [Project Euler website](https://projecteuler.net/)
