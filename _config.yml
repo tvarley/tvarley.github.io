@@ -27,14 +27,18 @@ flattr_button:
 gems:
   - jemoji
 
-redcarpet:
-  extensions: [fenced_code_blocks]
+#redcarpet:
+#  extensions: [fenced_code_blocks]
+
+kramdown:
+  input: GFM
+  hard_wrap: false
 
 # Build settings
-markdown: redcarpet
-#markdown: kramdown
+# markdown: redcarpet
+markdown: kramdown
 permalink: short-urls-jekyll
-highlighter: pygments
+# highlighter: rouge
 paginate: 3
 sass:
 compressed: true

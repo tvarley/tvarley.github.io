@@ -20,7 +20,7 @@ starting with the multiples of 2.
 
 ### PDL
 
-```
+<pre>
 Let A be an array of Boolean values, indexed by integers 2 to n,
 initially all set to true.
 
@@ -28,13 +28,11 @@ for i = 2, 3, 4, ..., not exceeding √n:
   if A[i] is true:
     for j = i2, i2+i, i2+2i, ..., not exceeding n :
       A[j] := false
-```
 
 Output: all i such that A[i] is true.
+</pre>
 
-
-The implementation below was quickly put together to support a couple of my Euler c++ solutions. I include it here for
-completeness.
+The implementation below was quickly put together to support a couple of my Euler c++ solutions. I include it here for completeness.
 
 _THERE HAS BEEN NO ATTEMPT TO OPTIMIZE THE CODE BELOW_
 
@@ -43,7 +41,7 @@ See: [http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes](http://en.wikipedia.or
 
 ### Header
 
-``` cpp
+{% highlight cpp %}
 #if ! defined SIEVE_ERATOS_INCLUDED
 #define SIEVE_ERATOS_INCLUDED
 
@@ -130,9 +128,8 @@ private:
   std::vector<bool>*  m_primes;
 };
 
-
 #endif // SIEVE_ERATOS_INCLUDED
-```
+{% endhighlight %}
 
 ## See Also
 * [007 Solution]({{site.baseurl}}/blog/euler/cpp/problem_007)
