@@ -6,7 +6,7 @@ summary:    Dark welcome
 categories: blog
 comments:   true
 permalink:  /dark/dark-welcome
-#published: false
+published: false
 tags:      dark
 ---
 
