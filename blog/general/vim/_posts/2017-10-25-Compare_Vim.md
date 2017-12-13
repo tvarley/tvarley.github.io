@@ -61,7 +61,7 @@ What is the way you use vim that makes you more productive than with a classical
 
 ## The Answer
 
-###Your problem with __Vim__ is that  you don't grok __vi__.
+### Your problem with __Vim__ is that  you don't grok __vi__.
 
 You mention cutting with `yy` and complain that you almost never want to cut whole lines.  In fact programmers, editing source code, very often want to work on whole lines, ranges of lines and blocks of code.  However, `yy` is only one of many way to yank text into the anonymous copy buffer (or "register" as it's called in __vi__).
 
@@ -91,7 +91,7 @@ This is all intermediate level __vi__.  None of it is __Vim__ specific and there
 
 ----------
 
-###A sampling of more advanced tricks:
+### A sampling of more advanced tricks:
 
 There are a number of `:` commands, most notably the `:% s/foo/bar/g` global substitution technique.  (That's not advanced but other `:` commands can be).  The whole `:` set of commands was historically inherited by __vi__'s previous incarnations as the __ed__ (line editor) and later the __ex__ (extended line editor) utilities.  In fact __vi__ is so named because it's the visual interface to __ex__.
 
@@ -144,7 +144,7 @@ That's only 10 keystrokes (and the expression `"cdd` `@c` is effectively a finge
 
 ----------
 
-###A sobering thought
+### A sobering thought
 
 I've only scratched to surface of __vi__'s power and none of what I've described here is even part of the "improvements" for which __vim__ is named!  All of what I've described here should work on any old copy of __vi__ from 20 or 30 years ago.
 

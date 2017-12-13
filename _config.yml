@@ -24,8 +24,9 @@ bitcoin_url:
 paypal_url:
 flattr_button:
 
-gems:
+plugins:
   - jemoji
+  - jekyll-paginate
 
 #redcarpet:
 #  extensions: [fenced_code_blocks]
