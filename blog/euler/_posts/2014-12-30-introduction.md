@@ -40,8 +40,9 @@ The motivation for starting Project Euler, and its continuation, is to provide a
 * [019 Solution]({{site.baseurl}}/blog/euler/cpp/problem_019)
 * [020 Solution]({{site.baseurl}}/blog/euler/cpp/problem_020)
 * [021 Solution]({{site.baseurl}}/blog/euler/cpp/problem_021)
+* [022 Solution]({{site.baseurl}}/blog/euler/cpp/problem_022)
 
-## Support (c++)
+## Support (C<sup>++</sup>)
 * [Sieve of Eratosthenes]({{site.baseurl}}/blog/euler/cpp/sieve_eratosthenes)
 
 ## Solutions (ruby)
@@ -62,7 +63,18 @@ The motivation for starting Project Euler, and its continuation, is to provide a
 * [002 Solution]({{site.baseurl}}/blog/euler/php/problem_002)
 * [003 Solution]({{site.baseurl}}/blog/euler/php/problem_003)
 
+## Solutions (java)
+* [001 Solution]({{site.baseurl}}/blog/euler/java/problem_001)
+* [002 Solution]({{site.baseurl}}/blog/euler/java/problem_002)
+
+## Solutions (go)
+* [001 Solution]({{site.baseurl}}/blog/euler/go/problem_001)
+* [002 Solution]({{site.baseurl}}/blog/euler/go/problem_002)
+* [003 Solution]({{site.baseurl}}/blog/euler/go/problem_003)
+* [004 Solution]({{site.baseurl}}/blog/euler/go/problem_004)
+* [005 Solution]({{site.baseurl}}/blog/euler/go/problem_005)
+
 ## See Also
 * [Project Euler website](https://projecteuler.net/)
-* [Who the heck is Euler](http://en.wikipedia.org/wiki/Leonhard_Euler)
-* [My Euler Repo](https://github.com/tvarley/euler) :octocat:
+* [Who is Euler?](http://en.wikipedia.org/wiki/Leonhard_Euler)
+* [My Euler Repo](https://gitlab.com/tvarley/euler) <i class="fab fa-gitlab"></i> 

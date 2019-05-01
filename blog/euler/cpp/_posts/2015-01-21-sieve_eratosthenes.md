@@ -134,5 +134,4 @@ private:
 ## See Also
 * [007 Solution]({{site.baseurl}}/blog/euler/cpp/problem_007)
 * [010 Solution]({{site.baseurl}}/blog/euler/cpp/problem_010)
-* [Euler Introduction]({{site.baseurl}}/blog/euler/introduction)
-* [My Euler Repo](https://github.com/tvarley/euler) :octocat:
+{% include suffix.html %}

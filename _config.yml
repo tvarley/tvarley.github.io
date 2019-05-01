@@ -17,6 +17,7 @@ show_post_footers:  true
 # Social icons
 show_social_icons: true
 github_username: tvarley
+gitlab_username: tvarley
 twitter_username: varleti
 google_plus_id:
 linkedin_username: timothyvarley
