@@ -74,6 +74,11 @@ The motivation for starting Project Euler, and its continuation, is to provide a
 * [004 Solution]({{site.baseurl}}/blog/euler/go/problem_004)
 * [005 Solution]({{site.baseurl}}/blog/euler/go/problem_005)
 
+## Solutions (javascript)
+* [001 Solution]({{site.baseurl}}/blog/euler/javascript/problem_001)
+* [002 Solution]({{site.baseurl}}/blog/euler/javascript/problem_002)
+* [003 Solution]({{site.baseurl}}/blog/euler/javascript/problem_003)
+
 ## See Also
 * [Project Euler website](https://projecteuler.net/)
 * [Who is Euler?](http://en.wikipedia.org/wiki/Leonhard_Euler)
