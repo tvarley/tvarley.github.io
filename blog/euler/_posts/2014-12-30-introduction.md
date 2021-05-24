@@ -57,6 +57,12 @@ The motivation for starting Project Euler, and its continuation, is to provide a
 * [009 Solution]({{site.baseurl}}/blog/euler/ruby/problem_009)
 * [010 Solution]({{site.baseurl}}/blog/euler/ruby/problem_010)
 * [011 Solution]({{site.baseurl}}/blog/euler/ruby/problem_011)
+* [012 Solution]({{site.baseurl}}/blog/euler/ruby/problem_012)
+* [013 Solution]({{site.baseurl}}/blog/euler/ruby/problem_013)
+* [014 Solution]({{site.baseurl}}/blog/euler/ruby/problem_014)
+* [015 Solution]({{site.baseurl}}/blog/euler/ruby/problem_015)
+* [016 Solution]({{site.baseurl}}/blog/euler/ruby/problem_016)
+* [017 Solution]({{site.baseurl}}/blog/euler/ruby/problem_017)
 
 ## Solutions (php)
 * [001 Solution]({{site.baseurl}}/blog/euler/php/problem_001)
