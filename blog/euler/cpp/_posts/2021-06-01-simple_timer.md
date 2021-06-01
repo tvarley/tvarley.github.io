@@ -22,15 +22,17 @@ permalink:  /blog/euler/cpp/simple_timer
 
 class simple_timer 
 {
+  bool output;
   std::string message;
   std::chrono::high_resolution_clock::time_point start_point;
   public:
-    simple_timer(const std::string& msg) : message(msg), 
-                                           start_point(std::chrono::high_resolution_clock::now()) {}
+    simple_timer(const std::string& msg, bool output = false) : message(msg), 
+                                                                output(output),
+                                                                start_point(std::chrono::high_resolution_clock::now()) {}
     ~simple_timer() {
-      stop(false);
+      stop();
     }
-    double stop(bool output = false)
+    double stop()
     {
       std::atomic_thread_fence(std::memory_order_relaxed);
       auto end_point = std::chrono::high_resolution_clock::now();
