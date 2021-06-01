@@ -41,9 +41,11 @@ The motivation for starting Project Euler, and its continuation, is to provide a
 * [020 Solution]({{site.baseurl}}/blog/euler/cpp/problem_020)
 * [021 Solution]({{site.baseurl}}/blog/euler/cpp/problem_021)
 * [022 Solution]({{site.baseurl}}/blog/euler/cpp/problem_022)
+* [023 Solution]({{site.baseurl}}/blog/euler/cpp/problem_023)
 
 ## Support (C<sup>++</sup>)
 * [Sieve of Eratosthenes]({{site.baseurl}}/blog/euler/cpp/sieve_eratosthenes)
+* [Simple Timer]({{site.baseurl}}/blog/euler/cpp/simple_timer)
 
 ## Solutions (ruby)
 * [001 Solution]({{site.baseurl}}/blog/euler/ruby/problem_001)
