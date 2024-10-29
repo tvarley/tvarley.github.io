@@ -4,7 +4,6 @@ title:      Simple c++ Timer
 date:       2021-06-01 12:25:00
 summary:    Simple timer used in some of my unittests
 categories: blog euler simple_timer
-comments:   true
 permalink:  /blog/euler/cpp/simple_timer
 #published: false
 #tags:      tag1
@@ -48,4 +47,5 @@ class simple_timer
 #endif // SIMPLE_TIMER_INCLUDED_DEFINED
 {% endhighlight %}
 
+### See Also
 {% include suffix.html %}

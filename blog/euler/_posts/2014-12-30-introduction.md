@@ -4,7 +4,6 @@ title:      Project Euler
 date:       2014-12-30 13:03:00
 summary:    What is project Euler?
 categories: blog euler
-comments:   true
 permalink:  /blog/euler/introduction
 #published: false
 #tags:      tag1
@@ -88,6 +87,13 @@ The motivation for starting Project Euler, and its continuation, is to provide a
 * [001 Solution]({{site.baseurl}}/blog/euler/javascript/problem_001)
 * [002 Solution]({{site.baseurl}}/blog/euler/javascript/problem_002)
 * [003 Solution]({{site.baseurl}}/blog/euler/javascript/problem_003)
+
+## Solutions (rust)
+* [001 Solution]({{site.baseurl}}/blog/euler/rust/problem_001)
+* [002 Solution]({{site.baseurl}}/blog/euler/rust/problem_002)
+* [003 Solution]({{site.baseurl}}/blog/euler/rust/problem_003)
+* [004 Solution]({{site.baseurl}}/blog/euler/rust/problem_004)
+* [005 Solution]({{site.baseurl}}/blog/euler/rust/problem_005)
 
 ## See Also
 * [Project Euler website](https://projecteuler.net/)

@@ -4,7 +4,6 @@ title:      Sieve of Eratosthenes
 date:       2015-01-21 11:28:00
 summary:    Prime number sieve used by a few of my Euler c++ solutions.
 categories: blog euler eratosthenes
-comments:   true
 permalink:  /blog/euler/cpp/sieve_eratosthenes
 #published: false
 #tags:      tag1
@@ -131,7 +130,6 @@ private:
 #endif // SIEVE_ERATOS_INCLUDED
 {% endhighlight %}
 
-## See Also
-* [007 Solution]({{site.baseurl}}/blog/euler/cpp/problem_007)
-* [010 Solution]({{site.baseurl}}/blog/euler/cpp/problem_010)
+### See Also
+{% include examples.html %}
 {% include suffix.html %}

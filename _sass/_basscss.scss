@@ -23,6 +23,27 @@ button, input, select, textarea {
   font-size: 100%;
 }
 
+table {
+  font-size: 40%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+  text-align: center;
+}
+
+.float-container {
+  padding: 2px;
+}
+
+.float-child {
+  width: 40%;
+  float: left;
+  padding: 10px;
+}
+
 article, aside, details, figcaption, figure, footer, header, main, nav, section, summary {
   display: block;
 }

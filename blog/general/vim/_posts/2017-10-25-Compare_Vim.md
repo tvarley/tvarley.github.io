@@ -4,9 +4,8 @@ title:      The Zen of vi
 date:       2017-10-25 09:30
 summary:    Your problem with Vim is that you don't grok vi
 categories: blog vim
-comments:   true
 permalink:  /blog/general/vim/comparison
-#published: false
+published: false
 tags:      vim
 ---
 
