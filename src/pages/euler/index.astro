@@ -1,115 +1,47 @@
 ---
+import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
-import Header from '../../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
 const problems = (await getCollection('euler')).sort(
 	(a, b) => a.data.problemNumber - b.data.problemNumber,
 );
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={`${SITE_TITLE} - Euler Solutions`} description="Mathematical programming solutions showcasing problem-solving across multiple languages" />
-		<style>
-			main {
-				width: 960px;
+<Layout title="Euler Solutions - Tim Varley" description="Mathematical programming solutions showcasing problem-solving across multiple languages">
+	<section class="py-12">
+    <div class="max-w-3xl mb-16">
+      <h1 class="text-5xl md:text-6xl font-black text-white mb-6">Euler <span class="text-steel-blue">Solutions</span></h1>
+      <p class="text-xl text-steel-grey leading-relaxed">
+        A collection of mathematical programming problems solved across multiple languages. 
+        Each solution focuses on algorithmic efficiency, code clarity, and language-specific idioms.
+      </p>
+    </div>
+
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			{
+				problems.map((problem) => (
+          <a href={`/euler/${problem.id}/`} class="glass-card group flex flex-col h-full no-underline p-6">
+            <div class="flex justify-between items-start mb-4">
+              <span class="font-mono text-xl font-bold text-steel-blue/80 group-hover:text-steel-blue transition-colors">#{problem.data.problemNumber.toString().padStart(3, '0')}</span>
+              <span class={`text-[0.6rem] font-bold px-2 py-1 rounded uppercase tracking-widest ${
+                problem.data.difficulty === 'easy' ? 'text-green-400 bg-green-900/20' :
+                problem.data.difficulty === 'medium' ? 'text-yellow-400 bg-yellow-900/20' :
+                'text-red-400 bg-red-900/20'
+              }`}>{problem.data.difficulty}</span>
+            </div>
+            
+            <h4 class="text-lg font-serif font-bold text-white mb-2 leading-tight">{problem.data.title}</h4>
+            
+            <div class="flex flex-wrap gap-2 mt-auto pt-4">
+              {problem.data.technologies.map(tech => (
+                <span class="text-[0.65rem] font-mono text-silver bg-white/5 px-2 py-1 rounded border border-white/5">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </a>
+				))
 			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(33.333% - 1.333rem);
-				border: 1px solid #e5e5e5;
-				border-radius: 8px;
-				padding: 1rem;
-			}
-			.problem-number {
-				font-size: 2rem;
-				font-weight: bold;
-				color: rgb(var(--accent));
-				margin-bottom: 0.5rem;
-			}
-			.title {
-				margin: 0 0 0.5rem 0;
-				color: rgb(var(--black));
-				line-height: 1.2;
-				font-size: 1.1rem;
-			}
-			.difficulty {
-				display: inline-block;
-				padding: 0.2rem 0.5rem;
-				border-radius: 4px;
-				font-size: 0.8rem;
-				font-weight: bold;
-				margin-bottom: 0.5rem;
-			}
-			.difficulty.easy { background: #d4edda; color: #155724; }
-			.difficulty.medium { background: #fff3cd; color: #856404; }
-			.difficulty.hard { background: #f8d7da; color: #721c24; }
-			.languages {
-				font-size: 0.9rem;
-				color: rgb(var(--gray));
-				margin-bottom: 0.5rem;
-			}
-			.description {
-				font-size: 0.9rem;
-				color: rgb(var(--gray));
-				line-height: 1.4;
-				margin: 0;
-			}
-			ul li a {
-				text-decoration: none;
-				display: block;
-				height: 100%;
-			}
-			ul li a:hover .title {
-				color: rgb(var(--accent));
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					margin-bottom: 1rem;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<h1>Euler Solutions Showcase</h1>
-				<p>Mathematical programming problems solved across multiple languages, demonstrating algorithmic thinking and coding proficiency.</p>
-				<ul>
-					{
-						problems.map((problem) => (
-							<li>
-								<a href={`/euler/${problem.id}/`}>
-									<div class="problem-number">#{problem.data.problemNumber}</div>
-									<h4 class="title">{problem.data.title}</h4>
-									<span class={`difficulty ${problem.data.difficulty}`}>{problem.data.difficulty.toUpperCase()}</span>
-									<div class="languages">
-										{problem.data.technologies.join(', ')}
-									</div>
-									<p class="description">{problem.data.description.slice(0, 120)}...</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+		</div>
+	</section>
+</Layout>

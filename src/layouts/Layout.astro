@@ -1,42 +1,37 @@
 ---
-// Layout component
+import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import '../styles/main.scss';
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+  image?: string;
+  categories?: string[];
+}
+
+const { title, description, image, categories } = Astro.props;
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{Astro.props.title ? `${Astro.props.title} – Tim Varley` : 'Tim Varley'}</title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content={Astro.props.summary || "Tim's Personal blog"}>
-    <meta name="author" content="Tim Varley">
-    {Astro.props.categories && <meta name="keywords" content={Astro.props.categories.join(', ')}>}
-    <link rel="canonical" href={`https://tvarley.github.io${Astro.url.pathname.replace('/index.html', '/')}`}>
-    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content={Astro.props.title || 'Tim Varley'}>
-    <meta property="og:description" content={Astro.props.summary || "Tim's Personal blog"}>
-    <meta property="og:url" content={`https://tvarley.github.io${Astro.url.pathname}`}>
-    <meta property="og:site_name" content="Tim Varley">
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
-  </head>
-  <body class="animated fade-in-down">
-    <div class="site-wrap">
-      <Header />
-      <div class="post p2 p-responsive wrap" role="main">
-        <div class="measure">
-          <slot />
-        </div>
-      </div>
-    </div>
-    <Footer />
-  </body>
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<BaseHead title={title || "Tim Varley"} description={description || "Technical Lead & Software Engineer"} />
+    {categories && <meta name="keywords" content={categories.join(', ')}>}
+    <!-- MathJax for Euler problems -->
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+	</head>
+	<body class="bg-charcoal text-white font-mono antialiased min-h-screen flex flex-col relative selection:bg-steel-blue selection:text-white">
+    <!-- Background Gradient -->
+    <div class="fixed inset-0 z-[-1] bg-hero-gradient opacity-80 pointer-events-none"></div>
+    
+		<Header />
+    
+		<main class="flex-grow w-full max-w-7xl mx-auto px-6 py-8 md:py-12">
+			<slot />
+		</main>
+    
+		<Footer />
+	</body>
 </html>

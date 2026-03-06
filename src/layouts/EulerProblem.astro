@@ -1,174 +1,81 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
+import { type CollectionEntry } from 'astro:content';
+import Layout from './Layout.astro';
 
 type Props = CollectionEntry<'euler'>['data'];
 
-const { problemNumber, title, description, difficulty, date, technologies, implementations, featured, showcase } = Astro.props;
+const { problemNumber, title, description, difficulty, technologies, implementations } = Astro.props;
 ---
 
-<html lang="en">
-	<head>
-		<BaseHead title={`Euler ${problemNumber}: ${title}`} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.header {
-				margin-bottom: 2em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.problem-number {
-				font-size: 3rem;
-				font-weight: bold;
-				color: rgb(var(--accent));
-				margin-bottom: 0.5rem;
-			}
-			.title {
-				margin: 0 0 1em 0;
-				font-size: 2rem;
-			}
-			.difficulty {
-				display: inline-block;
-				padding: 0.5rem 1rem;
-				border-radius: 8px;
-				font-size: 1rem;
-				font-weight: bold;
-				margin-bottom: 1rem;
-			}
-			.difficulty.easy { background: #d4edda; color: #155724; }
-			.difficulty.medium { background: #fff3cd; color: #856404; }
-			.difficulty.hard { background: #f8d7da; color: #721c24; }
-			.description {
-				font-size: 1.2rem;
-				line-height: 1.6;
-				margin-bottom: 2rem;
-				color: rgb(var(--black));
-			}
-			.technologies {
-				margin-bottom: 2rem;
-			}
-			.tech-tags {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 0.5rem;
-				margin-top: 0.5rem;
-			}
-			.tech-tag {
-				background: rgb(var(--accent));
-				color: white;
-				padding: 0.25rem 0.75rem;
-				border-radius: 4px;
-				font-size: 0.9rem;
-				font-weight: bold;
-			}
-			.implementations {
-				margin-bottom: 2rem;
-			}
-			.implementation {
-				border: 1px solid #e5e5e5;
-				border-radius: 8px;
-				padding: 1rem;
-				margin-bottom: 1rem;
-			}
-			.impl-header {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				margin-bottom: 1rem;
-			}
-			.impl-language {
-				font-weight: bold;
-				font-size: 1.1rem;
-			}
-			.impl-link {
-				color: rgb(var(--accent));
-				text-decoration: none;
-			}
-			.impl-link:hover {
-				text-decoration: underline;
-			}
-			.impl-performance {
-				font-size: 0.9rem;
-				color: rgb(var(--gray));
-				margin-bottom: 0.5rem;
-			}
-			.impl-notes {
-				font-size: 0.9rem;
-				font-style: italic;
-				color: rgb(var(--gray));
-				margin-bottom: 0.5rem;
-			}
-			.impl-code {
-				background: #f8f8f8;
-				border: 1px solid #e5e5e5;
-				border-radius: 4px;
-				padding: 1rem;
-				font-family: monospace;
-				font-size: 0.9rem;
-				white-space: pre-wrap;
-				overflow-x: auto;
-			}
-		</style>
-	</head>
+<Layout title={`Euler ${problemNumber}: ${title}`} description={description}>
+	<article class="max-w-4xl mx-auto py-12">
+    
+    <!-- Header -->
+    <header class="mb-16 text-center">
+      <div class="inline-flex items-center justify-center gap-3 mb-6">
+        <span class="font-mono text-steel-blue bg-steel-blue/10 border border-steel-blue/20 px-3 py-1 rounded-full text-sm font-bold">
+          Problem #{problemNumber}
+        </span>
+        <span class={`text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider ${
+          difficulty === 'easy' ? 'text-green-400 bg-green-900/20 border border-green-500/20' :
+          difficulty === 'medium' ? 'text-yellow-400 bg-yellow-900/20 border border-yellow-500/20' :
+          'text-red-400 bg-red-900/20 border border-red-500/20'
+        }`}>{difficulty}</span>
+      </div>
+      
+      <h1 class="text-4xl md:text-6xl font-serif font-black text-white mb-8">{title}</h1>
+      
+      <div class="prose prose-lg mx-auto bg-matte/50 p-8 rounded-2xl border border-white/5 text-left">
+        <p class="text-xl text-silver leading-relaxed font-serif italic m-0">{description}</p>
+      </div>
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="prose">
-					<div class="header">
-						<div class="problem-number">#{problemNumber}</div>
-						<h1 class="title">{title}</h1>
-						<span class={`difficulty ${difficulty}`}>{difficulty.toUpperCase()}</span>
-						<p class="description">{description}</p>
-						
-						<div class="technologies">
-							<strong>Languages:</strong>
-							<div class="tech-tags">
-								{technologies.map(tech => (
-									<span class="tech-tag">{tech}</span>
-								))}
-							</div>
-						</div>
-					</div>
+      <div class="mt-8 flex justify-center gap-2">
+        {technologies.map(tech => (
+          <span class="text-xs font-mono text-white bg-charcoal border border-steel-blue/30 px-3 py-1 rounded">
+            {tech}
+          </span>
+        ))}
+      </div>
+    </header>
 
-					<div class="implementations">
-						<h2>Implementations</h2>
-						{implementations.map(impl => (
-							<div class="implementation">
-								<div class="impl-header">
-									<span class="impl-language">{impl.language}</span>
-									<a class="impl-link" href={impl.githubLink} target="_blank">View on GitHub</a>
-								</div>
-								{impl.performance && (
-									<div class="impl-performance">Performance: {impl.performance}</div>
-								)}
-								{impl.notes && (
-									<div class="impl-notes">{impl.notes}</div>
-								)}
-								<div class="impl-code">{impl.code}</div>
-							</div>
-						))}
-					</div>
+    <!-- Implementations -->
+    <div class="space-y-12">
+      <h2 class="text-3xl font-serif font-bold text-white mb-8 border-b border-white/10 pb-4">Implementations</h2>
+      
+      {implementations.map(impl => (
+        <div class="bg-matte border border-white/10 rounded-2xl overflow-hidden shadow-glass">
+          <div class="bg-charcoal border-b border-white/5 px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+              <span class="font-bold text-white">{impl.language}</span>
+              {impl.performance && (
+                <span class="text-xs font-mono text-green-400 bg-green-900/20 px-2 py-0.5 rounded border border-green-500/20">
+                  {impl.performance}
+                </span>
+              )}
+            </div>
+            <a href={impl.githubLink} target="_blank" class="text-xs font-mono text-steel-blue hover:text-white transition-colors flex items-center gap-1">
+              View Source <span class="sr-only">on GitHub</span> &rarr;
+            </a>
+          </div>
+          
+          {impl.notes && (
+            <div class="px-6 py-4 bg-steel-blue/5 border-b border-white/5 text-sm text-silver italic">
+              Note: {impl.notes}
+            </div>
+          )}
+          
+          <div class="p-0 overflow-x-auto">
+            <pre class="!bg-charcoal !m-0 !p-6 !border-0 text-sm font-mono leading-relaxed"><code class={`language-${impl.language.toLowerCase()}`}>{impl.code}</code></pre>
+          </div>
+        </div>
+      ))}
+    </div>
 
-					<slot />
-				</div>
-			</article>
-		</main>
-		<Footer />
-	</body>
-</html>
+    <!-- Back Link -->
+    <div class="mt-20 text-center">
+      <a href="/euler" class="inline-flex items-center gap-2 text-steel-blue hover:text-white font-mono text-sm transition-colors border border-steel-blue/20 hover:border-steel-blue px-6 py-3 rounded-lg">
+        &larr; Back to Solutions
+      </a>
+    </div>
+	</article>
+</Layout>

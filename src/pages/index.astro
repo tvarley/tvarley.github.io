@@ -1,34 +1,65 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-const posts = await getCollection('euler');
-const sortedPosts = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const problems = (await getCollection('euler')).sort(
+	(a, b) => b.data.problemNumber - a.data.problemNumber,
+).slice(0, 6); // Top 6 most recent
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<div class="posts">
-				{sortedPosts.map((post) => (
-					<div class="post">
-						<a href={`/euler/${post.id}`} class="post-link">
-							<p class="post-meta">{post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</p>
-							<h3 class="h2 post-title">{post.data.problemNumber}: {post.data.title}</h3>
-							<p class="post-summary">{post.data.description.slice(0, 150)}...</p>
-						</a>
-					</div>
-				))}
-			</div>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout>
+  <!-- Hero Section -->
+  <section class="min-h-[60vh] flex flex-col justify-center items-start mb-20 animate-fade-in-up">
+    <div class="space-y-6 max-w-4xl">
+      <span class="font-mono text-steel-blue tracking-widest uppercase text-sm font-bold ml-1 block mb-2">Portfolio</span>
+      <h1 class="text-6xl md:text-8xl font-black text-white leading-[0.9] tracking-tight mb-4">
+        Tim <br/> <span class="text-steel-blue">Varley</span>
+      </h1>
+      <h2 class="text-2xl md:text-3xl text-silver font-light max-w-2xl leading-relaxed">
+        Technical Lead & Software Engineer specializing in high-performance systems and precision craftsmanship.
+      </h2>
+      
+      <div class="pt-8 flex gap-4">
+        <a href="/euler" class="btn-primary">View Euler Solutions</a>
+        <a href="/about" class="px-8 py-4 rounded-xl text-white font-medium border border-white/20 hover:bg-white/5 transition-all duration-300">About Me</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Euler Problems Grid -->
+  <section>
+    <div class="flex items-center justify-between mb-12">
+      <h3 class="text-3xl font-serif font-bold text-white">Recent Solutions</h3>
+      <a href="/euler" class="font-mono text-steel-blue hover:text-white text-sm border-b border-steel-blue/30 hover:border-steel-blue transition-colors pb-1">View All &rarr;</a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {problems.map((problem) => (
+        <a href={`/euler/${problem.id}/`} class="glass-card group flex flex-col h-full no-underline">
+          <div class="flex justify-between items-start mb-4">
+            <span class="font-mono text-sm text-steel-blue border border-steel-blue/20 rounded px-2 py-1 bg-steel-blue/5 group-hover:bg-steel-blue/10 transition-colors">#{problem.data.problemNumber.toString().padStart(3, '0')}</span>
+            <span class={`text-xs font-bold px-2 py-1 rounded uppercase tracking-wider ${
+              problem.data.difficulty === 'easy' ? 'text-green-400 bg-green-900/20' :
+              problem.data.difficulty === 'medium' ? 'text-yellow-400 bg-yellow-900/20' :
+              'text-red-400 bg-red-900/20'
+            }`}>{problem.data.difficulty}</span>
+          </div>
+          
+          <h4 class="text-xl font-serif font-bold text-white mb-3 group-hover:text-steel-blue transition-colors leading-tight">{problem.data.title}</h4>
+          
+          <p class="text-steel-grey text-sm mb-6 flex-grow line-clamp-3 leading-relaxed">
+            {problem.data.description}
+          </p>
+
+          <div class="flex flex-wrap gap-2 mt-auto">
+            {problem.data.technologies.slice(0, 3).map(tech => (
+              <span class="text-xs font-mono text-silver bg-white/5 px-2 py-1 rounded border border-white/5">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>
