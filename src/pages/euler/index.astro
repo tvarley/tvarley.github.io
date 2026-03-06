@@ -1,0 +1,115 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+
+const problems = (await getCollection('euler')).sort(
+	(a, b) => a.data.problemNumber - b.data.problemNumber,
+);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`${SITE_TITLE} - Euler Solutions`} description="Mathematical programming solutions showcasing problem-solving across multiple languages" />
+		<style>
+			main {
+				width: 960px;
+			}
+			ul {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 2rem;
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+			ul li {
+				width: calc(33.333% - 1.333rem);
+				border: 1px solid #e5e5e5;
+				border-radius: 8px;
+				padding: 1rem;
+			}
+			.problem-number {
+				font-size: 2rem;
+				font-weight: bold;
+				color: rgb(var(--accent));
+				margin-bottom: 0.5rem;
+			}
+			.title {
+				margin: 0 0 0.5rem 0;
+				color: rgb(var(--black));
+				line-height: 1.2;
+				font-size: 1.1rem;
+			}
+			.difficulty {
+				display: inline-block;
+				padding: 0.2rem 0.5rem;
+				border-radius: 4px;
+				font-size: 0.8rem;
+				font-weight: bold;
+				margin-bottom: 0.5rem;
+			}
+			.difficulty.easy { background: #d4edda; color: #155724; }
+			.difficulty.medium { background: #fff3cd; color: #856404; }
+			.difficulty.hard { background: #f8d7da; color: #721c24; }
+			.languages {
+				font-size: 0.9rem;
+				color: rgb(var(--gray));
+				margin-bottom: 0.5rem;
+			}
+			.description {
+				font-size: 0.9rem;
+				color: rgb(var(--gray));
+				line-height: 1.4;
+				margin: 0;
+			}
+			ul li a {
+				text-decoration: none;
+				display: block;
+				height: 100%;
+			}
+			ul li a:hover .title {
+				color: rgb(var(--accent));
+			}
+			@media (max-width: 720px) {
+				ul {
+					gap: 0.5em;
+				}
+				ul li {
+					width: 100%;
+					margin-bottom: 1rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section>
+				<h1>Euler Solutions Showcase</h1>
+				<p>Mathematical programming problems solved across multiple languages, demonstrating algorithmic thinking and coding proficiency.</p>
+				<ul>
+					{
+						problems.map((problem) => (
+							<li>
+								<a href={`/euler/${problem.id}/`}>
+									<div class="problem-number">#{problem.data.problemNumber}</div>
+									<h4 class="title">{problem.data.title}</h4>
+									<span class={`difficulty ${problem.data.difficulty}`}>{problem.data.difficulty.toUpperCase()}</span>
+									<div class="languages">
+										{problem.data.technologies.join(', ')}
+									</div>
+									<p class="description">{problem.data.description.slice(0, 120)}...</p>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

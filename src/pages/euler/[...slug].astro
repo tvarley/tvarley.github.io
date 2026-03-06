@@ -1,0 +1,20 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import EulerProblem from '../../layouts/EulerProblem.astro';
+
+export async function getStaticPaths() {
+	const problems = await getCollection('euler');
+	return problems.map((problem) => ({
+		params: { slug: problem.id },
+		props: problem,
+	}));
+}
+type Props = CollectionEntry<'euler'>;
+
+const problem = Astro.props;
+const { Content } = await render(problem);
+---
+
+<EulerProblem {...problem.data}>
+	<Content />
+</EulerProblem>
