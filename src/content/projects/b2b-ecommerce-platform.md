@@ -35,3 +35,9 @@ Led the engineering and rapid delivery of a cloud-native B2B e-commerce platform
 *   **AWS**: Utilized for static asset delivery (S3/CloudFront) and specialized compute workloads.
 *   **Docker**: Containerization for consistent development and deployment environments.
 *   **CI/CD Pipelines**: Automated build and deployment workflows to ensure code quality and rapid release cycles.
+
+
+
+## Architecture Diagram
+
+![B2B E-commerce Architecture](/images/diagrams/b2b-ecommerce-platform.svg)

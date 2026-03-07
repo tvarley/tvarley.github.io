@@ -53,3 +53,9 @@ This project was built entirely using AI-augmented workflows, effectively replac
 *   **Docker**: Containerization standard for all services, ensuring environment parity from dev to prod.
 *   **AWS**: Utilized for core compute (EC2/ECS), database (RDS), and networking (VPC) resources.
 *   **GitLab CI**: Fully automated CI/CD pipelines for linting, testing, and deployment.
+
+
+
+## Architecture Diagram
+
+![EdTech IoT Architecture](/images/diagrams/edtech-iot-platform.svg)

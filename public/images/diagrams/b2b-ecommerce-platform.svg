@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520" font-family="'Courier New', Courier, monospace">
+  <defs>
+    <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1" fill="#1e3a5f" opacity="0.5"/></pattern>
+    <marker id="arrow-teal" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="#64ffda"/></marker>
+    <marker id="arrow-grey" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="#8892b0"/></marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="#3fb950"/></marker>
+    <marker id="arrow-teal-rev" markerWidth="8" markerHeight="8" refX="1" refY="3" orient="auto-start-reverse" markerUnits="strokeWidth"><path d="M0,3 L8,0 L8,6 z" fill="#64ffda"/></marker>
+    <filter id="glow-teal" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="900" height="520" fill="#0d1117"/>
+  <rect width="900" height="520" fill="url(#dots)"/>
+  <text x="450" y="36" text-anchor="middle" font-size="13" font-weight="bold" fill="#64ffda" letter-spacing="3">B2B E-COMMERCE · HYBRID CLOUD ARCHITECTURE</text>
+  <line x1="180" y1="46" x2="720" y2="46" stroke="#64ffda" stroke-width="0.5" opacity="0.4"/>
+  <!-- BUYERS -->
+  <rect x="55" y="68" width="160" height="72" rx="8" fill="#0a1628" stroke="#64ffda" stroke-width="1.5" filter="url(#glow-teal)"/>
+  <rect x="55" y="68" width="160" height="22" rx="8" fill="#64ffda" opacity="0.12"/>
+  <text x="135" y="84" text-anchor="middle" font-size="9" fill="#64ffda" letter-spacing="2" font-weight="bold">BUYERS</text>
+  <circle cx="110" cy="107" r="7" fill="none" stroke="#64ffda" stroke-width="1.5"/><path d="M98,122 Q110,114 122,122" fill="none" stroke="#64ffda" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="155" cy="107" r="7" fill="none" stroke="#64ffda" stroke-width="1.5"/><path d="M143,122 Q155,114 167,122" fill="none" stroke="#64ffda" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- SUPPLIERS -->
+  <rect x="685" y="68" width="160" height="72" rx="8" fill="#0a1628" stroke="#8892b0" stroke-width="1.5"/>
+  <rect x="685" y="68" width="160" height="22" rx="8" fill="#8892b0" opacity="0.12"/>
+  <text x="765" y="84" text-anchor="middle" font-size="9" fill="#8892b0" letter-spacing="2" font-weight="bold">SUPPLIERS</text>
+  <circle cx="730" cy="107" r="7" fill="none" stroke="#8892b0" stroke-width="1.5"/><path d="M718,122 Q730,114 742,122" fill="none" stroke="#8892b0" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="800" cy="107" r="7" fill="none" stroke="#8892b0" stroke-width="1.5"/><path d="M788,122 Q800,114 812,122" fill="none" stroke="#8892b0" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- HEROKU ZONE -->
+  <rect x="35" y="170" width="830" height="155" rx="12" fill="#0f2035" stroke="#79c0ff" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <rect x="52" y="162" width="185" height="22" rx="4" fill="#0d1117"/>
+  <text x="145" y="177" text-anchor="middle" font-size="10" fill="#79c0ff" font-weight="bold" letter-spacing="2">⬡ HEROKU PAAS</text>
+  <!-- Storefront -->
+  <rect x="90" y="192" width="235" height="100" rx="8" fill="#112240" stroke="#79c0ff" stroke-width="2" filter="url(#glow-blue)"/>
+  <rect x="90" y="192" width="235" height="26" rx="8" fill="#79c0ff" opacity="0.15"/>
+  <text x="207" y="210" text-anchor="middle" font-size="10" fill="#79c0ff" letter-spacing="1" font-weight="bold">STOREFRONT APP</text>
+  <text x="207" y="232" text-anchor="middle" font-size="12" fill="#ccd6f6" font-weight="bold">Node.js</text>
+  <text x="207" y="250" text-anchor="middle" font-size="9" fill="#8892b0">Express · Sessions · Cart</text>
+  <text x="207" y="267" text-anchor="middle" font-size="9" fill="#8892b0">Auto-scaling Dynos</text>
+  <text x="207" y="282" text-anchor="middle" font-size="9" fill="#64ffda">20% infra cost reduction</text>
+  <!-- Storefront <-> Search -->
+  <line x1="325" y1="243" x2="535" y2="243" stroke="#64ffda" stroke-width="1.5" marker-start="url(#arrow-teal-rev)" marker-end="url(#arrow-teal)"/>
+  <rect x="383" y="233" width="110" height="18" rx="3" fill="#0d1117"/>
+  <text x="438" y="246" text-anchor="middle" font-size="9" fill="#64ffda">HTTP · REST</text>
+  <!-- Search -->
+  <rect x="535" y="192" width="235" height="100" rx="8" fill="#112240" stroke="#79c0ff" stroke-width="2"/>
+  <rect x="535" y="192" width="235" height="26" rx="8" fill="#79c0ff" opacity="0.15"/>
+  <text x="652" y="210" text-anchor="middle" font-size="10" fill="#79c0ff" letter-spacing="1" font-weight="bold">SEARCH SERVICE</text>
+  <text x="652" y="232" text-anchor="middle" font-size="12" fill="#ccd6f6" font-weight="bold">Elasticsearch</text>
+  <text x="652" y="250" text-anchor="middle" font-size="9" fill="#8892b0">Full-text · Facets · Filters</text>
+  <text x="652" y="267" text-anchor="middle" font-size="9" fill="#8892b0">Product catalog index</text>
+  <text x="652" y="282" text-anchor="middle" font-size="9" fill="#64ffda">Sub-100ms queries</text>
+  <!-- AWS ZONE -->
+  <rect x="35" y="355" width="830" height="140" rx="12" fill="#0d1e0f" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <rect x="52" y="347" width="165" height="22" rx="4" fill="#0d1117"/>
+  <text x="135" y="362" text-anchor="middle" font-size="10" fill="#3fb950" font-weight="bold" letter-spacing="2">&#x2601; AWS CLOUD</text>
+  <!-- S3 -->
+  <rect x="70" y="374" width="210" height="98" rx="8" fill="#112240" stroke="#3fb950" stroke-width="1.5"/>
+  <rect x="70" y="374" width="210" height="24" rx="8" fill="#3fb950" opacity="0.15"/>
+  <text x="175" y="391" text-anchor="middle" font-size="10" fill="#3fb950" letter-spacing="1" font-weight="bold">S3 STORAGE</text>
+  <text x="175" y="412" text-anchor="middle" font-size="12" fill="#ccd6f6" font-weight="bold">Asset Buckets</text>
+  <text x="175" y="430" text-anchor="middle" font-size="9" fill="#8892b0">Images · Docs · Exports</text>
+  <text x="175" y="447" text-anchor="middle" font-size="9" fill="#8892b0">Versioned · Encrypted</text>
+  <text x="175" y="463" text-anchor="middle" font-size="9" fill="#3fb950">Object storage origin</text>
+  <!-- CloudFront -->
+  <rect x="345" y="374" width="210" height="98" rx="8" fill="#112240" stroke="#3fb950" stroke-width="1.5"/>
+  <rect x="345" y="374" width="210" height="24" rx="8" fill="#3fb950" opacity="0.15"/>
+  <text x="450" y="391" text-anchor="middle" font-size="10" fill="#3fb950" letter-spacing="1" font-weight="bold">CLOUDFRONT CDN</text>
+  <text x="450" y="412" text-anchor="middle" font-size="12" fill="#ccd6f6" font-weight="bold">Global Edge</text>
+  <text x="450" y="430" text-anchor="middle" font-size="9" fill="#8892b0">270+ PoPs worldwide</text>
+  <text x="450" y="447" text-anchor="middle" font-size="9" fill="#8892b0">Cache · Compress · Serve</text>
+  <text x="450" y="463" text-anchor="middle" font-size="9" fill="#3fb950">Buyer-facing CDN layer</text>
+  <!-- Workers -->
+  <rect x="620" y="374" width="210" height="98" rx="8" fill="#112240" stroke="#3fb950" stroke-width="1.5"/>
+  <rect x="620" y="374" width="210" height="24" rx="8" fill="#3fb950" opacity="0.15"/>
+  <text x="725" y="391" text-anchor="middle" font-size="10" fill="#3fb950" letter-spacing="1" font-weight="bold">COMPUTE WORKERS</text>
+  <text x="725" y="412" text-anchor="middle" font-size="12" fill="#ccd6f6" font-weight="bold">Image Processing</text>
+  <text x="725" y="430" text-anchor="middle" font-size="9" fill="#8892b0">Resize · Optimize · Tag</text>
+  <text x="725" y="447" text-anchor="middle" font-size="9" fill="#8892b0">Async queue workers</text>
+  <text x="725" y="463" text-anchor="middle" font-size="9" fill="#3fb950">Offloaded from app tier</text>
+  <!-- S3->CDN -->
+  <line x1="280" y1="423" x2="345" y2="423" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <rect x="285" y="412" width="55" height="16" rx="3" fill="#0d1e0f"/>
+  <text x="312" y="424" text-anchor="middle" font-size="9" fill="#3fb950">origin</text>
+  <!-- S3->Workers -->
+  <line x1="280" y1="448" x2="620" y2="448" stroke="#3fb950" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arrow-green)"/>
+  <rect x="412" y="437" width="76" height="16" rx="3" fill="#0d1e0f"/>
+  <text x="450" y="449" text-anchor="middle" font-size="9" fill="#3fb950">queue job</text>
+  <!-- Cross-zone flows -->
+  <line x1="135" y1="140" x2="180" y2="192" stroke="#64ffda" stroke-width="1.5" marker-end="url(#arrow-teal)" filter="url(#glow-teal)"/>
+  <rect x="95" y="154" width="58" height="16" rx="3" fill="#0d1117"/>
+  <text x="124" y="166" text-anchor="middle" font-size="9" fill="#64ffda">browse</text>
+  <line x1="700" y1="140" x2="305" y2="192" stroke="#8892b0" stroke-width="1.5" marker-end="url(#arrow-grey)"/>
+  <rect x="500" y="148" width="60" height="16" rx="3" fill="#0d1117"/>
+  <text x="530" y="160" text-anchor="middle" font-size="9" fill="#8892b0">update</text>
+  <line x1="200" y1="292" x2="175" y2="374" stroke="#64ffda" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-teal)"/>
+  <rect x="152" y="325" width="65" height="16" rx="3" fill="#0d1117"/>
+  <text x="184" y="337" text-anchor="middle" font-size="9" fill="#64ffda">upload</text>
+  <path d="M 420 374 C 380 310, 200 280, 135 140" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-green)"/>
+  <rect x="255" y="302" width="90" height="16" rx="3" fill="#0d1117"/>
+  <text x="300" y="314" text-anchor="middle" font-size="9" fill="#3fb950">serve assets</text>
+</svg>

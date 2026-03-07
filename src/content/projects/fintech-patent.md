@@ -16,7 +16,7 @@ A pioneering innovation in the financial technology sector that established earl
 ## Key Achievements
 
 ### 🏆 Recognition & Impact
-- **US Patent 6,119,104:** Successfully awarded a United States Patent, validating the novelty and technical merit of the architectural approach.
+- **[US Patent 6,119,104](https://patents.google.com/patent/US6119104):** Successfully awarded a United States Patent, validating the novelty and technical merit of the architectural approach.
 - **Smithsonian Innovation Award:** Honored with the prestigious Smithsonian Innovation Award for significant contribution to the field of information technology.
 - **Permanent Collection:** The case study and documentation of this work have been archived in the **Smithsonian Institution's permanent research collection**.
 
@@ -33,3 +33,9 @@ A pioneering innovation in the financial technology sector that established earl
 ### Integration
 *   **Legacy Modernization**: Strategies for wrapping and exposing COBOL/Mainframe logic as modern APIs.
 *   **Middleware Patterns**: Early implementation of service bus and message queue concepts in a financial context.
+
+
+
+## Architecture Diagram
+
+![FinTech Patent Architecture](/images/diagrams/fintech-patent.svg)

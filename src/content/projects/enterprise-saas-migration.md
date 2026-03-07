@@ -40,3 +40,9 @@ Spearheaded a high-stakes enterprise initiative to modernize a legacy monolithic
 *   **Autoscaling**: Dynamic resource allocation based on real-time traffic demand.
 *   **Load Balancing**: Layer 4/7 distribution to ensure optimal request handling and failover.
 *   **Monitoring & Alerting**: Comprehensive system health tracking to preemptively identify performance bottlenecks.
+
+
+
+## Architecture Diagram
+
+![SaaS Migration Architecture](/images/diagrams/enterprise-saas-migration.svg)
