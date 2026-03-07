@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme Variables */
+:root {
+  /* Dark theme (default) */
+  --bg-primary: #121212;
+  --bg-secondary: #0a0a0a;
+  --text-primary: #ffffff;
+  --text-secondary: #c0c0c0;
+  --text-muted: #a9a9a9;
+  --accent: #4682b4;
+  --border: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(18, 18, 18, 0.5);
+  --shadow: rgba(0, 0, 0, 0.25);
+  --glow: rgba(70, 130, 180, 0.1);
+}
+
+/* Theme Transitions */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -9,12 +29,15 @@
   
   body {
     @apply bg-charcoal text-white font-mono antialiased;
-    background-image: linear-gradient(135deg, #121212 0%, #1a1a2e 50%, #16213e 100%);
+    background-color: var(--bg-primary);
+    background-image: linear-gradient(135deg, var(--bg-primary) 0%, #1a1a2e 50%, #16213e 100%);
     min-height: 100vh;
+    color: var(--text-primary);
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif font-bold text-white tracking-tight;
+    color: var(--text-primary);
   }
 
   /* Markdown Content Styles */
@@ -24,22 +47,30 @@
   
   .prose p {
     @apply leading-relaxed mb-6 text-silver;
+    color: var(--text-secondary);
   }
 
   .prose a {
     @apply text-steel-blue hover:text-white transition-colors border-b border-steel-blue/30 hover:border-steel-blue;
+    color: var(--accent);
   }
 
   .prose strong {
     @apply text-white font-bold;
+    color: var(--text-primary);
   }
 
   .prose code {
     @apply bg-matte px-2 py-1 rounded text-sm text-silver font-medium border border-white/10;
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    border-color: var(--border);
   }
 
   .prose pre {
     @apply bg-matte p-6 rounded-xl border border-white/10 overflow-x-auto my-8;
+    background-color: var(--bg-secondary);
+    border-color: var(--border);
   }
 
   .prose pre code {
@@ -48,14 +79,18 @@
 
   .prose blockquote {
     @apply border-l-4 border-steel-blue pl-6 italic text-steel-grey my-8;
+    border-left-color: var(--accent);
+    color: var(--text-muted);
   }
 
   .prose ul {
     @apply list-disc list-outside ml-6 mb-6 text-silver;
+    color: var(--text-secondary);
   }
   
   .prose ol {
     @apply list-decimal list-outside ml-6 mb-6 text-silver;
+    color: var(--text-secondary);
   }
 
   .prose li {
@@ -65,18 +100,25 @@
 
 @layer components {
   .glass-card {
-    @apply bg-charcoal/50 backdrop-blur-md border border-steel-blue/20 shadow-glass rounded-2xl p-8 hover:shadow-subtle-glow hover:border-steel-blue/40 hover:-translate-y-px transition-all duration-300;
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-color: var(--border);
+    box-shadow: 0 25px 50px -12px var(--shadow);
+    @apply rounded-2xl p-8 hover:shadow-subtle-glow hover:border-steel-blue/40 hover:-translate-y-px transition-all duration-300;
   }
   
   .btn-primary {
-    @apply bg-steel-blue hover:bg-steel-blue/90 text-white font-medium px-8 py-4 rounded-xl shadow-subtle-glow hover:shadow-glass transition-all duration-300 border border-steel-blue/50 inline-block no-underline;
+    background-color: var(--accent);
+    @apply hover:bg-steel-blue/90 text-white font-medium px-8 py-4 rounded-xl shadow-subtle-glow hover:shadow-glass transition-all duration-300 border border-steel-blue/50 inline-block no-underline;
   }
 
   .nav-link {
-    @apply text-silver hover:text-white font-medium border-b-2 border-transparent hover:border-steel-blue px-1 py-2 transition-all duration-200 no-underline;
+    color: var(--text-secondary);
+    @apply hover:text-white font-medium border-b-2 border-transparent hover:border-steel-blue px-1 py-2 transition-all duration-200 no-underline;
   }
   
   .nav-link.active {
     @apply text-white border-steel-blue;
+    color: var(--text-primary);
   }
 }

@@ -15,7 +15,7 @@ const { title, description, image, categories } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" data-theme="dark" class="scroll-smooth">
 	<head>
 		<BaseHead title={title || "Tim Varley"} description={description || "Technical Lead & Software Engineer"} />
     {categories && <meta name="keywords" content={categories.join(', ')}>}
@@ -23,6 +23,7 @@ const { title, description, image, categories } = Astro.props;
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
 	</head>
 	<body class="bg-charcoal text-white font-mono antialiased min-h-screen flex flex-col relative selection:bg-steel-blue selection:text-white">
+    
     <!-- Background Gradient -->
     <div class="fixed inset-0 z-[-1] bg-hero-gradient opacity-80 pointer-events-none"></div>
     

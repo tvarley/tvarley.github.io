@@ -1,10 +1,59 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import FilterControls from '../../components/FilterControls.astro';
 import { getCollection } from 'astro:content';
 
 const problems = (await getCollection('euler')).sort(
 	(a, b) => a.data.problemNumber - b.data.problemNumber,
 );
+
+// Parse URL parameters for server-side filtering (progressive enhancement)
+const url = new URL(Astro.request.url);
+const difficultyParam = url.searchParams.get('difficulty');
+const techParam = url.searchParams.get('tech');
+const searchParam = url.searchParams.get('search');
+
+let initialFilters = {};
+let filteredProblems = problems;
+
+// Apply server-side filtering if URL parameters exist (for progressive enhancement)
+if (difficultyParam || techParam || searchParam) {
+  filteredProblems = problems.filter(problem => {
+    // Difficulty filter
+    if (difficultyParam) {
+      const selectedDifficulties = difficultyParam.split(',');
+      if (!selectedDifficulties.includes(problem.data.difficulty)) {
+        return false;
+      }
+    }
+
+    // Technology filter
+    if (techParam) {
+      const selectedTech = techParam.split(',');
+      if (!selectedTech.some(tech => problem.data.technologies.includes(tech))) {
+        return false;
+      }
+    }
+
+    // Search filter
+    if (searchParam) {
+      const searchTerm = searchParam.toLowerCase();
+      const searchableText = `${problem.data.title} ${problem.data.description}`.toLowerCase();
+      if (!searchableText.includes(searchTerm)) {
+        return false;
+      }
+    }
+
+    return true;
+  });
+
+  // Set initial filters for client-side component
+  initialFilters = {
+    difficulty: difficultyParam ? difficultyParam.split(',') : [],
+    technologies: techParam ? techParam.split(',') : [],
+    search: searchParam || ''
+  };
+}
 ---
 
 <Layout title="Euler Solutions - Tim Varley" description="Mathematical programming solutions showcasing problem-solving across multiple languages">
@@ -21,9 +70,15 @@ const problems = (await getCollection('euler')).sort(
       </p>
     </div>
 
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-			{
-				problems.map((problem) => (
+    <!-- Filter Controls -->
+    <FilterControls
+      problems={problems}
+      initialFilters={initialFilters}
+      client:load
+    />
+
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="problems-grid">
+			{filteredProblems.map((problem) => (
           <a href={`/euler/${problem.id}/`} class="glass-card group flex flex-col h-full no-underline p-6">
             <div class="flex justify-between items-start mb-4">
               <span class="font-mono text-xl font-bold text-steel-blue/80 group-hover:text-steel-blue transition-colors">#{problem.data.problemNumber.toString().padStart(3, '0')}</span>
@@ -44,8 +99,61 @@ const problems = (await getCollection('euler')).sort(
               ))}
             </div>
           </a>
-				))
-			}
+			))}
 		</div>
+
+    <!-- Empty state (initially hidden, shown by JS when needed) -->
+    <div class="text-center py-16 hidden" id="empty-state">
+      <div class="text-6xl mb-4">🔍</div>
+      <h3 class="text-2xl font-bold text-white mb-2">No problems found</h3>
+      <p class="text-silver/80 mb-6">No problems match your current filters. Try adjusting your search criteria.</p>
+      <button
+        class="clear-all-filters px-6 py-3 bg-steel-blue text-white font-medium rounded-lg hover:bg-steel-blue/80 transition-colors"
+        onclick="window.filterControls?.clearAllFilters()"
+      >
+        Clear all filters
+      </button>
+    </div>
 	</section>
 </Layout>
+
+<script>
+  // Make problems data available to the FilterControls component
+  window.problemsData = [
+    // This will be populated with the problems data
+  ];
+
+  // Populate problems data from Astro
+  document.addEventListener('DOMContentLoaded', () => {
+    // Get problems data from the rendered HTML (server-side filtered results)
+    const problemCards = document.querySelectorAll('#problems-grid a');
+    const problems = Array.from(problemCards).map(card => {
+      const href = card.getAttribute('href');
+      const problemNumber = parseInt(card.querySelector('.font-mono').textContent.replace('#', ''));
+      const difficulty = card.querySelector('.rounded').textContent.trim().toLowerCase();
+      const title = card.querySelector('h4').textContent.trim();
+      const technologies = Array.from(card.querySelectorAll('.font-mono:not(.font-mono:first-child)')).map(span => span.textContent.trim());
+
+      // Find the original problem data by matching problem number
+      const originalProblem = window.allProblems?.find(p => p.data.problemNumber === problemNumber);
+
+      return {
+        id: href.split('/').pop(),
+        data: {
+          problemNumber,
+          title,
+          description: originalProblem?.data.description || '',
+          difficulty,
+          technologies
+        }
+      };
+    });
+
+    window.problemsData = problems;
+  });
+</script>
+
+<script define:vars={{ problems }}>
+  // Make all problems data available globally for client-side filtering
+  window.allProblems = problems;
+</script>
