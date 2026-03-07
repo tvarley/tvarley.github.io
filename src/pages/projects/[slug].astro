@@ -1,0 +1,126 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+	const projects = await getCollection('projects');
+	return projects.map((project) => ({
+		params: { slug: project.id },
+		props: project,
+	}));
+}
+
+const project = Astro.props;
+const { Content } = await render(project);
+---
+
+<Layout title={project.data.title} description={project.data.role}>
+	<article class="max-w-6xl mx-auto py-12 px-6">
+		
+        <!-- Header -->
+        <header class="mb-16 text-center">
+            <div class="inline-flex items-center justify-center gap-3 mb-8 flex-wrap">
+                <span class="font-mono text-steel-blue bg-steel-blue/10 border border-steel-blue/20 px-4 py-1.5 rounded-full text-sm font-bold">
+                    {project.data.period}
+                </span>
+                <span class="font-mono text-silver bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-sm">
+                    {project.data.role}
+                </span>
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl lg:text-7xl font-serif font-black text-white mb-10 leading-tight max-w-4xl mx-auto">
+                {project.data.title}
+            </h1>
+            
+            <div class="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto">
+                {project.data.tags.map(tag => (
+                    <span class="text-xs font-mono text-silver/80 bg-charcoal border border-white/10 px-3 py-1.5 rounded hover:border-steel-blue/40 hover:text-white transition-colors cursor-default">
+                        {tag}
+                    </span>
+                ))}
+            </div>
+        </header>
+
+        <!-- Content -->
+		<div class="prose prose-lg prose-invert max-w-none mx-auto bg-matte/30 p-8 md:p-16 rounded-2xl border border-white/5 shadow-glass">
+            <!-- Custom CSS to style the markdown content similar to Euler implementations -->
+            <div class="markdown-content max-w-4xl mx-auto">
+			    <Content />
+            </div>
+		</div>
+        
+        <!-- Back Link -->
+        <div class="mt-20 text-center">
+            <a href="/projects" class="inline-flex items-center gap-2 text-steel-blue hover:text-white font-mono text-sm transition-colors border border-steel-blue/20 hover:border-steel-blue px-6 py-3 rounded-lg group">
+                <span class="group-hover:-translate-x-1 transition-transform">&larr;</span> Back to Projects
+            </a>
+        </div>
+	</article>
+</Layout>
+
+<style is:global>
+    /* 
+       Global styles for the markdown content to match the Euler aesthetic.
+       We target the specific container to avoid leaking styles too broadly.
+    */
+    .markdown-content h2 {
+        font-family: var(--font-serif);
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: white;
+        margin-top: 3rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .markdown-content h3 {
+        font-family: var(--font-sans);
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #e2e8f0; /* slalt-200 */
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .markdown-content p {
+        color: #94a3b8; /* slate-400 */
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+    }
+
+    .markdown-content ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 2rem;
+    }
+
+    .markdown-content li {
+        position: relative;
+        padding-left: 1.5rem;
+        margin-bottom: 0.75rem;
+        color: #cbd5e1; /* slate-300 */
+    }
+
+    .markdown-content li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #64ffda; /* accent color */
+        font-weight: bold;
+    }
+
+    .markdown-content strong {
+        color: white;
+        font-weight: 600;
+    }
+    
+    .markdown-content code {
+        font-family: var(--font-mono);
+        color: #64ffda;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 0.2em 0.4em;
+        border-radius: 4px;
+        font-size: 0.85em;
+    }
+</style>

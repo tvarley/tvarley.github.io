@@ -3,18 +3,21 @@ import { type CollectionEntry, getCollection, render } from 'astro:content';
 import EulerProblem from '../../layouts/EulerProblem.astro';
 
 export async function getStaticPaths() {
-	const problems = await getCollection('euler');
-	return problems.map((problem) => ({
+	const problems = (await getCollection('euler')).sort((a, b) => a.data.problemNumber - b.data.problemNumber);
+	return problems.map((problem, i) => ({
 		params: { slug: problem.id },
-		props: problem,
+		props: {
+			problem,
+			prevProblem: i > 0 ? problems[i - 1] : undefined,
+			nextProblem: i < problems.length - 1 ? problems[i + 1] : undefined,
+		},
 	}));
 }
-type Props = CollectionEntry<'euler'>;
 
-const problem = Astro.props;
+const { problem, prevProblem, nextProblem } = Astro.props;
 const { Content } = await render(problem);
 ---
 
-<EulerProblem {...problem.data}>
+<EulerProblem {...problem.data} prevProblem={prevProblem} nextProblem={nextProblem}>
 	<Content />
 </EulerProblem>

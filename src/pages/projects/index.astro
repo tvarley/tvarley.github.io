@@ -1,0 +1,68 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort(
+	(a, b) => a.data.priority - b.data.priority
+);
+---
+
+<Layout title="Projects | Tim Varley" description="A collection of my professional work and projects.">
+	<section class="py-12 px-6 max-w-7xl mx-auto">
+        <!-- Header -->
+		<div class="max-w-4xl mb-16">
+			<h1 class="text-5xl md:text-6xl font-black text-white mb-8">Selected <span class="text-steel-blue">Projects</span></h1>
+			
+            <div class="space-y-6 text-xl text-steel-grey leading-relaxed">
+                <p>
+                    My professional journey has evolved into a fully <strong class="text-white">AI-Native approach</strong>, leveraging advanced autonomous agents to architect and build complex systems with unprecedented velocity. This shift represents not just a change in tools, but a fundamental reimagining of software engineering.
+                </p>
+                <p>
+                    With over 15 years as a Principal Architect and Technical Lead, I apply deep architectural patterns and rigorous engineering discipline to orchestrate AI agents. It is this foundation—knowing <em>what</em> to build and <em>how</em> it should scale—that transforms LLMs from simple assistants into powerful engines for enterprise-grade development.
+                </p>
+            </div>
+		</div>
+		
+        <!-- Projects Grid -->
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			{
+				projects.map((project) => (
+					<a href={`/projects/${project.id}/`} class="glass-card group flex flex-col h-full no-underline p-8 relative overflow-hidden transition-all duration-300 hover:-translate-y-1">
+                        <!-- Decorative background glow -->
+                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-steel-blue/10 rounded-full blur-3xl group-hover:bg-steel-blue/20 transition-all duration-500"></div>
+
+                        <!-- Header: Role & Period -->
+						<div class="flex justify-between items-start mb-4 relative z-10">
+							<span class="text-xs font-mono font-bold text-steel-blue uppercase tracking-wider bg-steel-blue/10 px-2 py-1 rounded border border-steel-blue/20">
+                                {project.data.period}
+                            </span>
+						</div>
+						
+                        <!-- Content -->
+						<h2 class="text-2xl font-serif font-bold text-white mb-2 leading-tight group-hover:text-steel-blue transition-colors relative z-10">
+                            {project.data.title}
+                        </h2>
+                        
+                        <p class="text-sm text-silver font-mono mb-6 relative z-10 opacity-80">
+                            {project.data.role}
+                        </p>
+                        
+                        <!-- Tags -->
+						<div class="flex flex-wrap gap-2 mt-auto pt-6 border-t border-white/5 relative z-10">
+							{project.data.tags.slice(0, 4).map((tag) => (
+								<span class="text-[0.65rem] font-mono text-silver bg-charcoal/50 px-2 py-1 rounded border border-white/10 group-hover:border-steel-blue/30 transition-colors">
+									{tag}
+								</span>
+							))}
+                            {project.data.tags.length > 4 && (
+                                <span class="text-[0.65rem] font-mono text-steel-grey px-1 py-1">
+                                    +{project.data.tags.length - 4}
+                                </span>
+                            )}
+						</div>
+					</a>
+				))
+			}
+		</div>
+	</section>
+</Layout>

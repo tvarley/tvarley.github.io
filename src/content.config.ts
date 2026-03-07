@@ -49,4 +49,21 @@ const blog = defineCollection({
 	}),
 });
 
-export const collections = { euler, writings, blog };
+const projects = defineCollection({
+	loader: glob({ base: './src/content/projects', pattern: '**/*.{md,mdx}' }),
+	schema: z.object({
+		title: z.string(),
+		period: z.string(),
+		role: z.string(),
+		tags: z.array(z.string()),
+		priority: z.number().default(99),
+		thumbnail: z.string().optional(),
+		links: z.object({
+			demo: z.string().optional(),
+			repo: z.string().optional(),
+			patent: z.string().optional()
+		}).optional()
+	}),
+});
+
+export const collections = { euler, writings, blog, projects };
