@@ -1,13 +1,22 @@
-Tim Varley's [Personal Blog](http://tvarley.github.io/)
+# Tim Varley's Personal Website
 
-Based on the elegant Pixyll Jeykll theme
+Built with Astro and Tailwind CSS.
 
-- [pixyll.com](http://www.pixyll.com)
+## Development
 
-<small>
-  This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br/><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a></p>
-</small>
-
+```bash
+npm install
+npm run dev
 ```
-bundle exec jekyll serve
+
+## Build
+
+```bash
+npm run build
+```
+
+## Preview
+
+```bash
+npm run preview
 ```
