@@ -1,0 +1,73 @@
+---
+import { Code } from 'astro-expressive-code/components';
+
+interface Props {
+  code: string;
+  language: string;
+  id?: string;
+  title?: string;
+}
+
+const { code, language, id, title } = Astro.props;
+---
+
+<div class="code-block-container" id={id}>
+  <Code
+    code={code}
+    lang={language}
+    title={title}
+  />
+</div>
+
+<style>
+  .code-block-container {
+    @apply my-6;
+  }
+
+  /* Custom styling for the Expressive Code component to match our site's design */
+  :global(.expressive-code .frame) {
+    @apply rounded-2xl overflow-hidden shadow-glass;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(26, 26, 26, 0.9));
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  :global(.expressive-code .frame-header) {
+    @apply bg-charcoal/80 backdrop-blur border-b border-white/5 px-4 py-3;
+  }
+
+  :global(.expressive-code .frame-title-bar) {
+    @apply bg-charcoal/80 backdrop-blur border-b border-white/5 px-4 py-3;
+  }
+
+  :global(.expressive-code .frame-content) {
+    @apply bg-charcoal border-none;
+  }
+
+  :global(.expressive-code .copy-button) {
+    @apply bg-steel-blue/10 hover:bg-steel-blue/20 border border-steel-blue/30 hover:border-steel-blue/50 transition-colors;
+  }
+
+  :global(.expressive-code .copy-button:hover) {
+    @apply bg-steel-blue/20;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .code-block-container {
+      @apply mx-0;
+    }
+
+    :global(.expressive-code .frame) {
+      @apply rounded-xl;
+    }
+
+    :global(.expressive-code .frame-header) {
+      @apply px-3 py-2.5;
+    }
+
+    :global(.expressive-code .frame-title-bar) {
+      @apply px-3 py-2.5;
+    }
+  }
+</style>

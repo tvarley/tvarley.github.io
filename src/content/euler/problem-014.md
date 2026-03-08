@@ -1,7 +1,21 @@
 ---
 problemNumber: 14
 title: "Longest Collatz sequence"
-description: "The following iterative sequence is defined for the set of positive integers: n → n/2 (n is even), n → 3n + 1 (n is odd). Using the rule above and starting with 13, we generate the following sequence: 13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1. It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1. Which starting number, under one million, produces the longest chain? NOTE: Once the chain starts the terms are allowed to go above one million."
+description: |
+  The following iterative sequence is defined for the set of positive integers:
+
+  - $n \to n/2$ ($n$ is even)
+  - $n \to 3n + 1$ ($n$ is odd)
+
+  Using the rule above and starting with $13$, we generate the following sequence:
+
+  $$13 \to 40 \to 20 \to 10 \to 5 \to 16 \to 8 \to 4 \to 2 \to 1.$$
+
+  It can be seen that this sequence (starting at $13$ and finishing at $1$) contains $10$ terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at $1$.
+
+  Which starting number, under one million, produces the longest chain?
+
+  **NOTE:** Once the chain starts the terms are allowed to go above one million.
 difficulty: "easy"
 date: 2015-02-10
 technologies: ["cpp", "ruby"]
@@ -126,4 +140,10 @@ showcase: true
 
 ## Additional Notes
 
-The Collatz conjecture states that all positive integers will eventually reach 1 using the given rules. This problem requires finding the starting number under 1 million that produces the longest chain before reaching 1. Memoization dramatically improves performance by caching sequence lengths for previously computed values.
+The Collatz conjecture states that all positive integers will eventually reach 1 using the given rules. This problem requires finding the starting number under one million that produces the longest chain before reaching 1.
+
+The iterative rules are:
+- $n \rightarrow \frac{n}{2}$ (when $n$ is even)
+- $n \rightarrow 3n + 1$ (when $n$ is odd)
+
+Memoization dramatically improves performance by caching sequence lengths for previously computed values, reducing redundant calculations for overlapping sequences.

@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry } from 'astro:content';
 import Layout from './Layout.astro';
+import CodeBlock from '../components/CodeBlock.astro';
 
 interface Props {
   problemNumber: number;
@@ -25,7 +26,43 @@ const { problemNumber, title, description, difficulty, technologies, implementat
 <Layout title={`Euler ${problemNumber}: ${title}`} description={description}>
     <!-- Load MathJax for equation rendering -->
     <script is:inline src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script is:inline>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            },
+            startup: {
+                ready: function() {
+                    MathJax.startup.defaultReady();
+                    MathJax.startup.promise.then(function() {
+                        // Process math after page load
+                        if (typeof MathJax !== 'undefined') {
+                            MathJax.typesetPromise();
+                        }
+                    });
+                }
+            }
+        };
+    </script>
     <script is:inline id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Additional script to ensure math is processed after content loads -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Give MathJax time to load, then process
+            setTimeout(function() {
+                if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+                    MathJax.typesetPromise();
+                }
+            }, 100);
+        });
+    </script>
 
 	<article class="max-w-4xl mx-auto py-12 px-6">
     
@@ -56,9 +93,24 @@ const { problemNumber, title, description, difficulty, technologies, implementat
         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-steel-blue/50 to-transparent opacity-50"></div>
         
         <div class="prose prose-lg prose-invert max-w-none">
-            <p class="text-xl text-silver leading-relaxed font-serif m-0 italic mb-6">
-            {description}
-            </p>
+            <div class="text-xl text-silver leading-relaxed font-serif italic mb-6">
+            {description.split('\n\n').map((paragraph, index) => {
+                if (paragraph.trim().startsWith('- ')) {
+                    // Handle list items
+                    const items = paragraph.split('\n').filter(line => line.trim());
+                    return (
+                        <ul key={index} class="list-disc list-inside mb-4 space-y-1">
+                            {items.map((item, i) => (
+                                <li key={i} class="text-silver">{item.replace(/^- /, '')}</li>
+                            ))}
+                        </ul>
+                    );
+                } else if (paragraph.trim()) {
+                    // Handle regular paragraphs and math blocks
+                    return <p key={index} class="text-silver m-0 mb-4 last:mb-0 whitespace-pre-line">{paragraph.trim()}</p>;
+                }
+                return null;
+            })}
 
             <!-- Markdown Slot for Extended Description / Equations -->
             <div class="not-italic font-sans text-base text-gray-300">
@@ -70,29 +122,21 @@ const { problemNumber, title, description, difficulty, technologies, implementat
       <!-- Tech Stack -->
       <div class="mt-8 flex flex-wrap justify-center gap-2">
         {technologies.map(tech => (
-          <span class="text-xs font-mono text-white/80 bg-white/5 border border-white/10 px-3 py-1 rounded transition-colors hover:border-steel-blue/50 hover:text-white">
+          <a href={`#${tech.toLowerCase()}-implementation`} class="tech-pill text-xs font-mono text-white/80 bg-white/5 border border-white/10 px-3 py-1 rounded transition-colors hover:border-steel-blue/50 hover:text-white hover:bg-steel-blue/10">
             {tech}
-          </span>
+          </a>
         ))}
       </div>
     </header>
 
     <!-- Implementations -->
-    <div class="space-y-16">
+    <section class="space-y-16" aria-labelledby="implementations-heading">
       <div class="flex items-center gap-4 mb-8">
-        <h2 class="text-3xl font-serif font-bold text-white">Implementations</h2>
-        <div class="h-px bg-white/10 flex-grow"></div>
+        <h2 id="implementations-heading" class="text-3xl font-serif font-bold text-white">Implementations</h2>
+        <div class="h-px bg-white/10 flex-grow" aria-hidden="true"></div>
       </div>
       
       {implementations.map((impl, index) => (
-        <div class="relative group">
-          <!-- Language Label -->
-          <div class="absolute -top-3 left-6 z-10">
-             <span class="bg-steel-blue text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wide border border-white/10">
-               {impl.language}
-             </span>
-          </div>
-
           <div class="bg-matte border border-white/10 rounded-2xl overflow-hidden shadow-glass hover:shadow-glow transition-all duration-300 hover:border-steel-blue/30 group-hover:translate-y-[-2px]">
             <!-- Meta Bar -->
             <div class="bg-charcoal/80 backdrop-blur border-b border-white/5 px-6 pt-5 pb-3 flex justify-between items-end">
@@ -118,12 +162,19 @@ const { problemNumber, title, description, difficulty, technologies, implementat
             )}
             
             <div class="p-0 overflow-x-auto">
-              <pre class="!bg-charcoal !m-0 !p-6 !border-0 text-sm font-mono leading-relaxed"><code class={`language-${impl.language.toLowerCase()}`}>{impl.code}</code></pre>
+              <CodeBlock
+                code={impl.code}
+                language={impl.language.toLowerCase()}
+                showLineNumbers={true}
+                showCopyButton={true}
+                class="rounded-none border-none shadow-none"
+                id={`${impl.language.toLowerCase()}-implementation`}
+              />
             </div>
           </div>
         </div>
       ))}
-    </div>
+    </section>
 
     <!-- Navigation -->
     <nav class="mt-24 grid grid-cols-2 gap-4 border-t border-white/10 pt-8">
@@ -158,5 +209,14 @@ const { problemNumber, title, description, difficulty, technologies, implementat
   mjx-container {
     color: #cbd5e1 !important; /* silver/slate-300 */
     font-size: 1.1em !important;
+  }
+
+  .tech-pill {
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .tech-pill:hover {
+    transform: translateY(-1px);
   }
 </style>
