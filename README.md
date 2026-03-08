@@ -20,3 +20,9 @@ npm run build
 ```bash
 npm run preview
 ```
+
+## Deployment
+
+This site is automatically deployed to GitHub Pages on every push to the `main` branch.
+
+[![Deploy to GitHub Pages](https://github.com/tvarley/tvarley.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/tvarley/tvarley.github.io/actions/workflows/deploy.yml)
