@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import Layout from './Layout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
@@ -20,7 +19,7 @@ const { title, summary, date, heroImage } = Astro.props;
 				{heroImage && (
 					<div class="flex items-center justify-center gap-6 mb-6">
 						<div class="rounded-lg overflow-hidden shadow-glass border border-white/5">
-							<Image width={80} height={80} src={heroImage} alt="" class="w-20 h-20 block object-contain" />
+							<img width={80} height={80} src={heroImage} alt="" class="w-20 h-20 block object-contain" />
 						</div>
 						<div class="text-left">
 							<h1 class="text-4xl md:text-5xl font-serif font-black text-white leading-tight mb-2">{title}</h1>
