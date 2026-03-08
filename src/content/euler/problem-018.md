@@ -1,7 +1,12 @@
 ---
 problemNumber: 18
 title: "Maximum path sum I"
-description: "By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23. Find the maximum total from top to bottom of the triangle below. NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method!"
+description: |
+  By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.
+
+  Find the maximum total from top to bottom of the triangle below.
+
+  NOTE: As there are only \(2^{14}\) routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method!
 difficulty: "easy"
 date: 2015-02-16
 technologies: ["cpp", "ruby"]

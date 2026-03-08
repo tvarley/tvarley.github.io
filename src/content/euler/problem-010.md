@@ -1,7 +1,12 @@
 ---
 problemNumber: 10
 title: "Summation of primes"
-description: "The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17. Find the sum of all the primes below two million."
+description: |
+  The sum of the primes below 10 is:
+
+  \(2 + 3 + 5 + 7 = 17\)
+
+  Find the sum of all the primes below two million.
 difficulty: "easy"
 date: 2015-01-30
 technologies: ["cpp", "ruby"]

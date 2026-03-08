@@ -6,16 +6,21 @@ interface Props {
   language: string;
   id?: string;
   title?: string;
+  showLineNumbers?: boolean;
+  showCopyButton?: boolean;
+  class?: string;
 }
 
-const { code, language, id, title } = Astro.props;
+const { code, language, id, title, showLineNumbers = true, showCopyButton = true, class: className } = Astro.props;
 ---
 
-<div class="code-block-container" id={id}>
+<div class="code-block-container" id={id} class={className}>
   <Code
     code={code}
     lang={language}
     title={title}
+    showLineNumbers={showLineNumbers}
+    showCopyButton={showCopyButton}
   />
 </div>
 

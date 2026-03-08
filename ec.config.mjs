@@ -83,5 +83,9 @@ export default defineEcConfig({
       // Copy button and other UI elements
       borderRadius: '0.5rem'
     }
+  },
+  defaultProps: {
+    showLineNumbers: true,
+    showCopyButton: true
   }
 });
