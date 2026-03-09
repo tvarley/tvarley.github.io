@@ -2,7 +2,7 @@
 import { SITE_TITLE } from '../consts';
 ---
 
-<header class="sticky top-0 z-50 w-full transition-all duration-300 border-b border-steel-blue/10 bg-charcoal/80 backdrop-blur-md">
+<header class="sticky top-0 z-[100] w-full transition-all duration-300 border-b border-steel-blue/10 bg-charcoal/80 backdrop-blur-md transform-gpu" style="-webkit-transform: translate3d(0,0,0); position: -webkit-sticky; position: sticky;">
 	<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
 		
     <!-- Logo -->
@@ -38,13 +38,13 @@ import { SITE_TITLE } from '../consts';
       <div class="flex flex-col h-full pt-20 px-6">
         <div class="flex justify-between items-center mb-8">
           <span class="font-serif font-bold text-xl text-white">Menu</span>
-          <button class="text-white text-2xl hover:text-steel-blue transition-colors" onclick="closeMobileMenu()">&times;</button>
+          <button id="menu-close-btn" class="text-white text-2xl hover:text-steel-blue transition-colors p-2 -mr-2 cursor-pointer">&times;</button>
         </div>
         <div class="flex flex-col gap-6">
-          <a href="/" class="nav-link-mobile" onclick="closeMobileMenu()">Home</a>
-          <a href="/projects" class="nav-link-mobile" onclick="closeMobileMenu()">Projects</a>
-          <a href="/euler" class="nav-link-mobile" onclick="closeMobileMenu()">Euler</a>
-          <a href="/about" class="nav-link-mobile" onclick="closeMobileMenu()">About</a>
+          <a href="/" class="nav-link-mobile mobile-link cursor-pointer">Home</a>
+          <a href="/projects" class="nav-link-mobile mobile-link cursor-pointer">Projects</a>
+          <a href="/euler" class="nav-link-mobile mobile-link cursor-pointer">Euler</a>
+          <a href="/about" class="nav-link-mobile mobile-link cursor-pointer">About</a>
           
           <div class="border-t border-white/10 pt-6 mt-6">
             <div class="flex gap-6">
@@ -61,7 +61,7 @@ import { SITE_TITLE } from '../consts';
     </nav>
 
     <!-- Mobile Menu Button -->
-    <button class="md:hidden text-sm font-mono text-steel-blue border border-steel-blue/30 rounded px-4 py-2 hover:bg-steel-blue/10 transition-colors" onclick="toggleMobileMenu()">
+    <button id="menu-toggle-btn" class="md:hidden text-sm font-mono text-steel-blue border border-steel-blue/30 rounded px-4 py-2 hover:bg-steel-blue/10 transition-colors cursor-pointer">
       Menu
     </button>
 	</div>
@@ -78,29 +78,50 @@ import { SITE_TITLE } from '../consts';
     }
   });
 
-  // Mobile menu functions
+  // Mobile menu event listeners
+  const menu = document.getElementById('mobile-menu');
+  const menuToggleBtn = document.getElementById('menu-toggle-btn');
+  const menuCloseBtn = document.getElementById('menu-close-btn');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
   function toggleMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    menu.classList.toggle('translate-x-full');
+    if (menu) menu.classList.toggle('translate-x-full');
   }
 
   function closeMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    menu.classList.add('translate-x-full');
+    if (menu) menu.classList.add('translate-x-full');
   }
+
+  // Initialize event listeners securely for iOS
+  if (menuToggleBtn) {
+    menuToggleBtn.addEventListener('click', toggleMobileMenu);
+  }
+
+  if (menuCloseBtn) {
+    menuCloseBtn.addEventListener('click', closeMobileMenu);
+  }
+
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
 
   // Close mobile menu on outside click
   document.addEventListener('click', (e) => {
-    const menu = document.getElementById('mobile-menu');
-    const button = e.target.closest('button[onclick*="toggleMobileMenu"]');
-    if (!menu.classList.contains('translate-x-full') && !menu.contains(e.target) && !button) {
+    if (menu && !menu.classList.contains('translate-x-full') && !menu.contains(e.target) && (!menuToggleBtn || !menuToggleBtn.contains(e.target))) {
       closeMobileMenu();
     }
   });
 
+  // iOS specific touch support for outside click
+  document.addEventListener('touchstart', (e) => {
+    if (menu && !menu.classList.contains('translate-x-full') && !menu.contains(e.target) && (!menuToggleBtn || !menuToggleBtn.contains(e.target))) {
+      closeMobileMenu();
+    }
+  }, { passive: true });
+
   // Close mobile menu on escape key
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !document.getElementById('mobile-menu').classList.contains('translate-x-full')) {
+    if (e.key === 'Escape' && menu && !menu.classList.contains('translate-x-full')) {
       closeMobileMenu();
     }
   });

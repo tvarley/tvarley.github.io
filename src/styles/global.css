@@ -182,3 +182,18 @@
     min-height: 48px;
   }
 }
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* Fix sticky background blur rendering issue on iOS Safari */
+  header.sticky {
+    -webkit-backdrop-filter: blur(12px);
+    background-color: rgba(18, 18, 18, 0.95) !important;
+  }
+  
+  /* Reset button appearances */
+  button {
+    -webkit-appearance: none;
+    cursor: pointer;
+  }
+}
