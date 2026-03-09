@@ -22,7 +22,9 @@ const allTechnologies = problems
   .sort();
 ---
 
-<div id="filter-controls" class="filter-controls glass-card mb-8 p-6 relative z-20">
+<div id="filter-controls" class="filter-controls glass-card mb-8 p-6 relative z-20"
+     data-problems={JSON.stringify(problems)}
+     data-initial-filters={JSON.stringify(initialFilters)}>
   <!-- Mobile Filter Toggle -->
   <div class="mobile-filters-toggle mb-4 md:hidden">
     <button
@@ -574,16 +576,12 @@ const allTechnologies = problems
   // Initialize when DOM is ready
   document.addEventListener('DOMContentLoaded', () => {
     const filterElement = document.getElementById('filter-controls');
-    if (filterElement && window.allProblems) {
-      // Parse initial filters from URL
-      const urlParams = new URLSearchParams(window.location.search);
-      const initialFilters = {
-        difficulty: urlParams.get('difficulty') ? urlParams.get('difficulty').split(',') : [],
-        technologies: urlParams.get('tech') ? urlParams.get('tech').split(',') : [],
-        search: urlParams.get('search') || ''
-      };
+    if (filterElement) {
+      // Read data from element attributes
+      const problems = JSON.parse(filterElement.dataset.problems || '[]');
+      const initialFilters = JSON.parse(filterElement.dataset.initialFilters || '{}');
 
-      const filterControls = new FilterControls(filterElement, window.allProblems, initialFilters);
+      const filterControls = new FilterControls(filterElement, problems, initialFilters);
       window.filterControls = filterControls;
 
       // Listen for filter events to update the grid

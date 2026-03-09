@@ -77,7 +77,6 @@ if (difficultyParam || techParam || searchParam) {
     <FilterControls
       problems={problems}
       initialFilters={initialFilters}
-      client:load
     />
 
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="problems-grid">
@@ -120,43 +119,4 @@ if (difficultyParam || techParam || searchParam) {
 	</section>
 </Layout>
 
-<script>
-  // Make problems data available to the FilterControls component
-  window.problemsData = [
-    // This will be populated with the problems data
-  ];
 
-  // Populate problems data from Astro
-  document.addEventListener('DOMContentLoaded', () => {
-    // Get problems data from the rendered HTML (server-side filtered results)
-    const problemCards = document.querySelectorAll('#problems-grid a');
-    const problems = Array.from(problemCards).map(card => {
-      const href = card.getAttribute('href');
-      const problemNumber = parseInt(card.querySelector('.font-mono').textContent.replace('#', ''));
-      const difficulty = card.querySelector('.rounded').textContent.trim().toLowerCase();
-      const title = card.querySelector('h4').textContent.trim();
-      const technologies = Array.from(card.querySelectorAll('.font-mono:not(.font-mono:first-child)')).map(span => span.textContent.trim());
-
-      // Find the original problem data by matching problem number
-      const originalProblem = window.allProblems?.find(p => p.data.problemNumber === problemNumber);
-
-      return {
-        id: href.split('/').pop(),
-        data: {
-          problemNumber,
-          title,
-          description: originalProblem?.data.description || '',
-          difficulty,
-          technologies
-        }
-      };
-    });
-
-    window.problemsData = problems;
-  });
-</script>
-
-<script define:vars={{ problems }}>
-  // Make all problems data available globally for client-side filtering
-  window.allProblems = problems;
-</script>
