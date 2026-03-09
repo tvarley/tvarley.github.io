@@ -1,17 +1,17 @@
 ---
-title: "AI-Native EdTech IoT Platform"
+title: "AI-Native IoT Platform"
 period: "2016 - Present"
 role: "Technical Lead / Principal Engineer"
 tags: ["AI-Native", "Next.js", "Node.js", "IoT", "Docker", "AWS", "MySQL", "MongoDB"]
 priority: 1
 ---
 
-# AI-Native EdTech IoT Platform
+# AI-Native IoT Platform
 
 **Role:** Technical Lead / Principal Engineer | **Period:** 2016 - Present
 
 ## Overview
-Architected and built a comprehensive energy IoT platform designed to optimize water usage and energy consumption for educational institutions and large-scale campuses. This project represents a paradigmatic shift to **100% AI-native development**, leveraging advanced LLM agents to accelerate the entire software development lifecycle—from architectural design to code generation and testing. The system manages distributed wireless sensor networks, ingesting real-time data to drive automated environmental controls.
+Architected and built a comprehensive IoT platform designed to optimize water usage and energy consumption across distributed large-scale environments. This project represents a paradigmatic shift to **100% AI-native development**, leveraging advanced LLM agents to accelerate the entire software development lifecycle—from architectural design to code generation and testing. The system manages distributed wireless sensor networks, ingesting real-time data to drive automated environmental controls.
 
 ## AI Engineering Techniques Used
 
@@ -58,4 +58,4 @@ This project was built entirely using AI-augmented workflows, effectively replac
 
 ## Architecture Diagram
 
-![EdTech IoT Architecture](/images/diagrams/edtech-iot-platform.svg)
+![IoT Platform Architecture](/images/diagrams/edtech-iot-platform.svg)

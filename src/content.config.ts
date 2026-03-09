@@ -36,19 +36,6 @@ const writings = defineCollection({
 	}),
 });
 
-const blog = defineCollection({
-	loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
-	schema: z.object({
-		title: z.string(),
-		summary: z.string().optional(),
-		description: z.string().optional(),
-		date: z.coerce.date(),
-		updatedDate: z.coerce.date().optional(),
-		heroImage: z.string().optional(),
-    draft: z.boolean().optional(),
-	}),
-});
-
 const projects = defineCollection({
 	loader: glob({ base: './src/content/projects', pattern: '**/*.{md,mdx}' }),
 	schema: z.object({
@@ -66,4 +53,4 @@ const projects = defineCollection({
 	}),
 });
 
-export const collections = { euler, writings, blog, projects };
+export const collections = { euler, writings, projects };
