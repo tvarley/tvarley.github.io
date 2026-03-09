@@ -24,33 +24,6 @@ const { problemNumber, title, description, difficulty, technologies, implementat
 ---
 
 <Layout title={`Euler ${problemNumber}: ${title}`} description={description}>
-    <!-- Load MathJax for equation rendering -->
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true,
-                processEnvironments: true
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-            },
-            startup: {
-                ready: function() {
-                    MathJax.startup.defaultReady();
-                    MathJax.startup.promise.then(function() {
-                        // Process math after page load
-                        if (typeof MathJax !== 'undefined') {
-                            MathJax.typesetPromise();
-                        }
-                    });
-                }
-            }
-        };
-    </script>
-    <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
     <!-- Additional script to ensure math is processed after content loads -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {

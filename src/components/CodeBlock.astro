@@ -57,14 +57,15 @@ const { code, language, id, title, showLineNumbers = true, showCopyButton = true
     @apply bg-steel-blue/20;
   }
 
-  /* Responsive adjustments */
+  /* Enhanced mobile code block styles */
   @media (max-width: 768px) {
     .code-block-container {
       @apply mx-0;
     }
 
     :global(.expressive-code .frame) {
-      @apply rounded-xl;
+      @apply rounded-lg; /* Slightly less rounded */
+      margin: 0 -1rem; /* Extend to edges on mobile */
     }
 
     :global(.expressive-code .frame-header) {
@@ -73,6 +74,17 @@ const { code, language, id, title, showLineNumbers = true, showCopyButton = true
 
     :global(.expressive-code .frame-title-bar) {
       @apply px-3 py-2.5;
+    }
+
+    :global(.expressive-code .frame pre) {
+      font-size: 0.875rem; /* Slightly smaller font */
+      line-height: 1.4;
+    }
+
+    :global(.expressive-code .copy-button) {
+      @apply p-2; /* Larger touch target */
+      min-width: 44px;
+      min-height: 44px;
     }
   }
 </style>

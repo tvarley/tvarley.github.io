@@ -2,6 +2,7 @@
 title: "High-Frequency Financial Infrastructure"
 period: "2009 - 2012"
 role: "Senior Technical Lead"
+description: "Mission-critical financial data infrastructure delivering embargoed government economic releases to trading systems in under 15 milliseconds."
 tags: ["FinTech", "C++", "Low Latency", "Linux", "High Availability"]
 priority: 4
 ---

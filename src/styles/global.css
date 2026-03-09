@@ -109,7 +109,12 @@
   
   .btn-primary {
     background-color: var(--accent);
-    @apply hover:bg-steel-blue/90 text-white font-medium px-8 py-4 rounded-xl shadow-subtle-glow hover:shadow-glass transition-all duration-300 border border-steel-blue/50 inline-block no-underline;
+    @apply hover:bg-steel-blue/90 text-white font-medium px-6 py-3 rounded-xl shadow-subtle-glow hover:shadow-glass transition-all duration-300 border border-steel-blue/50 inline-block no-underline;
+    min-height: 44px; /* Ensure minimum touch target */
+  }
+
+  .btn-primary:hover {
+    background-color: rgba(70, 130, 180, 0.9);
   }
 
   .nav-link {
@@ -120,5 +125,60 @@
   .nav-link.active {
     @apply text-white border-steel-blue;
     color: var(--text-primary);
+  }
+
+  .nav-link-mobile {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: color 0.2s ease;
+  }
+
+  .nav-link-mobile:hover {
+    color: var(--accent);
+  }
+
+  /* Extra styling for MathJax aesthetics if needed */
+  mjx-container {
+    color: #cbd5e1 !important; /* silver/slate-300 */
+    font-size: 1.1em !important;
+  }
+
+  .tech-pill {
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .tech-pill:hover {
+    transform: translateY(-1px);
+  }
+}
+
+/* Mobile-specific touch improvements */
+@media (max-width: 768px) {
+  .btn-primary {
+    @apply px-6 py-4; /* Increase padding on mobile */
+    min-height: 48px;
+  }
+  
+  /* Ensure all interactive elements meet touch target guidelines */
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Improve touch targets for navigation */
+  .nav-link {
+    @apply py-3 px-4;
+    min-height: 44px;
+  }
+
+  /* Mobile navigation improvements */
+  .nav-link-mobile {
+    @apply py-4 px-2;
+    min-height: 48px;
   }
 }

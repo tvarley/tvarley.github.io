@@ -19,8 +19,40 @@ const { title, description, image, categories } = Astro.props;
 	<head>
 		<BaseHead title={title || "Tim Varley"} description={description || "Technical Lead & Software Engineer"} />
     {categories && <meta name="keywords" content={categories.join(', ')}>}
-    <!-- MathJax for Euler problems -->
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+    <!-- MathJax for Euler problems - optimized for mobile -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+                // Mobile optimizations
+                menuOptions: {
+                    autocollapse: true // Collapse menus on mobile
+                }
+            },
+            startup: {
+                ready: function() {
+                    MathJax.startup.defaultReady();
+                    MathJax.startup.promise.then(function() {
+                        // Process math after page load
+                        if (typeof MathJax !== 'undefined') {
+                            MathJax.typesetPromise();
+                        }
+                    });
+                }
+            },
+            // Performance optimizations
+            loader: {
+                load: ['[tex]/color'] // Only load needed extensions
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
 	</head>
 	<body class="bg-charcoal text-white font-mono antialiased min-h-screen flex flex-col relative selection:bg-steel-blue selection:text-white">
     

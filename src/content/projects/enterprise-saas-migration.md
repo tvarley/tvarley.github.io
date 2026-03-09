@@ -2,6 +2,7 @@
 title: "Enterprise SaaS Migration"
 period: "2012 - 2014"
 role: "Enterprise Architect"
+description: "Transformed legacy monolithic software into cloud-native microservices architecture, achieving 170% performance boost and 99.9% uptime."
 tags: ["Architecture", "Migration", "C#", "Node.js", "High Availability"]
 priority: 3
 ---

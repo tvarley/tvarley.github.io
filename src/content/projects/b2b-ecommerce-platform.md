@@ -2,6 +2,7 @@
 title: "B2B E-commerce Marketplace"
 period: "2014 - 2016"
 role: "Lead Software Engineer"
+description: "Cloud-native B2B e-commerce platform disrupting the promotional products industry with extreme scalability and 20% cost optimization."
 tags: ["Node.js", "E-commerce", "Microservices", "Cost Optimization", "Heroku"]
 priority: 2
 ---

@@ -2,6 +2,7 @@
 title: "FinTech Patent Solution"
 period: "Patent Granted"
 role: "Inventor"
+description: "Pioneering multi-channel banking system architecture that earned a US patent and Smithsonian Innovation Award for bridging legacy and digital banking."
 tags: ["FinTech", "Patent", "Banking", "Innovation"]
 priority: 5
 ---

@@ -31,6 +31,15 @@ const projects = (await getCollection('projects')).sort(
                         <!-- Decorative background glow -->
                         <div class="absolute -top-10 -right-10 w-32 h-32 bg-steel-blue/10 rounded-full blur-3xl group-hover:bg-steel-blue/20 transition-all duration-500"></div>
 
+                        <!-- Image Thumbnail -->
+                        <div class="w-full h-32 bg-matte border-b border-white/10 mb-6 flex items-center justify-center relative overflow-hidden rounded-xl">
+                            <img 
+                                src={`/images/diagrams/${project.id}.svg`} 
+                                alt={`${project.data.title} Architecture`} 
+                                class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                            />
+                        </div>
+
                         <!-- Header: Role & Period -->
 						<div class="flex justify-between items-start mb-4 relative z-10">
 							<span class="text-xs font-mono font-bold text-steel-blue uppercase tracking-wider bg-steel-blue/10 px-2 py-1 rounded border border-steel-blue/20">
@@ -44,7 +53,7 @@ const projects = (await getCollection('projects')).sort(
                         </h2>
                         
                         <p class="text-sm text-silver font-mono mb-6 relative z-10 opacity-80">
-                            {project.data.role}
+                            {project.data.description}
                         </p>
                         
                         <!-- Tags -->

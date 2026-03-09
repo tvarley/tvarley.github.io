@@ -2,6 +2,7 @@
 title: "AI-Native IoT Platform"
 period: "2016 - Present"
 role: "Technical Lead / Principal Engineer"
+description: "AI-native IoT platform optimizing water and energy consumption with distributed sensor networks, built entirely using advanced LLM agents."
 tags: ["AI-Native", "Next.js", "Node.js", "IoT", "Docker", "AWS", "MySQL", "MongoDB"]
 priority: 1
 ---

@@ -25,11 +25,11 @@ const problems = (await getCollection('euler')).sort(
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {projects.map((project) => (
         <a href={`/projects/${project.id}/`} class="glass-card group flex flex-col h-full no-underline overflow-hidden">
-          <div class="w-full h-48 bg-white/5 border-b border-white/10 p-4 flex items-center justify-center relative overflow-hidden">
+          <div class="w-full h-40 md:h-48 bg-matte border-b border-white/10 p-4 flex items-center justify-center relative overflow-hidden rounded-t-2xl">
              <img 
                src={`/images/diagrams/${project.id}.svg`} 
                alt={`${project.data.title} Architecture`} 
-               class="w-full h-full object-contain opacity-90 group-hover:scale-105 transition-transform duration-500"
+               class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
              />
           </div>
           <div class="p-6 flex flex-col flex-grow">
@@ -38,6 +38,10 @@ const problems = (await getCollection('euler')).sort(
               <span class="font-mono text-xs text-steel-blue border border-steel-blue/20 rounded px-2 py-0.5 bg-steel-blue/5 group-hover:bg-steel-blue/10 transition-colors">{project.data.role}</span>
             </div>
             <h4 class="text-2xl font-serif font-bold text-white mb-4 group-hover:text-steel-blue transition-colors leading-tight">{project.data.title}</h4>
+            
+            <p class="text-steel-grey text-sm mb-6 flex-grow line-clamp-2 leading-relaxed">
+              {project.data.description}
+            </p>
             
             <div class="flex flex-wrap gap-2 mt-auto">
               {project.data.tags.slice(0, 4).map(tag => (
