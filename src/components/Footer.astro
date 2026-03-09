@@ -1,4 +1,6 @@
 ---
+// @ts-ignore - build-info.json is generated at build time
+const buildInfo = await import('../build-info.json');
 const today = new Date();
 ---
 
@@ -8,7 +10,10 @@ const today = new Date();
       <span class="font-serif font-bold text-lg text-white">Tim Varley</span>
       <p class="font-mono text-xs text-steel-grey max-w-md text-center md:text-left">
         &copy; {today.getFullYear()} Tim Varley. All rights reserved. <br/>
-        Built with Astro & Tailwind. Designed and generated using agentic AI workflows.
+        Version {buildInfo.default.version} ({buildInfo.default.commitHash}) <br/>
+        Built with Astro & Tailwind. <br/>
+        Designed and generated using agentic AI workflows. <br/>
+        <a href="/releases" class="text-steel-blue hover:text-white transition-colors">View Release Notes</a>
       </p>
     </div>
     

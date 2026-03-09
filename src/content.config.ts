@@ -53,4 +53,16 @@ const projects = defineCollection({
 	}),
 });
 
-export const collections = { euler, writings, projects };
+const releases = defineCollection({
+	loader: glob({ base: './src/content/releases', pattern: '**/*.{md,mdx}' }),
+	schema: z.object({
+		version: z.string(),
+		date: z.coerce.date(),
+		changes: z.array(z.string()),
+		type: z.enum(['major', 'minor', 'patch', 'build']).default('patch'),
+		breaking: z.boolean().default(false),
+		highlights: z.array(z.string()).optional(),
+	}),
+});
+
+export const collections = { euler, writings, projects, releases };

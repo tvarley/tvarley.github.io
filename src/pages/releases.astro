@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const releases = await getCollection('releases');
+const sortedReleases = releases.sort((a, b) => {
+	// First try to compare versions semantically
+	const versionA = a.data.version;
+	const versionB = b.data.version;
+	
+	// Simple version comparison (assumes semantic versioning format)
+	const partsA = versionA.split('.').map(x => parseInt(x) || 0);
+	const partsB = versionB.split('.').map(x => parseInt(x) || 0);
+	
+	for (let i = 0; i < Math.max(partsA.length, partsB.length); i++) {
+		const diff = (partsB[i] || 0) - (partsA[i] || 0);
+		if (diff !== 0) return diff;
+	}
+	
+	// If versions are equal, sort by date descending
+	return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+});
+---
+
+<Layout title="Release Notes" description="Changelog and version history for the portfolio website">
+	<div class="max-w-4xl mx-auto">
+		<h1 class="font-serif text-4xl font-bold text-white mb-8">Release Notes</h1>
+
+		<div class="space-y-8">
+			{sortedReleases.map((release) => (
+				<article class="border border-steel-blue/20 rounded-lg p-6 bg-matte/50">
+					<header class="mb-4">
+						<div class="flex items-center gap-4 mb-2">
+							<h2 class="font-mono text-2xl font-bold text-steel-blue">
+								Version {release.data.version}
+							</h2>
+							<span class={`px-2 py-1 text-xs rounded-full font-mono ${
+								release.data.type === 'major' ? 'bg-red-500/20 text-red-300' :
+								release.data.type === 'minor' ? 'bg-blue-500/20 text-blue-300' :
+								release.data.type === 'patch' ? 'bg-green-500/20 text-green-300' :
+								'bg-gray-500/20 text-gray-300'
+							}`}>
+								{release.data.type}
+							</span>
+							{release.data.breaking && (
+								<span class="px-2 py-1 text-xs rounded-full bg-red-500/20 text-red-300 font-mono">
+									breaking
+								</span>
+							)}
+						</div>
+						<time class="font-mono text-sm text-steel-grey" datetime={release.data.date.toISOString()}>
+							{release.data.date.toLocaleDateString('en-US', {
+								year: 'numeric',
+								month: 'long',
+								day: 'numeric'
+							})}
+						</time>
+					</header>
+
+					{release.data.highlights && release.data.highlights.length > 0 && (
+						<div class="mb-4">
+							<h3 class="font-mono text-lg font-bold text-white mb-2">Highlights</h3>
+							<ul class="list-disc list-inside space-y-1 text-steel-grey">
+								{release.data.highlights.map((highlight) => (
+									<li>{highlight}</li>
+								))}
+							</ul>
+						</div>
+					)}
+
+					<div>
+						<h3 class="font-mono text-lg font-bold text-white mb-2">Changes</h3>
+						<ul class="list-disc list-inside space-y-1 text-steel-grey">
+							{release.data.changes.map((change) => (
+								<li>{change}</li>
+							))}
+						</ul>
+					</div>
+				</article>
+			))}
+		</div>
+
+		<div class="mt-12 p-6 border border-steel-blue/20 rounded-lg bg-matte/50">
+			<h2 class="font-serif text-2xl font-bold text-white mb-4">Development Updates</h2>
+			<p class="text-steel-grey mb-4">
+				For the latest development updates and build information, check the version number displayed in the footer.
+				Build numbers increment with each deployment and include the current commit hash for traceability.
+			</p>
+			<p class="text-steel-grey">
+				<strong>Next Release:</strong> Build number and release notes integration (coming soon)
+			</p>
+		</div>
+	</div>
+</Layout>
