@@ -33,39 +33,42 @@ import { SITE_TITLE } from '../consts';
       </div>
 		</nav>
 
-    <!-- Mobile Menu -->
-    <nav class="md:hidden fixed inset-0 z-40 bg-charcoal/95 backdrop-blur-md transform translate-x-full transition-transform duration-300" id="mobile-menu">
-      <div class="flex flex-col h-full pt-20 px-6">
-        <div class="flex justify-between items-center mb-8">
-          <span class="font-serif font-bold text-xl text-white">Menu</span>
-          <button id="menu-close-btn" class="text-white text-2xl hover:text-steel-blue transition-colors p-2 -mr-2 cursor-pointer">&times;</button>
-        </div>
-        <div class="flex flex-col gap-6">
-          <a href="/" class="nav-link-mobile mobile-link cursor-pointer">Home</a>
-          <a href="/projects" class="nav-link-mobile mobile-link cursor-pointer">Projects</a>
-          <a href="/euler" class="nav-link-mobile mobile-link cursor-pointer">Euler</a>
-          <a href="/about" class="nav-link-mobile mobile-link cursor-pointer">About</a>
-          
-          <div class="border-t border-white/10 pt-6 mt-6">
-            <div class="flex gap-6">
-              <a href="https://github.com/tvarley" target="_blank" class="text-steel-grey hover:text-white transition-colors" aria-label="GitHub">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              </a>
-              <a href="https://linkedin.com/in/timothyvarley" target="_blank" class="text-steel-grey hover:text-white transition-colors" aria-label="LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-
     <!-- Mobile Menu Button -->
     <button id="menu-toggle-btn" class="md:hidden text-sm font-mono text-steel-blue border border-steel-blue/30 rounded px-4 py-2 hover:bg-steel-blue/10 transition-colors cursor-pointer">
       Menu
     </button>
 	</div>
 </header>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu-overlay" class="md:hidden fixed inset-0 z-[110] bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+<!-- Mobile Menu -->
+<nav class="md:hidden fixed top-0 right-0 w-64 sm:w-80 h-full z-[120] bg-charcoal/95 backdrop-blur-md transform translate-x-full border-l border-white/10 transition-transform duration-300" id="mobile-menu">
+  <div class="flex flex-col h-full pt-20 px-6">
+    <div class="flex justify-between items-center mb-8">
+      <span class="font-serif font-bold text-xl text-white">Menu</span>
+      <button id="menu-close-btn" class="text-white text-2xl hover:text-steel-blue transition-colors p-2 -mr-2 cursor-pointer">&times;</button>
+    </div>
+    <div class="flex flex-col gap-6">
+      <a href="/" class="nav-link-mobile mobile-link cursor-pointer">Home</a>
+      <a href="/projects" class="nav-link-mobile mobile-link cursor-pointer">Projects</a>
+      <a href="/euler" class="nav-link-mobile mobile-link cursor-pointer">Euler</a>
+      <a href="/about" class="nav-link-mobile mobile-link cursor-pointer">About</a>
+      
+      <div class="border-t border-white/10 pt-6 mt-6">
+        <div class="flex gap-6">
+          <a href="https://github.com/tvarley" target="_blank" class="text-steel-grey hover:text-white transition-colors" aria-label="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          </a>
+          <a href="https://linkedin.com/in/timothyvarley" target="_blank" class="text-steel-grey hover:text-white transition-colors" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
 
 <script>
   // Simple active state script
@@ -80,16 +83,25 @@ import { SITE_TITLE } from '../consts';
 
   // Mobile menu event listeners
   const menu = document.getElementById('mobile-menu');
+  const overlay = document.getElementById('mobile-menu-overlay');
   const menuToggleBtn = document.getElementById('menu-toggle-btn');
   const menuCloseBtn = document.getElementById('menu-close-btn');
   const mobileLinks = document.querySelectorAll('.mobile-link');
 
   function toggleMobileMenu() {
     if (menu) menu.classList.toggle('translate-x-full');
+    if (overlay) {
+      overlay.classList.toggle('opacity-0');
+      overlay.classList.toggle('pointer-events-none');
+    }
   }
 
   function closeMobileMenu() {
     if (menu) menu.classList.add('translate-x-full');
+    if (overlay) {
+      overlay.classList.add('opacity-0');
+      overlay.classList.add('pointer-events-none');
+    }
   }
 
   // Initialize event listeners securely for iOS
@@ -107,14 +119,14 @@ import { SITE_TITLE } from '../consts';
 
   // Close mobile menu on outside click
   document.addEventListener('click', (e) => {
-    if (menu && !menu.classList.contains('translate-x-full') && !menu.contains(e.target) && (!menuToggleBtn || !menuToggleBtn.contains(e.target))) {
+    if (menu && !menu.classList.contains('translate-x-full') && !menu.contains(e.target as Node) && (!menuToggleBtn || !menuToggleBtn.contains(e.target as Node))) {
       closeMobileMenu();
     }
   });
 
   // iOS specific touch support for outside click
   document.addEventListener('touchstart', (e) => {
-    if (menu && !menu.classList.contains('translate-x-full') && !menu.contains(e.target) && (!menuToggleBtn || !menuToggleBtn.contains(e.target))) {
+    if (menu && !menu.classList.contains('translate-x-full') && !menu.contains(e.target as Node) && (!menuToggleBtn || !menuToggleBtn.contains(e.target as Node))) {
       closeMobileMenu();
     }
   }, { passive: true });
