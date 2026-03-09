@@ -32,7 +32,7 @@ This project was built entirely using AI-augmented workflows, effectively replac
 ### ☁️ Cloud-Native Infrastructure & DevOps
 - **Scalable Architecture:** Designed a resilient microservices architecture orchestrated via **Docker**, ensuring seamless deployments across **AWS** environments.
 - **Infrastructure as Code (IaC):** Implemented Terraform-equivalent patterns to manage cloud resources, enabling reproducible and version-controlled infrastructure states.
-- **Observability:** Built a comprehensive monitoring stack using **Prometheus** and **Grafana**, providing real-time visibility into sensor health, API latency, and system throughput.
+- **Observability:** Built a comprehensive monitoring stack using **CloudWatch** and **Grafana**, providing real-time visibility into sensor health, API latency, and system throughput.
 
 ### 📡 Protocol Engineering & Backend
 - **Custom IoT Protocols:** Engineered a proprietary **UDP-based protocol** optimized for low-bandwidth, high-reliability communication with field devices.
