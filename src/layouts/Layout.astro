@@ -18,15 +18,19 @@ const { title, description, image, categories } = Astro.props;
 <html lang="en" data-theme="dark" class="scroll-smooth">
 	<head>
 		<BaseHead title={title || "Tim Varley"} description={description || "Technical Lead & Software Engineer"} />
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VXZ74F9RKM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+{import.meta.env.PROD && (
+	<>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-VXZ74F9RKM"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
 
-  gtag('config', 'G-VXZ74F9RKM');
-</script>
+			gtag('config', 'G-VXZ74F9RKM');
+		</script>
+	</>
+)}
     {categories && <meta name="keywords" content={categories.join(', ')}>}
     <!-- MathJax for Euler problems - optimized for mobile -->
     <script>

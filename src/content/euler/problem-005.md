@@ -114,7 +114,7 @@ implementations:
       func main() {
           fmt.Println(smallestMultiple(20))
       }
-    githubLink: "https://github.com/tvarley/euler/blob/master/go/src/euler005.go"
+    githubLink: "https://github.com/tvarley/euler/blob/master/go/euler005.go"
   - language: "rust"
     code: |
       fn gcd(a: u64, b: u64) -> u64 {

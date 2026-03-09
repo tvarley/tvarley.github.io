@@ -218,7 +218,7 @@ implementations:
       func main() {
           fmt.Println(largestPrimeFactor(600851475143))
       }
-    githubLink: "https://github.com/tvarley/euler/blob/master/go/src/euler003.go"
+    githubLink: "https://github.com/tvarley/euler/blob/master/go/euler003.go"
   - language: "rust"
     code: |
       fn is_prime(n: u64) -> bool {

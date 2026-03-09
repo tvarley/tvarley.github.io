@@ -109,7 +109,7 @@ implementations:
           }
           fmt.Println(sum)
       }
-    githubLink: "https://github.com/tvarley/euler/blob/master/go/src/euler002.go"
+    githubLink: "https://github.com/tvarley/euler/blob/master/go/euler002.go"
   - language: "rust"
     code: |
       fn main() {

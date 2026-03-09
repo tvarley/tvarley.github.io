@@ -42,6 +42,7 @@ const projects = defineCollection({
 		title: z.string(),
 		period: z.string(),
 		role: z.string(),
+		description: z.string(),
 		tags: z.array(z.string()),
 		priority: z.number().default(99),
 		thumbnail: z.string().optional(),

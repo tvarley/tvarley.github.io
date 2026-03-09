@@ -111,7 +111,7 @@ implementations:
       func main() {
           fmt.Println(sumSquareDifference(100))
       }
-    githubLink: "https://github.com/tvarley/euler/blob/master/go/src/euler006.go"
+    githubLink: "https://github.com/tvarley/euler/blob/master/go/euler006.go"
   - language: "rust"
     code: |
       fn sum_of_squares(n: usize) -> u64 {

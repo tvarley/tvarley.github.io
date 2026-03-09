@@ -126,7 +126,7 @@ implementations:
       func main() {
           fmt.Println(largestPalindromeProduct())
       }
-    githubLink: "https://github.com/tvarley/euler/blob/master/go/src/euler004.go"
+    githubLink: "https://github.com/tvarley/euler/blob/master/go/euler004.go"
   - language: "rust"
     code: |
       fn is_palindrome(n: u32) -> bool {
