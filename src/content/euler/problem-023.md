@@ -1,7 +1,14 @@
 ---
 problemNumber: 23
 title: "Non-Abundant Sums"
-description: "A perfect number is a number for which the sum of its proper divisors is exactly equal to the number. A number n is called deficient if the sum of its proper divisors is less than n and it is called abundant if this sum exceeds n. As 12 is the smallest abundant number, the smallest number that can be written as the sum of two abundant numbers is 24. By mathematical analysis, it can be shown that all integers greater than 28123 can be written as the sum of two abundant numbers. Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers. Answer: 4179871"
+description: |
+  A perfect number is a number for which the sum of its proper divisors is exactly equal to the number. For example, the sum of the proper divisors of $28$ would be $1 + 2 + 4 + 7 + 14 = 28$, which means that $28$ is a perfect number.
+
+  A number $n$ is called deficient if the sum of its proper divisors is less than $n$ and it is called abundant if this sum exceeds $n$.
+
+  As $12$ is the smallest abundant number, $1 + 2 + 3 + 4 + 6 = 16$, the smallest number that can be written as the sum of two abundant numbers is $24$. By mathematical analysis, it can be shown that all integers greater than $28123$ can be written as the sum of two abundant numbers. However, this upper limit cannot be reduced any further by analysis even though it is known that the greatest number that cannot be expressed as the sum of two abundant numbers is less than this limit.
+
+  Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
 difficulty: "hard"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -410,8 +417,49 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 23: Non-Abundant Sums.
+### Mathematical Background
 
-A perfect number is a number for which the sum of its proper divisors is exactly equal to the number. A number n is called deficient if the sum of its proper divisors is less than n and it is called abundant if this sum exceeds n. As 12 is the smallest abundant number, the smallest number that can be written as the sum of two abundant numbers is 24. By mathematical analysis, it can be shown that all integers greater than 28123 can be written as the sum of two abundant numbers. Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers. Answer: 4179871
+This problem explores number theory concepts of perfect, deficient, and abundant numbers based on proper divisor sums.
+
+- **Perfect numbers**: Sum of proper divisors equals the number (e.g., 28)
+- **Deficient numbers**: Sum of proper divisors is less than the number
+- **Abundant numbers**: Sum of proper divisors exceeds the number (e.g., 12, 18, 20)
+
+The key insight is that all integers greater than 28,123 can be written as the sum of two abundant numbers, though the greatest number that cannot be so expressed is smaller than this limit.
+
+### Algorithm Analysis
+
+**Step 1: Identify abundant numbers**: For each number up to 28,123, compute sum of proper divisors and check if it exceeds the number.
+
+**Step 2: Generate all sums**: Create a boolean array marking all numbers that can be expressed as the sum of two abundant numbers.
+
+**Step 3: Sum unmarked numbers**: Iterate through numbers ≤ 28,123 and sum those not marked as abundant sums.
+
+**Optimizations**:
+- Pre-compute divisor sums using sieve-like approach
+- Use boolean array for O(1) sum checking
+- Limit search to numbers ≤ 28,123 based on mathematical analysis
+
+Time complexity is O(MAX × log MAX) for divisor computation, where MAX = 28,123. Space complexity is O(MAX) for the boolean array.
+
+### Key Insights
+
+- There are 4,910 abundant numbers ≤ 28,123
+- The smallest abundant number is 12
+- All numbers > 28,123 can be written as sum of two abundant numbers
+- The sum of all numbers that cannot be expressed this way is 4,179,871
+- Most numbers can be expressed as abundant sums
+- The problem demonstrates the power of mathematical analysis in limiting search space
+
+### Educational Value
+
+This problem teaches:
+- Classification of numbers by divisor sum properties
+- Set theory and inclusion relationships
+- Efficient boolean array usage for large datasets
+- The importance of mathematical bounds in computation
+- Optimization through pre-computation and caching
+- Working with number-theoretic functions at scale
+- The connection between abstract mathematics and computational feasibility

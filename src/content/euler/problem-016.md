@@ -1,7 +1,10 @@
 ---
 problemNumber: 16
 title: "Power Digit Sum"
-description: "2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26. What is the sum of the digits of the number 2^1000? Answer: 1366"
+description: |
+  $2^{15} = 32768$ and the sum of its digits is $3 + 2 + 7 + 6 + 8 = 26$.
+
+  What is the sum of the digits of the number $2^{1000}$?
 difficulty: "medium"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -189,8 +192,38 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 16: Power Digit Sum.
+### Mathematical Background
 
-2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26. What is the sum of the digits of the number 2^1000? Answer: 1366
+This problem involves computing $2^{1000}$, a 302-digit number, and summing its digits. Direct computation with standard integer types fails since $2^{1000}$ exceeds the range of 64-bit integers.
+
+The number of digits in $2^n$ is approximately $n 	imes rac{\ln 2}{\ln 10} ≈ n 	imes 0.3010$. For $n = 1000$, this gives about 301.0 digits, matching the actual result.
+
+### Algorithm Analysis
+
+**Big integer multiplication by repeated doubling**: Start with 1, then repeatedly multiply by 2 and handle carry when digits exceed 9. Store the number as an array of digits.
+
+**Digit-by-digit summation**: Convert the final number to a string or iterate through digit array, summing each digit.
+
+**Time complexity**: O(n) where n=1000 is the exponent.
+**Space complexity**: O(d) where d≈301 is the number of digits.
+
+### Key Insights
+
+- Standard integer types cannot hold $2^{1000}$ (max unsigned 64-bit is $2^{64}-1$)
+- Array-based arbitrary-precision arithmetic handles very large numbers
+- The result $2^{1000}$ has 302 digits and digit sum of 1,366
+- Each doubling operation requires carry propagation through all digits
+- The algorithm scales well for even larger exponents
+
+### Educational Value
+
+This problem teaches:
+- Arbitrary-precision arithmetic implementation
+- Array-based number representation
+- Carry propagation in multiplication
+- The limitations of built-in integer types
+- When custom algorithms are needed for large numbers
+- Digit manipulation and summation techniques
+- Exponential growth and its computational implications

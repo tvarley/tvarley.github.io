@@ -1,7 +1,19 @@
 ---
 problemNumber: 19
 title: "Counting Sundays"
-description: "You are given the following information, but you may prefer to do some research for additional details. - The Gregorian calendar was adopted on 15 October 1582. - 1 January 1900 was a Monday. - Thirty days has September, April, June and November. All the rest have thirty-one, Saving February alone, Which has twenty-eight, rain or shine. And on leap years, twenty-nine. - A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400. How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)? Answer: 171"
+description: |
+  You are given the following information, but you may prefer to do some research for yourself.
+
+  - 1 Jan 1900 was a Monday.
+  - Thirty days has September,
+    April, June and November.
+    All the rest have thirty-one,
+    Saving February alone,
+    Which has twenty-eight, rain or shine.
+    And on leap years, twenty-nine.
+  - A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400.
+
+  How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
 difficulty: "medium"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -284,8 +296,45 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 19: Counting Sundays.
+### Mathematical Background
 
-You are given the following information, but you may prefer to do some research for additional details. - The Gregorian calendar was adopted on 15 October 1582. - 1 January 1900 was a Monday. - Thirty days has September, April, June and November. All the rest have thirty-one, Saving February alone, Which has twenty-eight, rain or shine. And on leap years, twenty-nine. - A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400. How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)? Answer: 171
+This problem involves calendar calculations and date arithmetic. The Gregorian calendar rules are provided, including the leap year rules and the fact that January 1, 1900 was a Monday.
+
+The twentieth century spans from January 1, 1901 to December 31, 2000, which is exactly 100 years. We need to count how many months in this period started on a Sunday.
+
+Key calendar facts:
+- A common year has 365 days (52 weeks + 1 day)
+- A leap year has 366 days (52 weeks + 2 days)
+- The day of the week advances by 1 each common year, 2 each leap year
+- Months have varying lengths, affecting when the first of the next month falls
+
+### Algorithm Analysis
+
+**Date tracking approach**: Start from a known date (Jan 1, 1900 = Monday) and advance day by day, tracking the day of week for each month start.
+
+**Cumulative day counting**: Calculate total days from the reference date to each month start, then determine the day of week using modulo 7 arithmetic.
+
+**Month-by-month iteration**: Loop through each year from 1901-2000, then each month, checking if the first day is Sunday.
+
+Time complexity is O(1) since we process exactly 100 years × 12 months = 1200 iterations. Space complexity is O(1) with minimal variables.
+
+### Key Insights
+
+- January 1, 1900 is given as Monday, so we can calculate all subsequent dates
+- The Gregorian calendar leap year rules must be implemented correctly
+- Month lengths vary: 31, 30, 28/29 days depending on the month and leap year status
+- The answer is 171 Sundays falling on the first of the month
+- This demonstrates practical applications of modular arithmetic in date calculations
+
+### Educational Value
+
+This problem teaches:
+- Calendar systems and date arithmetic
+- Implementing complex rule sets (leap year calculations)
+- Modular arithmetic for cyclic phenomena (days of the week)
+- The importance of careful boundary condition testing
+- Working with real-world data formats and constraints
+- The difference between calendar time and computational time
+- Validation techniques for date-based algorithms

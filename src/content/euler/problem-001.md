@@ -1,7 +1,10 @@
 ---
 problemNumber: 1
 title: "Multiples of 3 and 5"
-description: "If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the multiples of 3 or 5 below 1000."
+description: |
+  If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+
+  Find the sum of all the multiples of 3 or 5 below 1000.
 difficulty: "easy"
 date: 2014-12-30
 technologies: ["cpp", "java", "javascript", "php", "ruby", "go", "rust"]
@@ -120,8 +123,36 @@ featured: true
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is one of the simplest Project Euler problems, often used as an introduction to programming challenges. The solution demonstrates basic loop iteration and conditional logic.
+### Mathematical Background
 
-The mathematical approach can be optimized using the formula for the sum of an arithmetic series, but the brute force approach shown here is sufficient for small inputs like 1000.
+This problem introduces the concept of finding multiples and summing them, which relates to arithmetic sequences. The inclusion-exclusion principle becomes relevant when dealing with numbers that are multiples of both 3 and 5 (i.e., multiples of 15).
+
+The sum of multiples can be calculated using the formula for arithmetic series: $S = \frac{n(n+1)}{2} \times d$ where $n$ is the number of terms and $d$ is the common difference.
+
+### Algorithm Analysis
+
+The implementations shown use a brute-force approach: iterate through all numbers below 1000 and sum those divisible by 3 or 5. This has O(n) time complexity where n = 1000.
+
+A more efficient mathematical approach would use:
+- Sum of multiples of 3: $S_3 = 3 + 6 + 9 + \dots + 999 = 3(1 + 2 + 3 + \dots + 333) = 3 \times \frac{333 \times 334}{2}$
+- Sum of multiples of 5: $S_5 = 5 + 10 + 15 + \dots + 995 = 5(1 + 2 + 3 + \dots + 199) = 5 \times \frac{199 \times 200}{2}$
+- Sum of multiples of 15: $S_{15} = 15 + 30 + 45 + \dots + 990 = 15(1 + 2 + 3 + \dots + 66) = 15 \times \frac{66 \times 67}{2}$
+
+Final sum: $S_3 + S_5 - S_{15}$ (inclusion-exclusion)
+
+### Key Insights
+
+- Numbers that are multiples of both 3 and 5 (like 15, 30, 45...) would be counted twice without proper handling
+- The mathematical approach is much more efficient for large limits
+- This problem teaches fundamental programming concepts: loops, conditionals, and modular arithmetic
+
+### Educational Value
+
+This problem serves as an excellent introduction to Project Euler, teaching:
+- Basic programming constructs (loops and conditionals)
+- Modular arithmetic and divisibility
+- The importance of considering edge cases (multiples of both numbers)
+- The trade-off between simple iterative solutions and optimized mathematical formulas
+- How computational complexity affects solution choice

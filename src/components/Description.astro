@@ -1,0 +1,24 @@
+---
+import { remark } from 'remark';
+import remarkMath from 'remark-math';
+import remarkRehype from 'remark-rehype';
+import rehypeKatex from 'rehype-katex';
+import rehypeStringify from 'rehype-stringify';
+
+interface Props {
+  description: string;
+}
+
+const { description } = Astro.props;
+
+const processed = await remark()
+  .use(remarkMath)
+  .use(remarkRehype)
+  .use(rehypeKatex)
+  .use(rehypeStringify)
+  .process(description);
+
+const html = processed.toString();
+---
+
+<div class="text-xl text-silver leading-relaxed font-serif italic mb-6" set:html={html}></div>

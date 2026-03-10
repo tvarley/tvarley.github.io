@@ -1,7 +1,35 @@
 ---
 problemNumber: 18
 title: "Maximum Path Sum I"
-description: "By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23. 3 7 4 2 4 6 8 5 9 3 That is, 3 + 7 + 4 + 9 = 23. Find the maximum total from top to bottom of the triangle below: 75 95 64 17 47 82 18 35 87 10 20 04 82 47 65 19 01 23 75 03 34 88 02 77 73 07 63 67 99 65 04 28 06 16 70 92 41 41 26 56 83 40 80 70 33 41 48 72 33 47 32 37 16 94 29 53 71 44 65 25 43 91 52 97 51 14 70 11 33 28 77 73 17 78 39 68 17 57 91 71 52 38 17 14 91 43 58 50 27 29 48 63 66 04 68 89 53 67 30 73 16 69 87 40 31 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23 NOTE: As there are only 16384 routes, it is possible to solve this by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o) Answer: 1074"
+description: |
+  By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.
+
+  3
+  7 4
+  2 4 6
+  8 5 9 3
+
+  That is, 3 + 7 + 4 + 9 = 23.
+
+  Find the maximum total from top to bottom of the triangle below:
+
+  75
+  95 64
+  17 47 82
+  18 35 87 10
+  20 04 82 47 65
+  19 01 23 75 03 34
+  88 02 77 73 07 63 67
+  99 65 04 28 06 16 70 92
+  41 41 26 56 83 40 80 70 33
+  41 48 72 33 47 32 37 16 94 29
+  53 71 44 65 25 43 91 52 97 51 14
+  70 11 33 28 77 73 17 78 39 68 17 57
+  91 71 52 38 17 14 91 43 58 50 27 29 48
+  63 66 04 68 89 53 67 30 73 16 69 87 40 31
+  04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
+
+  NOTE: As there are only 16384 routes, it is possible to solve this by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
 difficulty: "medium"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -399,8 +427,38 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 18: Maximum Path Sum I.
+### Mathematical Background
 
-By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23. 3 7 4 2 4 6 8 5 9 3 That is, 3 + 7 + 4 + 9 = 23. Find the maximum total from top to bottom of the triangle below: 75 95 64 17 47 82 18 35 87 10 20 04 82 47 65 19 01 23 75 03 34 88 02 77 73 07 63 67 99 65 04 28 06 16 70 92 41 41 26 56 83 40 80 70 33 41 48 72 33 47 32 37 16 94 29 53 71 44 65 25 43 91 52 97 51 14 70 11 33 28 77 73 17 78 39 68 17 57 91 71 52 38 17 14 91 43 58 50 27 29 48 63 66 04 68 89 53 67 30 73 16 69 87 40 31 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23 NOTE: As there are only 16384 routes, it is possible to solve this by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o) Answer: 1074
+This is a classic dynamic programming problem on a triangular grid. Each number can only move to one of two adjacent numbers in the row below. The goal is to find the path from top to bottom that maximizes the sum.
+
+The triangle has 15 rows, with the bottom row having 15 elements. The total number of possible paths is $2^{14} = 16384$, which explains why brute force is feasible for this size.
+
+### Algorithm Analysis
+
+All implementations use dynamic programming with O(n²) time complexity, where n is the number of rows. The algorithm starts from the bottom row and works upwards, replacing each number with the maximum sum achievable from that position.
+
+Key steps:
+1. Start from the second-to-last row
+2. For each position, add the maximum of the two possible paths below
+3. Work upwards until reaching the top
+
+This approach transforms the triangle in-place, using each row to store the maximum path sum to that point.
+
+### Key Insights
+
+- Dynamic programming eliminates the need to explore all paths
+- Working from bottom to top avoids recomputation
+- The optimal substructure property allows us to solve smaller subproblems first
+- This same approach scales to Problem 67's much larger triangle
+- Memory usage remains O(n²) for the triangle storage
+
+### Educational Value
+
+This problem introduces:
+- Dynamic programming concepts and optimal substructure
+- The difference between brute force and optimized algorithms
+- How exponential complexity can be reduced to polynomial
+- Tree/graph traversal techniques
+- The importance of choosing the right algorithmic approach based on problem size

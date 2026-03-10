@@ -1,7 +1,12 @@
 ---
 problemNumber: 13
 title: "Large Sum"
-description: "Work out the first ten digits of the sum of the following one-hundred 50-digit numbers. ( numbers listed ) Answer: 5537376230"
+description: |
+  Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
+
+  (The 100 numbers are listed in the original problem - each 50 digits long)
+
+  What is the value of this sum?
 difficulty: "medium"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -1005,8 +1010,42 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 13: Large Sum.
+### Mathematical Background
 
-Work out the first ten digits of the sum of the following one-hundred 50-digit numbers. ( numbers listed ) Answer: 5537376230
+This problem involves summing one hundred 50-digit numbers and extracting the first 10 digits of the result. Since the numbers are very large, direct summation requires handling big integers that exceed standard data types in most programming languages.
+
+The total sum will be approximately 100 × 10^49 (since each number is about 10^49), so the sum will have about 52 digits. The first 10 digits represent the most significant part of this large number.
+
+### Algorithm Analysis
+
+The implementations handle large number arithmetic in different ways:
+
+**String-based addition**: Process numbers digit by digit from right to left, maintaining carry values. Most implementations use this approach for arbitrary-precision arithmetic.
+
+**Big integer libraries**: Languages with built-in big integer support (like Python) can sum the numbers directly.
+
+**Array-based arithmetic**: Store digits in arrays and perform addition with carry propagation.
+
+Time complexity is O(n × d) where n=100 numbers and d≈50 digits, making it effectively linear. Space complexity is O(d) for storing intermediate results.
+
+### Key Insights
+
+- Only the first 10 digits of the final sum are needed, so we don't need the complete sum
+- The problem can be solved by summing only the most significant digits of each number
+- Carry propagation must be handled carefully when working digit-by-digit
+- Languages without built-in big integers need custom arbitrary-precision arithmetic
+- The result 5537376230 represents the first 10 digits of the total sum
+- This demonstrates practical applications of arbitrary-precision arithmetic
+
+### Educational Value
+
+This problem teaches essential programming concepts:
+- Arbitrary-precision arithmetic and big integer handling
+- String manipulation for numerical computation
+- The importance of understanding number representation limits
+- Digit-by-digit algorithms and carry propagation
+- When to use built-in libraries vs. custom implementations
+- Handling very large numbers in constrained environments
+- The relationship between numerical precision and computational requirements

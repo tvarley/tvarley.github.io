@@ -1,7 +1,22 @@
 ---
 problemNumber: 30
 title: "Digit Fifth Powers"
-description: "Surprisingly there are only three numbers that can be written as the sum of fourth powers of their digits: 1634, 8208, 9474. Find the sum of all the numbers that can be written as the sum of fifth powers of their digits. Answer: 443839"
+description: |
+  Surprisingly there are only three numbers that can be written as the sum of fourth powers of their digits:
+
+  $$
+  \begin{align}
+  1634 &= 1^4 + 6^4 + 3^4 + 4^4 \\
+  8208 &= 8^4 + 2^4 + 0^4 + 8^4 \\
+  9474 &= 9^4 + 4^4 + 7^4 + 4^4
+  \end{align}
+  $$
+
+  As $1 = 1^4$ is not a sum it is not included.
+
+  The sum of these numbers is $1634 + 8208 + 9474 = 19316$.
+
+  Find the sum of all the numbers that can be written as the sum of fifth powers of their digits.
 difficulty: "hard"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -227,8 +242,16 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 30: Digit Fifth Powers.
+### Mathematical Background
+This problem explores narcissistic numbers, specifically those equal to the sum of their digits raised to the fifth power. The fourth-power case demonstrates that such numbers exist and are rare, while the fifth-power variant requires finding all such numbers and summing them.
 
-Surprisingly there are only three numbers that can be written as the sum of fourth powers of their digits: 1634, 8208, 9474. Find the sum of all the numbers that can be written as the sum of fifth powers of their digits. Answer: 443839
+### Algorithm Analysis
+The solution iterates through all numbers up to an upper bound determined by the maximum possible digit sum ($6 \times 9^5 = 354294$), calculating the fifth power sum of digits for each number and checking for equality. Time complexity is $O(n \times d)$ where $n$ is the upper bound and $d$ is the average number of digits (constant), making it effectively linear in the search space.
+
+### Key Insights
+The upper bound is crucial: no number larger than $6 \times 9^5$ can equal its digit fifth-power sum since $7 \times 9^5 = 413343$ is a 6-digit number while the maximum 6-digit number is 999999. The solution finds six such numbers whose fifth powers sum to 443839.
+
+### Educational Value
+This problem teaches the importance of establishing bounds in computational searches and demonstrates how mathematical constraints can dramatically reduce the search space. It combines digit manipulation, exponentiation, and summation in a clear algorithmic framework, illustrating efficient brute-force approaches to number theory problems.

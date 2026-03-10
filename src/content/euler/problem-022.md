@@ -1,7 +1,12 @@
 ---
 problemNumber: 22
 title: "Names Scores"
-description: "Using names.txt, a 46K text file containing over five-thousand first names, begin by sorting it into alphabetical order. Then working out the alphabetical value for each name, multiply this value by its alphabetical position in the list to obtain a name score. For example, when the list is sorted into alphabetical order, COLIN, which is worth 3 + 15 + 12 + 9 + 14 = 53, is the 938th name in the list. So, COLIN would obtain a score of 938 × 53 = 49714. What is the total of all the name scores in the file? Answer: 871198282"
+description: |
+  Using [names.txt](https://projecteuler.net/resources/documents/0022_names.txt), a 46K text file containing over five-thousand first names, begin by sorting it into alphabetical order. Then working out the alphabetical value for each name, multiply this value by its alphabetical position in the list to obtain a name score.
+
+  For example, when the list is sorted into alphabetical order, COLIN, which is worth $3 + 15 + 12 + 9 + 14 = 53$, is the $938$th name in the list. So, COLIN would obtain a score of $938 \times 53 = 49714$.
+
+  What is the total of all the name scores in the file?
 difficulty: "hard"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -298,8 +303,51 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 22: Names Scores.
+### Mathematical Background
 
-Using names.txt, a 46K text file containing over five-thousand first names, begin by sorting it into alphabetical order. Then working out the alphabetical value for each name, multiply this value by its alphabetical position in the list to obtain a name score. For example, when the list is sorted into alphabetical order, COLIN, which is worth 3 + 15 + 12 + 9 + 14 = 53, is the 938th name in the list. So, COLIN would obtain a score of 938 × 53 = 49714. What is the total of all the name scores in the file? Answer: 871198282
+This problem involves processing a list of over 5,000 names and computing weighted alphabetical scores. Each name gets a score equal to its alphabetical value multiplied by its position in the sorted list.
+
+The alphabetical value is calculated by summing the position of each letter in the alphabet (A=1, B=2, ..., Z=26). For example:
+- C=3, O=15, L=12, I=9, N=14
+- Total: 3+15+12+9+14 = 53
+
+The name score is then: position × alphabetical_value
+
+The total score is the sum of all individual name scores.
+
+### Algorithm Analysis
+
+**File parsing**: Read the names.txt file and extract individual names from quoted, comma-separated format.
+
+**Sorting**: Sort the names alphabetically using standard string comparison.
+
+**Score calculation**: For each name at position i (1-based):
+- Compute alphabetical value by summing (char - 'A' + 1) for each letter
+- Multiply by position: score = alphabetical_value × i
+- Accumulate total score
+
+Time complexity is O(N log N) due to sorting, where N≈5000. Space complexity is O(N) for storing the name list.
+
+### Key Insights
+
+- Names are provided in quoted, comma-separated format requiring parsing
+- Alphabetical position uses 1-based indexing (first name = position 1)
+- Only uppercase letters A-Z are used (no special characters)
+- The file contains exactly 5,163 names
+- Total score is 871,198,282
+- Sorting is the dominant operation in terms of complexity
+- This demonstrates practical text processing and scoring algorithms
+
+### Educational Value
+
+This problem teaches:
+- Text file parsing and data extraction
+- String manipulation and character encoding
+- Sorting algorithms and their importance
+- Position-based scoring systems
+- Working with real-world data formats
+- The combination of sorting and computation
+- Handling large datasets efficiently
+- Character-to-number conversion techniques

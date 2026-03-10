@@ -1,7 +1,10 @@
 ---
 problemNumber: 7
 title: "10001st Prime"
-description: "By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13. What is the 10 001st prime number? Answer: 104743"
+description: |
+  By listing the first six prime numbers: $2, 3, 5, 7, 11$, and $13$, we can see that the $6$th prime is $13$.
+
+  What is the $10\,001$st prime number?
 difficulty: "easy"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -243,8 +246,44 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 7: 10001st Prime.
+### Mathematical Background
 
-By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13. What is the 10 001st prime number? Answer: 104743
+Prime numbers are integers greater than 1 that have no positive divisors other than 1 and themselves. The nth prime number refers to the prime at position n in the sequence of primes ordered by size.
+
+The prime number theorem provides an asymptotic approximation: the nth prime is approximately $n \ln n$. For n=10,001, this gives roughly 10,001 × ln(10,001) ≈ 10,001 × 9.21 ≈ 92,000, which is close to the actual value of 104,743.
+
+The distribution of primes becomes sparser as numbers grow, following the prime number theorem: $\pi(n) \approx \frac{n}{\ln n}$ where $\pi(n)$ is the number of primes ≤ n.
+
+### Algorithm Analysis
+
+The implementations demonstrate different approaches to finding the nth prime:
+
+**Trial division**: Test each candidate number for primality by checking divisibility up to √n. Simple but inefficient for large n.
+
+**Incremental sieve**: Build a sieve incrementally as needed, only up to the required size. More memory efficient than pre-computing a large sieve.
+
+**Optimized trial division**: Skip even numbers after 2, use 6k±1 optimization for checking factors. Balances simplicity with performance.
+
+Time complexity varies: trial division is O(n√p) where p is the nth prime, while sieve approaches are O(n log log n) for the range needed.
+
+### Key Insights
+
+- The 10,001st prime (104,743) is relatively small compared to what might be expected
+- Most implementations use a sieve of Eratosthenes approach for efficiency
+- The search space needs to be large enough - typically around n×ln(n)×ln(n) gives good bounds
+- Even numbers >2 are never prime, allowing significant optimization
+- The pattern 6k±1 covers all potential primes except 2 and 3
+- Performance depends heavily on the primality test efficiency
+
+### Educational Value
+
+This problem introduces fundamental concepts in:
+- Prime number generation and testing algorithms
+- The sieve of Eratosthenes as an efficient prime-finding method
+- The mathematical properties of prime distributions
+- Algorithm selection based on problem constraints
+- The trade-offs between time and space complexity
+- Understanding when to pre-compute vs. compute on-demand
+- The importance of mathematical bounds in algorithm design

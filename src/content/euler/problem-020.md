@@ -1,7 +1,13 @@
 ---
 problemNumber: 20
 title: "Factorial Digit Sum"
-description: "n! means n × (n − 1) × ... × 3 × 2 × 1 For example, 10! = 10 × 9 × ... × 3 × 2 × 1 = 3628800, and the sum of the digits in the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27. Find the sum of the digits in the number 100! Answer: 648"
+description: |
+  $n!$ means $n \times (n - 1) \times \cdots \times 3 \times 2 \times 1$.
+
+  For example, $10! = 10 \times 9 \times \cdots \times 3 \times 2 \times 1 = 3628800$,
+  and the sum of the digits in the number $10!$ is $3 + 6 + 2 + 8 + 8 + 0 + 0 = 27$.
+
+  Find the sum of the digits in the number $100!$.
 difficulty: "medium"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -270,8 +276,46 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 20: Factorial Digit Sum.
+### Mathematical Background
 
-n! means n × (n − 1) × ... × 3 × 2 × 1 For example, 10! = 10 × 9 × ... × 3 × 2 × 1 = 3628800, and the sum of the digits in the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27. Find the sum of the digits in the number 100! Answer: 648
+This problem involves computing the factorial of 100 ($100!$) and summing its digits. Factorials grow extremely rapidly - $100!$ has 158 digits and is approximately $9.33 \times 10^{157}$.
+
+The number of digits in $n!$ can be estimated using Stirling's approximation:
+$$\ln(n!) \approx n\ln n - n + \frac{1}{2}\ln(2\pi n)$$
+
+For $n = 100$, this gives approximately 157.97 digits, matching the actual result.
+
+### Algorithm Analysis
+
+**Big integer factorial computation**: Most implementations use arbitrary-precision arithmetic since $100!$ exceeds standard integer types.
+
+**Approaches**:
+- **Array-based multiplication**: Store the result as an array of digits, multiplying digit-by-digit with carry propagation
+- **Big integer libraries**: Languages with built-in big integer support (Python, Java) can compute factorial directly
+- **Iterative multiplication**: Start with 1, multiply by each integer from 2 to 100
+
+**Digit summation**: Convert the final number to a string or iterate through digit array, summing each digit.
+
+Time complexity is O(n²) due to the growing number size with each multiplication. Space complexity is O(d) where d ≈ 158 is the number of digits.
+
+### Key Insights
+
+- $100!$ has 158 digits and digit sum of 648
+- Standard integer types cannot hold such large numbers
+- The algorithm scales well for larger factorials using the same digit-array approach
+- Most digits are zeros due to the factorial's many trailing zeros (24 zeros in $100!$)  
+- This demonstrates the factorial function's explosive growth
+- Practical applications include probability calculations and combinatorics
+
+### Educational Value
+
+This problem teaches:
+- Factorial computation and its mathematical properties
+- Arbitrary-precision arithmetic implementation
+- The limitations of built-in numeric types
+- Digit manipulation and summation algorithms
+- Handling very large numbers in constrained environments
+- The relationship between mathematical growth and computational complexity
+- When to use custom algorithms versus built-in libraries

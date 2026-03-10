@@ -1,7 +1,24 @@
 ---
 problemNumber: 26
 title: "Reciprocal Cycles"
-description: "A unit fraction contains 1 in the numerator. It can be seen that 1/7 has a 6-digit recurring cycle. Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part. Answer: 983"
+description: |
+  A unit fraction contains $1$ in the numerator. The decimal representation of the unit fractions with denominators $2$ to $10$ are given:
+
+  $$\begin{align}
+  1/2 &= 0.5\\
+  1/3 &=0.(3)\\
+  1/4 &=0.25\\
+  1/5 &= 0.2\\
+  1/6 &= 0.1(6)\\
+  1/7 &= 0.(142857)\\
+  1/8 &= 0.125\\
+  1/9 &= 0.(1)\\
+  1/10 &= 0.1
+  \end{align}$$
+
+  Where $0.1(6)$ means $0.166666\cdots$, and has a $1$-digit recurring cycle. It can be seen that $1/7$ has a $6$-digit recurring cycle.
+
+  Find the value of $d \lt 1000$ for which $1/d$ contains the longest recurring cycle in its decimal fraction part.
 difficulty: "hard"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -295,8 +312,41 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 26: Reciprocal Cycles.
+### Mathematical Background
 
-A unit fraction contains 1 in the numerator. It can be seen that 1/7 has a 6-digit recurring cycle. Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part. Answer: 983
+This problem explores the decimal representations of unit fractions and their recurring cycles. The length of the recurring cycle for $1/d$ is determined by the multiplicative order of 10 modulo d, or more precisely, by the period of the decimal expansion.
+
+For a fraction $1/d$ in lowest terms, the decimal expansion will be periodic with period equal to the smallest k such that $10^k ≡ 1 \pmod{d}$. The period length depends on the prime factors of d.
+
+### Algorithm Analysis
+
+**Long division simulation**: Perform long division of 1 by d, tracking remainders to detect when the division repeats.
+
+**Cycle detection**: Use a map to store the position where each remainder first occurred. When a remainder repeats, the cycle length is current position minus stored position.
+
+**Key optimization**: Only check denominators that don't share factors with 2 or 5, as these produce terminating decimals.
+
+**Search strategy**: For each d from 2 to 999, compute the cycle length and track the maximum.
+
+Time complexity is O(MAX × log MAX) due to the cycle detection process. Space complexity is O(MAX) for remainder tracking.
+
+### Key Insights
+
+- The longest cycle occurs for d = 983, with a 982-digit recurring cycle
+- Only primes not dividing 2 or 5 can produce long cycles
+- The cycle length for prime p is the order of 10 modulo p
+- Some composite numbers can have longer cycles than primes
+- This demonstrates the connection between number theory and decimal arithmetic
+
+### Educational Value
+
+This problem teaches:
+- Decimal expansion and periodic fractions
+- The mathematics of recurring decimals
+- Cycle detection algorithms
+- Modular arithmetic applications
+- The relationship between number theory and decimal representations
+- Efficient computation of long division
+- When to use mathematical insights to optimize brute force approaches

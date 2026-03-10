@@ -1,7 +1,19 @@
 ---
 problemNumber: 28
 title: "Number Spiral Diagonals"
-description: "Starting with the number 1 and moving to the right in a clockwise direction a 5 by 5 spiral is formed. The sum of the numbers on the diagonals is 101. What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way? Answer: 669171001"
+description: |
+  Starting with the number $1$ and moving to the right in a clockwise direction a $5$ by $5$ spiral is formed as follows:
+
+  | 21 | 22 | 23 | 24 | 25 |
+  |----|----|----|----|----|
+  | 20 |  7 |  8 |  9 | 10 |
+  | 19 |  6 |  1 |  2 | 11 |
+  | 18 |  5 |  4 |  3 | 12 |
+  | 17 | 16 | 15 | 14 | 13 |
+
+  It can be verified that the sum of the numbers on the diagonals is $101$.
+
+  What is the sum of the numbers on the diagonals in a $1001$ by $1001$ spiral formed in the same way?
 difficulty: "hard"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -189,8 +201,16 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 28: Number Spiral Diagonals.
+### Mathematical Background
+This problem involves summing the diagonal elements of a square spiral formed by placing numbers in a clockwise pattern starting from the center. The spiral grows by adding layers, with each layer $n$ having side length $2n-1$. The corners of each layer follow a predictable pattern: for layer $n$, the corner values are $n^2$, $n^2 - (n-1)$, $n^2 - 2(n-1)$, and $n^2 - 3(n-1)$.
 
-Starting with the number 1 and moving to the right in a clockwise direction a 5 by 5 spiral is formed. The sum of the numbers on the diagonals is 101. What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way? Answer: 669171001
+### Algorithm Analysis
+The solution iterates through each layer of the spiral, calculating the four corner values and adding them to a running sum. Starting with the center value of 1, it processes layers from size 3 to the target size (1001) in steps of 2. Each layer computation is $O(1)$, resulting in $O(n)$ time complexity where $n$ is the spiral size. Space complexity is $O(1)$ as only a few variables are used.
+
+### Key Insights
+The diagonal sum can be computed without constructing the entire spiral grid. Each layer contributes exactly four diagonal elements (except the center layer), and their values follow the pattern derived from the spiral's growth. For a $1001 \times 1001$ spiral, there are 500 layers beyond the center, giving a total of 2001 diagonal elements summing to 669,171,001.
+
+### Educational Value
+This problem demonstrates pattern recognition in mathematical sequences and the power of mathematical insight over brute-force computation. It teaches how to identify regularities in seemingly complex structures and derive closed-form formulas for efficient calculation, avoiding the need to generate large data structures.

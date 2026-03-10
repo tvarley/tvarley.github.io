@@ -1,7 +1,18 @@
 ---
 problemNumber: 6
 title: "Sum Square Difference"
-description: "The sum of the squares of the first ten natural numbers is, 1^2 + 2^2 + ... + 10^2 = 385 The square of the sum of the first ten natural numbers is, (1 + 2 + ... + 10)^2 = 55^2 = 3025 Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025 − 385 = 2640. Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum. Answer: 25164150"
+description: |
+  The sum of the squares of the first ten natural numbers is,
+
+  $$1^2 + 2^2 + ... + 10^2 = 385.$$
+
+  The square of the sum of the first ten natural numbers is,
+
+  $$(1 + 2 + ... + 10)^2 = 55^2 = 3025.$$
+
+  Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is $3025 - 385 = 2640$.
+
+  Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
 difficulty: "easy"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -192,8 +203,41 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 6: Sum Square Difference.
+### Mathematical Background
 
-The sum of the squares of the first ten natural numbers is, 1^2 + 2^2 + ... + 10^2 = 385 The square of the sum of the first ten natural numbers is, (1 + 2 + ... + 10)^2 = 55^2 = 3025 Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025 − 385 = 2640. Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum. Answer: 25164150
+This problem explores the relationship between two different ways of combining numbers: the sum of squares and the square of the sum. For the first n natural numbers, we compare:
+
+- **Sum of squares**: $S_1 = 1^2 + 2^2 + \dots + n^2 = \frac{n(n+1)(2n+1)}{6}$
+- **Square of sum**: $S_2 = (1 + 2 + \dots + n)^2 = \left(\frac{n(n+1)}{2}\right)^2 = \frac{n^2(n+1)^2}{4}$
+
+The difference $S_2 - S_1$ grows quadratically with n, demonstrating how the square of the sum always exceeds the sum of squares.
+
+### Algorithm Analysis
+
+The implementations show two approaches:
+
+**Iterative approach**: Loop through numbers 1 to n, accumulating both the sum and sum of squares simultaneously. O(n) time complexity.
+
+**Mathematical approach**: Use closed-form formulas to compute both sums directly in O(1) time. The Java implementation demonstrates this with the formulas above.
+
+Both approaches are efficient for n=100, but the mathematical approach is superior for larger n or repeated calculations.
+
+### Key Insights
+
+- The difference formula can be derived algebraically: $(1+2+\dots+n)^2 - (1^2+2^2+\dots+n^2)$
+- This expands to a known identity involving triangular numbers and square pyramidal numbers
+- The result is always positive and grows rapidly with n
+- The mathematical approach eliminates loops entirely
+- Understanding the closed forms helps recognize when brute force vs. math is appropriate
+
+### Educational Value
+
+This problem illustrates fundamental mathematical concepts:
+- The distinction between $(a+b)^2$ and $a^2 + b^2$
+- Closed-form formulas for common series sums
+- The power of mathematical insight over computational brute force
+- How algebraic manipulation can lead to elegant solutions
+- The relationship between different summation formulas
+- When to prefer mathematical formulas over iterative computation

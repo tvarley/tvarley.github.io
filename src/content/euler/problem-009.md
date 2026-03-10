@@ -1,7 +1,16 @@
 ---
 problemNumber: 9
 title: "Special Pythagorean Triplet"
-description: "A Pythagorean triplet is a set of three natural numbers, a < b < c, for which, a^2 + b^2 = c^2 For example, 3^2 + 4^2 = 9 + 16 = 25 = 5^2. There exists exactly one Pythagorean triplet for which a + b + c = 1000. Find the product abc. Answer: 31875000"
+description: |
+  A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
+
+  $$a^2 + b^2 = c^2.$$
+
+  For example, $3^2 + 4^2 = 9 + 16 = 25 = 5^2$.
+
+  There exists exactly one Pythagorean triplet for which $a + b + c = 1000$.
+
+  Find the product $abc$.
 difficulty: "easy"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -207,8 +216,57 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 9: Special Pythagorean Triplet.
+### Mathematical Background
 
-A Pythagorean triplet is a set of three natural numbers, a < b < c, for which, a^2 + b^2 = c^2 For example, 3^2 + 4^2 = 9 + 16 = 25 = 5^2. There exists exactly one Pythagorean triplet for which a + b + c = 1000. Find the product abc. Answer: 31875000
+A Pythagorean triplet consists of three positive integers (a, b, c) satisfying a² + b² = c². Primitive triplets can be generated using formulas derived from the identity:
+
+- For any pair of integers m > n > 0 with m and n coprime and not both odd: a = m² - n², b = 2mn, c = m² + n²
+- All triplets are multiples of primitive triplets
+
+For triplets summing to a specific value S = a + b + c, we have the relation c = S - a - b, so the Pythagorean equation becomes: a² + b² = (S - a - b)², which expands to 2ab - 2Sa + 2Sb = S² - 2S² + S² wait, let me recalculate properly.
+
+Actually: a² + b² = (S - a - b)² = S² - 2S(a+b) + (a+b)²
+
+This leads to the equation: a² + b² - (a+b)² = S² - 2S(a+b)
+
+Which simplifies to: -2ab = S² - 2S(a+b)
+
+Or: 2ab = 2S(a+b) - S²
+
+ab = S(a+b) - S²/2
+
+### Algorithm Analysis
+
+The implementations use brute force enumeration with constraints:
+
+**Nested loops**: Try all possible a, b values with constraints a < b < c and a + b + c = 1000
+
+**Range optimization**: Since a < b < c and a + b + c = 1000, we have:
+- a < 1000/3 ≈ 333
+- b < 1000/2 = 500
+- c = 1000 - a - b > b (so b < 500)
+
+**Early termination**: Some implementations use a < b < c constraints to reduce iterations
+
+Time complexity is O(n²) where n ≈ 333, making it very efficient even for brute force.
+
+### Key Insights
+
+- The constraints a < b < c and a + b + c = 1000 significantly reduce the search space
+- Expressing c = 1000 - a - b eliminates one variable
+- The triplet (200, 375, 425) is the unique solution for sum = 1000
+- All primitive triplets can be generated systematically using the m,n formula
+- This problem demonstrates how mathematical constraints can make brute force practical
+- The solution involves a multiple of the (3,4,5) primitive triplet scaled by 200/3 ≈ 66.67
+
+### Educational Value
+
+This problem teaches fundamental concepts in:
+- Number theory and Pythagorean triples
+- Constraint-based problem solving
+- The relationship between brute force and mathematical optimization
+- Understanding search space reduction through problem constraints
+- How mathematical formulas can generate all solutions systematically
+- The importance of primitive vs. non-primitive number relationships

@@ -1,7 +1,10 @@
 ---
 problemNumber: 5
 title: "Smallest Multiple"
-description: "2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder. What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20? Answer: 232792560"
+description: |
+  2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+
+  What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 difficulty: "easy"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -215,8 +218,40 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 5: Smallest Multiple.
+### Mathematical Background
 
-2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder. What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20? Answer: 232792560
+The smallest number divisible by all integers from 1 to n is the Least Common Multiple (LCM) of those numbers. LCM(a,b) is the smallest number that is a multiple of both a and b.
+
+For multiple numbers, LCM can be computed using the formula: LCM(a,b) = (a × b) / GCD(a,b), where GCD is the Greatest Common Divisor. This extends to multiple numbers by computing LCM progressively.
+
+The prime factorization approach gives LCM by taking the highest power of each prime that appears in any factorization: LCM = 2^max(a₂,b₂,c₂,...) × 3^max(a₃,b₃,c₃,...) × ...
+
+### Algorithm Analysis
+
+Two main approaches are shown:
+
+**Brute Force**: Start from n and increment by n (or larger steps), testing divisibility by all numbers from 1 to n. Simple but inefficient for larger n.
+
+**Mathematical (LCM)**: Compute LCM of all numbers from 1 to n using GCD. Much more efficient - O(n log n) vs potentially exponential time for brute force.
+
+The LCM approach uses the Euclidean algorithm for GCD, which is highly efficient. For n=20, the result is 2⁴ × 3² × 5 × 7 × 11 × 13 × 17 × 19 = 232,792,560.
+
+### Key Insights
+
+- The LCM will always be at least as large as the largest number in the range
+- Prime factors determine the result - each prime ≤ n must appear at least once
+- Higher powers of primes (like 2⁴=16, 3²=9) come from composite numbers in the range
+- The mathematical approach is exponentially faster than brute force for larger ranges
+- This problem demonstrates why understanding number theory leads to better algorithms
+
+### Educational Value
+
+This problem introduces fundamental concepts:
+- The relationship between LCM and GCD
+- Prime factorization and its applications
+- Why mathematical insight leads to efficient algorithms
+- The difference between brute force and optimized approaches
+- How number theory principles apply to programming problems
+- The importance of understanding problem constraints for algorithm selection

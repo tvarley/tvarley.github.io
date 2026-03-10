@@ -1,7 +1,10 @@
 ---
 problemNumber: 15
 title: "Lattice Paths"
-description: "Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down, there are exactly 6 routes to the bottom right corner. How many such routes are there through a 20×20 grid? Answer: 137846528820"
+description: |
+  Starting in the top left corner of a $2 \times 2$ grid, and only being able to move to the right and down, there are exactly 6 routes to the bottom right corner.
+
+  How many such routes are there through a $20 \times 20$ grid?
 difficulty: "medium"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -193,8 +196,40 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 15: Lattice Paths.
+### Mathematical Background
 
-Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down, there are exactly 6 routes to the bottom right corner. How many such routes are there through a 20×20 grid? Answer: 137846528820
+This is a classic combinatorics problem. To navigate an n×n grid with only right and down moves, you need exactly n right moves and n down moves, for a total of 2n moves.
+
+The number of paths is the number of ways to arrange n right moves and n down moves, which is given by the binomial coefficient:
+
+$\binom{2n}{n} = \frac{(2n)!}{(n!)^2}$
+
+For a 20×20 grid, this becomes $\binom{40}{20}$, which is the number shown in the solutions.
+
+### Algorithm Analysis
+
+Most implementations use direct binomial coefficient calculation rather than dynamic programming to avoid overflow and precision issues with large factorials.
+
+- **Direct factorial approach**: Compute (2n)! / (n! * n!) but requires big integer arithmetic
+- **Iterative multiplication**: Compute the coefficient by multiplying terms iteratively to avoid computing full factorials
+- **Dynamic programming**: Build a grid where each cell represents paths to that point (shown in C++ and Ruby implementations)
+
+Time complexity: O(n) for iterative binomial calculation, O(n²) for dynamic programming grid approach.
+
+### Key Insights
+
+- The problem requires exactly n right and n down moves in some order
+- Binomial coefficients grow extremely rapidly - C(40,20) is over 137 trillion
+- Dynamic programming approach demonstrates the concept of optimal substructure
+- The iterative binomial calculation is more memory-efficient than factorial computation
+
+### Educational Value
+
+This problem teaches:
+- Fundamental combinatorics and counting principles
+- Binomial coefficients and their interpretation
+- Dynamic programming for path counting problems
+- The importance of choosing appropriate data types for large numbers
+- How mathematical insight can replace brute-force enumeration

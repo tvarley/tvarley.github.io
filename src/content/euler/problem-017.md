@@ -1,7 +1,12 @@
 ---
 problemNumber: 17
 title: "Number Letter Counts"
-description: "If the numbers 1 to 5 are written out in words: one, two, three, four, five, then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total. If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used? NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-two) contains 23 letters, and 115 (one hundred and fifteen) contains 20 letters. The use of \"and\" when writing out numbers is in compliance with British usage. Answer: 21124"
+description: |
+  If the numbers $1$ to $5$ are written out in words: one, two, three, four, five, then there are $3 + 3 + 5 + 4 + 4 = 19$ letters used in total.
+
+  If all the numbers from $1$ to $1000$ (one thousand) inclusive were written out in words, how many letters would be used?
+
+  **NOTE:** Do not count spaces or hyphens. For example, $342$ (three hundred and forty-two) contains $23$ letters and $115$ (one hundred and fifteen) contains $20$ letters. The use of "and" when writing out numbers is in compliance with British usage.
 difficulty: "medium"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -474,8 +479,43 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 17: Number Letter Counts.
+### Mathematical Background
 
-If the numbers 1 to 5 are written out in words: one, two, three, four, five, then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total. If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used? NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-two) contains 23 letters, and 115 (one hundred and fifteen) contains 20 letters. The use of "and" when writing out numbers is in compliance with British usage. Answer: 21124
+This problem requires converting numbers from 1 to 1000 into their English word representations and counting the letters used. The challenge lies in handling the British English convention of using "and" when writing numbers (e.g., "one hundred and fifteen" instead of "one hundred fifteen").
+
+The total letter count grows quadratically with the upper limit due to the increasing complexity of number representations. Numbers 1-99 follow relatively simple patterns, while 100-999 add "hundred" and "and" connectors, and 1000 requires special handling.
+
+### Algorithm Analysis
+
+**Number-to-words conversion**: Implement functions that break down numbers into hundreds, tens, and units components, using lookup tables for word representations.
+
+**Letter counting**: Convert each number to its word form, then count alphabetic characters while ignoring spaces and hyphens.
+
+**Approaches**:
+- **Lookup table approach**: Pre-compute word lengths for common number components (ones, teens, tens)
+- **String concatenation**: Build word representations by combining components with appropriate connectors
+- **Template metaprogramming**: Use compile-time computation (as seen in C++ implementation)
+
+Time complexity is O(n) where n=1000, with constant-time operations per number. Space complexity is O(1) using fixed-size lookup tables.
+
+### Key Insights
+
+- British English requires "and" between hundreds and tens/units (e.g., "one hundred and fifteen")
+- "One thousand" is written as two words but counted as one unit
+- Hyphens in compound numbers (twenty-one, thirty-four) are ignored in counting
+- The pattern repeats every 100 numbers with increasing hundreds prefixes
+- Template metaprogramming provides compile-time optimization in C++
+- Total letter count for 1-1000 is 21,124
+
+### Educational Value
+
+This problem teaches:
+- String manipulation and text processing
+- Number system representation and conversion algorithms
+- Handling special cases in algorithmic thinking
+- The importance of precise problem requirements (British vs American English)
+- Lookup table optimization techniques
+- Modular code design with reusable number conversion functions
+- When to use compile-time vs runtime computation

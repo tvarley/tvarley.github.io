@@ -1,3 +1,5 @@
+@import "katex/dist/katex.min.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -95,6 +97,30 @@
 
   .prose li {
     @apply mb-2 pl-2;
+  }
+
+  /* Solution Notes specific styling */
+  .prose h2:first-child {
+    @apply text-3xl font-serif font-bold text-white mb-8 mt-0;
+    color: var(--text-primary);
+  }
+
+  .prose h3 {
+    @apply text-xl font-serif font-bold text-white mb-6 mt-10;
+    color: var(--text-primary);
+    position: relative;
+  }
+
+  .prose h3::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 1.2em;
+    background: linear-gradient(135deg, var(--accent), rgba(70, 130, 180, 0.6));
+    border-radius: 2px;
   }
 }
 

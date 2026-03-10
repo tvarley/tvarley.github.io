@@ -1,7 +1,10 @@
 ---
 problemNumber: 3
 title: "Largest Prime Factor"
-description: "The prime factors of 13195 are 5, 7, 13 and 29. What is the largest prime factor of the number 600851475143 ? Answer: 6857"
+description: |
+  The prime factors of 13195 are 5, 7, 13 and 29.
+
+  What is the largest prime factor of the number 600851475143?
 difficulty: "easy"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -216,8 +219,39 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 3: Largest Prime Factor.
+### Mathematical Background
 
-The prime factors of 13195 are 5, 7, 13 and 29. What is the largest prime factor of the number 600851475143 ? Answer: 6857
+Prime factorization is the process of determining which prime numbers multiply together to make the original number. The Fundamental Theorem of Arithmetic states that every integer greater than 1 is either prime itself or can be represented as a unique product of prime numbers (up to the order of factors).
+
+For a number n, if it has prime factors p₁, p₂, ..., pk, then n = p₁^a₁ × p₂^a₂ × ... × pk^ak. The largest prime factor is the largest prime in this factorization.
+
+### Algorithm Analysis
+
+The implementations use trial division: systematically testing divisibility by potential prime factors. Key optimizations include:
+
+- **Even factor handling**: First divide out all factors of 2 (the only even prime)
+- **Odd factor testing**: Test only odd numbers starting from 3
+- **Early termination**: Stop checking when the remaining divisor becomes 1
+- **Square root bound**: Only test factors up to √n, as any factor larger than √n must pair with a factor smaller than √n
+
+Time complexity is O(√n) in the worst case, which is efficient for numbers up to ~10^18 (√n ≈ 10^9 operations).
+
+### Key Insights
+
+- The algorithm finds all prime factors but only tracks the largest one
+- Dividing out factors as they're found reduces the number that needs checking
+- For very large numbers, more advanced methods like Pollard's rho algorithm may be needed
+- The remaining number after dividing out smaller factors must be the largest prime factor (if > 1)
+- This problem demonstrates why prime factorization is computationally intensive for cryptography
+
+### Educational Value
+
+This problem teaches fundamental concepts in:
+- Number theory and prime numbers
+- The efficiency of different factorization algorithms
+- The importance of mathematical bounds (√n) in algorithm design
+- Handling large integers in different programming languages
+- The relationship between trial division and more advanced factorization methods
+- Why prime factorization forms the basis of modern cryptography (RSA)

@@ -1,7 +1,13 @@
 ---
 problemNumber: 21
 title: "Amicable Numbers"
-description: "Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n). If d(a) = b and d(b) = a, where a ≠ b, then a and b are an amicable pair and each of a and b are called amicable numbers. For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110; therefore d(220) = 284. The proper divisors of 284 are 1, 2, 4, 71 and 142; so d(284) = 220. Evaluate the sum of all the amicable numbers under 10000. Answer: 31626"
+description: |
+  Let $d(n)$ be defined as the sum of proper divisors of $n$ (numbers less than $n$ which divide evenly into $n$).
+  If $d(a) = b$ and $d(b) = a$, where $a \ne b$, then $a$ and $b$ are an amicable pair and each of $a$ and $b$ are called amicable numbers.
+
+  For example, the proper divisors of $220$ are $1, 2, 4, 5, 10, 11, 20, 22, 44, 55$ and $110$; therefore $d(220) = 284$. The proper divisors of $284$ are $1, 2, 4, 71$ and $142$; so $d(284) = 220$.
+
+  Evaluate the sum of all the amicable numbers under $10000$.
 difficulty: "hard"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -304,8 +310,49 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 21: Amicable Numbers.
+### Mathematical Background
 
-Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n). If d(a) = b and d(b) = a, where a ≠ b, then a and b are an amicable pair and each of a and b are called amicable numbers. For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110; therefore d(220) = 284. The proper divisors of 284 are 1, 2, 4, 71 and 142; so d(284) = 220. Evaluate the sum of all the amicable numbers under 10000. Answer: 31626
+Amicable numbers are pairs of numbers where each number is the sum of the proper divisors of the other. Proper divisors of a number $n$ are all positive divisors of $n$ except $n$ itself.
+
+For example:
+- $d(220) = 1 + 2 + 4 + 5 + 10 + 11 + 20 + 22 + 44 + 55 + 110 = 284$
+- $d(284) = 1 + 2 + 4 + 71 + 142 = 220$
+
+The amicable pairs under 10,000 are: (220, 284), (1184, 1210), (2620, 2924), (5020, 5564), (6232, 6368).
+
+The sum of all amicable numbers under 10,000 is 31,626.
+
+### Algorithm Analysis
+
+**Divisor sum computation**: For each number from 1 to 9,999, calculate the sum of its proper divisors.
+
+**Optimization techniques**:
+- **Sieve-like approach**: Pre-compute divisor sums for all numbers up to 10,000 using a single pass
+- **Memoization**: Store computed divisor sums to avoid recomputation
+- **Efficient divisor finding**: For each number i, add i to the divisor sum of all multiples j×i ≤ 10,000
+
+**Amicable pair detection**: For each number a, compute b = d(a), then check if d(b) = a and a ≠ b.
+
+Time complexity is O(MAX × log MAX) due to divisor enumeration. Space complexity is O(MAX) for storing divisor sums.
+
+### Key Insights
+
+- Amicable pairs come in pairs, so each pair contributes both numbers to the sum
+- Perfect numbers (where d(n) = n) are excluded since a ≠ b
+- The search space is limited to numbers under 10,000
+- There are only 5 amicable pairs under 10,000
+- Optimization is crucial due to the nested divisor computations
+- This demonstrates number theory applications in programming
+
+### Educational Value
+
+This problem teaches:
+- Number theory and divisor function properties
+- Efficient divisor enumeration algorithms
+- Optimization through pre-computation and memoization
+- Detecting mathematical relationships through computation
+- Handling symmetric relationships in data structures
+- The connection between pure mathematics and computational methods
+- When to use brute force versus optimized approaches

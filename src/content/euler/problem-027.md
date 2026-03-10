@@ -1,7 +1,23 @@
 ---
 problemNumber: 27
 title: "Quadratic Primes"
-description: "Euler discovered the remarkable quadratic formula: n² + n + 41 The incredible formula n² − 79n + 1601 produces 80 primes for n = 0 to 79. Considering quadratics of the form n² + an + b, where |a| < 1000 and |b| < 1000, find the product of the coefficients a and b for the quadratic expression that produces the maximum number of primes for consecutive values of n, starting with n = 0. Answer: -59231"
+description: |
+  Euler discovered the remarkable quadratic formula:
+
+  $n^2 + n + 41$
+
+  It turns out that the formula will produce $40$ primes for the consecutive integer values $0 \le n \le 39$. However, when $n = 40, 40^2 + 40 + 41 = 40(40 + 1) + 41$ is divisible by $41$, and certainly when $n = 41, 41^2 + 41 + 41$ is clearly divisible by $41$.
+
+  The incredible formula $n^2 - 79n + 1601$ was discovered, which produces $80$ primes for the consecutive values $0 \le n \le 79$. The product of the coefficients, $-79$ and $1601$, is $-126479$.
+
+  Considering quadratics of the form:
+
+  $n^2 + an + b$, where $|a| < 1000$ and $|b| \le 1000$
+
+  where $|n|$ is the modulus/absolute value of $n$  
+  e.g. $|11| = 11$ and $|-4| = 4$
+
+  Find the product of the coefficients, $a$ and $b$, for the quadratic expression that produces the maximum number of primes for consecutive values of $n$, starting with $n = 0$.
 difficulty: "hard"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -334,8 +350,16 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 27: Quadratic Primes.
+### Mathematical Background
+This problem explores quadratic polynomials that generate prime numbers for consecutive integer inputs. Euler's remarkable formula $n^2 + n + 41$ produces primes for $n = 0$ to $39$, while the more impressive $n^2 - 79n + 1601$ generates $80$ consecutive primes. The challenge requires finding coefficients $a$ and $b$ in the general quadratic $n^2 + an + b$ that maximize the length of such prime-generating sequences, subject to the constraints $|a| < 1000$ and $|b| \le 1000$.
 
-Euler discovered the remarkable quadratic formula: n² + n + 41 The incredible formula n² − 79n + 1601 produces 80 primes for n = 0 to 79. Considering quadratics of the form n² + an + b, where |a| < 1000 and |b| < 1000, find the product of the coefficients a and b for the quadratic expression that produces the maximum number of primes for consecutive values of n, starting with n = 0. Answer: -59231
+### Algorithm Analysis
+The solution employs a brute-force approach, iterating over all possible coefficient pairs within the given bounds. For each pair $(a, b)$, it evaluates the quadratic formula for consecutive $n$ starting from $0$ until a non-prime value is encountered. Primality testing uses trial division up to $\sqrt{n}$, optimized with the $6k\pm1$ sieve pattern for efficiency. The algorithm's time complexity is $O(A \times B \times N \times \sqrt{P})$, where $A$ and $B$ are the coefficient ranges (approximately $2 \times 10^6$ iterations), $N$ is the maximum prime streak length (around $80$), and $P$ is the largest quadratic value tested (up to $10^6$).
+
+### Key Insights
+For $n=0$, the quadratic evaluates to $b$, requiring $b$ to be prime and positive (since negative primes aren't considered in this context). For $n=1$, the expression becomes $1 + a + b$, which must also be prime. The optimal solution produces $71$ consecutive primes with coefficients $a = -61$ and $b = 971$, yielding the product $-59231$.
+
+### Educational Value
+This problem demonstrates the application of number theory in computational algorithms, combining prime generation with polynomial evaluation. It teaches efficient primality testing, brute-force optimization techniques, and the importance of mathematical constraints in algorithm design. The solution highlights how seemingly simple mathematical formulas can lead to complex computational challenges requiring careful analysis of edge cases and performance considerations.

@@ -1,7 +1,21 @@
 ---
 problemNumber: 14
 title: "Longest Collatz Sequence"
-description: "The following iterative sequence is defined for the set of positive integers: n → n/2 (n is even) n → 3n + 1 (n is odd) Using the rule above and starting with 13, we generate the following sequence: 13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1 It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1. Which starting number, under one million, produces the longest chain? NOTE: Once the chain starts the terms are allowed to go above one million. Answer: 837799"
+description: |
+  The following iterative sequence is defined for the set of positive integers:
+
+  - $n 	o n/2$ ($n$ is even)
+  - $n 	o 3n + 1$ ($n$ is odd)
+
+  Using the rule above and starting with $13$, we generate the following sequence:
+
+  $$13 	o 40 	o 20 	o 10 	o 5 	o 16 	o 8 	o 4 	o 2 	o 1$$
+
+  It can be seen that this sequence (starting at $13$ and finishing at $1$) contains $10$ terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at $1$.
+
+  Which starting number, under one million, produces the longest chain?
+
+  **NOTE:** Once the chain starts the terms are allowed to go above one million.
 difficulty: "medium"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -445,8 +459,41 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 14: Longest Collatz Sequence.
+### Mathematical Background
 
-The following iterative sequence is defined for the set of positive integers: n → n/2 (n is even) n → 3n + 1 (n is odd) Using the rule above and starting with 13, we generate the following sequence: 13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1 It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1. Which starting number, under one million, produces the longest chain? NOTE: Once the chain starts the terms are allowed to go above one million. Answer: 837799
+The Collatz conjecture (also known as the $3n + 1$ problem) is an unsolved mathematical problem that asks whether repeating two simple arithmetic operations will eventually transform every positive integer into 1. The operations are:
+
+- If the number is even, divide it by 2
+- If the number is odd, multiply by 3 and add 1
+
+The sequence length is the count of steps needed to reach 1. For example, starting with 13 produces a 10-term sequence. While the conjecture remains unproven, it has been verified for all starting values up to very large numbers.
+
+### Algorithm Analysis
+
+**Brute force approach**: For each starting number from 1 to 999,999, compute the complete Collatz sequence until reaching 1, counting the steps. This is inefficient as it recomputes sequences for numbers that appear in multiple chains.
+
+**Memoization optimization**: Store the sequence lengths for each number as they're computed. When a previously computed number is encountered, reuse its stored length instead of recalculating. This reduces redundant computations significantly.
+
+**Space complexity**: O(MAX) for the memoization array, where MAX = 1,000,000.
+**Time complexity**: O(MAX + total operations), but memoization makes it effectively linear in the number of starting values.
+
+### Key Insights
+
+- The sequence can exceed the starting limit (terms can go above 1,000,000)
+- Memoization prevents recomputing chains for numbers encountered multiple times
+- Most sequences are short, but some starting values produce very long chains
+- The optimal starting number 837,799 produces a chain of 525 terms
+- Performance optimization is crucial due to the large search space
+
+### Educational Value
+
+This problem demonstrates:
+- Dynamic programming and memoization techniques
+- The importance of caching intermediate results
+- Trade-offs between time and space complexity
+- Working with sequences and iterative algorithms
+- Handling large search spaces efficiently
+- The Collatz conjecture as an example of an unsolved mathematical problem
+- When optimization matters for computational feasibility

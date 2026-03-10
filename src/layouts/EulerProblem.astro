@@ -2,6 +2,7 @@
 import { type CollectionEntry } from 'astro:content';
 import Layout from './Layout.astro';
 import CodeBlock from '../components/CodeBlock.astro';
+import Description from '../components/Description.astro';
 
 interface Props {
   problemNumber: number;
@@ -48,15 +49,29 @@ const { problemNumber, title, description, difficulty, technologies, implementat
         </h1>
       </div>
       
+      <!-- Project Euler Link -->
+      <div class="relative z-10 mb-8">
+        <a 
+          href={`https://projecteuler.net/problem=${problemNumber}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-steel-blue/10 border border-steel-blue/20 text-steel-blue hover:bg-steel-blue/20 hover:border-steel-blue/40 transition-all duration-200 font-mono text-sm group"
+        >
+          <span>View on Project Euler</span>
+          <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 00-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 00.75-.75v-4.5a.75.75 0 011.5 0v4.5A2.25 2.25 0 0112.75 17h-8.5A2.25 2.25 0 012 14.75v-8.5A2.25 2.25 0 014.25 4h4.5a.75.75 0 010 1.5h-4.5z" clip-rule="evenodd"></path>
+            <path fill-rule="evenodd" d="M6.194 12.753a.75.75 0 001.06.053L16.5 4.44v2.81a.75.75 0 001.5 0v-4.5a.75.75 0 00-.75-.75h-4.5a.75.75 0 000 1.5h2.553l-9.056 8.194a.75.75 0 00-.053 1.06z" clip-rule="evenodd"></path>
+          </svg>
+        </a>
+      </div>
+      
       <!-- Description Box -->
       <div class="relative z-10 mx-auto bg-charcoal/50 backdrop-blur-md p-8 rounded-2xl border border-white/10 text-left shadow-2xl overflow-hidden group">
         <!-- Decoration -->
         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-steel-blue/50 to-transparent opacity-50"></div>
         
         <div class="prose prose-lg prose-invert max-w-none">
-            <div class="text-xl text-silver leading-relaxed font-serif italic mb-6">
-              {description}
-            </div>
+            <Description description={description} />
         </div>
       </div>
 
@@ -114,6 +129,18 @@ const { problemNumber, title, description, difficulty, technologies, implementat
             />
           </div>
         ))}
+      </div>
+    </section>
+
+    <!-- Solution Notes / Additional Content -->
+    <section class="mt-16">
+      <div class="relative z-10 mx-auto bg-charcoal/50 backdrop-blur-md p-8 rounded-2xl border border-white/10 text-left shadow-2xl overflow-hidden group">
+        <!-- Decoration -->
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-steel-blue/50 to-transparent opacity-50"></div>
+        
+        <div class="prose prose-lg prose-invert max-w-none">
+          <slot />
+        </div>
       </div>
     </section>
 

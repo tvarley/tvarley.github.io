@@ -1,7 +1,29 @@
 ---
 problemNumber: 25
 title: "1000-digit Fibonacci Number"
-description: "The Fibonacci sequence is defined by the recurrence relation: Fn = Fn-1 + Fn-2, where F1 = 1 and F2 = 1. The 12th term, F12, is the first term to contain three digits. What is the index of the first term in the Fibonacci sequence to contain 1000 digits? Answer: 4782"
+description: |
+  The Fibonacci sequence is defined by the recurrence relation:
+
+  $F_n = F_{n - 1} + F_{n - 2}$, where $F_1 = 1$ and $F_2 = 1$.
+
+  Hence the first 12 terms will be:
+
+  $F_1 = 1$
+  $F_2 = 1$
+  $F_3 = 2$
+  $F_4 = 3$
+  $F_5 = 5$
+  $F_6 = 8$
+  $F_7 = 13$
+  $F_8 = 21$
+  $F_9 = 34$
+  $F_{10} = 55$
+  $F_{11} = 89$
+  $F_{12} = 144$
+
+  The $12$th term, $F_{12}$, is the first term to contain three digits.
+
+  What is the index of the first term in the Fibonacci sequence to contain 1000 digits?
 difficulty: "hard"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -257,8 +279,40 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 25: 1000-digit Fibonacci Number.
+### Mathematical Background
 
-The Fibonacci sequence is defined by the recurrence relation: Fn = Fn-1 + Fn-2, where F1 = 1 and F2 = 1. The 12th term, F12, is the first term to contain three digits. What is the index of the first term in the Fibonacci sequence to contain 1000 digits? Answer: 4782
+The Fibonacci sequence exhibits exponential growth with a growth rate determined by the golden ratio φ ≈ 1.618. The number of digits d of F_n grows linearly with n:
+
+d ≈ n × log₁₀(φ) - log₁₀(√5)
+
+For 1000 digits: n ≈ (1000 + log₁₀(√5)) / log₁₀(φ) ≈ 4781.8, which matches the answer of 4782.
+
+The sequence grows so rapidly that F_4782 has exactly 1000 digits, while F_4781 has 999 digits.
+
+### Algorithm Analysis
+
+All implementations generate Fibonacci numbers iteratively until reaching 1000 digits. The choice of big integer handling varies by language:
+
+- **Built-in big integers** (Python, Java, Go, JavaScript with BigInt): Simple iterative generation
+- **Custom big integer arithmetic** (C++, Rust): Manual addition with digit arrays
+- **String manipulation** (Ruby): Convert to string to check length
+
+Time complexity is O(n²) where n is the number of digits, due to big integer operations scaling with digit count.
+
+### Key Insights
+
+- Fibonacci numbers grow exponentially, making direct computation feasible even for large indices
+- The index grows logarithmically with the number of digits required
+- Big integer libraries are essential for handling numbers larger than 64-bit integers
+- The transition from F_4781 (999 digits) to F_4782 (1000 digits) demonstrates the rapid growth
+
+### Educational Value
+
+This problem teaches:
+- Exponential growth in sequences and its mathematical analysis
+- The limitations of fixed-size integer types
+- Big integer arithmetic implementation and library usage
+- The relationship between algorithmic complexity and problem constraints
+- How mathematical analysis can predict computational requirements

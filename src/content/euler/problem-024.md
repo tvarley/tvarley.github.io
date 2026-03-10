@@ -1,7 +1,12 @@
 ---
 problemNumber: 24
 title: "Lexicographic Permutations"
-description: "A permutation is an ordered arrangement of objects. The lexicographic permutations of 0, 1 and 2 are: 012 021 102 120 201 210 What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9? Answer: 2783915460"
+description: |
+  A permutation is an ordered arrangement of objects. For example, 3124 is one possible permutation of the digits 1, 2, 3 and 4. If all of the permutations are listed numerically or alphabetically, we call it lexicographic order. The lexicographic permutations of 0, 1 and 2 are:
+
+  012   021   102   120   201   210
+
+  What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
 difficulty: "hard"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -326,8 +331,43 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 24: Lexicographic Permutations.
+### Mathematical Background
 
-A permutation is an ordered arrangement of objects. The lexicographic permutations of 0, 1 and 2 are: 012 021 102 120 201 210 What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9? Answer: 2783915460
+This problem involves finding a specific permutation in lexicographic (dictionary) order. There are 10! = 3,628,800 total permutations of digits 0-9, and we want the millionth one (1,000,000th) when ordered lexicographically.
+
+The key insight is using factorials to determine each digit position without generating all permutations. For n distinct items, there are (n-1)! permutations starting with each possible first digit.
+
+### Algorithm Analysis
+
+**Factorial-based approach**: 
+- Start with digits [0,1,2,3,4,5,6,7,8,9] and target index 999,999 (0-based)
+- For each position i from 0 to 9:
+  - Calculate factorial of (9-i) to determine how many permutations start with each possible digit
+  - Select the digit that corresponds to the target index range
+  - Remove the selected digit and continue with remaining digits
+
+**Example**: For position 0, 9! = 362,880 permutations start with each digit. Index 999,999 ÷ 362,880 = 2 (integer division), so we select the 3rd digit (0-based indexing: 0,1,2 → digit 2).
+
+**Time complexity**: O(n) where n=10, essentially constant time.
+**Space complexity**: O(n) for storing the digit list.
+
+### Key Insights
+
+- The millionth permutation is 2,783,915,460
+- Factorials provide an efficient way to navigate permutation space
+- No need to generate all permutations - mathematical indexing suffices
+- This demonstrates the power of combinatorial mathematics in computation
+- The algorithm works for any lexicographic permutation index
+
+### Educational Value
+
+This problem teaches:
+- Permutation mathematics and factorial relationships
+- Lexicographic ordering principles
+- Efficient algorithms for large combinatorial spaces
+- The difference between generating vs. indexing approaches
+- Mathematical optimization in programming
+- Working with factorials and combinatorial calculations
+- When to use mathematical insight over brute force enumeration

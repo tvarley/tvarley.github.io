@@ -1,7 +1,10 @@
 ---
 problemNumber: 10
 title: "Summation of Primes"
-description: "The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17. Find the sum of all the primes below two million. Answer: 142913828922"
+description: |
+  The sum of the primes below $10$ is $2 + 3 + 5 + 7 = 17$.
+
+  Find the sum of all the primes below two million.
 difficulty: "easy"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -226,8 +229,37 @@ featured: false
 showcase: true
 ---
 
-## Additional Notes
+## Solution Notes
 
-This is Project Euler problem 10: Summation of Primes.
+### Mathematical Background
 
-The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17. Find the sum of all the primes below two million. Answer: 142913828922
+Prime numbers are integers greater than 1 that have no positive divisors other than 1 and themselves. The distribution of primes is described by the Prime Number Theorem, which states that the number of primes less than or equal to n is approximately n/ln(n).
+
+The Sieve of Eratosthenes is an ancient algorithm for finding all prime numbers up to a given limit. It works by iteratively marking the multiples of each prime, starting from 2.
+
+### Algorithm Analysis
+
+The implementations use the Sieve of Eratosthenes algorithm with O(n log log n) time complexity and O(n) space complexity, which is much more efficient than trial division for finding all primes up to a limit.
+
+Key optimizations in the sieve:
+- Only iterate up to √n for marking composites
+- Start marking multiples from i² rather than 2i
+- Use boolean arrays to track primality
+
+The C++ implementation uses a custom sieve class, while others implement the algorithm directly. The Ruby version uses the built-in Prime library for simplicity.
+
+### Key Insights
+
+- The sieve is most efficient when you need all primes up to a limit, not just individual primality tests
+- Memory usage scales linearly with the limit, so very large limits require significant RAM
+- The algorithm can be optimized further with wheel factorization or segmented sieves for extremely large ranges
+- Prime summation benefits greatly from 64-bit integers due to the large final sum
+
+### Educational Value
+
+This problem teaches:
+- The Sieve of Eratosthenes algorithm and its efficiency
+- Prime number theory and distribution
+- Trade-offs between time and space complexity
+- The importance of algorithmic choice based on problem constraints
+- How mathematical optimizations can dramatically improve performance
