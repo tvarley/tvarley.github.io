@@ -1,275 +1,223 @@
 ---
 problemNumber: 3
 title: "Largest Prime Factor"
-description: "The prime factors of 13195 are 5, 7, 13 and 29. What is the largest prime factor of the number 600851475143?"
-difficulty: "medium"
-date: 2015-01-01
-technologies: ["cpp", "java", "javascript", "php", "ruby", "go", "rust"]
+description: "The prime factors of 13195 are 5, 7, 13 and 29. What is the largest prime factor of the number 600851475143 ? Answer: 6857"
+difficulty: "easy"
+date: 2026-03-10
+technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
 implementations:
   - language: "cpp"
     code: |
+      // https://projecteuler.net/problem=3
+      
+      // The prime factors of 13195 are 5, 7, 13 and 29.
+      //
+      // What is the largest prime factor of the number 600851475143
+      
+      // Answer: 6857
+      
       #include <iostream>
-      #include <cmath>
-
-      bool is_prime(long long n) {
-          if (n <= 1) return false;
-          if (n <= 3) return true;
-          if (n % 2 == 0 || n % 3 == 0) return false;
-          for (long long i = 5; i * i <= n; i += 6) {
-              if (n % i == 0 || n % (i + 2) == 0) return false;
-          }
-          return true;
+      #include <cstdint>
+      
+      using namespace std;
+      
+      uint64_t largest_prime_factor(uint64_t number)
+      {
+        uint64_t answer = 1;
+        uint64_t point = 3;
+        uint64_t divisor = number;
+      
+        while (divisor % 2 == 0) {
+          answer = 2;
+          divisor = divisor/2;
+        }
+      
+        while (divisor != 1) {
+            while (divisor % point == 0) {
+              answer = point;
+              divisor = divisor/point;
+            }
+            point += 2;
+        }
+      
+        return answer;
       }
-
-      long long largest_prime_factor(long long n) {
-          long long max_prime = -1;
-          while (n % 2 == 0) {
-              max_prime = 2;
-              n /= 2;
-          }
-          for (long long i = 3; i * i <= n; i += 2) {
-              while (n % i == 0) {
-                  max_prime = i;
-                  n /= i;
-              }
-          }
-          if (n > 2) max_prime = n;
-          return max_prime;
+      
+      #if ! defined UNITTEST_MODE
+      int main(int argc, char const *argv[])
+      {
+        std::cout << "Answer: " << largest_prime_factor(600851475143) << std::endl;
       }
-
-      int main() {
-          std::cout << largest_prime_factor(600851475143LL) << std::endl;
-          return 0;
-      }
+      #endif // #if ! defined UNITTEST_MODE
     githubLink: "https://github.com/tvarley/euler/blob/master/cpp/src/euler003.cpp"
-    performance: "O(sqrt(n)) time complexity with optimized trial division"
+    performance: "O(n) time complexity"
   - language: "java"
     code: |
-      public class Euler003 {
-          public static boolean isPrime(long n) {
-              if (n <= 1) return false;
-              if (n <= 3) return true;
-              if (n % 2 == 0 || n % 3 == 0) return false;
-              for (long i = 5; i * i <= n; i += 6) {
-                  if (n % i == 0 || n % (i + 2) == 0) return false;
-              }
-              return true;
-          }
-
-          public static long largestPrimeFactor(long n) {
-              long maxPrime = -1;
-              while (n % 2 == 0) {
-                  maxPrime = 2;
-                  n /= 2;
-              }
-              for (long i = 3; i * i <= n; i += 2) {
-                  while (n % i == 0) {
-                      maxPrime = i;
-                      n /= i;
-                  }
-              }
-              if (n > 2) maxPrime = n;
-              return maxPrime;
-          }
-
-          public static void main(String[] args) {
-              System.out.println(largestPrimeFactor(600851475143L));
-          }
+      package org.tvarley.euler.solutions;
+      
+      import org.tvarley.euler.Solution;
+      
+      public class Solution003 implements Solution {
+        public String solve() {
+          return "6857";
+        }
       }
-    githubLink: "https://github.com/tvarley/euler/blob/master/java/src/Euler003.java"
+    githubLink: "https://github.com/tvarley/euler/blob/master/java/src/main/java/org/tvarley/euler/solutions/Solution003.java"
   - language: "javascript"
     code: |
-      function isPrime(n) {
-          if (n <= 1) return false;
-          if (n <= 3) return true;
-          if (n % 2 === 0 || n % 3 === 0) return false;
-          for (let i = 5; i * i <= n; i += 6) {
-              if (n % i === 0 || n % (i + 2) === 0) return false;
+      module.exports = {
+        answer : () => {
+          answer = 2;
+          point = 3;
+          divisor = 600851475143;
+      
+          while(divisor != 1) {
+            while( (divisor % 2) == 0) { divisor /= 2; }
+            while ((divisor % point) == 0) {
+              answer = point;
+              divisor /= point;
+            }
+            point += 2;
           }
-          return true;
-      }
-
-      function largestPrimeFactor(n) {
-          let maxPrime = -1;
-          while (n % 2 === 0) {
-              maxPrime = 2;
-              n /= 2;
-          }
-          for (let i = 3; i * i <= n; i += 2) {
-              while (n % i === 0) {
-                  maxPrime = i;
-                  n /= i;
-              }
-          }
-          if (n > 2) maxPrime = n;
-          return maxPrime;
-      }
-
-      console.log(largestPrimeFactor(600851475143));
-    githubLink: "https://github.com/tvarley/euler/blob/master/javascript/src/euler003.js"
-  - language: "php"
+          return answer;
+        }
+      };
+    githubLink: "https://github.com/tvarley/euler/blob/master/javascript/src/euler/solution003.js"
+  - language: "python"
     code: |
-      <?php
-      function isPrime($n) {
-          if ($n <= 1) return false;
-          if ($n <= 3) return true;
-          if ($n % 2 == 0 || $n % 3 == 0) return false;
-          for ($i = 5; $i * $i <= $n; $i += 6) {
-              if ($n % $i == 0 || $n % ($i + 2) == 0) return false;
-          }
-          return true;
-      }
-
-      function largestPrimeFactor($n) {
-          $maxPrime = -1;
-          while ($n % 2 == 0) {
-              $maxPrime = 2;
-              $n /= 2;
-          }
-          for ($i = 3; $i * $i <= $n; $i += 2) {
-              while ($n % $i == 0) {
-                  $maxPrime = $i;
-                  $n /= $i;
-              }
-          }
-          if ($n > 2) $maxPrime = $n;
-          return $maxPrime;
-      }
-
-      echo largestPrimeFactor(600851475143);
-      ?>
-    githubLink: "https://gitlab.com/tvarley/euler/blob/master/php/src/euler003.php"
+      def solve():
+          """
+          Largest prime factor
+          The prime factors of 13195 are 5, 7, 13 and 29.
+          What is the largest prime factor of the number 600851475143?
+          """
+          n = 600851475143
+          i = 2
+          while i * i <= n:
+              if n % i:
+                  i += 1
+              else:
+                  n //= i
+          return n
+    githubLink: "https://github.com/tvarley/euler/blob/master/python/src/euler003.py"
   - language: "ruby"
     code: |
-      def is_prime?(n)
-        return false if n <= 1
-        return true if n <= 3
-        return false if n % 2 == 0 || n % 3 == 0
-        i = 5
-        while i * i <= n
-          return false if n % i == 0 || n % (i + 2) == 0
-          i += 6
-        end
-        true
-      end
-
-      def largest_prime_factor(n)
-        max_prime = -1
-        while n % 2 == 0
-          max_prime = 2
-          n /= 2
-        end
-        i = 3
-        while i * i <= n
-          while n % i == 0
-            max_prime = i
-            n /= i
+      def largest_prime_number(upper)
+        answer = 2
+        point = 3
+        divisor = upper
+      
+        divisor /= 2 while divisor.even?
+      
+        while divisor != 1
+          while (divisor % point).zero?
+            answer = point
+            divisor /= point
           end
-          i += 2
+          point += 2
         end
-        max_prime = n if n > 2
-        max_prime
+        answer
       end
-
-      puts largest_prime_factor(600851475143)
-    githubLink: "https://gitlab.com/tvarley/euler/blob/master/ruby/lib/euler003.rb"
+      
+      puts largest_prime_number(600_851_475_143) if __FILE__ == $PROGRAM_NAME
+    githubLink: "https://github.com/tvarley/euler/blob/master/ruby/lib/euler003.rb"
   - language: "go"
     code: |
       package main
-
+      
       import "fmt"
-
-      func isPrime(n int64) bool {
-          if n <= 1 {
-              return false
-          }
-          if n <= 3 {
-              return true
-          }
-          if n%2 == 0 || n%3 == 0 {
-              return false
-          }
-          for i := int64(5); i*i <= n; i += 6 {
-              if n%i == 0 || n%(i+2) == 0 {
-                  return false
-              }
-          }
-          return true
-      }
-
-      func largestPrimeFactor(n int64) int64 {
-          var maxPrime int64 = -1
-          for n%2 == 0 {
-              maxPrime = 2
-              n /= 2
-          }
-          for i := int64(3); i*i <= n; i += 2 {
-              for n%i == 0 {
-                  maxPrime = i
-                  n /= i
-              }
-          }
-          if n > 2 {
-              maxPrime = n
-          }
-          return maxPrime
-      }
-
+      
       func main() {
-          fmt.Println(largestPrimeFactor(600851475143))
+      
+          n := 600851475143
+      
+          largest := 0
+      
+          // Remove factors of 2
+      
+          for n%2 == 0 {
+      
+              n /= 2
+      
+              largest = 2
+      
+          }
+      
+          // Check odd factors
+      
+          for i := 3; i*i <= n; i += 2 {
+      
+              for n%i == 0 {
+      
+                  n /= i
+      
+                  largest = i
+      
+              }
+      
+          }
+      
+          // If n is prime greater than 2
+      
+          if n > 1 {
+      
+              largest = n
+      
+          }
+      
+          fmt.Println(largest)
+      
       }
     githubLink: "https://github.com/tvarley/euler/blob/master/go/euler003.go"
   - language: "rust"
     code: |
-      fn is_prime(n: u64) -> bool {
-          if n <= 1 {
-              return false;
+      // https://projecteuler.net/problem=3
+      
+      // The prime factors of 13195 are 5, 7, 13 and 29.
+      //
+      // What is the largest prime factor of the number 600851475143
+      
+      // Answer: 6857
+      
+      pub fn largest_prime_factor(number: u64) -> u64
+      {
+          let mut answer = 1;
+          let mut point = 3;
+          let mut divisor = number;
+      
+          while divisor % 2 == 0 {
+              answer = 2;
+              divisor = divisor/2;
           }
-          if n <= 3 {
-              return true;
-          }
-          if n % 2 == 0 || n % 3 == 0 {
-              return false;
-          }
-          let mut i = 5;
-          while (i as u64) * (i as u64) <= n {
-              if n % (i as u64) == 0 || n % ((i + 2) as u64) == 0 {
-                  return false;
+      
+          while divisor != 1 {
+              while divisor % point == 0 {
+                  answer = point;
+                  divisor = divisor/point;
               }
-              i += 6;
+              point += 2;
           }
-          true
+      
+          return answer;
       }
-
-      fn largest_prime_factor(mut n: u64) -> u64 {
-          let mut max_prime = 1;
-          while n % 2 == 0 {
-              max_prime = 2;
-              n /= 2;
+      
+      #[cfg(test)]
+      mod tests {
+          use super::*;
+      
+          #[test]
+          fn euler_003() {
+              assert_eq!(largest_prime_factor(600_851_475_143), 6857);
           }
-          let mut i = 3;
-          while (i as u64) * (i as u64) <= n {
-              while n % (i as u64) == 0 {
-                  max_prime = i as u64;
-                  n /= i as u64;
-              }
-              i += 2;
-          }
-          if n > 2 {
-              max_prime = n;
-          }
-          max_prime
-      }
-
-      fn main() {
-          println!("{}", largest_prime_factor(600851475143));
       }
     githubLink: "https://github.com/tvarley/euler/blob/master/rust/src/euler003.rs"
-tags: ["euler", "prime-factors", "factorization"]
-featured: true
+tags: ["euler"]
+featured: false
 showcase: true
 ---
 
-## Algorithm Notes
+## Additional Notes
 
-This problem requires finding the largest prime factor of a very large number. The solution uses an optimized trial division approach, checking divisibility by 2 first, then odd numbers up to the square root of the number. The algorithm efficiently handles large numbers by dividing out factors as they're found.
+This is Project Euler problem 3: Largest Prime Factor.
+
+The prime factors of 13195 are 5, 7, 13 and 29. What is the largest prime factor of the number 600851475143 ? Answer: 6857
