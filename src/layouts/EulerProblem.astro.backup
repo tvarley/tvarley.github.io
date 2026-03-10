@@ -25,7 +25,19 @@ const { problemNumber, title, description, difficulty, technologies, implementat
 ---
 
 <Layout title={`Euler ${problemNumber}: ${title}`} description={description}>
-    <article class="max-w-4xl mx-auto py-12 px-6">
+    <!-- Additional script to ensure math is processed after content loads -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Give MathJax time to load, then process
+            setTimeout(function() {
+                if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+                    MathJax.typesetPromise();
+                }
+            }, 100);
+        });
+    </script>
+
+	<article class="max-w-4xl mx-auto py-12 px-6">
     
     <!-- Header -->
     <header class="mb-16 text-center relative">
@@ -48,7 +60,7 @@ const { problemNumber, title, description, difficulty, technologies, implementat
         </h1>
       </div>
       
-      <!-- Description Box -->
+      <!-- Description Box with Math Support -->
       <div class="relative z-10 mx-auto bg-charcoal/50 backdrop-blur-md p-8 rounded-2xl border border-white/10 text-left shadow-2xl overflow-hidden group">
         <!-- Decoration -->
         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-steel-blue/50 to-transparent opacity-50"></div>
@@ -57,10 +69,22 @@ const { problemNumber, title, description, difficulty, technologies, implementat
             <div class="text-xl text-silver leading-relaxed font-serif italic mb-6">
               {description}
             </div>
+
+            <!-- Markdown Slot for Extended Description / Equations -->
+            <div class="not-italic font-sans text-base text-gray-300">
+              <slot />
+            </div>
         </div>
       </div>
 
-
+      <!-- Tech Stack -->
+      <div class="mt-8 flex flex-wrap justify-center gap-2">
+        {technologies.map(tech => (
+          <a href={`#${tech.toLowerCase()}-implementation`} class="tech-pill text-xs font-mono text-white/80 bg-white/5 border border-white/10 px-3 py-1 rounded transition-colors hover:border-steel-blue/50 hover:text-white hover:bg-steel-blue/10">
+            {tech}
+          </a>
+        ))}
+      </div>
     </header>
 
     <!-- Language Tabs -->
@@ -86,6 +110,7 @@ const { problemNumber, title, description, difficulty, technologies, implementat
       <!-- Active Tab Indicator -->
       <div class="h-px bg-steel-blue transition-all duration-300" id="tab-indicator"></div>
     </div>
+
     <!-- Implementations -->
     <section class="space-y-16" aria-labelledby="implementations-heading">
       <div class="flex items-center gap-4 mb-8">
@@ -95,27 +120,88 @@ const { problemNumber, title, description, difficulty, technologies, implementat
       
       {implementations.map((impl, index) => (
           <div class={"implementation " + (index === 0 ? '' : 'hidden')} data-language={impl.language.toLowerCase()}>
-            <CodeBlock
-              code={impl.code}
-              language={impl.language.toLowerCase()}
-              title={impl.language}
-            />
+            <div class="bg-matte border border-white/10 rounded-2xl overflow-hidden shadow-glass hover:shadow-glow transition-all duration-300 hover:border-steel-blue/30 group-hover:translate-y-[-2px]">
+            <!-- Meta Bar -->
+            <div class="bg-charcoal/80 backdrop-blur border-b border-white/5 px-6 pt-5 pb-3 flex justify-between items-end">
+               <div class="flex items-center gap-3">
+                 <!-- Performance Badge -->
+                 {impl.performance && (
+                    <div class="flex items-center gap-1.5 text-xs font-mono text-green-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      {impl.performance}
+                    </div>
+                  )}
+               </div>
+               
+               <a href={impl.githubLink} target="_blank" class="text-xs font-mono text-steel-blue hover:text-white transition-colors flex items-center gap-1.5 opacity-80 hover:opacity-100">
+                  View Raw <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+               </a>
+            </div>
+            
+            {impl.notes && (
+              <div class="px-6 py-3 bg-yellow-900/10 border-b border-white/5 text-sm text-yellow-200/80 italic flex gap-2">
+                <span class="opacity-50">ℹ</span> {impl.notes}
+              </div>
+            )}
+            
+            <div class="p-0 overflow-x-auto">
+              <CodeBlock
+                code={impl.code}
+                language={impl.language.toLowerCase()}
+                title={impl.language}
+                showLineNumbers={true}
+                showCopyButton={true}
+                class="rounded-none border-none shadow-none"
+                id={impl.language.toLowerCase() + '-implementation'}
+              />
+            </div>
           </div>
       ))}
 
       <!-- All Languages View -->
       <div class="implementation hidden" data-language="all">
         {implementations.map((impl, index) => (
-          <div>
-            <CodeBlock
-              code={impl.code}
-              language={impl.language.toLowerCase()}
-              title={impl.language}
-            />
+          <div class="bg-matte border border-white/10 rounded-2xl overflow-hidden shadow-glass hover:shadow-glow transition-all duration-300 hover:border-steel-blue/30 group-hover:translate-y-[-2px] mb-8">
+            <!-- Meta Bar -->
+            <div class="bg-charcoal/80 backdrop-blur border-b border-white/5 px-6 pt-5 pb-3 flex justify-between items-end">
+               <div class="flex items-center gap-3">
+                 <!-- Performance Badge -->
+                 {impl.performance && (
+                    <div class="flex items-center gap-1.5 text-xs font-mono text-green-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      {impl.performance}
+                    </div>
+                  )}
+               </div>
+               
+               <a href={impl.githubLink} target="_blank" class="text-xs font-mono text-steel-blue hover:text-white transition-colors flex items-center gap-1.5 opacity-80 hover:opacity-100">
+                  View Raw <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+            </div>
+            
+            {impl.notes && (
+              <div class="px-6 py-3 bg-yellow-900/10 border-b border-white/5 text-sm text-yellow-200/80 italic flex gap-2">
+                <span class="opacity-50">ℹ</span> {impl.notes}
+              </div>
+            )}
+            
+            <div class="p-0 overflow-x-auto">
+              <CodeBlock
+                code={impl.code}
+                language={impl.language.toLowerCase()}
+                title={impl.language}
+                showLineNumbers={true}
+                showCopyButton={true}
+                class="rounded-none border-none shadow-none"
+                id={impl.language.toLowerCase() + '-implementation'}
+              />
+            </div>
           </div>
         ))}
       </div>
     </section>
+
+    <!-- Comparison View - Temporarily removed for debugging -->
 
     <!-- Navigation -->
     <nav class="mt-24 space-y-8 border-t border-white/10 pt-8">
@@ -149,7 +235,7 @@ const { problemNumber, title, description, difficulty, technologies, implementat
             <span class="text-white font-serif font-bold text-lg group-hover:translate-x-1 transition-transform">{prevProblem.data.title}</span>
           </a>
         ) : (
-          <div></div>
+          <div /> 
         )}
 
         {nextProblem ? (
@@ -158,52 +244,33 @@ const { problemNumber, title, description, difficulty, technologies, implementat
             <span class="text-white font-serif font-bold text-lg group-hover:-translate-x-1 transition-transform">{nextProblem.data.title}</span>
           </a>
         ) : (
-          <div></div>
+          <div />
         )}
       </div>
     </nav>
     
+    <div class="mt-12 text-center">
+        <a href="/euler" class="text-sm font-mono text-steel-grey hover:text-white transition-colors border-b border-transparent hover:border-steel-blue pb-0.5">All Solutions</a>
+    </div>
+
 	</article>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const languageTabs = document.querySelectorAll('.language-tab');
-    const implementations = document.querySelectorAll('.implementation');
-    const jumpToProblem = document.getElementById('jump-to-problem');
 
-    // Tab switching logic
-    languageTabs.forEach(tab => {
-      tab.addEventListener('click', function() {
-        const language = this.getAttribute('data-language');
-        
-        // Update tab styles
-        languageTabs.forEach(t => {
-          t.classList.remove('bg-steel-blue', 'text-white', 'border-steel-blue');
-          t.classList.add('bg-white/5', 'text-white/80', 'border-white/10');
-        });
-        
-        this.classList.remove('bg-white/5', 'text-white/80', 'border-white/10');
-        this.classList.add('bg-steel-blue', 'text-white', 'border-steel-blue');
-        
-        // Show/hide implementations
-        implementations.forEach(impl => {
-          if (impl.getAttribute('data-language') === language) {
-            impl.classList.remove('hidden');
-          } else {
-            impl.classList.add('hidden');
-          }
-        });
-      });
-    });
-
-    // Jump to problem functionality
-    if (jumpToProblem) {
-      jumpToProblem.addEventListener('change', function() {
-        if (this.value) {
-          window.location.href = `/euler/${this.value}/`;
-        }
-      });
-    }
-  });
-</script>
 </Layout>
+
+<style>
+  /* Extra styling for MathJax aesthetics if needed */
+  mjx-container {
+    color: #cbd5e1 !important; /* silver/slate-300 */
+    font-size: 1.1em !important;
+  }
+
+  .tech-pill {
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .tech-pill:hover {
+    transform: translateY(-1px);
+  }
+</style>

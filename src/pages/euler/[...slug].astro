@@ -8,16 +8,17 @@ export async function getStaticPaths() {
 		params: { slug: problem.id },
 		props: {
 			problem,
+			allProblems: problems,
 			prevProblem: i > 0 ? problems[i - 1] : undefined,
 			nextProblem: i < problems.length - 1 ? problems[i + 1] : undefined,
 		},
 	}));
 }
 
-const { problem, prevProblem, nextProblem } = Astro.props;
+const { problem, allProblems, prevProblem, nextProblem } = Astro.props;
 const { Content } = await render(problem);
 ---
 
-<EulerProblem {...problem.data} prevProblem={prevProblem} nextProblem={nextProblem}>
+<EulerProblem {...problem.data} allProblems={allProblems} prevProblem={prevProblem} nextProblem={nextProblem}>
 	<Content />
 </EulerProblem>
