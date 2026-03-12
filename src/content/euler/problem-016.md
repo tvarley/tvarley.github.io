@@ -11,13 +11,6 @@ technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
 implementations:
   - language: "cpp"
     code: |
-      // https://projecteuler.net/problem=16
-      // Power digit sum
-      
-      // 2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
-      //
-      // What is the sum of the digits of the number 2^1000?
-      
       // Answer: 1366
       
       #include <iostream>
@@ -151,12 +144,6 @@ implementations:
     githubLink: "https://github.com/tvarley/euler/blob/master/go/euler016.go"
   - language: "rust"
     code: |
-      // https://projecteuler.net/problem=16
-      //
-      // 2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
-      //
-      // What is the sum of the digits of the number 2^1000?
-      //
       // Answer: 1366
       
       pub fn power_digit_sum(base: u32, exponent: usize) -> u64 {

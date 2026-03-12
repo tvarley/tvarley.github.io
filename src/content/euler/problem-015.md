@@ -11,15 +11,6 @@ technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
 implementations:
   - language: "cpp"
     code: |
-      // https://projecteuler.net/problem=15
-      // Lattice paths
-      
-      // Starting in the top left corner of a 2×2 grid,
-      // and only being able to move to the right and down,
-      // there are exactly 6 routes to the bottom right corner.
-      //
-      // How many such routes are there through a 20×20 grid?
-      
       // Answer: 137846528820
       
       #include <iostream>
@@ -161,12 +152,6 @@ implementations:
     githubLink: "https://github.com/tvarley/euler/blob/master/go/euler015.go"
   - language: "rust"
     code: |
-      // https://projecteuler.net/problem=15
-      //
-      // Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down, there are exactly 6 routes to the bottom right corner.
-      //
-      // How many such routes are there through a 20×20 grid?
-      //
       // Answer: 137846528820
       
       pub fn lattice_paths(grid_size: u32) -> u128 {
@@ -217,6 +202,29 @@ Most implementations use direct binomial coefficient calculation rather than dyn
 - **Dynamic programming**: Build a grid where each cell represents paths to that point (shown in C++ and Ruby implementations)
 
 Time complexity: O(n) for iterative binomial calculation, O(n²) for dynamic programming grid approach.
+
+### Performance Analysis
+
+- **Time Complexity**: O(n) for iterative binomial coefficient calculation (n=20 multiplications), O(n²) for DP grid approach.
+- **Space Complexity**: O(1) for iterative method, O(n²) for DP grid (400 cells for 20×20).
+- **Execution Time**: Virtually instantaneous for both approaches, suitable for real-time computation.
+- **Scalability**: Iterative method scales better for larger grids, DP approach becomes memory-intensive.
+
+### Key Insights
+
+- The problem requires exactly n right and n down moves in some order
+- Binomial coefficients grow extremely rapidly - C(40,20) is over 137 trillion
+- Dynamic programming approach demonstrates the concept of optimal substructure
+- The iterative binomial calculation is more memory-efficient than factorial computation
+
+### Educational Value
+
+This problem teaches:
+- Fundamental combinatorics and counting principles
+- Binomial coefficients and their interpretation
+- Dynamic programming for path counting problems
+- The importance of choosing appropriate data types for large numbers
+- How mathematical insight can replace brute-force enumeration
 
 ### Key Insights
 

@@ -142,6 +142,28 @@ A more efficient mathematical approach would use:
 
 Final sum: $S_3 + S_5 - S_{15}$ (inclusion-exclusion)
 
+### Performance Analysis
+
+- **Time Complexity**: O(n) for brute force (n=1000 iterations), O(1) for mathematical formula approach.
+- **Space Complexity**: O(1) - constant space regardless of input size.
+- **Execution Time**: Virtually instantaneous for both approaches, suitable for real-time computation.
+- **Scalability**: Brute force degrades linearly with n, mathematical approach remains constant time.
+
+### Key Insights
+
+- Numbers that are multiples of both 3 and 5 (like 15, 30, 45...) would be counted twice without proper handling
+- The mathematical approach is much more efficient for large limits
+- This problem teaches fundamental programming concepts: loops, conditionals, and modular arithmetic
+
+### Educational Value
+
+This problem serves as an excellent introduction to Project Euler, teaching:
+- Basic programming constructs (loops and conditionals)
+- Modular arithmetic and divisibility
+- The importance of considering edge cases (multiples of both numbers)
+- The trade-off between simple iterative solutions and optimized mathematical formulas
+- How computational complexity affects solution choice
+
 ### Key Insights
 
 - Numbers that are multiples of both 3 and 5 (like 15, 30, 45...) would be counted twice without proper handling

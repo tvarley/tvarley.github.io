@@ -209,6 +209,39 @@
   }
 }
 
+/* Select dropdown styling */
+select {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+select option {
+  background-color: var(--bg-primary);
+  color: white;
+  padding: 8px;
+}
+
+/* Firefox specific */
+@-moz-document url-prefix() {
+  select {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+  }
+  
+  select option {
+    background-color: var(--bg-primary) !important;
+    color: white !important;
+  }
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 /* iOS specific fixes */
 @supports (-webkit-touch-callout: none) {
   /* Fix sticky background blur rendering issue on iOS Safari */
