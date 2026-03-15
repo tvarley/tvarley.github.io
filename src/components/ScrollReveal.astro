@@ -1,0 +1,45 @@
+<script>
+  // Run on initial load and View Transitions navigation
+  document.addEventListener('astro:page-load', initScrollReveal);
+  
+  // Fallback for initial load if page-load doesn't fire immediately
+  if (document.readyState === 'complete') {
+    initScrollReveal();
+  } else {
+    document.addEventListener('DOMContentLoaded', initScrollReveal);
+  }
+
+  function initScrollReveal() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target); // Only animate once
+        }
+      });
+    }, observerOptions);
+
+    // Target glass cards specifically
+    const cards = document.querySelectorAll('.glass-card');
+    
+    cards.forEach((card, index) => {
+      // Add the base class for transition
+      card.classList.add('scroll-reveal');
+      
+      // Stagger animations slightly for sibling elements
+      // We can use the index as a proxy for stagger delay, but we need to be careful
+      // not to delay too much for items further down the page.
+      // A simple way is to set transition-delay via inline style, 
+      // but IntersectionObserver handles "appearing" naturally.
+      // Let's just let the scroll handle the timing naturally.
+      
+      observer.observe(card);
+    });
+  }
+</script>

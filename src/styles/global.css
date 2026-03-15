@@ -131,6 +131,8 @@
     border-color: var(--border);
     box-shadow: 0 25px 50px -12px var(--shadow);
     @apply rounded-2xl p-8 hover:shadow-subtle-glow hover:border-steel-blue/40 hover:-translate-y-px transition-all duration-300;
+      position: relative;
+    overflow: hidden;
   }
   
   .btn-primary {
@@ -181,6 +183,21 @@
   .tech-pill:hover {
     transform: translateY(-1px);
   }
+}
+
+/* Phase 2: Scroll Reveal */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  filter: blur(5px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter; /* hint for performance */
+}
+
+.scroll-reveal.in-view {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
 }
 
 /* Mobile-specific touch improvements */

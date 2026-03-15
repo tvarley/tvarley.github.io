@@ -1,0 +1,178 @@
+<canvas id="interactive-bg"></canvas>
+
+<style>
+  #interactive-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    background: transparent; 
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    initCanvas();
+  });
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initCanvas();
+  } else {
+    document.addEventListener('DOMContentLoaded', initCanvas);
+  }
+
+  function initCanvas() {
+    const canvas = document.getElementById('interactive-bg');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let particles = [];
+    let animationId;
+    
+    // Configuration
+    const config = {
+      color: 'rgba(100, 149, 237, 0.5)', // Steel Blue-ish
+      lineColor: 'rgba(100, 149, 237, 0.15)',
+      particleCount: {
+        mobile: 20, // Reduced from 30
+        desktop: 50 // Reduced from 80
+      },
+      connectionDistance: 120,
+    };
+
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+    
+    class Particle {
+      constructor() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        // Reduced velocity (0.2 instead of 0.5)
+        this.vx = (Math.random() - 0.5) * 0.2; 
+        this.vy = (Math.random() - 0.5) * 0.2;
+        this.baseSize = Math.random() * 2 + 1;
+        this.size = this.baseSize;
+        
+        // Spark properties
+        this.isSparking = false;
+        this.sparkTimer = 0;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Bounce off edges
+        if (this.x < 0 || this.x > w) this.vx *= -1;
+        if (this.y < 0 || this.y > h) this.vy *= -1;
+
+        // Spark logic: Random chance to spark
+        // 0.0003 chance per frame per particle -> rare sparks
+        if (!this.isSparking && Math.random() < 0.0003) { 
+             this.isSparking = true;
+             this.sparkTimer = 30; // 30 frames (~0.5s)
+        }
+
+        if (this.isSparking) {
+             this.sparkTimer--;
+             // Grow then shrink
+             if (this.sparkTimer > 15) {
+                 this.size = this.baseSize * 2.5; 
+             } else {
+                 this.size = this.baseSize;
+             }
+             
+             if (this.sparkTimer <= 0) {
+                 this.isSparking = false;
+             }
+        }
+      }
+
+      draw() {
+        if (!ctx) return;
+        
+        ctx.beginPath(); // Reset path
+        
+        if (this.isSparking) {
+            ctx.fillStyle = '#ffffff'; // White flash
+            ctx.shadowBlur = 15; // Glow effect
+            ctx.shadowColor = '#ffffff';
+        } else {
+            ctx.fillStyle = config.color;
+            ctx.shadowBlur = 0;
+        }
+        
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0; // Reset shadow for lines
+      }
+    }
+
+    function init() {
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = w;
+      canvas.height = h;
+      
+      particles = [];
+      const count = w < 768 ? config.particleCount.mobile : config.particleCount.desktop;
+      
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function connect() {
+      if (!ctx) return;
+      for (let a = 0; a < particles.length; a++) {
+        for (let b = a; b < particles.length; b++) {
+          const dx = particles[a].x - particles[b].x;
+          const dy = particles[a].y - particles[b].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < config.connectionDistance) {
+            const opacity = 1 - (distance / config.connectionDistance);
+            ctx.strokeStyle = config.lineColor.replace('0.15)', `${opacity * 0.15})`);
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, w, h);
+      
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      connect();
+      animationId = requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = w;
+      canvas.height = h;
+      init();
+    });
+    
+    init();
+    animate();
+
+    return () => {
+      cancelAnimationFrame(animationId);
+    };
+  }
+</script>
