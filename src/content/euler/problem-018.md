@@ -364,7 +364,7 @@ showcase: true
 
 ### Mathematical Background
 
-This is a classic dynamic programming problem on a triangular grid. Each number can only move to one of two adjacent numbers in the row below. The goal is to find the path from top to bottom that maximizes the sum.
+This is a classic [dynamic programming](https://grokipedia.com/page/Dynamic_programming) problem on a triangular grid. Each number can only move to one of two adjacent numbers in the row below. The goal is to find the path from top to bottom that maximizes the sum.
 
 The triangle has 15 rows, with the bottom row having 15 elements. The total number of possible paths is $2^{14} = 16384$, which explains why brute force is feasible for this size.
 

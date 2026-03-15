@@ -335,9 +335,9 @@ showcase: true
 
 ### Mathematical Background
 
-This problem involves finding a specific permutation in lexicographic (dictionary) order. There are 10! = 3,628,800 total permutations of digits 0-9, and we want the millionth one (1,000,000th) when ordered lexicographically.
+This problem involves finding a specific [permutation](https://grokipedia.com/page/Permutation) in lexicographic (dictionary) order. There are 10! = 3,628,800 total permutations of digits 0-9, and we want the millionth one (1,000,000th) when ordered lexicographically.
 
-The key insight is using factorials to determine each digit position without generating all permutations. For n distinct items, there are (n-1)! permutations starting with each possible first digit.
+The key insight is using [factorial number system](https://grokipedia.com/page/Factorial_number_system) to determine each digit position without generating all permutations. For n distinct items, there are (n-1)! permutations starting with each possible first digit.
 
 ### Algorithm Analysis
 

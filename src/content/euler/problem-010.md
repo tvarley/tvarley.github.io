@@ -235,7 +235,7 @@ showcase: true
 
 Prime numbers are integers greater than 1 that have no positive divisors other than 1 and themselves. The distribution of primes is described by the Prime Number Theorem, which states that the number of primes less than or equal to n is approximately n/ln(n).
 
-The Sieve of Eratosthenes is an ancient algorithm for finding all prime numbers up to a given limit. It works by iteratively marking the multiples of each prime, starting from 2.
+The [Sieve of Eratosthenes](https://grokipedia.com/page/Sieve_of_Eratosthenes) is an ancient algorithm for finding all prime numbers up to a given limit. It works by iteratively marking the multiples of each prime, starting from 2.
 
 ### Algorithm Analysis
 

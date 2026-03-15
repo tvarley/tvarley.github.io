@@ -236,11 +236,11 @@ showcase: true
 
 ### Mathematical Background
 
-Triangle numbers: $T_n = n(n+1)/2$
+[Triangular number](https://grokipedia.com/page/Triangular_number)s: $T_n = n(n+1)/2$
 
-Pentagonal numbers: $P_n = n(3n-1)/2$
+[Pentagonal number](https://grokipedia.com/page/Pentagonal_number)s: $P_n = n(3n-1)/2$
 
-Hexagonal numbers: $H_n = n(2n-1)$
+[Hexagonal number](https://grokipedia.com/page/Hexagonal_number)s: $H_n = n(2n-1)$
 
 These sequences share common terms. The problem notes that $T_{285} = P_{165} = H_{143} = 40755$, and asks for the next such number.
 

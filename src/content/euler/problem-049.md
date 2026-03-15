@@ -420,7 +420,7 @@ showcase: true
 
 ### Mathematical Background
 
-An arithmetic sequence has constant difference between consecutive terms.
+An [arithmetic sequence](https://grokipedia.com/page/Arithmetic_progression) has constant difference between consecutive terms.
 
 The problem requires three 4-digit primes that form an arithmetic sequence and are permutations of each other.
 

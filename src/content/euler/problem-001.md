@@ -127,7 +127,7 @@ showcase: true
 
 ### Mathematical Background
 
-This problem introduces the concept of finding multiples and summing them, which relates to arithmetic sequences. The inclusion-exclusion principle becomes relevant when dealing with numbers that are multiples of both 3 and 5 (i.e., multiples of 15).
+This problem introduces the concept of finding multiples and summing them, which relates to [arithmetic sequences](https://grokipedia.com/page/Arithmetic_progression). The [inclusion-exclusion principle](https://grokipedia.com/page/Inclusion%E2%80%93exclusion_principle) becomes relevant when dealing with numbers that are multiples of both 3 and 5 (i.e., multiples of 15).
 
 The sum of multiples can be calculated using the formula for arithmetic series: $S = \frac{n(n+1)}{2} \times d$ where $n$ is the number of terms and $d$ is the common difference.
 
@@ -141,8 +141,6 @@ A more efficient mathematical approach would use:
 - Sum of multiples of 15: $S_{15} = 15 + 30 + 45 + \dots + 990 = 15(1 + 2 + 3 + \dots + 66) = 15 \times \frac{66 \times 67}{2}$
 
 Final sum: $S_3 + S_5 - S_{15}$ (inclusion-exclusion)
-
-### Performance Analysis
 
 - **Time Complexity**: O(n) for brute force (n=1000 iterations), O(1) for mathematical formula approach.
 - **Space Complexity**: O(1) - constant space regardless of input size.
@@ -164,17 +162,4 @@ This problem serves as an excellent introduction to Project Euler, teaching:
 - The trade-off between simple iterative solutions and optimized mathematical formulas
 - How computational complexity affects solution choice
 
-### Key Insights
-
-- Numbers that are multiples of both 3 and 5 (like 15, 30, 45...) would be counted twice without proper handling
-- The mathematical approach is much more efficient for large limits
-- This problem teaches fundamental programming concepts: loops, conditionals, and modular arithmetic
-
-### Educational Value
-
-This problem serves as an excellent introduction to Project Euler, teaching:
-- Basic programming constructs (loops and conditionals)
-- Modular arithmetic and divisibility
-- The importance of considering edge cases (multiples of both numbers)
-- The trade-off between simple iterative solutions and optimized mathematical formulas
-- How computational complexity affects solution choice
+Carl Friedrich Gauss made significant contributions to arithmetic series and number theory.

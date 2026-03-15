@@ -141,7 +141,7 @@ showcase: true
 
 ### Mathematical Background
 
-The Fibonacci sequence is defined by the recurrence relation $F_n = F_{n-1} + F_{n-2}$ with initial conditions $F_1 = 1$, $F_2 = 2$. The sequence exhibits interesting properties regarding parity (even/odd distribution).
+The [Fibonacci sequence](https://grokipedia.com/page/Fibonacci_sequence) is defined by the [recurrence relation](https://grokipedia.com/page/Recurrence_relation) $F_n = F_{n-1} + F_{n-2}$ with initial conditions $F_1 = 1$, $F_2 = 2$. The sequence exhibits interesting properties regarding parity (even/odd distribution).
 
 A key mathematical insight is that every third Fibonacci number is even. This occurs because:
 - $F_1 = 1$ (odd)
@@ -159,7 +159,7 @@ The implementations use an iterative approach to generate Fibonacci numbers and 
 
 A more mathematically sophisticated approach recognizes that even Fibonacci numbers follow the sequence $E_n = 2, 8, 34, 144, 610, 2584, \dots$ where each term is $4 \times E_{n-1} + E_{n-2}$. This allows direct computation of even terms without checking parity.
 
-The closed-form solution using the golden ratio $\phi = \frac{1+\sqrt{5}}{2}$ gives the nth Fibonacci number as $F_n = \frac{\phi^n - (-\phi)^{-n}}{\sqrt{5}}$, though floating-point precision limits practical use for large n.
+The closed-form solution using the [golden ratio](https://grokipedia.com/page/Golden_ratio) $\phi = \frac{1+\sqrt{5}}{2}$ gives the nth Fibonacci number as $F_n = \frac{\phi^n - (-\phi)^{-n}}{\sqrt{5}}$, though floating-point precision limits practical use for large n.
 
 ### Key Insights
 

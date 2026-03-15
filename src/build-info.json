@@ -1,8 +1,8 @@
 {
-  "version": "1.0.2-build1773315007",
-  "baseVersion": "1.0.2",
-  "buildNumber": "1773315007",
-  "commitHash": "dad475d",
-  "buildDate": "2026-03-12T11:30:07.866Z",
-  "commitUrl": "https://github.com/tvarley/tvarley.github.io/commit/dad475d"
+  "version": "1.0.3-build1773594823",
+  "baseVersion": "1.0.3",
+  "buildNumber": "1773594823",
+  "commitHash": "d18329a",
+  "buildDate": "2026-03-15T17:13:43.560Z",
+  "commitUrl": "https://github.com/tvarley/tvarley.github.io/commit/d18329a"
 }

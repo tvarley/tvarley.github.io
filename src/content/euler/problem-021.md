@@ -291,7 +291,7 @@ showcase: true
 
 ### Mathematical Background
 
-Amicable numbers are pairs of numbers where each number is the sum of the proper divisors of the other. Proper divisors of a number $n$ are all positive divisors of $n$ except $n$ itself.
+[Amicable number](https://grokipedia.com/page/Amicable_number)s are pairs of numbers where each number is the sum of the proper divisors of the other. Proper divisors of a number $n$ are all positive divisors of $n$ except $n$ itself.
 
 For example:
 - $d(220) = 1 + 2 + 4 + 5 + 10 + 11 + 20 + 22 + 44 + 55 + 110 = 284$

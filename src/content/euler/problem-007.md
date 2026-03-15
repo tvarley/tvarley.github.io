@@ -252,7 +252,7 @@ showcase: true
 
 Prime numbers are integers greater than 1 that have no positive divisors other than 1 and themselves. The nth prime number refers to the prime at position n in the sequence of primes ordered by size.
 
-The prime number theorem provides an asymptotic approximation: the nth prime is approximately $n \ln n$. For n=10,001, this gives roughly 10,001 × ln(10,001) ≈ 10,001 × 9.21 ≈ 92,000, which is close to the actual value of 104,743.
+The [prime number theorem](https://grokipedia.com/page/Prime_number_theorem) provides an asymptotic approximation: the nth prime is approximately $n \ln n$. For n=10,001, this gives roughly 10,001 × ln(10,001) ≈ 10,001 × 9.21 ≈ 92,000, which is close to the actual value of 104,743.
 
 The distribution of primes becomes sparser as numbers grow, following the prime number theorem: $\pi(n) \approx \frac{n}{\ln n}$ where $\pi(n)$ is the number of primes ≤ n.
 
@@ -271,7 +271,7 @@ Time complexity varies: trial division is O(n√p) where p is the nth prime, whi
 ### Key Insights
 
 - The 10,001st prime (104,743) is relatively small compared to what might be expected
-- Most implementations use a sieve of Eratosthenes approach for efficiency
+- Most implementations use a [sieve of Eratosthenes](https://grokipedia.com/page/Sieve_of_Eratosthenes) approach for efficiency
 - The search space needs to be large enough - typically around n×ln(n)×ln(n) gives good bounds
 - Even numbers >2 are never prime, allowing significant optimization
 - The pattern 6k±1 covers all potential primes except 2 and 3

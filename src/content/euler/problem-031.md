@@ -149,7 +149,7 @@ showcase: true
 
 ### Mathematical Background
 
-The problem involves counting the number of ways to make change for a given amount using coins of different denominations, allowing unlimited use of each coin denomination. This is a classic problem in combinatorics and dynamic programming known as the "unbounded knapsack" or "coin change" problem.
+The problem involves counting the number of ways to make change for a given amount using coins of different denominations, allowing unlimited use of each coin denomination. This is a classic problem in combinatorics and [dynamic programming](https://grokipedia.com/page/Dynamic_programming) known as the "unbounded knapsack" or "coin change" problem.
 
 The solution can be found using the formula for the number of ways to write a number as a sum with constraints, or more practically, using dynamic programming to count combinations.
 

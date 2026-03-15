@@ -283,7 +283,7 @@ showcase: true
 
 ### Mathematical Background
 
-The Fibonacci sequence exhibits exponential growth with a growth rate determined by the golden ratio φ ≈ 1.618. The number of digits d of F_n grows linearly with n:
+The [Fibonacci sequence](https://grokipedia.com/page/Fibonacci_sequence) exhibits exponential growth with a growth rate determined by the [golden ratio](https://grokipedia.com/page/Golden_ratio) φ ≈ 1.618. The number of digits d of F_n grows linearly with n:
 
 d ≈ n × log₁₀(φ) - log₁₀(√5)
 

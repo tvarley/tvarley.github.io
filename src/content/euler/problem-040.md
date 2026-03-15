@@ -170,7 +170,7 @@ showcase: true
 
 ### Mathematical Background
 
-Champernowne's constant is formed by concatenating positive integers: 0.1234567891011121314...
+[Champernowne's constant](https://grokipedia.com/page/Champernowne_constant) is formed by concatenating positive integers: 0.1234567891011121314...
 
 This constant is known to be transcendental (proved by Kurt Mahler in 1961), meaning it is not the root of any polynomial equation with rational coefficients.
 

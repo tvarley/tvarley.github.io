@@ -220,7 +220,7 @@ showcase: true
 
 ### Mathematical Background
 
-A Pythagorean triplet consists of three positive integers (a, b, c) satisfying a² + b² = c². Primitive triplets can be generated using formulas derived from the identity:
+A [Pythagorean triple](https://grokipedia.com/page/Pythagorean_triple) consists of three positive integers (a, b, c) satisfying a² + b² = c². Primitive triplets can be generated using formulas derived from the identity:
 
 - For any pair of integers m > n > 0 with m and n coprime and not both odd: a = m² - n², b = 2mn, c = m² + n²
 - All triplets are multiples of primitive triplets

@@ -223,13 +223,13 @@ showcase: true
 
 ### Mathematical Background
 
-Prime factorization is the process of determining which prime numbers multiply together to make the original number. The Fundamental Theorem of Arithmetic states that every integer greater than 1 is either prime itself or can be represented as a unique product of prime numbers (up to the order of factors).
+[Prime factorization](https://grokipedia.com/page/Integer_factorization) is the process of determining which prime numbers multiply together to make the original number. The [Fundamental Theorem of Arithmetic](https://grokipedia.com/page/Fundamental_theorem_of_arithmetic) states that every integer greater than 1 is either prime itself or can be represented as a unique product of prime numbers (up to the order of factors).
 
 For a number n, if it has prime factors p₁, p₂, ..., pk, then n = p₁^a₁ × p₂^a₂ × ... × pk^ak. The largest prime factor is the largest prime in this factorization.
 
 ### Algorithm Analysis
 
-The implementations use trial division: systematically testing divisibility by potential prime factors. Key optimizations include:
+The implementations use [trial division](https://grokipedia.com/page/Trial_division): systematically testing divisibility by potential prime factors. Key optimizations include:
 
 - **Even factor handling**: First divide out all factors of 2 (the only even prime)
 - **Odd factor testing**: Test only odd numbers starting from 3
@@ -242,7 +242,7 @@ Time complexity is O(√n) in the worst case, which is efficient for numbers up 
 
 - The algorithm finds all prime factors but only tracks the largest one
 - Dividing out factors as they're found reduces the number that needs checking
-- For very large numbers, more advanced methods like Pollard's rho algorithm may be needed
+- For very large numbers, more advanced methods like [Pollard's rho algorithm](https://grokipedia.com/page/Pollard%27s_rho_algorithm) may be needed
 - The remaining number after dividing out smaller factors must be the largest prime factor (if > 1)
 - This problem demonstrates why prime factorization is computationally intensive for cryptography
 

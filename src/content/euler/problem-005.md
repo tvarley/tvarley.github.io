@@ -222,11 +222,11 @@ showcase: true
 
 ### Mathematical Background
 
-The smallest number divisible by all integers from 1 to n is the Least Common Multiple (LCM) of those numbers. LCM(a,b) is the smallest number that is a multiple of both a and b.
+The smallest number divisible by all integers from 1 to n is the [Least Common Multiple](https://grokipedia.com/page/Least_common_multiple) (LCM) of those numbers. LCM(a,b) is the smallest number that is a multiple of both a and b.
 
-For multiple numbers, LCM can be computed using the formula: LCM(a,b) = (a × b) / GCD(a,b), where GCD is the Greatest Common Divisor. This extends to multiple numbers by computing LCM progressively.
+For multiple numbers, LCM can be computed using the formula: LCM(a,b) = (a × b) / GCD(a,b), where GCD is the [Greatest Common Divisor](https://grokipedia.com/page/Greatest_common_divisor). This extends to multiple numbers by computing LCM progressively.
 
-The prime factorization approach gives LCM by taking the highest power of each prime that appears in any factorization: LCM = 2^max(a₂,b₂,c₂,...) × 3^max(a₃,b₃,c₃,...) × ...
+The [prime factorization](https://grokipedia.com/page/Integer_factorization) approach gives LCM by taking the highest power of each prime that appears in any factorization: LCM = 2^max(a₂,b₂,c₂,...) × 3^max(a₃,b₃,c₃,...) × ...
 
 ### Algorithm Analysis
 
@@ -236,7 +236,7 @@ Two main approaches are shown:
 
 **Mathematical (LCM)**: Compute LCM of all numbers from 1 to n using GCD. Much more efficient - O(n log n) vs potentially exponential time for brute force.
 
-The LCM approach uses the Euclidean algorithm for GCD, which is highly efficient. For n=20, the result is 2⁴ × 3² × 5 × 7 × 11 × 13 × 17 × 19 = 232,792,560.
+The LCM approach uses the [Euclidean algorithm](https://grokipedia.com/page/Euclidean_algorithm) for GCD, which is highly efficient. For n=20, the result is 2⁴ × 3² × 5 × 7 × 11 × 13 × 17 × 19 = 232,792,560.
 
 ### Key Insights
 

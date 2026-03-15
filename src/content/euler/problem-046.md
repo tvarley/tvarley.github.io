@@ -320,7 +320,7 @@ showcase: true
 
 ### Mathematical Background
 
-Goldbach's conjecture states that every even integer greater than 2 can be written as the sum of two primes. This problem deals with "Goldbach's other conjecture": every odd composite number can be written as the sum of a prime and twice a square.
+[Goldbach conjecture](https://grokipedia.com/page/Goldbach_conjecture) states that every even integer greater than 2 can be written as the sum of two primes. This problem deals with "Goldbach's other conjecture": every odd composite number can be written as the sum of a prime and twice a square.
 
 Examples given:
 - 9 = 7 + 2×1²

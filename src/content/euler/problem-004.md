@@ -281,7 +281,7 @@ showcase: true
 
 ### Mathematical Background
 
-A palindromic number reads the same forwards and backwards (e.g., 121, 3443, 9009). For products of two n-digit numbers, the result will have at most 2n digits. The largest possible product of two 3-digit numbers is 999 × 999 = 998,001.
+A [palindromic number](https://grokipedia.com/page/Palindromic_number) reads the same forwards and backwards (e.g., 121, 3443, 9009). For products of two n-digit numbers, the result will have at most 2n digits. The largest possible product of two 3-digit numbers is 999 × 999 = 998,001.
 
 Palindromes have specific structural properties. A 6-digit palindrome can be represented as ABC CBA where A, B, C are digits, giving the number 100001A + 10010B + 1100C.
 

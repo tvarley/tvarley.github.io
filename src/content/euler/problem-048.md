@@ -180,7 +180,7 @@ For large exponents, we use modular exponentiation to compute n^n mod 10^10 effi
 
 ### Key Insights
 
-- Modular arithmetic allows handling arbitrarily large numbers
+- [Modular arithmetic](https://grokipedia.com/page/Modular_arithmetic) allows handling arbitrarily large numbers
 
 - The last ten digits depend only on the computation modulo 10^10
 

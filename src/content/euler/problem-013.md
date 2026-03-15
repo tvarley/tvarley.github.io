@@ -1022,7 +1022,7 @@ The total sum will be approximately 100 × 10^49 (since each number is about 10^
 
 The implementations handle large number arithmetic in different ways:
 
-**String-based addition**: Process numbers digit by digit from right to left, maintaining carry values. Most implementations use this approach for arbitrary-precision arithmetic.
+**String-based addition**: Process numbers digit by digit from right to left, maintaining carry values. Most implementations use this approach for [arbitrary-precision arithmetic](https://grokipedia.com/page/Arbitrary-precision_arithmetic).
 
 **Big integer libraries**: Languages with built-in big integer support (like Python) can sum the numbers directly.
 
@@ -1035,14 +1035,14 @@ Time complexity is O(n × d) where n=100 numbers and d≈50 digits, making it ef
 - Only the first 10 digits of the final sum are needed, so we don't need the complete sum
 - The problem can be solved by summing only the most significant digits of each number
 - Carry propagation must be handled carefully when working digit-by-digit
-- Languages without built-in big integers need custom arbitrary-precision arithmetic
+- Languages without built-in big integers need custom [arbitrary-precision arithmetic](https://grokipedia.com/page/Arbitrary-precision_arithmetic)
 - The result 5537376230 represents the first 10 digits of the total sum
 - This demonstrates practical applications of arbitrary-precision arithmetic
 
 ### Educational Value
 
 This problem teaches essential programming concepts:
-- Arbitrary-precision arithmetic and big integer handling
+- [Arbitrary-precision arithmetic](https://grokipedia.com/page/Arbitrary-precision_arithmetic) and big integer handling
 - String manipulation for numerical computation
 - The importance of understanding number representation limits
 - Digit-by-digit algorithms and carry propagation

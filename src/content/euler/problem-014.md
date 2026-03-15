@@ -463,7 +463,7 @@ showcase: true
 
 ### Mathematical Background
 
-The Collatz conjecture (also known as the $3n + 1$ problem) is an unsolved mathematical problem that asks whether repeating two simple arithmetic operations will eventually transform every positive integer into 1. The operations are:
+The [Collatz conjecture](https://grokipedia.com/page/Collatz_conjecture) (also known as the $3n + 1$ problem) is an unsolved mathematical problem that asks whether repeating two simple arithmetic operations will eventually transform every positive integer into 1. The operations are:
 
 - If the number is even, divide it by 2
 - If the number is odd, multiply by 3 and add 1

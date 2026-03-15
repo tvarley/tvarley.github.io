@@ -199,7 +199,7 @@ Most implementations use direct binomial coefficient calculation rather than dyn
 
 - **Direct factorial approach**: Compute (2n)! / (n! * n!) but requires big integer arithmetic
 - **Iterative multiplication**: Compute the coefficient by multiplying terms iteratively to avoid computing full factorials
-- **Dynamic programming**: Build a grid where each cell represents paths to that point (shown in C++ and Ruby implementations)
+- **[Dynamic programming](https://grokipedia.com/page/Dynamic_programming)**: Build a grid where each cell represents paths to that point (shown in C++ and Ruby implementations)
 
 Time complexity: O(n) for iterative binomial calculation, O(n²) for dynamic programming grid approach.
 
@@ -213,7 +213,7 @@ Time complexity: O(n) for iterative binomial calculation, O(n²) for dynamic pro
 ### Key Insights
 
 - The problem requires exactly n right and n down moves in some order
-- Binomial coefficients grow extremely rapidly - C(40,20) is over 137 trillion
+- [Binomial coefficient](https://grokipedia.com/page/Binomial_coefficient)s grow extremely rapidly - C(40,20) is over 137 trillion
 - Dynamic programming approach demonstrates the concept of optimal substructure
 - The iterative binomial calculation is more memory-efficient than factorial computation
 

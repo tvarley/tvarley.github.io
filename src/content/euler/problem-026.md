@@ -314,7 +314,7 @@ showcase: true
 
 ### Mathematical Background
 
-This problem explores the decimal representations of unit fractions and their recurring cycles. The length of the recurring cycle for $1/d$ is determined by the multiplicative order of 10 modulo d, or more precisely, by the period of the decimal expansion.
+This problem explores the decimal representations of unit fractions and their [repeating decimal](https://grokipedia.com/page/Repeating_decimal) cycles. The length of the recurring cycle for $1/d$ is determined by the multiplicative order of 10 modulo d, or more precisely, by the period of the decimal expansion.
 
 For a fraction $1/d$ in lowest terms, the decimal expansion will be periodic with period equal to the smallest k such that $10^k ≡ 1 \pmod{d}$. The period length depends on the prime factors of d.
 

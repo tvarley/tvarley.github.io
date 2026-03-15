@@ -350,7 +350,7 @@ showcase: true
 ## Solution Notes
 
 ### Mathematical Background
-This problem explores quadratic polynomials that generate prime numbers for consecutive integer inputs. Euler's remarkable formula $n^2 + n + 41$ produces primes for $n = 0$ to $39$, while the more impressive $n^2 - 79n + 1601$ generates $80$ consecutive primes. The challenge requires finding coefficients $a$ and $b$ in the general quadratic $n^2 + an + b$ that maximize the length of such prime-generating sequences, subject to the constraints $|a| < 1000$ and $|b| \le 1000$.
+This problem explores [quadratic](https://grokipedia.com/page/Quadratic_equation) polynomials that generate prime numbers for consecutive integer inputs. Euler's remarkable formula $n^2 + n + 41$ produces primes for $n = 0$ to $39$, while the more impressive $n^2 - 79n + 1601$ generates $80$ consecutive primes. The challenge requires finding coefficients $a$ and $b$ in the general quadratic $n^2 + an + b$ that maximize the length of such prime-generating sequences, subject to the constraints $|a| < 1000$ and $|b| \le 1000$.
 
 ### Algorithm Analysis
 The solution employs a brute-force approach, iterating over all possible coefficient pairs within the given bounds. For each pair $(a, b)$, it evaluates the quadratic formula for consecutive $n$ starting from $0$ until a non-prime value is encountered. Primality testing uses trial division up to $\sqrt{n}$, optimized with the $6k\pm1$ sieve pattern for efficiency. The algorithm's time complexity is $O(A \times B \times N \times \sqrt{P})$, where $A$ and $B$ are the coefficient ranges (approximately $2 \times 10^6$ iterations), $N$ is the maximum prime streak length (around $80$), and $P$ is the largest quadratic value tested (up to $10^6$).

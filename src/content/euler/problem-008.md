@@ -489,7 +489,7 @@ showcase: true
 
 ### Mathematical Background
 
-This problem involves finding the maximum product of k consecutive digits in a large decimal number. The sliding window technique is naturally suited for this task, where we maintain a window of 13 digits and compute their product while sliding through the entire number.
+This problem involves finding the maximum product of k consecutive digits in a large decimal number. The [sliding window](https://grokipedia.com/page/Sliding_window) technique is naturally suited for this task, where we maintain a window of 13 digits and compute their product while sliding through the entire number.
 
 The product of digits ranges from 0 (if any digit is 0) to very large numbers (when all digits are 9). Since we're dealing with 13 digits, the maximum possible product is 9¹³ ≈ 2.54 × 10¹², which fits within 64-bit integers in most programming languages.
 
