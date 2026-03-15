@@ -13,9 +13,6 @@ technologies: ["cpp", "java", "javascript", "python", "go", "rust"]
 implementations:
   - language: "cpp"
     code: |
-      // Authored by: Tim Varley 💘
-      // Assisted-by: Grok Code Fast via Crush 💘 <crush@charm.land>
-      
       #include <iostream>
       #include <vector>
       #include <string>

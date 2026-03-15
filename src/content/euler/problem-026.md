@@ -45,8 +45,6 @@ implementations:
       //
       // Answer: 983
       //
-      // Authored by: Tim Varley 💘
-      // Assisted-by: Grok Code Fast via Crush 💘 <crush@charm.land>
       
       #include <iostream>
       #include <map>

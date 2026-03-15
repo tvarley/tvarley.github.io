@@ -22,9 +22,6 @@ implementations:
     code: |
       // Answer: 932718654
       
-      // Authored by: Tim Varley 💘
-      // Assisted-by: Grok Code Fast via Crush 💘 <crush@charm.land>
-      
       #include <iostream>
       #include <vector>
       #include <string>

@@ -41,9 +41,6 @@ implementations:
       //
       // Answer: 9183
       
-      // Authored by: Tim Varley 💘
-      // Assisted-by: Grok Code Fast via Crush 💘 <crush@charm.land>
-      
       #include <iostream>
       #include <set>
       #include <string>
