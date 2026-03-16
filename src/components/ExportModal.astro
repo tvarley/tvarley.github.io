@@ -1,0 +1,307 @@
+---
+// ExportModal.astro - Modal for PDF export preview and options
+---
+
+<export-modal>
+  <!-- Fixed Layout Glitch: Added w-screen h-screen to strictly enforce full viewport overlay immediately -->
+  <div id="export-modal" class="export-modal hidden fixed inset-0 z-[9999] w-screen h-screen flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+    <div class="modal-content bg-charcoal rounded-2xl border border-white/10 shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between p-6 border-b border-white/10">
+        <h2 class="text-xl font-serif font-bold text-white">Export Preview</h2>
+        <button
+          id="close-modal"
+          class="p-2 rounded-lg hover:bg-white/10 transition-colors"
+          aria-label="Close modal"
+        >
+          <svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 space-y-6">
+        <!-- Preview Area -->
+        <div class="preview-container bg-white rounded-lg overflow-hidden shadow-inner">
+          <div id="pdf-preview" class="p-4 text-sm">
+            <!-- PDF content will be rendered here -->
+            <div class="text-center text-gray-500 py-8">
+              <svg class="w-12 h-12 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+              <p>Generating preview...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="flex items-center justify-between p-6 border-t border-white/10">
+        <div class="text-sm text-steel-grey">
+          <span id="file-size">File size: Calculating...</span>
+        </div>
+
+        <div class="flex gap-3">
+          <button
+            id="cancel-export"
+            class="px-4 py-2 rounded-lg bg-white/5 text-white/80 border border-white/10 hover:border-white/20 transition-colors font-mono text-sm"
+          >
+            Cancel
+          </button>
+
+          <button
+            id="confirm-export"
+            class="px-4 py-2 rounded-lg bg-steel-blue text-white border border-steel-blue hover:bg-steel-blue/90 transition-colors font-mono text-sm"
+          >
+            Export PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</export-modal>
+
+<script>
+  import { generatePDF, isWebShareSupported, preparePrintVersion } from '../lib/pdfExport.ts';
+
+  class ExportModal extends HTMLElement {
+    private modal: HTMLElement;
+    private isOpen: boolean = false;
+    private contentElement: HTMLElement | null = null;
+    private onConfirm: ((blob: Blob) => void) | null = null;
+    private isInitialized: boolean = false;
+
+    constructor() {
+      super();
+      this.modal = this.querySelector('#export-modal') as HTMLElement;
+    }
+
+    connectedCallback() {
+      // Portal the modal to body to ensure z-index works correctly (avoids stacking context traps)
+      // Check if already in body to prevent infinite loop
+      if (document.body && this.parentElement !== document.body) {
+        document.body.appendChild(this);
+        return; // Wait for the re-connection to setup listeners
+      }
+
+      if (!this.isInitialized) {
+        this.setupEventListeners();
+        this.isInitialized = true;
+      }
+    }
+
+    private setupEventListeners() {
+      const closeBtn = this.querySelector('#close-modal') as HTMLButtonElement;
+      const cancelBtn = this.querySelector('#cancel-export') as HTMLButtonElement;
+      const confirmBtn = this.querySelector('#confirm-export') as HTMLButtonElement;
+
+      const closeModal = () => this.close();
+
+      closeBtn?.addEventListener('click', closeModal);
+      cancelBtn?.addEventListener('click', closeModal);
+      confirmBtn?.addEventListener('click', () => this.handleConfirm());
+
+      // Close on backdrop click
+      this.modal?.addEventListener('click', (e) => {
+        if (e.target === this.modal) {
+          closeModal();
+        }
+      });
+
+      // Close on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.isOpen) {
+          closeModal();
+        }
+      });
+    }
+
+    public async open(contentElement: HTMLElement, filename: string, onConfirm: (blob: Blob) => void) {
+      this.contentElement = contentElement;
+      this.onConfirm = onConfirm;
+
+      // Disable body scroll when modal is open
+      document.body.style.overflow = 'hidden';
+
+      // Generate preview
+      await this.generatePreview(filename);
+
+      // Show modal
+      this.modal?.classList.remove('hidden');
+      this.isOpen = true;
+
+      // Focus management
+      const closeBtn = this.querySelector('#close-modal') as HTMLButtonElement;
+      closeBtn?.focus();
+    }
+
+    public close() {
+      // Re-enable body scroll
+      document.body.style.overflow = '';
+
+      this.modal?.classList.add('hidden');
+      this.isOpen = false;
+      this.onConfirm = null;
+
+      // Clear preview
+      const preview = this.querySelector('#pdf-preview') as HTMLElement;
+      if (preview) {
+        preview.innerHTML = '<div class="text-center text-gray-500 py-8"><p>No preview available</p></div>';
+      }
+    }
+
+    private async generatePreview(filename: string) {
+      if (!this.contentElement) return;
+
+      const preview = this.querySelector('#pdf-preview') as HTMLElement;
+      if (!preview) return;
+
+      try {
+        // Use the same print preparation logic as the actual export
+        const printVersion = preparePrintVersion(this.contentElement, filename);
+        
+        // Ensure the preview fits within the container
+        printVersion.style.position = 'relative';
+        printVersion.style.left = '0';
+        printVersion.style.top = '0';
+        printVersion.style.margin = '0 auto';
+        // printVersion.style.transform = 'scale(0.8)'; // Optional: scale down for preview
+        printVersion.style.transformOrigin = 'top center';
+        printVersion.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+
+        preview.innerHTML = '';
+        preview.appendChild(printVersion);
+
+        // Generate PDF to calculate size (this happens in background)
+        const result = await generatePDF(this.contentElement, {
+          filename,
+          format: 'letter',
+          orientation: 'portrait',
+          quality: 0.95,
+        });
+
+        if (result.success && result.blob) {
+          const sizeKB = Math.round(result.blob.size / 1024);
+          const sizeText = this.querySelector('#file-size') as HTMLElement;
+          if (sizeText) {
+            sizeText.textContent = `File size: ~${sizeKB} KB`;
+          }
+        }
+      } catch (error) {
+        console.error('Preview generation failed:', error);
+        preview.innerHTML = '<div class="text-center text-red-500 py-8"><p>Preview generation failed</p></div>';
+      }
+    }
+
+    private async handleConfirm() {
+      if (!this.contentElement || !this.onConfirm) return;
+
+      const confirmBtn = this.querySelector('#confirm-export') as HTMLButtonElement;
+      if (!confirmBtn) return;
+
+      // Disable button and show loading
+      confirmBtn.disabled = true;
+      const originalText = confirmBtn.textContent;
+      confirmBtn.textContent = 'Generating...';
+
+      try {
+        const filename = `export-${Date.now()}.pdf`;
+        const result = await generatePDF(this.contentElement, {
+          filename,
+          format: 'letter',
+          orientation: 'portrait',
+          quality: 0.95,
+        });
+
+        if (result.success && result.blob) {
+          this.onConfirm(result.blob);
+          this.close();
+        } else {
+          throw new Error(result.error || 'Export failed');
+        }
+      } catch (error) {
+        console.error('Export failed:', error);
+        alert('Export failed. Please try again.');
+      } finally {
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = originalText;
+      }
+    }
+  }
+
+  // Register the component
+  customElements.define('export-modal', ExportModal);
+</script>
+
+<style>
+  .export-modal {
+    animation: modalFadeIn 0.2s ease-out;
+  }
+
+  .export-modal .modal-content {
+    animation: modalSlideIn 0.3s ease-out;
+  }
+
+  .export-modal.hidden .modal-content {
+    animation: modalSlideOut 0.2s ease-in;
+  }
+
+  .export-modal.hidden {
+    animation: modalFadeOut 0.2s ease-in;
+  }
+
+  @keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes modalFadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
+  @keyframes modalSlideIn {
+    from { opacity: 0; transform: scale(0.95) translateY(-20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  @keyframes modalSlideOut {
+    from { opacity: 1; transform: scale(1) translateY(0); }
+    to { opacity: 0; transform: scale(0.95) translateY(-20px); }
+  }
+
+  .preview-container {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .preview-container::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .preview-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+
+  .preview-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+  }
+
+  .preview-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+  }
+
+  @media (max-width: 768px) {
+    .export-modal .modal-content {
+      margin: 1rem;
+      max-height: calc(100vh - 2rem);
+    }
+
+    .preview-container {
+      max-height: 300px;
+    }
+  }
+</style>

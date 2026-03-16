@@ -1,0 +1,187 @@
+---
+import { type CollectionEntry } from 'astro:content';
+import ExportModal from './ExportModal.astro';
+import MultiSelectModal from './MultiSelectModal.astro';
+
+interface Props {
+  problemNumber: number;
+  title: string;
+  allProblems: CollectionEntry<'euler'>[];
+}
+
+const { problemNumber, title, allProblems } = Astro.props;
+---
+
+<solution-exporter
+  class="solution-exporter block"
+  data-problem-number={problemNumber}
+  data-title={title}
+  data-all-problems={JSON.stringify(allProblems)}
+>
+  <div class="export-controls flex gap-3 mb-4">
+    <button
+      id="export-single"
+      class="export-btn inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-steel-blue text-white border border-steel-blue hover:bg-steel-blue/90 hover:border-steel-blue/80 transition-all duration-200 font-mono text-sm group"
+      aria-label="Export current problem as PDF"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+      </svg>
+      <span class="btn-text">Export PDF</span>
+    </button>
+
+    <button
+      id="export-multiple"
+      class="export-btn inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 text-white/80 border border-white/10 hover:border-steel-blue/50 hover:text-white hover:bg-steel-blue/10 transition-all duration-200 font-mono text-sm group"
+      aria-label="Export multiple problems as PDF"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+      </svg>
+      Export Multiple
+    </button>
+  </div>
+
+  <ExportModal />
+  <MultiSelectModal allProblems={allProblems} currentProblemNumber={problemNumber} />
+</solution-exporter>
+
+<script>
+  import { downloadPDF, sharePDF, isWebShareSupported, generatePDF } from '../lib/pdfExport.ts';
+
+  class SolutionExporter extends HTMLElement {
+    private problemNumber: number;
+    private title: string;
+    private allProblems: any[];
+
+    constructor() {
+      super();
+      this.problemNumber = parseInt(this.getAttribute('data-problem-number') || '0');
+      this.title = this.getAttribute('data-title') || '';
+      this.allProblems = JSON.parse(this.getAttribute('data-all-problems') || '[]');
+    }
+
+    connectedCallback() {
+      this.setupEventListeners();
+    }
+
+    private setupEventListeners() {
+      const singleBtn = this.querySelector('#export-single') as HTMLButtonElement;
+      const multiBtn = this.querySelector('#export-multiple') as HTMLButtonElement;
+
+      if (singleBtn) {
+        singleBtn.addEventListener('click', () => this.handleSingleExport());
+      }
+
+      if (multiBtn) {
+        multiBtn.addEventListener('click', () => this.handleMultiExport());
+      }
+    }
+
+    private async handleSingleExport() {
+      const button = this.querySelector('#export-single') as HTMLButtonElement;
+      // The modal moves itself to document.body to fix z-index, so we must query specifically for it in the document
+      const modal = document.querySelector('export-modal') as any;
+      const article = document.querySelector('article') as HTMLElement;
+      
+      if (!button || !modal || !article) {
+        console.error('Missing export elements', { button, modal, article });
+        return;
+      }
+
+      // Store initial state
+      const originalContent = button.innerHTML;
+
+      // Set loading state immediately
+      button.disabled = true;
+      button.innerHTML = `
+        <svg class="animate-spin -ml-1 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <span class="ml-2">Generating...</span>
+      `;
+
+      // CRITICAL: Wrap the heavy work in setTimeout to allow the browser to PAINT the spinner state
+      // before blocking the thread with DOM cloning and PDF generation.
+      setTimeout(async () => {
+        try {
+          const filename = `euler-${this.problemNumber}-${this.title.toLowerCase().replace(/\s+/g, '-')}.pdf`;
+
+          // Wait for modal to generate preview and open
+          await modal.open(article, filename, async (blob: Blob) => {
+            // This callback is invoked when the user confirms export in the modal
+            await this.handleExportResult(blob, filename, button);
+          });
+        } finally {
+          // Reset button state whenever modal finishes opening (or fails)
+          button.innerHTML = originalContent;
+          button.disabled = false;
+        }
+      }, 50);
+    }
+
+    private handleMultiExport() {
+      const modal = this.querySelector('multi-select-modal') as any;
+      if (!modal) return;
+
+      modal.open((selectedProblems: string[]) => {
+        alert(`Selected ${selectedProblems.length} problems. Multi-export coming soon!`);
+      });
+    }
+
+    private async handleExportResult(blob: Blob, filename: string, button: HTMLButtonElement) {
+      const originalContent = `
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+        </svg>
+        <span class="btn-text">Export PDF</span>
+      `;
+
+      // Try Web Share API first
+      if (isWebShareSupported()) {
+        const shared = await sharePDF(
+          blob,
+          `Euler Problem ${this.problemNumber}: ${this.title}`,
+          `Check out my solution to Project Euler Problem ${this.problemNumber}!`
+        );
+
+        if (shared) {
+          button.innerHTML = `
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            Shared!
+          `;
+          setTimeout(() => {
+            button.innerHTML = originalContent;
+            button.disabled = false;
+          }, 2000);
+          return;
+        }
+      }
+
+      // Fallback to download
+      downloadPDF(blob, filename);
+      button.innerHTML = `
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+        </svg>
+        Downloaded!
+      `;
+      setTimeout(() => {
+        button.innerHTML = originalContent;
+        button.disabled = false;
+      }, 2000);
+    }
+  }
+
+  customElements.define('solution-exporter', SolutionExporter);
+</script>
+
+<style>
+  .solution-exporter .export-btn:disabled {
+    opacity: 0.7;
+    cursor: wait;
+  }
+</style>

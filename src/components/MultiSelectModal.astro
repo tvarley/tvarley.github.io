@@ -1,0 +1,375 @@
+---
+import { type CollectionEntry } from 'astro:content';
+
+interface Props {
+  allProblems: CollectionEntry<'euler'>[];
+  currentProblemNumber: number;
+}
+
+const { allProblems, currentProblemNumber } = Astro.props;
+---
+
+<multi-select-modal
+  data-all-problems={JSON.stringify(allProblems)}
+  data-current-problem-number={currentProblemNumber}
+>
+  <div id="multi-select-modal" class="multi-select-modal hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+    <div class="modal-content bg-charcoal/95 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between p-6 border-b border-white/10">
+        <h2 class="text-xl font-serif font-bold text-white">Export Multiple Problems</h2>
+        <button
+          id="close-multi-modal"
+          class="p-2 rounded-lg hover:bg-white/10 transition-colors"
+          aria-label="Close modal"
+        >
+          <svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 space-y-6">
+        <!-- Selection Controls -->
+        <div class="selection-controls flex flex-wrap items-center gap-3 mb-4">
+          <button
+            id="select-all"
+            class="px-3 py-1.5 rounded-lg bg-white/5 text-white/80 border border-white/10 hover:border-steel-blue/50 hover:text-white hover:bg-steel-blue/10 transition-colors font-mono text-sm"
+          >
+            Select All
+          </button>
+          <button
+            id="select-none"
+            class="px-3 py-1.5 rounded-lg bg-white/5 text-white/80 border border-white/10 hover:border-steel-blue/50 hover:text-white hover:bg-steel-blue/10 transition-colors font-mono text-sm"
+          >
+            Select None
+          </button>
+          <button
+            id="select-easy"
+            class="px-3 py-1.5 rounded-lg bg-white/5 text-white/80 border border-white/10 hover:border-green-500/50 hover:text-green-400 hover:bg-green-900/20 transition-colors font-mono text-sm"
+          >
+            Easy Only
+          </button>
+          <button
+            id="select-medium"
+            class="px-3 py-1.5 rounded-lg bg-white/5 text-white/80 border border-white/10 hover:border-yellow-500/50 hover:text-yellow-400 hover:bg-yellow-900/20 transition-colors font-mono text-sm"
+          >
+            Medium Only
+          </button>
+          <button
+            id="select-hard"
+            class="px-3 py-1.5 rounded-lg bg-white/5 text-white/80 border border-white/10 hover:border-red-500/50 hover:text-red-400 hover:bg-red-900/20 transition-colors font-mono text-sm"
+          >
+            Hard Only
+          </button>
+        </div>
+
+        <!-- Problem List -->
+        <div class="problem-list max-h-96 overflow-y-auto border border-white/10 rounded-lg">
+          {allProblems.map((problem) => (
+            <label class={`problem-item flex items-center gap-3 p-3 border-b border-white/5 last:border-b-0 hover:bg-white/5 transition-colors cursor-pointer ${
+              problem.data.problemNumber === currentProblemNumber ? 'bg-steel-blue/10 border-steel-blue/20' : ''
+            }`}>
+              <input
+                type="checkbox"
+                class="problem-checkbox w-4 h-4 text-steel-blue bg-white/5 border-white/10 rounded focus:ring-steel-blue focus:ring-2"
+                value={problem.id}
+                data-problem-number={problem.data.problemNumber}
+                data-difficulty={problem.data.difficulty}
+                checked={problem.data.problemNumber === currentProblemNumber}
+              />
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2">
+                  <span class="font-mono text-steel-grey text-sm">#{problem.data.problemNumber.toString().padStart(3, '0')}</span>
+                  <span class={`text-xs font-bold px-2 py-0.5 rounded-full uppercase tracking-wider ${
+                    problem.data.difficulty === 'easy' ? 'text-green-400 bg-green-900/20 border border-green-500/20' :
+                    problem.data.difficulty === 'medium' ? 'text-yellow-400 bg-yellow-900/20 border border-yellow-500/20' :
+                    'text-red-400 bg-red-900/20 border border-red-500/20'
+                  }`}>
+                    {problem.data.difficulty}
+                  </span>
+                </div>
+                <div class="text-white font-medium truncate mt-1">
+                  {problem.data.title}
+                </div>
+              </div>
+            </label>
+          ))}
+        </div>
+
+        <!-- Selection Summary -->
+        <div class="selection-summary text-sm text-steel-grey">
+          <span id="selected-count">0</span> problems selected
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="flex items-center justify-between p-6 border-t border-white/10">
+        <div class="text-sm text-steel-grey">
+          Selected: <span id="selected-problems">None</span>
+        </div>
+
+        <div class="flex gap-3">
+          <button
+            id="cancel-multi-export"
+            class="px-4 py-2 rounded-lg bg-white/5 text-white/80 border border-white/10 hover:border-white/20 transition-colors font-mono text-sm"
+          >
+            Cancel
+          </button>
+
+          <button
+            id="confirm-multi-export"
+            class="px-4 py-2 rounded-lg bg-steel-blue text-white border border-steel-blue hover:bg-steel-blue/90 transition-colors font-mono text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled
+          >
+            Export Selected
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</multi-select-modal>
+
+<script>
+  class MultiSelectModal extends HTMLElement {
+    private modal: HTMLElement;
+    private isOpen: boolean = false;
+    private onConfirm: ((selectedProblems: string[]) => void) | null = null;
+    private allProblems: any[] = [];
+
+    constructor() {
+      super();
+      this.modal = this.querySelector('#multi-select-modal') as HTMLElement;
+      this.allProblems = JSON.parse(this.getAttribute('data-all-problems') || '[]');
+    }
+
+    connectedCallback() {
+      this.setupEventListeners();
+    }
+
+    private setupEventListeners() {
+      const closeBtn = this.querySelector('#close-multi-modal') as HTMLButtonElement;
+      const cancelBtn = this.querySelector('#cancel-multi-export') as HTMLButtonElement;
+      const confirmBtn = this.querySelector('#confirm-multi-export') as HTMLButtonElement;
+
+      const closeModal = () => this.close();
+
+      closeBtn?.addEventListener('click', closeModal);
+      cancelBtn?.addEventListener('click', closeModal);
+      confirmBtn?.addEventListener('click', () => this.handleConfirm());
+
+      // Selection controls
+      const selectAllBtn = this.querySelector('#select-all') as HTMLButtonElement;
+      const selectNoneBtn = this.querySelector('#select-none') as HTMLButtonElement;
+      const selectEasyBtn = this.querySelector('#select-easy') as HTMLButtonElement;
+      const selectMediumBtn = this.querySelector('#select-medium') as HTMLButtonElement;
+      const selectHardBtn = this.querySelector('#select-hard') as HTMLButtonElement;
+
+      selectAllBtn?.addEventListener('click', () => this.selectAll());
+      selectNoneBtn?.addEventListener('click', () => this.selectNone());
+      selectEasyBtn?.addEventListener('click', () => this.selectByDifficulty('easy'));
+      selectMediumBtn?.addEventListener('click', () => this.selectByDifficulty('medium'));
+      selectHardBtn?.addEventListener('click', () => this.selectByDifficulty('hard'));
+
+      // Individual checkboxes
+      const checkboxes = this.querySelectorAll('.problem-checkbox') as NodeListOf<HTMLInputElement>;
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => this.updateSelection());
+      });
+
+      // Close on backdrop click
+      this.modal?.addEventListener('click', (e) => {
+        if (e.target === this.modal) {
+          closeModal();
+        }
+      });
+
+      // Close on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.isOpen) {
+          closeModal();
+        }
+      });
+    }
+
+    public open(onConfirm: (selectedProblems: string[]) => void) {
+      this.onConfirm = onConfirm;
+
+      // Reset selection to current problem
+      this.selectNone();
+      const currentCheckbox = this.querySelector(`input[data-problem-number="${this.getAttribute('data-current-problem-number')}"]`) as HTMLInputElement;
+      if (currentCheckbox) {
+        currentCheckbox.checked = true;
+      }
+
+      this.updateSelection();
+
+      // Show modal
+      this.modal?.classList.remove('hidden');
+      this.isOpen = true;
+
+      // Focus management
+      const closeBtn = this.querySelector('#close-multi-modal') as HTMLButtonElement;
+      closeBtn?.focus();
+    }
+
+    public close() {
+      this.modal?.classList.add('hidden');
+      this.isOpen = false;
+      this.onConfirm = null;
+    }
+
+    private selectAll() {
+      const checkboxes = this.querySelectorAll('.problem-checkbox') as NodeListOf<HTMLInputElement>;
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = true;
+      });
+      this.updateSelection();
+    }
+
+    private selectNone() {
+      const checkboxes = this.querySelectorAll('.problem-checkbox') as NodeListOf<HTMLInputElement>;
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+      });
+      this.updateSelection();
+    }
+
+    private selectByDifficulty(difficulty: string) {
+      this.selectNone();
+      const checkboxes = this.querySelectorAll(`.problem-checkbox[data-difficulty="${difficulty}"]`) as NodeListOf<HTMLInputElement>;
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = true;
+      });
+      this.updateSelection();
+    }
+
+    private updateSelection() {
+      const checkboxes = this.querySelectorAll('.problem-checkbox') as NodeListOf<HTMLInputElement>;
+      const selectedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const selectedValues = Array.from(checkboxes)
+        .filter(cb => cb.checked)
+        .map(cb => cb.value);
+
+      // Update count display
+      const countDisplay = this.querySelector('#selected-count') as HTMLElement;
+      if (countDisplay) {
+        countDisplay.textContent = selectedCount.toString();
+      }
+
+      // Update selected problems display
+      const problemsDisplay = this.querySelector('#selected-problems') as HTMLElement;
+      if (problemsDisplay) {
+        if (selectedCount === 0) {
+          problemsDisplay.textContent = 'None';
+        } else if (selectedCount <= 3) {
+          const problemNumbers = selectedValues.map(id => {
+            const problem = this.allProblems.find(p => p.id === id);
+            return problem ? problem.data.problemNumber : '?';
+          });
+          problemsDisplay.textContent = `#${problemNumbers.join(', #')}`;
+        } else {
+          problemsDisplay.textContent = `${selectedCount} problems`;
+        }
+      }
+
+      // Enable/disable export button
+      const confirmBtn = this.querySelector('#confirm-multi-export') as HTMLButtonElement;
+      if (confirmBtn) {
+        confirmBtn.disabled = selectedCount === 0;
+      }
+    }
+
+    private handleConfirm() {
+      const checkboxes = this.querySelectorAll('.problem-checkbox') as NodeListOf<HTMLInputElement>;
+      const selectedProblems = Array.from(checkboxes)
+        .filter(cb => cb.checked)
+        .map(cb => cb.value);
+
+      if (selectedProblems.length > 0 && this.onConfirm) {
+        this.onConfirm(selectedProblems);
+        this.close();
+      }
+    }
+  }
+
+  // Register the component
+  customElements.define('multi-select-modal', MultiSelectModal);
+</script>
+
+<style>
+  .multi-select-modal {
+    animation: modalFadeIn 0.2s ease-out;
+  }
+
+  .multi-select-modal .modal-content {
+    animation: modalSlideIn 0.3s ease-out;
+  }
+
+  .multi-select-modal.hidden .modal-content {
+    animation: modalSlideOut 0.2s ease-in;
+  }
+
+  .multi-select-modal.hidden {
+    animation: modalFadeOut 0.2s ease-in;
+  }
+
+  @keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes modalFadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
+  @keyframes modalSlideIn {
+    from { opacity: 0; transform: scale(0.95) translateY(-20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  @keyframes modalSlideOut {
+    from { opacity: 1; transform: scale(1) translateY(0); }
+    to { opacity: 0; transform: scale(0.95) translateY(-20px); }
+  }
+
+  .problem-list::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .problem-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+  }
+
+  .problem-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+  }
+
+  .problem-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    .multi-select-modal .modal-content {
+      margin: 1rem;
+      max-height: calc(100vh - 2rem);
+    }
+
+    .problem-list {
+      max-height: 300px;
+    }
+
+    .selection-controls {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .selection-controls button {
+      justify-content: center;
+    }
+  }
+</style>
