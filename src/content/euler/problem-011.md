@@ -2,7 +2,7 @@
 problemNumber: 11
 title: "Largest Product in a Grid"
 description: |
-  In the 20×20 grid below, four numbers along a diagonal line have been marked in red.
+  In the 20x20 grid below, four numbers along a diagonal line have been marked in red.
 
   08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
   49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -10,10 +10,10 @@ description: |
   52 70 95 23 04 60 11 42 69 24 68 56 01 32 56 71 37 02 36 91
   22 31 16 71 51 67 63 89 41 92 36 54 22 40 40 28 66 33 13 80
   24 47 32 60 99 03 45 02 44 75 33 53 78 36 84 20 35 17 12 50
-  32 98 81 28 64 23 67 10 **26** 38 40 67 59 54 70 66 18 38 64 70
-  67 26 20 68 02 62 12 20 95 **63** 94 39 63 08 40 91 66 49 94 21
-  24 55 58 05 66 73 99 26 97 17 **78** 78 96 83 14 88 34 89 63 72
-  21 36 23 09 75 00 76 44 20 45 35 **14** 00 61 33 97 34 31 33 95
+  32 98 81 28 64 23 67 10 26 38 40 67 59 54 70 66 18 38 64 70
+  67 26 20 68 02 62 12 20 95 63 94 39 63 08 40 91 66 49 94 21
+  24 55 58 05 66 73 99 26 97 17 78 78 96 83 14 88 34 89 63 72
+  21 36 23 09 75 00 76 44 20 45 35 14 00 61 33 97 34 31 33 95
   78 17 53 28 22 75 31 67 15 94 03 80 04 62 16 14 09 53 56 92
   16 39 05 42 96 35 31 47 55 58 88 24 00 17 54 24 36 29 85 57
   86 56 00 48 35 71 89 07 05 44 44 37 44 60 21 58 51 54 17 58
@@ -25,9 +25,9 @@ description: |
   20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
   01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
 
-  The product of these numbers is 26 × 63 × 78 × 14 = 1788696.
+  The product of these numbers is 26 x 63 x 78 x 14 = 1788696.
 
-  What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
+  What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20x20 grid?
 difficulty: "medium"
 date: 2026-03-10
 technologies: ["cpp", "java", "javascript", "python", "ruby", "go", "rust"]
@@ -37,7 +37,7 @@ implementations:
       // https://projecteuler.net/problem=11
       // Largest product in a grid
       //
-      // In the 20×20 grid below, four numbers along a diagonal line have been marked in red.
+      // In the 20x20 grid below, four numbers along a diagonal line have been marked in red.
       //
       //  8  2 22 97 38 15 00 40 00 75  4  5  7 78 52 12 50 77 91  8
       // 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48  4 56 62 00
@@ -59,9 +59,9 @@ implementations:
       // 20 69 36 41 72 30 23 88 34 62 99 69 82 67 59 85 74  4 36 16
       // 20 73 35 29 78 31 90  1 74 31 49 71 48 86 81 16 23 57  5 54
       //  1 70 54 71 83 51 54 69 16 92 33 48 61 43 52  1 89 19 67 48
-      // The product of these numbers is 26 × 63 × 78 × 14 = 1788696.
+      // The product of these numbers is 26 x 63 x 78 x 14 = 1788696.
       //
-      // What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
+      // What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20x20 grid?
       
       // Answer: 70600674
       
@@ -302,10 +302,10 @@ implementations:
       def solve():
           """
           Largest product in a grid
-          In the 20×20 grid below, four numbers along a diagonal line have been marked in red.
-          The product of these numbers is 26 × 63 × 78 × 14 = 1788696.
+          In the 20x20 grid below, four numbers along a diagonal line have been marked in red.
+          The product of these numbers is 26 x 63 x 78 x 14 = 1788696.
           What is the greatest product of four adjacent numbers in the same direction
-          (up, down, left, right, or diagonally) in the 20×20 grid?
+          (up, down, left, right, or diagonally) in the 20x20 grid?
           """
           grid = [
               [8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
@@ -584,11 +584,11 @@ implementations:
     code: |
       // https://projecteuler.net/problem=11
       //
-      // In the 20×20 grid below, four numbers along a diagonal line have been marked in red.
+      // In the 20x20 grid below, four numbers along a diagonal line have been marked in red.
       //
-      // The product of these numbers is 26 × 63 × 78 × 14 = 1788696.
+      // The product of these numbers is 26 x 63 x 78 x 14 = 1788696.
       //
-      // What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
+      // What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20x20 grid?
       //
       // Answer: 70600674
       
@@ -685,7 +685,7 @@ showcase: true
 
 ### Mathematical Background
 
-This problem involves finding the maximum product of k adjacent numbers in a grid, where adjacency can be horizontal, vertical, or diagonal. The grid is 20×20, so we need to check all possible windows of 4 consecutive numbers in 4 different directions:
+This problem involves finding the maximum product of k adjacent numbers in a grid, where adjacency can be horizontal, vertical, or diagonal. The grid is 20x20, so we need to check all possible windows of 4 consecutive numbers in 4 different directions:
 
 - **Horizontal**: Left to right in each row
 - **Vertical**: Top to bottom in each column  
@@ -700,15 +700,15 @@ The implementations use nested loops to check all possible 4-element windows in 
 
 **Brute force enumeration**: For each starting position and each direction, compute the product of 4 adjacent elements.
 
-**Boundary checks**: Ensure windows don't go outside grid boundaries (17×20 for horizontal, 20×17 for vertical, 17×17 for both diagonals).
+**Boundary checks**: Ensure windows don't go outside grid boundaries (17x20 for horizontal, 20x17 for vertical, 17x17 for both diagonals).
 
 **Early termination**: Some implementations use boundary constraints to limit loop ranges.
 
-Time complexity is O(4 × 20²) = O(1600), making it effectively constant time for a fixed-size grid.
+Time complexity is O(4 x 20²) = O(1600), making it effectively constant time for a fixed-size grid.
 
 ### Key Insights
 
-- The maximum product (70,600,674) comes from a diagonal sequence: 89 × 94 × 97 × 87
+- The maximum product (70,600,674) comes from a diagonal sequence: 89 x 94 x 97 x 87
 - All four directions must be checked systematically
 - Boundary conditions determine how far each direction can be checked from any position
 - Zero values in the grid can significantly reduce products (though not in this case)

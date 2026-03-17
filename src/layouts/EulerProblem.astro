@@ -156,10 +156,10 @@ const { problemNumber, title, description, difficulty, technologies, implementat
       <!-- Jump to Problem -->
       <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <label class="text-sm font-mono text-steel-grey whitespace-nowrap">Jump to problem:</label>
-        <select class="jump-to-problem bg-white/5 border border-white/10 rounded px-3 py-2 text-white text-sm min-w-0 flex-1 sm:flex-none" id="jump-to-problem">
+        <select class="jump-to-problem bg-white/5 border border-white/10 rounded px-3 py-2 text-white text-sm flex-1 sm:flex-none" id="jump-to-problem">
           <option value="">Select a problem...</option>
           {allProblems.map(p => (
-            <option value={p.id} selected={p.data.problemNumber === problemNumber}>
+            <option value={p.data.problemNumber} selected={p.data.problemNumber === problemNumber}>
               #{p.data.problemNumber.toString().padStart(3, '0')} - {p.data.title}
             </option>
           ))}
@@ -233,8 +233,9 @@ const { problemNumber, title, description, difficulty, technologies, implementat
     // Jump to problem functionality
     if (jumpToProblem) {
       jumpToProblem.addEventListener('change', function() {
+        console.log('Jump to problem selected:', this.value);
         if (this.value) {
-          window.location.href = `/euler/${this.value}/`;
+          window.location.href = `/euler/problem-${this.value.toString().padStart(3, '0')}/`;
         }
       });
     }
