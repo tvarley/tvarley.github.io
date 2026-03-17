@@ -35,40 +35,22 @@ const { title, description, image, categories } = Astro.props;
 	</>
 )}
     {categories && <meta name="keywords" content={categories.join(', ')}>}
-    <!-- MathJax for Euler problems - optimized for mobile -->
+    <!-- KaTeX for math rendering - unified system -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.38/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.38/dist/contrib/auto-render.min.js"></script>
     <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true,
-                processEnvironments: true
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-                // Mobile optimizations
-                menuOptions: {
-                    autocollapse: true // Collapse menus on mobile
-                }
-            },
-            startup: {
-                ready: function() {
-                    MathJax.startup.defaultReady();
-                    MathJax.startup.promise.then(function() {
-                        // Process math after page load
-                        if (typeof MathJax !== 'undefined') {
-                            MathJax.typesetPromise();
-                        }
-                    });
-                }
-            },
-            // Performance optimizations
-            loader: {
-                load: ['[tex]/color'] // Only load needed extensions
-            }
-        };
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "\\(", right: "\\)", display: false}
+                ],
+                throwOnError: false
+            });
+        });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
     <ClientRouter />
 	</head>
 	<body class="bg-charcoal text-white font-mono antialiased min-h-screen flex flex-col relative selection:bg-steel-blue selection:text-white">

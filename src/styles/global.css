@@ -169,9 +169,14 @@
     color: var(--accent);
   }
 
-  /* Extra styling for MathJax aesthetics if needed */
-  mjx-container {
+  /* Extra styling for KaTeX aesthetics */
+  .katex {
     color: #cbd5e1 !important; /* silver/slate-300 */
+    font-size: 1.1em !important;
+  }
+
+  .katex-display {
+    color: #cbd5e1 !important;
     font-size: 1.1em !important;
   }
 
