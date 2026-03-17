@@ -6,17 +6,17 @@ description: |
 
   $$\begin{align}
   1/2 &= 0.5\\
-  1/3 &=0.(3)\\
+  1/3 &= 0.\bar{3}\\
   1/4 &=0.25\\
   1/5 &= 0.2\\
-  1/6 &= 0.1(6)\\
-  1/7 &= 0.(142857)\\
+  1/6 &= 0.1\bar{6}\\
+  1/7 &= 0.\overline{142857}\\
   1/8 &= 0.125\\
-  1/9 &= 0.(1)\\
+  1/9 &= 0.\bar{1}\\
   1/10 &= 0.1
   \end{align}$$
 
-  Where $0.1(6)$ means $0.166666\cdots$, and has a $1$-digit recurring cycle. It can be seen that $1/7$ has a $6$-digit recurring cycle.
+  Where $0.1\bar{6}$ means $0.166666\cdots$, and has a $1$-digit recurring cycle. It can be seen that $1/7$ has a $6$-digit recurring cycle.
 
   Find the value of $d \lt 1000$ for which $1/d$ contains the longest recurring cycle in its decimal fraction part.
 difficulty: "hard"
@@ -316,7 +316,7 @@ showcase: true
 
 This problem explores the decimal representations of unit fractions and their [repeating decimal](https://grokipedia.com/page/Repeating_decimal) cycles. The length of the recurring cycle for $1/d$ is determined by the multiplicative order of 10 modulo d, or more precisely, by the period of the decimal expansion.
 
-For a fraction $1/d$ in lowest terms, the decimal expansion will be periodic with period equal to the smallest k such that $10^k ≡ 1 \pmod{d}$. The period length depends on the prime factors of d.
+For a fraction $1/d$ in lowest terms, the decimal expansion will be periodic with period equal to the smallest k such that $10^k \equiv 1 \pmod{d}$. The period length depends on the prime factors of d.
 
 ### Algorithm Analysis
 

@@ -185,7 +185,7 @@ showcase: true
 
 This problem involves computing $2^{1000}$, a 302-digit number, and summing its digits. Direct computation with standard integer types fails since $2^{1000}$ exceeds the range of 64-bit integers.
 
-The number of digits in $2^n$ is approximately $n 	imes rac{\ln 2}{\ln 10} ≈ n 	imes 0.3010$. For $n = 1000$, this gives about 301.0 digits, matching the actual result.
+The number of digits in $2^n$ is approximately $n \times \frac{\ln 2}{\ln 10} \approx n \times 0.3010$. For $n = 1000$, this gives about 301.0 digits, matching the actual result.
 
 ### Algorithm Analysis
 

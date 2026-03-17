@@ -4,12 +4,12 @@ title: "Longest Collatz Sequence"
 description: |
   The following iterative sequence is defined for the set of positive integers:
 
-  - $n 	o n/2$ ($n$ is even)
-  - $n 	o 3n + 1$ ($n$ is odd)
+  - $n \rightarrow n/2$ ($n$ is even)
+  - $n \rightarrow 3n + 1$ ($n$ is odd)
 
   Using the rule above and starting with $13$, we generate the following sequence:
 
-  $$13 	o 40 	o 20 	o 10 	o 5 	o 16 	o 8 	o 4 	o 2 	o 1$$
+  $$13 \rightarrow 40 \rightarrow 20 \rightarrow 10 \rightarrow 5 \rightarrow 16 \rightarrow 8 \rightarrow 4 \rightarrow 2 \rightarrow 1$$
 
   It can be seen that this sequence (starting at $13$ and finishing at $1$) contains $10$ terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at $1$.
 

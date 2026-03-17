@@ -178,6 +178,7 @@
   .katex-display {
     color: #cbd5e1 !important;
     font-size: 1.1em !important;
+    text-align: center;
   }
 
   .tech-pill {
