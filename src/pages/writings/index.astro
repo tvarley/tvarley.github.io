@@ -5,7 +5,7 @@ import FormattedDate from '../../components/FormattedDate.astro';
 
 const writings = (await getCollection('writings'))
   .filter(w => !w.data.draft)
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+  .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999) || new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
 <Layout 
