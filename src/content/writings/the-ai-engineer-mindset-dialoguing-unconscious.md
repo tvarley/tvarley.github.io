@@ -1,5 +1,7 @@
 ---
-title: "The AI Engineer Mindset - Part 2: Dialoguing with the Unconscious"
+title: "Dialoguing with the Unconscious"
+seriesTitle: "The AI Engineer Mindset"
+subtitle: "Discover how AI represents the collective unconscious of software development and develop metacognition to use AI as a thinking partner."
 summary: "Discover how AI represents the collective unconscious of software development. Develop metacognition to use AI as a thinking partner rather than an oracle."
 date: 2026-03-21
 category: "article"

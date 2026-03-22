@@ -1,5 +1,7 @@
 ---
-title: "The AI Engineer Mindset - Part 4: Becoming Native to the New Medium"
+title: "Becoming Native to the New Medium"
+seriesTitle: "The AI Engineer Mindset"
+subtitle: "Embrace the complete way of being with AI technology, business transformations, and evolving skills for the cognitive revolution."
 summary: "Embrace the complete way of being with AI technology, business transformations, and evolving skills for the cognitive revolution."
 date: 2026-03-21
 category: "article"

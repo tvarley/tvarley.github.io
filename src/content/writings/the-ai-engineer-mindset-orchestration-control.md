@@ -1,5 +1,7 @@
 ---
-title: "The AI Engineer Mindset - Part 1: Orchestration and Control"
+title: "Orchestration and Control"
+seriesTitle: "The AI Engineer Mindset"
+subtitle: "Master orchestration techniques, Socratic prompting, and the player vs character knowledge distinction using the D&D analogy."
 summary: "Learn to be the boss of AI agents. Master orchestration techniques, Socratic prompting, and the player vs character knowledge distinction using the D&D analogy."
 date: 2026-03-21
 category: "article"

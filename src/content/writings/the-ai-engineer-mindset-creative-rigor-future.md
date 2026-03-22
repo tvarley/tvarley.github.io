@@ -1,5 +1,7 @@
 ---
-title: "The AI Engineer Mindset - Part 3: Creative Tension"
+title: "Creative Tension"
+seriesTitle: "The AI Engineer Mindset"
+subtitle: "Master the balance of creativity and rigor with AI through the gardening metaphor and practical frameworks for daily orchestration."
 summary: "Master the balance of creativity and rigor with AI. Understand the gardening metaphor, business implications, and practical framework for daily AI orchestration."
 date: 2026-03-21
 category: "article"

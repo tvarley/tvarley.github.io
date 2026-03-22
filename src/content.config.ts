@@ -27,6 +27,8 @@ const writings = defineCollection({
 	loader: glob({ base: './src/content/writings', pattern: '**/*.{md,mdx}' }),
 	schema: z.object({
 		title: z.string(),
+		seriesTitle: z.string().optional(),
+		subtitle: z.string().optional(),
 		summary: z.string(),
 		date: z.coerce.date(),
 		category: z.enum(['blog', 'article', 'reflection']).optional(),
