@@ -100,9 +100,21 @@
   }
 
   /* Solution Notes specific styling */
-  .prose h2:first-child {
-    @apply text-3xl font-serif font-bold text-white mb-8 mt-0;
+  .prose h2 {
+    @apply text-3xl font-serif font-bold text-white mb-8 mt-12;
     color: var(--text-primary);
+    position: relative;
+  }
+
+  .prose h2::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 0.3em;
+    width: 4px;
+    height: 1.2em;
+    background: linear-gradient(135deg, var(--accent), rgba(70, 130, 180, 0.6));
+    border-radius: 2px;
   }
 
   .prose h3 {

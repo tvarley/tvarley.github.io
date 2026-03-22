@@ -21,16 +21,16 @@ const { title, summary, date, heroImage } = Astro.props;
 						<div class="rounded-lg overflow-hidden shadow-glass border border-white/5">
 							<img width={80} height={80} src={heroImage} alt="" class="w-20 h-20 block object-contain" />
 						</div>
-						<div class="text-left">
-							<h1 class="text-4xl md:text-5xl font-serif font-black text-white leading-tight mb-2">{title}</h1>
-							<hr class="w-24 h-1 bg-steel-blue border-0 rounded-full opacity-50" />
+						<div class="text-center">
+							<h1 class="text-4xl md:text-5xl lg:text-7xl font-serif font-black text-white leading-tight mb-10 max-w-4xl mx-auto">{title}</h1>
+							<hr class="w-24 h-1 bg-steel-blue mx-auto border-0 rounded-full opacity-50" />
 						</div>
 					</div>
 				)}
 				
 				{!heroImage && (
 					<div>
-						<h1 class="text-4xl md:text-5xl font-serif font-black text-white leading-tight mb-6">{title}</h1>
+						<h1 class="text-4xl md:text-5xl lg:text-7xl font-serif font-black text-white leading-tight mb-10 max-w-4xl mx-auto">{title}</h1>
 						<hr class="w-24 h-1 bg-steel-blue mx-auto border-0 rounded-full opacity-50" />
 					</div>
 				)}
@@ -38,7 +38,87 @@ const { title, summary, date, heroImage } = Astro.props;
 		</div>
     
 		<div class="prose prose-invert prose-lg max-w-none">
+		<div class="markdown-content max-w-4xl mx-auto">
 			<slot />
 		</div>
+	</div>
 	</article>
 </Layout>
+
+<style is:global>
+    /* 
+       Global styles for the markdown content to match the Euler aesthetic.
+       We target the specific container to avoid leaking styles too broadly.
+    */
+    .markdown-content h1 {
+        font-family: var(--font-serif);
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: white;
+        margin-top: 2rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .markdown-content h2 {
+        font-family: var(--font-serif);
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: white;
+        margin-top: 3rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .markdown-content h3 {
+        font-family: var(--font-sans);
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #e2e8f0; /* slalt-200 */
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .markdown-content p {
+        color: #94a3b8; /* slate-400 */
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+    }
+
+    .markdown-content ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 2rem;
+    }
+
+    .markdown-content li {
+        position: relative;
+        padding-left: 1.5rem;
+        margin-bottom: 0.75rem;
+        color: #cbd5e1; /* slate-300 */
+    }
+
+    .markdown-content li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #64ffda; /* accent color */
+        font-weight: bold;
+    }
+
+    .markdown-content strong {
+        color: white;
+        font-weight: 600;
+    }
+    
+    .markdown-content code {
+        font-family: var(--font-mono);
+        color: #64ffda;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 0.2em 0.4em;
+        border-radius: 4px;
+        font-size: 0.85em;
+    }
+</style>
