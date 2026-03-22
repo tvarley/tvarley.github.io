@@ -31,6 +31,13 @@
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Respect user's motion preferences
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+        canvas.style.display = 'none';
+        return;
+    }
+
     let particles = [];
     let animationId;
     
@@ -52,9 +59,9 @@
       constructor() {
         this.x = Math.random() * w;
         this.y = Math.random() * h;
-        // Reduced velocity (0.2 instead of 0.5)
-        this.vx = (Math.random() - 0.5) * 0.2; 
-        this.vy = (Math.random() - 0.5) * 0.2;
+        // Reduced velocity (0.1 instead of 0.2)
+        this.vx = (Math.random() - 0.5) * 0.1; 
+        this.vy = (Math.random() - 0.5) * 0.1;
         this.baseSize = Math.random() * 2 + 1;
         this.size = this.baseSize;
         
@@ -75,13 +82,13 @@
         // 0.0003 chance per frame per particle -> rare sparks
         if (!this.isSparking && Math.random() < 0.0003) { 
              this.isSparking = true;
-             this.sparkTimer = 30; // 30 frames (~0.5s)
+             this.sparkTimer = 60; // 60 frames (~1s)
         }
 
         if (this.isSparking) {
              this.sparkTimer--;
              // Grow then shrink
-             if (this.sparkTimer > 15) {
+             if (this.sparkTimer > 30) {
                  this.size = this.baseSize * 2.5; 
              } else {
                  this.size = this.baseSize;
