@@ -41,6 +41,11 @@ const writings = (await getCollection('writings'))
 							</div>
 							
 							<div class="flex-1 min-w-0">
+								{writing.data.seriesTitle && (
+									<div class="text-sm text-steel-blue mb-1 font-medium">
+										Part of {writing.data.seriesTitle}
+									</div>
+								)}
 								<h2 class="text-2xl font-serif font-bold text-white group-hover:text-steel-blue transition-colors mb-3 leading-tight">
 									{writing.data.title}
 								</h2>

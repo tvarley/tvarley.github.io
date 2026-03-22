@@ -1,6 +1,8 @@
 ---
 title: "The AI Engineer Mindset"
-summary: "Introduction to the 4-part series exploring the fundamental shift in how engineers relate to creation, control, and cognition when directing AI agents."
+seriesTitle: "The AI Engineer Mindset"
+subtitle: "Introduction to the 5-part series exploring the fundamental shift in how engineers relate to creation, control, and cognition when directing AI agents."
+summary: "Introduction to the 5-part series exploring the fundamental shift in how engineers relate to creation, control, and cognition when directing AI agents."
 date: 2026-03-21
 category: "article"
 tags: ["ai", "mindset", "engineering", "creativity", "orchestration", "series"]

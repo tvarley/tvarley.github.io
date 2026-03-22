@@ -1,5 +1,7 @@
 ---
-title: "The AI Engineer Mindset - Part 5: Practical Framework"
+title: "Practical Framework"
+seriesTitle: "The AI Engineer Mindset"
+subtitle: "Operationalize the mindset with daily rituals, context confirmation, goal-oriented prompting, and reality testing for AI orchestration."
 summary: "Operationalize the mindset with daily rituals, context confirmation, goal-oriented prompting, and reality testing for AI orchestration."
 date: 2026-03-21
 category: "article"
