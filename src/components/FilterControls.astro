@@ -4,22 +4,47 @@ interface Props {
   problems: CollectionEntry<'euler'>[];
   initialFilters?: {
     difficulty?: string[];
-    technologies?: string[];
     search?: string;
+    sort?: string;
   };
 }
 
 // Extract unique values for filters
 const { problems, initialFilters } = Astro.props;
 
+// Language to icon mapping
+const languageIcons = {
+  python: 'devicon-python-plain',
+  rust: 'devicon-rust-plain',
+  javascript: 'devicon-javascript-plain',
+  java: 'devicon-java-plain',
+  'c++': 'devicon-cplusplus-plain',
+  cpp: 'devicon-cplusplus-plain',
+  go: 'devicon-go-plain',
+  ruby: 'devicon-ruby-plain',
+  c: 'devicon-c-plain',
+  php: 'devicon-php-plain',
+  swift: 'devicon-swift-plain',
+  kotlin: 'devicon-kotlin-plain',
+  typescript: 'devicon-typescript-plain',
+  scala: 'devicon-scala-plain',
+  haskell: 'devicon-haskell-plain',
+  clojure: 'devicon-clojure-plain',
+  erlang: 'devicon-erlang-plain',
+  elixir: 'devicon-elixir-plain',
+  r: 'devicon-r-plain',
+  matlab: 'devicon-matlab-plain',
+  julia: 'devicon-julia-plain',
+  perl: 'devicon-perl-plain',
+  lua: 'devicon-lua-plain',
+  shell: 'devicon-bash-plain',
+  bash: 'devicon-bash-plain',
+  // default
+  default: 'devicon-code-plain'
+};
+
 // Get unique difficulties (should be easy/medium/hard based on schema)
 const difficulties = ['easy', 'medium', 'hard'];
-
-// Get unique technologies from all problems
-const allTechnologies = problems
-  .flatMap(problem => problem.data.technologies)
-  .filter((tech, index, arr) => arr.indexOf(tech) === index)
-  .sort();
 ---
 
 <div id="filter-controls" class="filter-controls glass-card mb-8 p-6 relative z-20"
@@ -31,6 +56,7 @@ const allTechnologies = problems
       type="button"
       class="mobile-toggle-btn w-full px-4 py-3 rounded-lg text-primary hover:text-accent transition-colors flex items-center justify-between border"
       aria-expanded="false"
+      aria-label="Toggle filters visibility"
     >
       <span class="font-medium">Filters</span>
       <svg class="w-5 h-5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -41,78 +67,30 @@ const allTechnologies = problems
 
   <div class="mobile-filters-content">
   <div class="flex flex-col lg:flex-row lg:items-center gap-6">
-    <!-- Filters Row -->
-    <div class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4">
-      <!-- Difficulty Filter -->
-      <div class="filter-group">
-        <label class="block text-sm font-medium mb-2">Difficulty</label>
-        <div class="flex flex-wrap gap-2">
-          {difficulties.map(difficulty => (
-            <label class="filter-checkbox">
-              <input
-                type="checkbox"
-                value={difficulty}
-                class="sr-only"
-                data-filter="difficulty"
-              />
-              <span class={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium cursor-pointer transition-all ${
-                difficulty === 'easy' ? 'text-green-400 bg-green-900/20 hover:bg-green-900/30' :
-                difficulty === 'medium' ? 'text-yellow-400 bg-yellow-900/20 hover:bg-yellow-900/30' :
-                'text-red-400 bg-red-900/20 hover:bg-red-900/30'
-              }`}>
-                {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
-              </span>
-            </label>
-          ))}
-        </div>
-      </div>
-
-      <!-- Technology Filter -->
-      <div class="filter-group">
-        <label class="block text-sm font-medium mb-2">Technologies</label>
-        <div class="relative">
-          <button
-            type="button"
-            class="tech-dropdown-btn w-full px-3 py-2 rounded-lg text-left transition-colors"
-            aria-expanded="false"
-            aria-haspopup="listbox"
-          >
-            <span class="block truncate">Select technologies...</span>
-            <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-              <svg class="h-4 w-4 text-silver" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7l3-3 3 3m0 6l-3 3-3-3"/>
-              </svg>
-            </span>
-          </button>
-
-          <div class="tech-dropdown-menu absolute z-50 mt-1 w-full bg-steel-blue/95 backdrop-blur-md border border-white/10 rounded-lg shadow-xl hidden max-h-48 overflow-y-auto">
-              {allTechnologies.map(tech => (
-                <label class="tech-dropdown-item flex items-center px-3 py-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    value={tech}
-                    class="mr-2 text-steel-blue focus:ring-steel-blue"
-                    data-filter="technology"
-                  />
-                  <span class="text-white text-sm">{tech}</span>
-                </label>
-              ))}
-            </div>
-          </div>
-        </div>
+    <!-- Sorting Controls -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+      <div class="sort-group">
+        <label class="block text-sm font-medium mb-2">Sort by</label>
+        <select class="sort-select bg-white/5 border border-white/10 rounded px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 transition-colors" aria-label="Sort problems by">
+          <option value="number-asc">Problem # ↑</option>
+          <option value="number-desc">Problem # ↓</option>
+          <option value="difficulty">Difficulty</option>
+          <option value="title">Title A-Z</option>
+        </select>
       </div>
 
       <!-- Search Filter -->
-      <div class="filter-group">
+      <div class="filter-group flex-1">
         <label class="block text-sm font-medium mb-2">Search</label>
         <div class="relative">
           <input
             type="text"
-            placeholder="Search problems..."
+            placeholder="Search"
             class="search-input w-full px-3 py-2 rounded-lg focus:outline-none focus:ring-2 transition-colors"
             data-filter="search"
+            aria-label="Search problems by title or description"
           />
-          <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+          <div class="absolute top-1/2 right-3 transform -translate-y-1/2 pointer-events-none">
             <svg class="h-4 w-4 text-silver/60" fill="none" viewBox="0 0 20 20">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
             </svg>
@@ -120,17 +98,43 @@ const allTechnologies = problems
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Difficulty Filter -->
+  <div class="filter-group mt-6">
+    <label class="block text-sm font-medium mb-2">Difficulty</label>
+    <div class="flex flex-wrap gap-2">
+      {difficulties.map(difficulty => (
+        <label class="filter-checkbox">
+          <input
+            type="checkbox"
+            value={difficulty}
+            class="sr-only"
+            data-filter="difficulty"
+          />
+          <span class={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium cursor-pointer transition-all ${
+            difficulty === 'easy' ? 'text-green-400 bg-green-900/20 hover:bg-green-900/30' :
+            difficulty === 'medium' ? 'text-yellow-400 bg-yellow-900/20 hover:bg-yellow-900/30' :
+            'text-red-400 bg-red-900/20 hover:bg-red-900/30'
+          }`} aria-label={`Filter by ${difficulty} difficulty problems`}>
+            {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+          </span>
+        </label>
+      ))}
+    </div>
+  </div>
 
     <!-- Results & Actions -->
-    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 lg:w-64">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 lg:w-64 mt-6">
       <div class="results-count text-sm">
-        <span class="font-medium" id="results-count">{problems.length}</span> problems
+        <span class="font-medium" id="results-count" aria-live="polite" aria-atomic="true">{problems.length}</span> problems
       </div>
 
       <button
         type="button"
         class="clear-filters-btn px-4 py-2 text-sm font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         disabled
+        aria-label="Clear all active filters"
       >
         Clear filters
       </button>
@@ -163,20 +167,11 @@ const allTechnologies = problems
     background-color: rgba(255, 255, 255, 0.1);
   }
 
-  .tech-dropdown-btn {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border);
-    color: var(--text-primary);
-  }
-
-  .tech-dropdown-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-
   .search-input {
     background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border);
     color: var(--text-primary);
+    line-height: 1.5;
   }
 
   .search-input::placeholder {
@@ -184,7 +179,13 @@ const allTechnologies = problems
     opacity: 0.6;
   }
 
-  .search-input:focus {
+  .sort-select {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+  }
+
+  .sort-select:focus {
     --tw-ring-color: rgba(var(--accent-rgb, 70, 130, 180), 0.5);
     --tw-border-color: rgba(var(--accent-rgb, 70, 130, 180), 0.5);
   }
@@ -220,21 +221,6 @@ const allTechnologies = problems
     --tw-ring-color: rgba(var(--accent-rgb, 70, 130, 180), 0.5);
   }
 
-  .tech-dropdown-menu {
-    background-color: rgba(var(--accent-rgb, 70, 130, 180), 0.95);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--border);
-    box-shadow: 0 20px 25px -5px var(--shadow), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  }
-
-  .tech-dropdown-item:hover {
-    background-color: rgba(var(--accent-rgb, 70, 130, 180), 0.1);
-  }
-
-  .tech-dropdown-item span {
-    color: var(--text-primary);
-  }
-
   .active-filter-badge {
     background-color: rgba(var(--accent-rgb, 70, 130, 180), 0.2);
     color: var(--accent);
@@ -243,7 +229,7 @@ const allTechnologies = problems
 
   /* Mobile responsive styles */
   @media (max-width: 768px) {
-    .filter-controls .grid-cols-3 {
+    .filter-controls .grid-cols-2 {
       @apply grid-cols-1 gap-4;
     }
 
@@ -279,8 +265,8 @@ const allTechnologies = problems
       this.filteredProblems = [...problems];
       this.filters = {
         difficulty: initialFilters.difficulty || [],
-        technologies: initialFilters.technologies || [],
-        search: initialFilters.search || ''
+        search: initialFilters.search || '',
+        sort: initialFilters.sort || 'number-asc'
       };
 
       this.init();
@@ -296,11 +282,6 @@ const allTechnologies = problems
       // Set initial checkbox states based on URL filters
       this.filters.difficulty.forEach(difficulty => {
         const checkbox = this.element.querySelector(`[data-filter="difficulty"][value="${difficulty}"]`);
-        if (checkbox) checkbox.checked = true;
-      });
-
-      this.filters.technologies.forEach(tech => {
-        const checkbox = this.element.querySelector(`[data-filter="technology"][value="${tech}"]`);
         if (checkbox) checkbox.checked = true;
       });
 
@@ -327,17 +308,19 @@ const allTechnologies = problems
         });
       }
 
+      // Sort select
+      const sortSelect = this.element.querySelector('.sort-select');
+      if (sortSelect) {
+        sortSelect.value = this.filters.sort;
+        sortSelect.addEventListener('change', (e) => {
+          this.updateSortFilter(e.target.value);
+        });
+      }
+
       // Difficulty checkboxes
       this.element.querySelectorAll('[data-filter="difficulty"]').forEach(checkbox => {
         checkbox.addEventListener('change', (e) => {
           this.updateDifficultyFilter(e.target);
-        });
-      });
-
-      // Technology checkboxes
-      this.element.querySelectorAll('[data-filter="technology"]').forEach(checkbox => {
-        checkbox.addEventListener('change', (e) => {
-          this.updateTechnologyFilter(e.target);
         });
       });
 
@@ -355,24 +338,6 @@ const allTechnologies = problems
       this.element.querySelector('.clear-filters-btn').addEventListener('click', () => {
         this.clearAllFilters();
       });
-
-      // Technology dropdown toggle
-      const dropdownBtn = this.element.querySelector('.tech-dropdown-btn');
-      const dropdownMenu = this.element.querySelector('.tech-dropdown-menu');
-
-      dropdownBtn.addEventListener('click', () => {
-        const isExpanded = dropdownBtn.getAttribute('aria-expanded') === 'true';
-        dropdownBtn.setAttribute('aria-expanded', !isExpanded);
-        dropdownMenu.classList.toggle('hidden');
-      });
-
-      // Close dropdown when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
-          dropdownBtn.setAttribute('aria-expanded', 'false');
-          dropdownMenu.classList.add('hidden');
-        }
-      });
     }
 
     updateDifficultyFilter(checkbox) {
@@ -384,30 +349,20 @@ const allTechnologies = problems
       this.applyFilters();
     }
 
-    updateTechnologyFilter(checkbox) {
-      if (checkbox.checked) {
-        this.filters.technologies.push(checkbox.value);
-      } else {
-        this.filters.technologies = this.filters.technologies.filter(t => t !== checkbox.value);
-      }
-      this.applyFilters();
-    }
-
     updateSearchFilter(value) {
       this.filters.search = value.trim();
       this.applyFilters();
     }
 
+    updateSortFilter(value) {
+      this.filters.sort = value;
+      this.applyFilters();
+    }
+
     applyFilters() {
-      this.filteredProblems = this.allProblems.filter(problem => {
+      let filtered = this.allProblems.filter(problem => {
         // Difficulty filter
         if (this.filters.difficulty.length > 0 && !this.filters.difficulty.includes(problem.data.difficulty)) {
-          return false;
-        }
-
-        // Technology filter
-        if (this.filters.technologies.length > 0 &&
-            !this.filters.technologies.some(tech => problem.data.technologies.includes(tech))) {
           return false;
         }
 
@@ -423,9 +378,31 @@ const allTechnologies = problems
         return true;
       });
 
+      // Apply sorting
+      filtered = this.sortProblems(filtered);
+
+      this.filteredProblems = filtered;
       this.updateURL();
       this.render();
       this.dispatchFilterEvent();
+    }
+
+    sortProblems(problems) {
+      return [...problems].sort((a, b) => {
+        switch (this.filters.sort) {
+          case 'number-asc':
+            return a.data.problemNumber - b.data.problemNumber;
+          case 'number-desc':
+            return b.data.problemNumber - a.data.problemNumber;
+          case 'difficulty':
+            const difficultyOrder = { easy: 1, medium: 2, hard: 3 };
+            return difficultyOrder[a.data.difficulty] - difficultyOrder[b.data.difficulty];
+          case 'title':
+            return a.data.title.localeCompare(b.data.title);
+          default:
+            return 0;
+        }
+      });
     }
 
     updateURL() {
@@ -435,12 +412,12 @@ const allTechnologies = problems
         params.set('difficulty', this.filters.difficulty.join(','));
       }
 
-      if (this.filters.technologies.length > 0) {
-        params.set('tech', this.filters.technologies.join(','));
-      }
-
       if (this.filters.search) {
         params.set('search', this.filters.search);
+      }
+
+      if (this.filters.sort !== 'number-asc') {
+        params.set('sort', this.filters.sort);
       }
 
       const newURL = params.toString() ? `${window.location.pathname}?${params.toString()}` : window.location.pathname;
@@ -457,7 +434,6 @@ const allTechnologies = problems
       // Update clear filters button
       const clearBtn = this.element.querySelector('.clear-filters-btn');
       const hasActiveFilters = this.filters.difficulty.length > 0 ||
-                              this.filters.technologies.length > 0 ||
                               this.filters.search.length > 0;
       if (clearBtn) {
         clearBtn.disabled = !hasActiveFilters;
@@ -488,18 +464,6 @@ const allTechnologies = problems
         activeFiltersList.appendChild(badge);
       });
 
-      // Add technology badges
-      this.filters.technologies.forEach(tech => {
-        const badge = this.createFilterBadge(`Tech: ${tech}`, () => {
-          const checkbox = this.element.querySelector(`[data-filter="technology"][value="${tech}"]`);
-          if (checkbox) {
-            checkbox.checked = false;
-            this.updateTechnologyFilter(checkbox);
-          }
-        });
-        activeFiltersList.appendChild(badge);
-      });
-
       // Add search badge
       if (this.filters.search) {
         const badge = this.createFilterBadge(`Search: "${this.filters.search}"`, () => {
@@ -514,14 +478,15 @@ const allTechnologies = problems
 
       // Show/hide active filters section
       const hasActiveFilters = this.filters.difficulty.length > 0 ||
-                              this.filters.technologies.length > 0 ||
-                              this.filters.search.length > 0;
+                              this.filters.search.length > 0 ||
+                              this.filters.sort !== 'number-asc';
       activeFiltersContainer.classList.toggle('hidden', !hasActiveFilters);
     }
 
     createFilterBadge(text, onRemove) {
       const badge = document.createElement('span');
       badge.className = 'active-filter-badge';
+      badge.setAttribute('aria-label', `Active filter: ${text}`);
 
       const textSpan = document.createElement('span');
       textSpan.textContent = text;
@@ -531,6 +496,7 @@ const allTechnologies = problems
       removeBtn.type = 'button';
       removeBtn.className = 'ml-1 hover:text-white/80';
       removeBtn.innerHTML = '×';
+      removeBtn.setAttribute('aria-label', `Remove ${text} filter`);
       removeBtn.addEventListener('click', onRemove);
       badge.appendChild(removeBtn);
 
@@ -543,19 +509,18 @@ const allTechnologies = problems
         checkbox.checked = false;
       });
 
-      // Clear technology checkboxes
-      this.element.querySelectorAll('[data-filter="technology"]').forEach(checkbox => {
-        checkbox.checked = false;
-      });
-
       // Clear search input
       const searchInput = this.element.querySelector('[data-filter="search"]');
       if (searchInput) searchInput.value = '';
 
+      // Clear sort select
+      const sortSelect = this.element.querySelector('.sort-select');
+      if (sortSelect) sortSelect.value = 'number-asc';
+
       this.filters = {
         difficulty: [],
-        technologies: [],
-        search: ''
+        search: '',
+        sort: 'number-asc'
       };
 
       this.applyFilters();
@@ -595,6 +560,35 @@ const allTechnologies = problems
     const grid = document.getElementById('problems-grid');
     const emptyState = document.getElementById('empty-state');
 
+    const languageIcons = {
+      python: 'devicon-python-plain',
+      rust: 'devicon-rust-plain',
+      javascript: 'devicon-javascript-plain',
+      java: 'devicon-java-plain',
+      'c++': 'devicon-cplusplus-plain',
+      cpp: 'devicon-cplusplus-plain',
+      go: 'devicon-go-plain',
+      ruby: 'devicon-ruby-plain',
+      c: 'devicon-c-plain',
+      php: 'devicon-php-plain',
+      swift: 'devicon-swift-plain',
+      kotlin: 'devicon-kotlin-plain',
+      typescript: 'devicon-typescript-plain',
+      scala: 'devicon-scala-plain',
+      haskell: 'devicon-haskell-plain',
+      clojure: 'devicon-clojure-plain',
+      erlang: 'devicon-erlang-plain',
+      elixir: 'devicon-elixir-plain',
+      r: 'devicon-r-plain',
+      matlab: 'devicon-matlab-plain',
+      julia: 'devicon-julia-plain',
+      perl: 'devicon-perl-plain',
+      lua: 'devicon-lua-plain',
+      shell: 'devicon-bash-plain',
+      bash: 'devicon-bash-plain',
+      default: 'devicon-code-plain'
+    };
+
     if (!grid) return;
 
     // Clear existing cards
@@ -614,6 +608,7 @@ const allTechnologies = problems
       const card = document.createElement('a');
       card.href = `/euler/${problem.id}/`;
       card.className = 'glass-card group flex flex-col h-full no-underline p-6';
+      card.setAttribute('aria-label', `View solution for Problem ${problem.data.problemNumber}: ${problem.data.title}`);
 
       card.innerHTML = `
         <div class="flex justify-between items-start mb-4">
@@ -625,12 +620,21 @@ const allTechnologies = problems
           }">${problem.data.difficulty}</span>
         </div>
         <h4 class="text-lg font-serif font-bold text-white mb-2 leading-tight">${problem.data.title}</h4>
-        <div class="flex flex-wrap gap-2 mt-auto pt-4">
-          ${problem.data.technologies.map(tech => `
-            <span class="text-[0.65rem] font-mono text-silver bg-white/5 px-2 py-1 rounded border border-white/5">
-              ${tech}
-            </span>
-          `).join('')}
+        <p class="text-sm text-silver/80 mb-4 line-clamp-2">${
+          problem.data.description.length > 100 
+            ? problem.data.description.substring(0, 100) + '...'
+            : problem.data.description
+        }</p>
+        <div class="flex items-center justify-end mt-auto pt-4">
+          
+          <div class="flex flex-wrap gap-1">
+            ${problem.data.technologies.slice(0, problem.data.technologies.length <= 10 ? problem.data.technologies.length : 3).map(tech => 
+              `<span class="text-[0.6rem] font-mono text-silver/60 bg-white/5 px-1.5 py-0.5 rounded flex items-center gap-1" title="${tech}"><i class="${languageIcons[tech.toLowerCase()] || languageIcons.default}"></i></span>`
+            ).join('')}
+            ${problem.data.technologies.length > 10 ? 
+              `<span class="text-[0.6rem] font-mono text-silver/60 bg-white/5 px-1.5 py-0.5 rounded">+${problem.data.technologies.length - 3}</span>` 
+              : ''}
+          </div>
         </div>
       `;
 
