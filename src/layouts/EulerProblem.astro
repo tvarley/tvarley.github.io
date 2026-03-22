@@ -1,5 +1,4 @@
 ---
-import { type CollectionEntry } from 'astro:content';
 import Layout from './Layout.astro';
 import CodeBlock from '../components/CodeBlock.astro';
 import Description from '../components/Description.astro';
@@ -200,7 +199,8 @@ const { problemNumber, title, description, difficulty, technologies, implementat
 	</article>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  // Language tab switching logic - run immediately
+  function initLanguageTabs() {
     const languageTabs = document.querySelectorAll('.language-tab');
     const implementations = document.querySelectorAll('.implementation');
     const jumpToProblem = document.getElementById('jump-to-problem');
@@ -239,6 +239,13 @@ const { problemNumber, title, description, difficulty, technologies, implementat
         }
       });
     }
-  });
+  }
+
+  // Run immediately if DOM is ready, otherwise wait
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLanguageTabs);
+  } else {
+    initLanguageTabs();
+  }
 </script>
 </Layout>
