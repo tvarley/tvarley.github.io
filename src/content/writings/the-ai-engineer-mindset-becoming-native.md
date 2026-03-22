@@ -28,18 +28,9 @@ This requires continuous evolution of our own skills. Learning to think in terms
 
 The screen still glows. The cursor still blinks. But now it blinks with a different quality of anticipation—the sense that something genuinely new is possible if we can rise to the level of the tools we've created. We return to the screen not as solitary craftsmen, but as conductors summoning symphonies from silicon.
 
-**Series Navigation**
-- [Part 1: Orchestration and Control](/writings/the-ai-engineer-mindset-orchestration-control/)
-- [Part 2: Dialoguing with the Unconscious](/writings/the-ai-engineer-mindset-dialoguing-unconscious/)
-- [Part 3: Creative Tension](/writings/the-ai-engineer-mindset-creative-rigor-future/)
-- [Part 4: Becoming Native to the New Medium](/writings/the-ai-engineer-mindset-becoming-native/) (Current)
-- [Part 5: Practical Framework](/writings/the-ai-engineer-mindset-practical-framework/)
-
 **Key Takeaways**
 - The mindset is a complete way of being with technology
 - Business velocity can increase 3-5x with proper orchestration
 - Focus on high-leverage architecture and innovation
 - Evolve skills in systems thinking and metacognition
 - Become the architects of cognitive ecosystems
-
-*Continue to [Part 5: Practical Framework](/writings/the-ai-engineer-mindset-practical-framework/)*
