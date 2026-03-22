@@ -1,0 +1,74 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../../components/FormattedDate.astro';
+
+const writings = (await getCollection('writings'))
+  .filter(w => !w.data.draft)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+---
+
+<Layout 
+  title="Writings | Tim Varley" 
+  description="Essays, reflections, and technical articles on AI-driven development, systems architecture, and engineering philosophy."
+>
+	<section class="py-12">
+		<div class="max-w-4xl mx-auto px-6">
+			<div class="mb-16">
+				<h1 class="text-5xl md:text-6xl font-black text-white mb-6">Writings</h1>
+				<p class="text-xl text-steel-grey max-w-2xl">
+					Long-form essays and reflections on AI orchestration, developer mindset, systems thinking, 
+					and the philosophy of building with intelligent agents.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 gap-8">
+				{writings.map((writing) => (
+					<a 
+						href={`/writings/${writing.id}/`} 
+						class="group glass-card block p-8 hover:-translate-y-0.5 transition-all duration-300 border border-white/10 hover:border-steel-blue/30"
+					>
+						<div class="flex flex-col md:flex-row md:items-start gap-6">
+							<div class="flex-shrink-0">
+								<div class="font-mono text-xs text-steel-blue bg-steel-blue/10 px-3 py-1 rounded border border-steel-blue/20">
+									<FormattedDate date={writing.data.date} />
+								</div>
+								{writing.data.category && (
+									<div class="mt-3 inline-block text-[10px] font-mono uppercase tracking-widest px-2.5 py-0.5 bg-white/5 text-silver rounded">
+										{writing.data.category}
+									</div>
+								)}
+							</div>
+							
+							<div class="flex-1 min-w-0">
+								<h2 class="text-2xl font-serif font-bold text-white group-hover:text-steel-blue transition-colors mb-3 leading-tight">
+									{writing.data.title}
+								</h2>
+								
+								<p class="text-steel-grey text-[15px] leading-relaxed mb-6 line-clamp-3">
+									{writing.data.summary}
+								</p>
+								
+								{writing.data.tags && writing.data.tags.length > 0 && (
+									<div class="flex flex-wrap gap-2">
+										{writing.data.tags.slice(0, 5).map(tag => (
+											<span class="text-xs font-mono px-3 py-1 bg-white/5 text-silver rounded border border-white/10">
+												{tag}
+											</span>
+										))}
+									</div>
+								)}
+							</div>
+						</div>
+					</a>
+				))}
+			</div>
+
+			{writings.length === 0 && (
+				<div class="text-center py-20 text-steel-grey">
+					<p>No published writings yet.</p>
+				</div>
+			)}
+		</div>
+	</section>
+</Layout>
