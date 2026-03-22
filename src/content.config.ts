@@ -32,6 +32,7 @@ const writings = defineCollection({
 		category: z.enum(['blog', 'article', 'reflection']).optional(),
 		tags: z.array(z.string()).optional(),
 		draft: z.boolean().optional(),
+		order: z.number().optional(),
     heroImage: z.string().optional(),
 	}),
 });
