@@ -33,7 +33,9 @@ const writings = defineCollection({
 		tags: z.array(z.string()).optional(),
 		draft: z.boolean().optional(),
 		order: z.number().optional(),
-    heroImage: z.string().optional(),
+		series: z.string().optional(),
+		part: z.number().optional(),
+    	heroImage: z.string().optional(),
 	}),
 });
 

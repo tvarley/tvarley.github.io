@@ -32,13 +32,6 @@ The agents are waiting for direction. The question is whether we'll rise to the 
 
 What goal will you set for your team of digital minds today?
 
-**Series Navigation**
-- [Part 1: Orchestration and Control](/writings/the-ai-engineer-mindset-orchestration-control/)
-- [Part 2: Dialoguing with the Unconscious](/writings/the-ai-engineer-mindset-dialoguing-unconscious/)
-- [Part 3: Creative Tension](/writings/the-ai-engineer-mindset-creative-rigor-future/)
-- [Part 4: Becoming Native to the New Medium](/writings/the-ai-engineer-mindset-becoming-native/)
-- [Part 5: Practical Framework](/writings/the-ai-engineer-mindset-practical-framework/) (Current)
-
 **Key Takeaways**
 - Adopt daily orchestration rituals and context confirmation
 - Use goal-oriented prompting focused on outcomes

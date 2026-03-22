@@ -1,11 +1,10 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import Layout from './Layout.astro';
+import SeriesNavigation from '../components/SeriesNavigation.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 
-type Props = CollectionEntry<'writings'>['data'];
-
-const { title, summary, date, heroImage } = Astro.props;
+const { title, summary, date, heroImage, entry } = Astro.props;
 ---
 
 <Layout title={title} description={summary}>
@@ -42,6 +41,8 @@ const { title, summary, date, heroImage } = Astro.props;
 			<slot />
 		</div>
 	</div>
+
+	<SeriesNavigation currentPost={entry} />
 	</article>
 </Layout>
 

@@ -34,16 +34,9 @@ In the next parts, we explore creative tension, becoming native, and the practic
 
 
 
-**Series Navigation**
-- [Part 1: Orchestration and Control](/writings/the-ai-engineer-mindset-orchestration-control/)
-- [Part 2: Dialoguing with the Unconscious](/writings/the-ai-engineer-mindset-dialoguing-unconscious/) (Current)
-- [Part 3: Creative Tension](/writings/the-ai-engineer-mindset-creative-rigor-future/)
-
 **Key Takeaways**
 - AI allows dialoguing with the collective unconscious of software development
 - Develop metacognition to notice limiting frames in your own thinking
 - Use AI as sparring partner to surface blind spots in debugging and design
 - Avoid dependency by maintaining your own internal models
 - Refine understanding by feeding improved mental models back into prompts
-
-*Continue to [Part 3: Creative Tension](/writings/the-ai-engineer-mindset-creative-rigor-future/)*

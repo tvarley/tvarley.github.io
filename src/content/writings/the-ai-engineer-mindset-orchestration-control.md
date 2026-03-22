@@ -43,19 +43,9 @@ Master this and the agents become force multipliers. Fail to and they become sop
 In Part 2, we'll explore dialoguing with the species' unconscious and developing metacognition.
 
 
-
-**Series Navigation**
-- [Part 1: Orchestration and Control](/writings/the-ai-engineer-mindset-orchestration-control/) (Current)
-- [Part 2: Dialoguing with the Unconscious](/writings/the-ai-engineer-mindset-dialoguing-unconscious/)
-- [Part 3: Creative Tension](/writings/the-ai-engineer-mindset-creative-rigor-future/)
-- [Part 4: Becoming Native to the New Medium](/writings/the-ai-engineer-mindset-becoming-native/)
-- [Part 5: Practical Framework](/writings/the-ai-engineer-mindset-practical-framework/)
-
 **Key Takeaways**
 - You are the boss - treat AI agents as capable but sycophantic toddlers
 - Use Socratic prompting and outcome-focused goals instead of step-by-step instructions
 - Maintain player-level strategic knowledge while providing character-level context
 - Structured conversations build shared understanding incrementally
 - Master orchestration to turn agents into true force multipliers
-
-*Continue to [Part 2: Dialoguing with the Unconscious](/writings/the-ai-engineer-mindset-dialoguing-unconscious/)*
