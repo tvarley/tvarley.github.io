@@ -12,12 +12,12 @@ const { problemNumber, title, allProblems } = Astro.props;
 ---
 
 <solution-exporter
-  class="solution-exporter block"
+  class="solution-exporter inline-block"
   data-problem-number={problemNumber}
   data-title={title}
   data-all-problems={JSON.stringify(allProblems)}
 >
-  <div class="export-controls flex gap-3 mb-4">
+  <div class="export-controls flex gap-3">
     <button
       id="export-single"
       class="export-btn inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-steel-blue text-white border border-steel-blue hover:bg-steel-blue/90 hover:border-steel-blue/80 transition-all duration-200 font-mono text-sm group"
@@ -150,6 +150,19 @@ const { problemNumber, title, allProblems } = Astro.props;
   }
 
   customElements.define('solution-exporter', SolutionExporter);
+
+  // Direct event listener attachment - more reliable than custom element lifecycle
+  document.addEventListener('DOMContentLoaded', () => {
+    const button = document.querySelector('#export-single') as HTMLButtonElement;
+    const exporter = document.querySelector('solution-exporter') as any;
+    
+    if (button && exporter && exporter.handleSingleExport) {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        exporter.handleSingleExport();
+      });
+    }
+  });
 </script>
 
 <style>

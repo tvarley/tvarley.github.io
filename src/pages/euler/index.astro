@@ -10,27 +10,50 @@ const problems = (await getCollection('euler')).sort(
 // Parse URL parameters for server-side filtering (progressive enhancement)
 const url = new URL(Astro.request.url);
 const difficultyParam = url.searchParams.get('difficulty');
-const techParam = url.searchParams.get('tech');
 const searchParam = url.searchParams.get('search');
+const sortParam = url.searchParams.get('sort');
+
+// Language to icon mapping
+const languageIcons = {
+  python: 'devicon-python-plain',
+  rust: 'devicon-rust-plain',
+  javascript: 'devicon-javascript-plain',
+  java: 'devicon-java-plain',
+  'c++': 'devicon-cplusplus-plain',
+  cpp: 'devicon-cplusplus-plain',
+  go: 'devicon-go-plain',
+  ruby: 'devicon-ruby-plain',
+  c: 'devicon-c-plain',
+  php: 'devicon-php-plain',
+  swift: 'devicon-swift-plain',
+  kotlin: 'devicon-kotlin-plain',
+  typescript: 'devicon-typescript-plain',
+  scala: 'devicon-scala-plain',
+  haskell: 'devicon-haskell-plain',
+  clojure: 'devicon-clojure-plain',
+  erlang: 'devicon-erlang-plain',
+  elixir: 'devicon-elixir-plain',
+  r: 'devicon-r-plain',
+  matlab: 'devicon-matlab-plain',
+  julia: 'devicon-julia-plain',
+  perl: 'devicon-perl-plain',
+  lua: 'devicon-lua-plain',
+  shell: 'devicon-bash-plain',
+  bash: 'devicon-bash-plain',
+  // default
+  default: 'devicon-code-plain'
+};
 
 let initialFilters = {};
 let filteredProblems = problems;
 
 // Apply server-side filtering if URL parameters exist (for progressive enhancement)
-if (difficultyParam || techParam || searchParam) {
+if (difficultyParam || searchParam || sortParam) {
   filteredProblems = problems.filter(problem => {
     // Difficulty filter
     if (difficultyParam) {
       const selectedDifficulties = difficultyParam.split(',');
       if (!selectedDifficulties.includes(problem.data.difficulty)) {
-        return false;
-      }
-    }
-
-    // Technology filter
-    if (techParam) {
-      const selectedTech = techParam.split(',');
-      if (!selectedTech.some(tech => problem.data.technologies.includes(tech))) {
         return false;
       }
     }
@@ -47,75 +70,136 @@ if (difficultyParam || techParam || searchParam) {
     return true;
   });
 
+  // Apply server-side sorting
+  if (sortParam) {
+    filteredProblems = filteredProblems.sort((a, b) => {
+      switch (sortParam) {
+        case 'number-asc':
+          return a.data.problemNumber - b.data.problemNumber;
+        case 'number-desc':
+          return b.data.problemNumber - a.data.problemNumber;
+        case 'difficulty':
+          const difficultyOrder = { easy: 1, medium: 2, hard: 3 };
+          return difficultyOrder[a.data.difficulty] - difficultyOrder[b.data.difficulty];
+        case 'title':
+          return a.data.title.localeCompare(b.data.title);
+        default:
+          return 0;
+      }
+    });
+  }
+
   // Set initial filters for client-side component
   initialFilters = {
     difficulty: difficultyParam ? difficultyParam.split(',') : [],
-    technologies: techParam ? techParam.split(',') : [],
-    search: searchParam || ''
+    search: searchParam || '',
+    sort: sortParam || 'number-asc'
   };
 }
 ---
 
 <Layout title="Euler Solutions - Tim Varley" description="Mathematical programming solutions showcasing problem-solving across multiple languages">
-	<section class="py-12">
-    <div class="max-w-3xl mb-16">
-      <h1 class="text-5xl md:text-6xl font-black text-white mb-6">Euler <span class="text-steel-blue">Solutions</span></h1>
-      <p class="text-xl text-steel-grey leading-relaxed mb-6">
-        For over a decade, Project Euler has been a dedicated hobby — a tool I use to explore new languages and compare approaches across familiar and unfamiliar syntax, focusing on style and performance.
-      </p>
-      
-      <p class="text-lg text-silver/80 leading-relaxed mb-6">
-        <a href="https://projecteuler.net" target="_blank" class="text-steel-blue hover:text-white transition-colors font-bold">Project Euler</a> is a series of challenging mathematical and computer programming problems. It provides a platform for the inquiring mind to delve into unfamiliar areas and learn new concepts in a fun and recreational context.
-      </p>
+	<!-- Hero Section -->
+	<div class="hero-section mb-12 mx-auto max-w-6xl px-3 md:px-6 lg:px-8">
+		<h1 class="text-5xl md:text-6xl font-black text-white mb-6">Euler <span class="text-steel-blue">Solutions</span></h1>
+		<p class="text-xl text-steel-grey leading-relaxed mb-6">
+			For over a decade, Project Euler has been my go-to for exploring new languages and comparing approaches. Now it's evolved into an AI research benchmark for studying how agents generate and optimize algorithmic solutions across syntaxes.
+		</p>
+		
+		<p class="text-lg text-silver/80 leading-relaxed">
+			<a href="https://projecteuler.net" target="_blank" class="text-steel-blue hover:text-white transition-colors font-bold">Project Euler</a> provides challenging mathematical programming problems that reward creative problem-solving and efficient code.
+		</p>
+	</div>
 
-      <p class="text-lg text-silver/80 leading-relaxed">
-        More recently this has evolved into a <strong class="text-white">research project in AI-assisted code generation</strong> — using these well-defined problems as a controlled benchmark to study how AI agents produce, optimise, and reason about solutions across languages. The solutions here, and this site itself, were generated through agentic workflows under my direction.
-      </p>
-    </div>
+	<section class="euler-home-layout">
+		<!-- Filters Column -->
+		<div class="filters-column">
+			<!-- Filter Controls -->
+			<FilterControls
+				problems={problems}
+				initialFilters={initialFilters}
+			/>
 
-    <!-- Filter Controls -->
-    <FilterControls
-      problems={problems}
-      initialFilters={initialFilters}
-    />
-
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="problems-grid">
-			{filteredProblems.map((problem) => (
-          <a href={`/euler/${problem.id}/`} class="glass-card group flex flex-col h-full no-underline p-6">
-            <div class="flex justify-between items-start mb-4">
-              <span class="font-mono text-xl font-bold text-steel-blue/80 group-hover:text-steel-blue transition-colors">#{problem.data.problemNumber.toString().padStart(3, '0')}</span>
-              <span class={`text-[0.6rem] font-bold px-2 py-1 rounded uppercase tracking-widest ${
-                problem.data.difficulty === 'easy' ? 'text-green-400 bg-green-900/20' :
-                problem.data.difficulty === 'medium' ? 'text-yellow-400 bg-yellow-900/20' :
-                'text-red-400 bg-red-900/20'
-              }`}>{problem.data.difficulty}</span>
-            </div>
-            
-            <h4 class="text-lg font-serif font-bold text-white mb-2 leading-tight">{problem.data.title}</h4>
-            
-            <div class="flex flex-wrap gap-2 mt-auto pt-4">
-              {problem.data.technologies.map(tech => (
-                <span class="text-[0.65rem] font-mono text-silver bg-white/5 px-2 py-1 rounded border border-white/5">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </a>
-			))}
+			<!-- Statistics -->
+			<div class="glass-card p-6 mb-6">
+				<h3 class="text-lg font-bold text-white mb-4" id="stats-heading">Statistics</h3>
+				<div class="space-y-3" aria-labelledby="stats-heading">
+					<div class="flex justify-between">
+						<span class="text-silver">Total Solutions</span>
+						<span class="text-white font-mono">{problems.length}</span>
+					</div>
+					<div class="flex justify-between">
+						<span class="text-silver">Easy</span>
+						<span class="text-green-400 font-mono">{problems.filter(p => p.data.difficulty === 'easy').length}</span>
+					</div>
+					<div class="flex justify-between">
+						<span class="text-silver">Medium</span>
+						<span class="text-yellow-400 font-mono">{problems.filter(p => p.data.difficulty === 'medium').length}</span>
+					</div>
+					<div class="flex justify-between">
+						<span class="text-silver">Hard</span>
+						<span class="text-red-400 font-mono">{problems.filter(p => p.data.difficulty === 'hard').length}</span>
+					</div>
+				</div>
+			</div>
 		</div>
 
-    <!-- Empty state (initially hidden, shown by JS when needed) -->
-    <div class="text-center py-16 hidden" id="empty-state">
-      <div class="text-6xl mb-4">🔍</div>
-      <h3 class="text-2xl font-bold text-white mb-2">No problems found</h3>
-      <p class="text-silver/80 mb-6">No problems match your current filters. Try adjusting your search criteria.</p>
-      <button
-        class="clear-all-filters px-6 py-3 bg-steel-blue text-white font-medium rounded-lg hover:bg-steel-blue/80 transition-colors"
-        onclick="window.filterControls?.clearAllFilters()"
-      >
-        Clear all filters
-      </button>
-    </div>
+		<!-- Main Content Column -->
+		<div class="main-content-column">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="problems-grid" role="main" aria-label="Euler problems grid">
+				{filteredProblems.map((problem) => (
+					<a href={`/euler/${problem.id}/`} class="glass-card group flex flex-col h-full no-underline p-6" aria-label={`View solution for Problem ${problem.data.problemNumber}: ${problem.data.title}`}>
+						<div class="flex justify-between items-start mb-4">
+							<span class="font-mono text-xl font-bold text-steel-blue/80 group-hover:text-steel-blue transition-colors">#{problem.data.problemNumber.toString().padStart(3, '0')}</span>
+							<span class={`text-[0.6rem] font-bold px-2 py-1 rounded uppercase tracking-widest ${
+								problem.data.difficulty === 'easy' ? 'text-green-400 bg-green-900/20' :
+								problem.data.difficulty === 'medium' ? 'text-yellow-400 bg-yellow-900/20' :
+								'text-red-400 bg-red-900/20'
+							}`}>{problem.data.difficulty}</span>
+						</div>
+						
+						<h4 class="text-lg font-serif font-bold text-white mb-2 leading-tight">{problem.data.title}</h4>
+						
+						<p class="text-sm text-silver/80 mb-4 line-clamp-2">
+							{problem.data.description.length > 100 
+								? problem.data.description.substring(0, 100) + '...'
+								: problem.data.description
+							}
+						</p>
+						
+						<div class="flex items-center justify-between mt-auto pt-4">
+							
+							<div class="flex flex-wrap gap-1">
+								{problem.data.technologies.slice(0, problem.data.technologies.length <= 10 ? problem.data.technologies.length : 3).map(tech => (
+									<span class="text-[0.6rem] font-mono text-silver/60 bg-white/5 px-1.5 py-0.5 rounded flex items-center gap-1" title={tech}>
+										<i class={languageIcons[tech.toLowerCase()] || languageIcons.default}></i>
+									</span>
+								))}
+								{problem.data.technologies.length > 10 && (
+									<span class="text-[0.6rem] font-mono text-silver/60 bg-white/5 px-1.5 py-0.5 rounded">
+										+{problem.data.technologies.length - 3}
+									</span>
+								)}
+							</div>
+						</div>
+					</a>
+				))}
+			</div>
+
+			<!-- Empty state (initially hidden, shown by JS when needed) -->
+			<div class="text-center py-16 hidden" id="empty-state">
+				<div class="text-6xl mb-4">🔍</div>
+				<h3 class="text-2xl font-bold text-white mb-2">No problems found</h3>
+				<p class="text-silver/80 mb-6">No problems match your current filters. Try adjusting your search criteria.</p>
+				<button
+					class="clear-all-filters px-6 py-3 bg-steel-blue text-white font-medium rounded-lg hover:bg-steel-blue/80 transition-colors"
+					onclick="window.filterControls?.clearAllFilters()"
+					aria-label="Clear all filters to show all problems"
+				>
+					Clear all filters
+				</button>
+			</div>
+		</div>
 	</section>
 </Layout>
 
