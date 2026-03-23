@@ -12,7 +12,7 @@ order: 0
 
 # The AI Engineer Mindset
 
-**A 4-Part Series**
+**A 5-Part Series**
 
 The cursor blinked accusingly at 2:47 AM. I'd been circling the same bug for hours, trapped in a mental cul-de-sac of my own making. The logic seemed sound on paper, the tests passed in isolation, yet in production the system degraded under load in ways I couldn't trace. Frustrated, I typed one sentence into the AI chat: "This caching layer is failing under concurrent writes. Walk me through why my locking strategy might be insufficient and suggest three alternative mental models for the problem."
 
@@ -20,7 +20,14 @@ Thirty seconds later, the response didn't just patch the error. It dismantled my
 
 We didn't simply gain a faster compiler or smarter autocomplete. We gained a mirror that reflects our thinking back at us at inhuman scale—and like any good mirror, it reveals both our hidden brilliance and our unconscious blind spots.
 
-This series explores that mindset across five parts:
+This series explores that mindset across five essential parts:
+
+## TL;DR - Series Overview
+- Master AI orchestration through structured prompting and context control
+- Develop metacognition to dialogue with software's collective intelligence
+- Balance creative exploration with rigorous reality testing
+- Embrace conversational creation as the new engineering medium
+- Operationalize the mindset with daily rituals and frameworks
 
 ## The Series
 
