@@ -1,79 +1,248 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import SeriesCard from '../../components/SeriesCard.astro';
+import WritingCard from '../../components/WritingCard.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 
-const writings = (await getCollection('writings'))
-  .filter(w => !w.data.draft)
-  .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999) || new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+// Fetch all writings
+const allWritings = (await getCollection('writings'))
+  .filter(w => !w.data.draft);
+
+// Group by Series
+const seriesGroups: Record<string, { posts: typeof allWritings, title: string, lastDate: Date, description?: string, heroImage?: string, id: string }> = {};
+const standalonePosts: typeof allWritings = [];
+
+allWritings.forEach(post => {
+  if (post.data.series) {
+    if (!seriesGroups[post.data.series]) {
+      seriesGroups[post.data.series] = { 
+        posts: [], 
+        title: post.data.seriesTitle || post.data.title, 
+        lastDate: new Date(0),
+        description: undefined, // Will be filled by order:0 post
+        heroImage: undefined,   // Will be filled by order:0 post
+        id: ''                  // Will be determined after sorting
+      };
+    }
+    seriesGroups[post.data.series].posts.push(post);
+    
+    // Track latest date for sorting the series list itself
+    const postDate = new Date(post.data.date);
+    if (postDate > seriesGroups[post.data.series].lastDate) {
+        seriesGroups[post.data.series].lastDate = postDate;
+    }
+
+  } else {
+    // Standalone
+    if (!post.data.tags?.includes('series')) {
+        standalonePosts.push(post);
+    }
+  }
+});
+
+// Process groups to determine Metadata (Title, Description, ID) based on the Overview post (Order 0) or First post
+Object.values(seriesGroups).forEach(group => {
+    // Sort posts by order
+    group.posts.sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+    
+    // The "Overview" or "Start" is the first post after sorting
+    const primaryPost = group.posts[0];
+    
+    if (primaryPost) {
+        group.id = primaryPost.id;
+        group.title = primaryPost.data.seriesTitle || primaryPost.data.title;
+        // Prefer the summary from the overview post
+        group.description = primaryPost.data.summary; 
+        
+        // Try to find a hero image in the group if the primary doesn't have one
+        if (primaryPost.data.heroImage) {
+            group.heroImage = primaryPost.data.heroImage;
+        } else {
+            const postWithImage = group.posts.find(p => p.data.heroImage);
+            if (postWithImage) {
+                group.heroImage = postWithImage.data.heroImage;
+            }
+        }
+    }
+});
+
+// Convert groups to array and sort by latest update
+const seriesList = Object.values(seriesGroups).sort((a, b) => b.lastDate.getTime() - a.lastDate.getTime());
+
+// Sort standalone posts by date
+standalonePosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+
+// --- FEATURED LOGIC ---
+let featuredItem = null;
+let featuredType = 'none'; // 'series' | 'article'
+
+const latestSeries = seriesList.length > 0 ? seriesList[0] : null;
+const latestArticle = standalonePosts.length > 0 ? standalonePosts[0] : null;
+
+if (latestSeries && latestArticle) {
+    if (latestSeries.lastDate > new Date(latestArticle.data.date)) {
+        featuredItem = latestSeries;
+        featuredType = 'series';
+        // Remove from list
+        seriesList.shift();
+    } else {
+        featuredItem = latestArticle;
+        featuredType = 'article';
+        // Remove from list
+        standalonePosts.shift();
+    }
+} else if (latestSeries) {
+    featuredItem = latestSeries;
+    featuredType = 'series';
+    seriesList.shift();
+} else if (latestArticle) {
+    featuredItem = latestArticle;
+    featuredType = 'article';
+    standalonePosts.shift();
+}
+
 ---
 
 <Layout 
   title="Writings | Tim Varley" 
   description="Essays, reflections, and technical articles on AI-driven development, systems architecture, and engineering philosophy."
 >
-	<section class="py-12">
-		<div class="max-w-4xl mx-auto px-6">
-			<div class="mb-16">
-				<h1 class="text-5xl md:text-6xl font-black text-white mb-6">Writings</h1>
-				<p class="text-xl text-steel-grey max-w-2xl">
-					Long-form essays and reflections on AI orchestration, developer mindset, systems thinking, 
-					and the philosophy of building with intelligent agents.
-				</p>
+	<section class="py-12 md:py-20">
+		<div class="max-w-7xl mx-auto px-6">
+			
+			{/* Page Header */}
+			<div class="hero-section mb-12 mx-auto max-w-6xl px-3 md:px-6 lg:px-8">
+				<h1 class="text-5xl md:text-6xl font-black text-white mb-6">Engineering <span class="text-steel-blue">Essays</span></h1>
+				<div class="max-w-3xl">
+					<p class="text-xl text-steel-grey leading-relaxed mb-6">
+						This collection serves as a living laboratory for the philosophy of software engineering in the age of artificial intelligence. It documents the transition from individual contribution to system orchestration, exploring how we reason about, build, and scale complex adaptive systems.
+					</p>
+					<p class="text-lg text-silver/80 leading-relaxed">
+						Here you will find deep dives into AI-driven development patterns, reflections on the changing nature of the engineer's role, and practical architectural guides for building with intelligent agents.
+					</p>
+				</div>
 			</div>
 
-			<div class="grid grid-cols-1 gap-8">
-				{writings.map((writing) => (
-					<a 
-						href={`/writings/${writing.id}/`} 
-						class="group glass-card block p-8 hover:-translate-y-0.5 transition-all duration-300 border border-white/10 hover:border-steel-blue/30"
-					>
-						<div class="flex flex-col md:flex-row md:items-start gap-6">
-							<div class="flex-shrink-0">
-								<div class="font-mono text-xs text-steel-blue bg-steel-blue/10 px-3 py-1 rounded border border-steel-blue/20">
-									<FormattedDate date={writing.data.date} />
-								</div>
-								{writing.data.category && (
-									<div class="mt-3 inline-block text-[10px] font-mono uppercase tracking-widest px-2.5 py-0.5 bg-white/5 text-silver rounded">
-										{writing.data.category}
-									</div>
-								)}
-							</div>
-							
-							<div class="flex-1 min-w-0">
-								{writing.data.seriesTitle && (
-									<div class="text-sm text-steel-blue mb-1 font-medium">
-										Part of {writing.data.seriesTitle}
-									</div>
-								)}
-								<h2 class="text-2xl font-serif font-bold text-white group-hover:text-steel-blue transition-colors mb-3 leading-tight">
-									{writing.data.title}
-								</h2>
-								
-								<p class="text-steel-grey text-[15px] leading-relaxed mb-6 line-clamp-3">
-									{writing.data.summary}
-								</p>
-								
-								{writing.data.tags && writing.data.tags.length > 0 && (
-									<div class="flex flex-wrap gap-2">
-										{writing.data.tags.slice(0, 5).map(tag => (
-											<span class="text-xs font-mono px-3 py-1 bg-white/5 text-silver rounded border border-white/10">
-												{tag}
-											</span>
-										))}
-									</div>
-								)}
-							</div>
-						</div>
-					</a>
-				))}
-			</div>
+            {/* Featured Hero Section */}
+            {featuredItem && (
+                <div class="mb-24 relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-steel-blue to-cyan-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+                    <div class="relative bg-charcoal-light border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+                        <div class="grid md:grid-cols-2 gap-0">
+                            
+                            {/* Image Side */}
+                            <div class="relative h-64 md:h-auto min-h-[300px] overflow-hidden">
+                                {featuredType === 'series' && (
+                                    <div class="absolute top-6 left-6 z-10">
+                                        <span class="px-3 py-1 text-xs font-mono font-bold uppercase tracking-widest text-white bg-steel-blue/90 backdrop-blur-md rounded shadow-sm">
+                                            Latest Series
+                                        </span>
+                                    </div>
+                                )}
+                                {featuredType === 'article' && (
+                                    <div class="absolute top-6 left-6 z-10">
+                                        <span class="px-3 py-1 text-xs font-mono font-bold uppercase tracking-widest text-charcoal bg-white/90 backdrop-blur-md rounded shadow-sm">
+                                            Featured Article
+                                        </span>
+                                    </div>
+                                )}
+                                
+                                {(featuredType === 'series' ? featuredItem.heroImage : featuredItem.data.heroImage) ? (
+                                    <img 
+                                        src={featuredType === 'series' ? featuredItem.heroImage : featuredItem.data.heroImage} 
+                                        alt="Featured" 
+                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                ) : (
+                                    <div class="absolute inset-0 bg-gradient-to-br from-steel-blue/20 to-charcoal flex items-center justify-center">
+                                       <svg class="w-32 h-32 text-white/5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
+                                        </svg>
+                                    </div>
+                                )}
+                                <div class="absolute inset-0 bg-gradient-to-r from-charcoal/50 to-transparent md:bg-gradient-to-l md:from-charcoal-light md:via-charcoal-light/10 md:to-transparent"></div>
+                            </div>
 
-			{writings.length === 0 && (
-				<div class="text-center py-20 text-steel-grey">
-					<p>No published writings yet.</p>
+                            {/* Content Side */}
+                            <div class="p-8 md:p-12 flex flex-col justify-center">
+                                <div class="mb-2 font-mono text-sm text-steel-blue">
+                                    <FormattedDate date={featuredType === 'series' ? featuredItem.lastDate : featuredItem.data.date} />
+                                </div>
+                                
+                                <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-black text-white mb-6 leading-tight">
+                                    <a href={featuredType === 'series' ? `/writings/${featuredItem.id}/` : `/writings/${featuredItem.id}/`} class="hover:text-steel-blue transition-colors">
+                                        {featuredType === 'series' ? featuredItem.title : featuredItem.data.title}
+                                    </a>
+                                </h2>
+                                
+                                <p class="text-lg text-silver/80 mb-8 leading-relaxed line-clamp-3">
+                                    {featuredType === 'series' 
+                                        ? (featuredItem.description || `Explore this ${featuredItem.posts.length}-part series.`) 
+                                        : featuredItem.data.summary}
+                                </p>
+
+                                <div class="mt-auto">
+                                    <a 
+                                        href={featuredType === 'series' ? `/writings/${featuredItem.id}/` : `/writings/${featuredItem.id}/`}
+                                        class="inline-flex items-center gap-2 text-white font-bold hover:gap-4 transition-all group/link"
+                                    >
+                                        <span class="border-b-2 border-steel-blue pb-0.5">Read Now</span>
+                                        <svg class="w-5 h-5 text-steel-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+			{/* Series Section */}
+			{seriesList.length > 0 && (
+				<div class="mb-24">
+					<div class="flex items-center gap-4 mb-10">
+						<h2 class="text-2xl font-mono uppercase tracking-widest text-white">Deep Dives & Series</h2>
+						<div class="h-px bg-white/10 flex-1"></div>
+					</div>
+					
+					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+						{seriesList.map((group) => (
+							<SeriesCard 
+								seriesTitle={group.title} 
+								posts={group.posts}
+                                description={group.description || `A collection of ${group.posts.length} articles.`}
+                                heroImage={group.heroImage}
+                                id={group.id}
+							/>
+						))}
+					</div>
 				</div>
 			)}
+
+			{/* Standalone Articles Section */}
+			{standalonePosts.length > 0 && (
+				<div>
+					<div class="flex items-center gap-4 mb-10">
+						<h2 class="text-2xl font-mono uppercase tracking-widest text-white">Latest Articles</h2>
+						<div class="h-px bg-white/10 flex-1"></div>
+					</div>
+
+					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+						{standalonePosts.map((writing) => (
+							<WritingCard writing={writing} />
+						))}
+					</div>
+				</div>
+			)}
+            
+            {/* Empty State */}
+            {allWritings.length === 0 && (
+                <div class="text-center py-20 text-steel-grey border border-dashed border-white/10 rounded-2xl">
+                    <p class="font-mono">System initialized. No data entries found.</p>
+                </div>
+            )}
+
 		</div>
 	</section>
 </Layout>

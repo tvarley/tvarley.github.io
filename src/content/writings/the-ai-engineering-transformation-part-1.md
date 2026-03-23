@@ -14,7 +14,6 @@ part: 1
 
 # The AI Engineering Transformation - Part 1: Why Now & How It Fails
 
-**Part 1 of 3**
 
 Last quarter, the engineering leader at a 120-person Series B SaaS company watched two smaller competitors ship major features in the time it took her team to complete their sprint planning. Both competitors had the same tech stack, similar talent density, and smaller budgets. The difference? They'd fundamentally redesigned how their engineers worked with AI.
 

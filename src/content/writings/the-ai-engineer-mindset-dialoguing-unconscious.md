@@ -14,7 +14,6 @@ order: 2
 
 # The AI Engineer Mindset - Part 2: Dialoguing with the Unconscious
 
-**Part 2 of 5 in the AI Engineer Mindset series**
 
 *Building on [Part 1's](/writings/the-ai-engineer-mindset-orchestration-control/) orchestration techniques, this part examines the deeper psychological and philosophical aspects of working with AI.*
 

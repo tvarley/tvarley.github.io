@@ -14,7 +14,6 @@ part: 3
 
 # The AI Engineering Transformation - Part 3: Making It Real
 
-**Part 3 of 3**
 
 ## Measuring What Matters
 

@@ -14,7 +14,6 @@ order: 1
 
 # The AI Engineer Mindset - Part 1: Orchestration and Control
 
-**Part 1 of 5 in the AI Engineer Mindset series**
 
 *Building on the foundations from the series introduction, we examine how to take control as the orchestrator of AI agents.*
 

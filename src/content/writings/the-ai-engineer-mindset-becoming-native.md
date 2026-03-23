@@ -14,7 +14,6 @@ order: 4
 
 # The AI Engineer Mindset - Part 4: Becoming Native to the New Medium
 
-**Part 4 of 5 in the AI Engineer Mindset series**
 
 *Building on [Part 3's](/writings/the-ai-engineer-mindset-creative-rigor-future/) creative-rigor balance, we explore the complete transformation of engineering identity.*
 

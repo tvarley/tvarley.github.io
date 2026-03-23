@@ -14,7 +14,6 @@ part: 2
 
 # The AI Engineering Transformation - Part 2: Organizational Design
 
-**Part 2 of 3**
 
 ## Hiring for Judgment, Not Speed
 
