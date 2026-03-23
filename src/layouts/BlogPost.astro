@@ -159,9 +159,16 @@ breadcrumbItems.push({ label: title, href: undefined });
 		// Article Sections (TOC)
 		function buildTableOfContents() {
 			const tocNav = document.getElementById('toc-nav');
-			const headings = document.querySelectorAll('.markdown-content h2'); // Only H2
-			
 			if (!tocNav) return;
+			
+			// Try different selectors for headings
+			let headings = document.querySelectorAll('.markdown-content h2');
+			if (headings.length === 0) {
+				headings = document.querySelectorAll('article h2'); // Fallback
+			}
+			if (headings.length === 0) {
+				headings = document.querySelectorAll('h2'); // Last resort
+			}
 			
 			// Clear loading text
 			tocNav.innerHTML = '';
@@ -302,14 +309,62 @@ breadcrumbItems.push({ label: title, href: undefined });
 			// Sidebar is now always visible - no toggle functionality
 		}
 
-		// Initialize when DOM is ready
-		document.addEventListener('DOMContentLoaded', () => {
-			buildTableOfContents();
-			buildRelatedArticles();
-			enhanceCodeBlocks();
-			initSidebarToggle();
-			updateReadingProgress();
-		});
+		// Function to initialize sidebar when content is ready
+		function initializeSidebar() {
+			const tocNav = document.getElementById('toc-nav');
+			const relatedContainer = document.getElementById('related-articles');
+			const headings = document.querySelectorAll('.markdown-content h2, article h2, h2');
+			
+			// Check if we have the containers and some content to work with
+			if (tocNav && relatedContainer && headings.length > 0) {
+				buildTableOfContents();
+				buildRelatedArticles();
+				enhanceCodeBlocks();
+				initSidebarToggle();
+				updateReadingProgress();
+				return true; // Successfully initialized
+			}
+			return false; // Not ready yet
+		}
+
+		// Watch for content changes using MutationObserver
+		function watchForContent() {
+			const markdownContent = document.querySelector('.markdown-content');
+			if (!markdownContent) return;
+			
+			const observer = new MutationObserver((mutations) => {
+				// Check if we now have headings
+				const headings = document.querySelectorAll('.markdown-content h2, article h2, h2');
+				if (headings.length > 0) {
+					buildTableOfContents();
+					observer.disconnect(); // Stop watching once we have content
+				}
+			});
+			
+			observer.observe(markdownContent, {
+				childList: true,
+				subtree: true
+			});
+		}
+
+		// Try to initialize immediately
+		if (!initializeSidebar()) {
+			// Start watching for content changes
+			watchForContent();
+			
+			// Also try with delays as fallback
+			setTimeout(() => {
+				if (!initializeSidebar()) {
+					setTimeout(() => {
+						if (!initializeSidebar()) {
+							setTimeout(() => {
+								initializeSidebar(); // Final attempt
+							}, 1000);
+						}
+					}, 500);
+				}
+			}, 100);
+		}
 
 		// Update progress on scroll
 		window.addEventListener('scroll', updateReadingProgress);
