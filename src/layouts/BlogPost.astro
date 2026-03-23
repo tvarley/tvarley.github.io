@@ -93,10 +93,20 @@ breadcrumbItems.push({ label: title, href: undefined });
 			</article>
 
 			{/* Active Reader Sidebar */}
-			<aside class="lg:col-span-1">
-				<div class="sticky top-8 space-y-8">
+			<aside id="reader-sidebar" class="lg:col-span-1 transition-all duration-300">
+				<div class="sticky top-24 space-y-8">
+					{/* Sidebar Toggle */}
+					<div class="flex items-center justify-between mb-6">
+						<h2 class="text-sm font-mono uppercase tracking-widest text-steel-blue">Reader Tools</h2>
+						<button id="sidebar-toggle" class="text-steel-blue hover:text-white transition-colors p-1">
+							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+							</svg>
+						</button>
+					</div>
+
 					{/* Reading Progress */}
-					<div class="bg-charcoal-light border border-white/10 rounded-2xl p-6">
+					<div class="sidebar-section bg-charcoal-light border border-white/10 rounded-2xl p-6">
 						<h3 class="text-sm font-mono uppercase tracking-widest text-steel-blue mb-4">Reading Progress</h3>
 						<div class="w-full bg-white/5 rounded-full h-2 mb-2">
 							<div id="reading-progress" class="bg-steel-blue h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
@@ -106,16 +116,16 @@ breadcrumbItems.push({ label: title, href: undefined });
 						</div>
 					</div>
 
-					{/* Table of Contents */}
-					<div class="bg-charcoal-light border border-white/10 rounded-2xl p-6">
-						<h3 class="text-sm font-mono uppercase tracking-widest text-steel-blue mb-4">Table of Contents</h3>
+					{/* Article Sections */}
+					<div class="sidebar-section bg-charcoal-light border border-white/10 rounded-2xl p-6">
+						<h3 class="text-sm font-mono uppercase tracking-widest text-steel-blue mb-4">Article Sections</h3>
 						<nav id="toc-nav" class="space-y-2">
-							<div class="sidebar-loading text-xs text-silver">Loading table of contents...</div>
+							<div class="sidebar-loading text-xs text-silver">Loading sections...</div>
 						</nav>
 					</div>
 
 					{/* Related Articles */}
-					<div class="bg-charcoal-light border border-white/10 rounded-2xl p-6">
+					<div class="sidebar-section bg-charcoal-light border border-white/10 rounded-2xl p-6">
 						<h3 class="text-sm font-mono uppercase tracking-widest text-steel-blue mb-4">Related Articles</h3>
 						<div id="related-articles" class="space-y-3">
 							<div class="sidebar-loading text-xs text-silver">Finding related articles...</div>
@@ -156,24 +166,29 @@ breadcrumbItems.push({ label: title, href: undefined });
 			progressText.textContent = `${Math.round(progress * 100)}`;
 		}
 
-		// Table of Contents
+		// Article Sections (TOC)
 		function buildTableOfContents() {
 			const tocNav = document.getElementById('toc-nav');
-			const headings = document.querySelectorAll('.markdown-content h1, .markdown-content h2, .markdown-content h3');
+			const headings = document.querySelectorAll('.markdown-content h2'); // Only H2
 			
-			if (!tocNav || headings.length === 0) return;
+			if (!tocNav) return;
+			
+			// Clear loading text
+			tocNav.innerHTML = '';
+			
+			if (headings.length === 0) {
+				tocNav.innerHTML = '<p class="text-xs text-silver">No sections found</p>';
+				return;
+			}
 			
 			headings.forEach((heading, index) => {
 				const id = `heading-${index}`;
 				heading.id = id;
 				
-				const level = parseInt(heading.tagName.charAt(1));
-				const indent = level === 1 ? '' : level === 2 ? 'ml-4' : 'ml-8';
-				
 				const link = document.createElement('a');
 				link.href = `#${id}`;
 				link.textContent = heading.textContent;
-				link.className = `${indent} block text-sm text-silver hover:text-steel-blue transition-colors py-1 border-l-2 border-transparent hover:border-steel-blue pl-3`;
+				link.className = 'block text-sm text-silver hover:text-steel-blue transition-colors py-1 border-l-2 border-transparent hover:border-steel-blue pl-3';
 				
 				tocNav.appendChild(link);
 			});
@@ -183,6 +198,9 @@ breadcrumbItems.push({ label: title, href: undefined });
 		function buildRelatedArticles() {
 			const relatedContainer = document.getElementById('related-articles');
 			if (!relatedContainer) return;
+			
+			// Clear loading text
+			relatedContainer.innerHTML = '';
 			
 			// Find related articles based on tags, series, or category
 			const related = allWritings
@@ -289,24 +307,62 @@ breadcrumbItems.push({ label: title, href: undefined });
 			});
 		}
 
+		// Sidebar collapse functionality
+		function initSidebarToggle() {
+			const sidebar = document.getElementById('reader-sidebar');
+			const toggleBtn = document.getElementById('sidebar-toggle');
+			let isCollapsed = false;
+			
+			if (!sidebar || !toggleBtn) return;
+			
+			toggleBtn.addEventListener('click', () => {
+				isCollapsed = !isCollapsed;
+				
+				if (isCollapsed) {
+					sidebar.classList.add('collapsed');
+					toggleBtn.innerHTML = `
+						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+						</svg>
+					`;
+				} else {
+					sidebar.classList.remove('collapsed');
+					toggleBtn.innerHTML = `
+						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+						</svg>
+					`;
+				}
+			});
+		}
+
 		// Initialize when DOM is ready
 		document.addEventListener('DOMContentLoaded', () => {
 			buildTableOfContents();
 			buildRelatedArticles();
 			enhanceCodeBlocks();
+			initSidebarToggle();
 			updateReadingProgress();
 		});
 
 		// Update progress on scroll
 		window.addEventListener('scroll', updateReadingProgress);
 		
-		// Smooth scroll for ToC links
+		// Smooth scroll for ToC links with offset for navbar
 		document.addEventListener('click', (e) => {
-			if (e.target.matches('#toc-nav a')) {
+			if (e.target.closest('#toc-nav a')) {
 				e.preventDefault();
-				const target = document.querySelector(e.target.getAttribute('href'));
+				const link = e.target.closest('#toc-nav a');
+				const target = document.querySelector(link.getAttribute('href'));
 				if (target) {
-					target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+					const offset = 100; // Offset for navbar
+					const elementPosition = target.getBoundingClientRect().top;
+					const offsetPosition = elementPosition + window.pageYOffset - offset;
+					
+					window.scrollTo({
+						top: offsetPosition,
+						behavior: 'smooth'
+					});
 				}
 			}
 		});
@@ -439,5 +495,41 @@ breadcrumbItems.push({ label: title, href: undefined });
     /* Smooth scroll behavior */
     html {
         scroll-behavior: smooth;
+    }
+    
+    /* Sidebar collapse styles */
+    #reader-sidebar.collapsed {
+        display: none;
+    }
+    
+    @media (min-width: 1024px) {
+        #reader-sidebar.collapsed {
+            display: block;
+            width: 48px; /* Minimal width */
+        }
+        
+        #reader-sidebar.collapsed .sidebar-section {
+            display: none;
+        }
+        
+        #reader-sidebar.collapsed .sidebar-section:first-of-type {
+            display: block;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        
+        #reader-sidebar.collapsed .sidebar-section h3 {
+            font-size: 10px;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        
+        #reader-sidebar.collapsed #reading-progress {
+            height: 4px;
+        }
+        
+        #reader-sidebar.collapsed #progress-text {
+            font-size: 8px;
+        }
     }
 </style>
