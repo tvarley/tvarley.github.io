@@ -9,6 +9,7 @@ tags: ["ai", "leadership", "transformation", "engineering-management", "roi", "s
 draft: false
 order: 0
 series: "ai-engineering-transformation"
+heroImage: '/images/AI_transformation.png'
 ---
 
 # The AI Engineering Transformation: A Leader's Playbook

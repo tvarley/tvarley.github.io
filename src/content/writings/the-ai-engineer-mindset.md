@@ -9,6 +9,7 @@ tags: ["ai", "mindset", "engineering", "creativity", "orchestration", "series"]
 draft: false
 series: "ai-engineer-mindset"
 order: 0
+heroImage: '/images/AI_engineer_mindset.png'
 ---
 
 # The AI Engineer Mindset
