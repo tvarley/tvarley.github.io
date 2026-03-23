@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import SeriesCard from '../../components/SeriesCard.astro';
 import WritingCard from '../../components/WritingCard.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
+import EssayFilterControls from '../../components/EssayFilterControls.astro';
 
 // Fetch all writings
 const allWritings = (await getCollection('writings'))
@@ -127,7 +128,7 @@ if (latestSeries && latestArticle) {
 
             {/* Featured Hero Section */}
             {featuredItem && (
-                <div class="mb-24 relative group">
+                <div class="mb-16 relative group">
                     <div class="absolute -inset-1 bg-gradient-to-r from-steel-blue to-cyan-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
                     <div class="relative bg-charcoal-light border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
                         <div class="grid md:grid-cols-2 gap-0">
@@ -198,9 +199,12 @@ if (latestSeries && latestArticle) {
                 </div>
             )}
 
+            {/* Filter Controls */}
+            <EssayFilterControls allPosts={allWritings} />
+
 			{/* Series Section */}
 			{seriesList.length > 0 && (
-				<div class="mb-24">
+				<div id="series-section" class="mb-24">
 					<div class="flex items-center gap-4 mb-10">
 						<h2 class="text-2xl font-mono uppercase tracking-widest text-white">Deep Dives & Series</h2>
 						<div class="h-px bg-white/10 flex-1"></div>
@@ -208,13 +212,21 @@ if (latestSeries && latestArticle) {
 					
 					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 						{seriesList.map((group) => (
-							<SeriesCard 
-								seriesTitle={group.title} 
-								posts={group.posts}
-                                description={group.description || `A collection of ${group.posts.length} articles.`}
-                                heroImage={group.heroImage}
-                                id={group.id}
-							/>
+                            <div 
+                                class="essay-item h-full" 
+                                data-type="series" 
+                                data-title={group.title} 
+                                data-description={group.description}
+                                data-tags="series"
+                            >
+                                <SeriesCard 
+                                    seriesTitle={group.title} 
+                                    posts={group.posts}
+                                    description={group.description || `A collection of ${group.posts.length} articles.`}
+                                    heroImage={group.heroImage}
+                                    id={group.id}
+                                />
+                            </div>
 						))}
 					</div>
 				</div>
@@ -222,7 +234,7 @@ if (latestSeries && latestArticle) {
 
 			{/* Standalone Articles Section */}
 			{standalonePosts.length > 0 && (
-				<div>
+				<div id="articles-section">
 					<div class="flex items-center gap-4 mb-10">
 						<h2 class="text-2xl font-mono uppercase tracking-widest text-white">Latest Articles</h2>
 						<div class="h-px bg-white/10 flex-1"></div>
@@ -230,7 +242,15 @@ if (latestSeries && latestArticle) {
 
 					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 						{standalonePosts.map((writing) => (
-							<WritingCard writing={writing} />
+                            <div 
+                                class="essay-item h-full" 
+                                data-type="article"
+                                data-title={writing.data.title}
+                                data-tags={writing.data.tags?.join(' ')}
+                                data-description={writing.data.summary}
+                            >
+                                <WritingCard writing={writing} />
+                            </div>
 						))}
 					</div>
 				</div>

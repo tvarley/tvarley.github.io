@@ -1,0 +1,193 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  allPosts: CollectionEntry<'writings'>[];
+}
+
+const { allPosts } = Astro.props;
+
+// Extract unique categories and tags for filter options
+const categories = [...new Set(allPosts.map(p => p.data.category).filter(Boolean))];
+---
+
+<div id="essay-controls" class="mb-12 relative z-20">
+  <div class="glass-card p-4 md:p-6 bg-charcoal/80 backdrop-blur-md border border-white/10 rounded-xl">
+    <div class="flex flex-col md:flex-row gap-4 items-center">
+      
+      {/* Search Input */}
+      <div class="relative flex-1 w-full">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <svg class="h-5 w-5 text-silver/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+        <input 
+          type="text" 
+          id="search-input"
+          placeholder="Search essays, series, and concepts..." 
+          class="block w-full pl-10 pr-3 py-2.5 border border-white/10 rounded-lg leading-5 bg-white/5 text-white placeholder-silver/50 focus:outline-none focus:ring-1 focus:ring-steel-blue focus:border-steel-blue sm:text-sm transition-colors"
+        />
+        <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+            <button id="clear-search" class="text-silver/50 hover:text-white hidden">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+      </div>
+
+      {/* Toggles */}
+      <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 no-scrollbar">
+        <button 
+            data-filter="all"
+            class="filter-chip active px-4 py-2 rounded-lg text-sm font-mono border border-steel-blue/50 bg-steel-blue/10 text-white whitespace-nowrap transition-all hover:bg-steel-blue/20"
+        >
+            All
+        </button>
+        <button 
+            data-filter="series"
+            class="filter-chip px-4 py-2 rounded-lg text-sm font-mono border border-white/10 bg-white/5 text-silver whitespace-nowrap transition-all hover:bg-white/10 hover:text-white"
+        >
+            Series
+        </button>
+        <button 
+            data-filter="article"
+            class="filter-chip px-4 py-2 rounded-lg text-sm font-mono border border-white/10 bg-white/5 text-silver whitespace-nowrap transition-all hover:bg-white/10 hover:text-white"
+        >
+            Articles
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  class EssayFilter {
+    constructor() {
+      this.input = document.getElementById('search-input');
+      this.clearBtn = document.getElementById('clear-search');
+      this.chips = document.querySelectorAll('.filter-chip');
+      this.items = document.querySelectorAll('.essay-item');
+      this.sections = {
+        series: document.getElementById('series-section'),
+        articles: document.getElementById('articles-section')
+      };
+      
+      this.state = {
+        query: '',
+        type: 'all' // all, series, article
+      };
+
+      this.init();
+    }
+
+    init() {
+      if (!this.input) return;
+
+      // Event Listeners
+      this.input.addEventListener('input', (e) => this.handleSearch(e));
+      this.clearBtn.addEventListener('click', () => this.clearSearch());
+      
+      this.chips.forEach(chip => {
+        chip.addEventListener('click', () => this.handleTypeFilter(chip));
+      });
+    }
+
+    handleSearch(e) {
+      this.state.query = e.target.value.toLowerCase();
+      this.toggleClearButton();
+      this.filter();
+    }
+
+    clearSearch() {
+      this.input.value = '';
+      this.state.query = '';
+      this.toggleClearButton();
+      this.filter();
+      this.input.focus();
+    }
+
+    toggleClearButton() {
+        if (this.state.query.length > 0) {
+            this.clearBtn?.classList.remove('hidden');
+        } else {
+            this.clearBtn?.classList.add('hidden');
+        }
+    }
+
+    handleTypeFilter(clickedChip) {
+      // UI Update
+      this.chips.forEach(c => {
+        c.classList.remove('active', 'border-steel-blue/50', 'bg-steel-blue/10', 'text-white');
+        c.classList.add('border-white/10', 'bg-white/5', 'text-silver');
+      });
+      
+      clickedChip.classList.remove('border-white/10', 'bg-white/5', 'text-silver');
+      clickedChip.classList.add('active', 'border-steel-blue/50', 'bg-steel-blue/10', 'text-white');
+
+      // State Update
+      this.state.type = clickedChip.dataset.filter;
+      this.filter();
+    }
+
+    filter() {
+      let visibleSeriesCount = 0;
+      let visibleArticleCount = 0;
+
+      this.items.forEach(item => {
+        const title = item.dataset.title?.toLowerCase() || '';
+        const tags = item.dataset.tags?.toLowerCase() || '';
+        const type = item.dataset.type; // 'series' or 'article'
+        const desc = item.dataset.description?.toLowerCase() || '';
+
+        // 1. Text Match
+        const matchesText = this.state.query === '' || 
+                            title.includes(this.state.query) || 
+                            tags.includes(this.state.query) ||
+                            desc.includes(this.state.query);
+
+        // 2. Type Match
+        const matchesType = this.state.type === 'all' || this.state.type === type;
+
+        // Final Visibility
+        const isVisible = matchesText && matchesType;
+        
+        if (isVisible) {
+            item.classList.remove('hidden');
+            if (type === 'series') visibleSeriesCount++;
+            if (type === 'article') visibleArticleCount++;
+        } else {
+            item.classList.add('hidden');
+        }
+      });
+
+      // Handle Section Visibility
+      this.toggleSection(this.sections.series, visibleSeriesCount, this.state.type === 'article');
+      this.toggleSection(this.sections.articles, visibleArticleCount, this.state.type === 'series');
+    }
+
+    toggleSection(section, count, forceHide) {
+        if (!section) return;
+        
+        if (count === 0 || forceHide) {
+            section.classList.add('hidden');
+        } else {
+            section.classList.remove('hidden');
+        }
+    }
+  }
+
+  // Initialize
+  document.addEventListener('astro:page-load', () => {
+      new EssayFilter();
+  });
+  
+  // Fallback for first load if View Transitions aren't fully intercepting
+  if (document.readyState === 'complete') {
+      new EssayFilter();
+  } else {
+      document.addEventListener('DOMContentLoaded', () => new EssayFilter());
+  }
+</script>
