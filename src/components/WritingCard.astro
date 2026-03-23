@@ -1,0 +1,70 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+
+interface Props {
+	writing: CollectionEntry<'writings'>;
+}
+
+const { writing } = Astro.props;
+const heroImage = writing.data.heroImage;
+---
+
+<a href={`/writings/${writing.id}/`} class="group relative flex flex-col h-full bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-steel-blue/30 transition-all duration-300 hover:shadow-glass hover:-translate-y-1 block">
+	
+	{/* Image Area - Linked */}
+	<div class="h-48 w-full bg-charcoal-light border-b border-white/5 relative overflow-hidden group-hover:opacity-90 transition-opacity">
+        {heroImage ? (
+            <img src={heroImage} alt={writing.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        ) : (
+            <div class="absolute inset-0 flex items-center justify-center text-white/5">
+                <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
+                </svg>
+            </div>
+        )}
+		
+        {/* Gradient Overlay */}
+		<div class={`absolute inset-0 bg-gradient-to-t ${heroImage ? 'from-charcoal via-charcoal/50 to-transparent' : 'from-charcoal/80 to-transparent'}`}></div>
+		
+		{writing.data.category && (
+			<div class="absolute top-4 left-4">
+				<span class="px-2 py-1 text-xs font-mono font-bold uppercase tracking-widest text-silver bg-black/50 backdrop-blur-md rounded border border-white/10 shadow-sm">
+					{writing.data.category}
+				</span>
+			</div>
+		)}
+
+		<div class="absolute bottom-4 right-4 text-xs font-mono text-steel-grey bg-black/60 px-2 py-1 rounded backdrop-blur border border-white/5 shadow-sm">
+			<FormattedDate date={writing.data.date} />
+		</div>
+	</div>
+
+	<div class="flex flex-col flex-1 p-6">
+		<div class="mb-4">
+			<h3 class="text-xl font-serif font-bold text-white mb-2 leading-tight group-hover:text-steel-blue transition-colors line-clamp-2">
+				{writing.data.title}
+			</h3>
+			<p class="text-sm text-steel-grey line-clamp-3 leading-relaxed">
+				{writing.data.summary}
+			</p>
+		</div>
+
+		<div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+			<div class="flex flex-wrap gap-2">
+				{writing.data.tags && writing.data.tags.slice(0, 2).map(tag => (
+					<span class="text-[10px] font-mono uppercase tracking-wider text-steel-blue/70 bg-steel-blue/5 px-2 py-0.5 rounded border border-steel-blue/10">
+						{tag}
+					</span>
+				))}
+				{writing.data.tags && writing.data.tags.length > 2 && (
+					<span class="text-[10px] font-mono text-steel-grey/50 px-1 py-0.5">+{writing.data.tags.length - 2}</span>
+				)}
+			</div>
+			
+			<span class="text-steel-blue group-hover:translate-x-1 transition-transform">
+				<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+			</span>
+		</div>
+	</div>
+</a>

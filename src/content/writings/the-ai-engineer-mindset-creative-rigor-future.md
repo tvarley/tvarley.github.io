@@ -14,7 +14,6 @@ order: 3
 
 # The AI Engineer Mindset - Part 3: Creative Tension
 
-**Part 3 of 5 in the AI Engineer Mindset series**
 
 *In this part, we examine the intensified creative-rigor tension and introduce the gardening metaphor. Building on [Part 1's](/writings/the-ai-engineer-mindset-orchestration-control/) orchestration and [Part 2's](/writings/the-ai-engineer-mindset-dialoguing-unconscious/) metacognition.*
 

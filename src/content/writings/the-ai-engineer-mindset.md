@@ -7,6 +7,7 @@ date: 2026-03-21
 category: "article"
 tags: ["ai", "mindset", "engineering", "creativity", "orchestration", "series"]
 draft: false
+series: "ai-engineer-mindset"
 order: 0
 ---
 

@@ -14,7 +14,6 @@ order: 5
 
 # The AI Engineer Mindset - Part 5: Practical Framework
 
-**Part 5 of 5 in the AI Engineer Mindset series**
 
 *In this final part, we operationalize everything from [Parts 1-4](/writings/the-ai-engineer-mindset/) into concrete daily practices, tools, and measurable frameworks.*
 

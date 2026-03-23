@@ -38,6 +38,7 @@ const writings = defineCollection({
 		series: z.string().optional(),
 		part: z.number().optional(),
     	heroImage: z.string().optional(),
+        inference: z.string().optional(),
 	}),
 });
 
