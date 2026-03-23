@@ -25,11 +25,13 @@ order: 2
 - Maintain your own internal models to avoid cognitive dependency
 - Feed refined understanding back into prompts for iterative improvement
 
-Once you accept the orchestration role, the true strangeness emerges. The feeling that you're not talking to a program but dialoguing with the collective unconscious of our entire profession.
+Once you accept the orchestration role, the true strangeness emerges. The feeling that you're not talking to a program but dialoguing with the [collective unconscious](https://en.wikipedia.org/wiki/Collective_unconscious) of our entire profession.
+
+> *"The mind is not a vessel to be filled, but a fire to be kindled."* - [Plutarch](https://en.wikipedia.org/wiki/Plutarch)
 
 Every LLM has ingested millions of codebases, forum threads, papers, and bug reports. When you prompt it, you're not querying a database. You're negotiating with a synthesized intelligence that has "read" more code than any human could in a lifetime. It doesn't have original ideas, but it has unparalleled pattern recognition across the entire corpus of human software thought.
 
-This creates a new form of literacy that is part technical, part psychological, and part philosophical. You must develop metacognition—the ability to watch your own thinking and notice when your framing is limiting the possibility space.
+This creates a new form of literacy that is part technical, part psychological, and part philosophical. You must develop [metacognition](https://en.wikipedia.org/wiki/Metacognition)—the ability to watch your own thinking and notice when your framing is limiting the possibility space.
 
 The AI excels at this because it has no ego invested in your initial approach. It will happily tell you that your elegant solution is over-engineered or that you're solving the wrong problem. But only if you create the conditions for that honesty.
 
@@ -48,7 +50,7 @@ The engineers who will thrive long-term are those who use AI to *augment* their 
 
 ## The Hallucination Problem
 
-AI will confidently generate plausible-sounding but fundamentally broken solutions. It "hallucinates" API methods that don't exist, architectural patterns that look sophisticated but violate your constraints, and optimizations that introduce race conditions.
+AI will confidently generate plausible-sounding but fundamentally broken solutions. It "[hallucinates](https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence))" API methods that don't exist, architectural patterns that look sophisticated but violate your constraints, and optimizations that introduce [race conditions](https://en.wikipedia.org/wiki/Race_condition).
 
 Your defense is skepticism grounded in knowledge. Always verify:
 - Does this library/method actually exist in this version?

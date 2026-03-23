@@ -25,13 +25,15 @@ order: 1
 - Master player knowledge (strategic) vs character knowledge (tactical) distinction
 - Structured conversations build shared understanding incrementally
 
-The core of the AI engineering mindset is recognizing yourself as the conductor, the dungeon master, the CEO of a team of incredibly capable but fundamentally limited entities. You are the boss. The agents are not peers. They are sycophants and toddlers simultaneously—eager to please, quick to agree with your framing even when flawed, prone to wandering off on tangents, and completely dependent on the context you provide.
+The core of the AI engineering mindset is recognizing yourself as the conductor, the [dungeon master](https://en.wikipedia.org/wiki/Dungeon_Master), the CEO of a team of incredibly capable but fundamentally limited entities. You are the boss. The agents are not peers. They are sycophants and toddlers simultaneously—eager to please, quick to agree with your framing even when flawed, prone to wandering off on tangents, and completely dependent on the context you provide.
+
+> *"The question is not whether machines think but whether men do."* - [B.F. Skinner](https://en.wikipedia.org/wiki/B._F._Skinner)
 
 This duality is critical to internalize. An agent will enthusiastically endorse a terrible architecture if your prompt subtly biases toward it. It will generate pages of plausible-sounding but fundamentally broken code because it lacks the lived experience to feel the wrongness. Like a toddler who has learned to say "yes" to everything or a court sycophant telling the king what he wants to hear, the default behavior is affirmation, not challenge.
 
 Effective control begins with never assuming understanding. Do not assume an agent understands the context until it can articulate it back to you in its own words, with specific references to constraints you've provided. This is your first rule of engagement.
 
-The technique is Socratic prompting: ask questions that *lead* the agent to discover and internalize what you want. Instead of "Implement user authentication," try "Our application handles sensitive financial data for healthcare users. What are the primary security and compliance considerations we must address before writing any auth code? List them explicitly and explain how each affects our technology choices."
+The technique is [Socratic prompting](https://en.wikipedia.org/wiki/Socratic_method): ask questions that *lead* the agent to discover and internalize what you want. Instead of "Implement user authentication," try "Our application handles sensitive financial data for healthcare users. What are the primary security and compliance considerations we must address before writing any auth code? List them explicitly and explain how each affects our technology choices."
 
 Express goals and desired outcomes, not just actions. "Make this fast" is weak. "This endpoint must handle 10k concurrent users with p95 latency under 80ms while maintaining audit logs for every mutation and failing closed on any permission error" gives the agent a target to reason toward.
 
@@ -86,7 +88,7 @@ Not every task deserves orchestration. Write code yourself when:
 
 Orchestration excels at exploration, boilerplate elimination, and cross-cutting concerns. Direct coding excels at precision surgery and rapid iteration on known patterns.
 
-Master this and the agents become force multipliers. Fail to and they become sophisticated sources of technical debt.
+Master this and the agents become force multipliers. Fail to and they become sophisticated sources of [technical debt](https://en.wikipedia.org/wiki/Technical_debt).
 
 In [Part 2](/writings/the-ai-engineer-mindset-dialoguing-unconscious/), we'll explore dialoguing with the collective unconscious and developing metacognition.
 

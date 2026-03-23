@@ -53,7 +53,9 @@ Daily rituals and practices to operationalize the mindset.
 
 ## Why This Matters
 
-The transformation is bigger than productivity. It's a cognitive revolution comparable to the invention of writing or the scientific method. Just as those tools externalized memory and reasoning, AI externalizes intuition and synthesis. But only if you learn to direct it properly.
+The transformation is bigger than productivity. It's a cognitive revolution comparable to the invention of writing or the [scientific method](https://en.wikipedia.org/wiki/Scientific_method). Just as those tools externalized memory and reasoning, AI externalizes intuition and synthesis. But only if you learn to direct it properly.
+
+> *"We shape our tools and thereafter our tools shape us."* - [Marshall McLuhan](https://en.wikipedia.org/wiki/Marshall_McLuhan)
 
 **Series Key Takeaways**
 - Shift from solitary coding to AI orchestration

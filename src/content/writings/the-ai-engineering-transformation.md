@@ -13,45 +13,25 @@ series: "ai-engineering-transformation"
 
 # The AI Engineering Transformation: A Leader's Playbook
 
-**An 8-Part Series**
+**A 3-Part Series**
 
-The cursor is no longer the bottleneck. Your organization's ability to direct AI agents effectively determines competitive advantage.
+The bottleneck has shifted from typing speed to orchestration capability—how effectively your organization directs AI tools determines competitive outcomes.
 
 This series provides a practical framework for engineering leaders to transform their teams from individual contributors into high-velocity AI orchestrators. Drawing from real case studies and quantitative research, it covers the strategic imperative, common failure modes, maturity frameworks, hiring practices, team structures, standardization principles, measurement approaches, and risk mitigation strategies.
 
 ## The Series
 
-**Part 1: The Strategic Imperative**  
-[The Strategic Imperative: Why AI Engineering Matters Now](/writings/the-ai-engineering-transformation-strategic-imperative/)  
-Why the operating model shift matters more than tools, with data from early adopters.
+**Part 1: Why Now & How It Fails**  
+[The strategic imperative, failure modes, and three-wave framework](/writings/the-ai-engineering-transformation-part-1/)  
+Why AI transformations fail, how to avoid the pitfalls, and the maturity model from individual productivity to competitive advantage.
 
-**Part 2: Why Pilots Fail**  
-[Why Most AI Pilots Fail (And How to Avoid Their Mistakes)](/writings/the-ai-engineering-transformation-why-pilots-fail/)  
-The three failure modes that derail transformation efforts.
+**Part 2: Organizational Design**  
+[Hiring for judgment, team structures, and standardization](/writings/the-ai-engineering-transformation-part-2/)  
+Building AI-effective teams through judgment-based hiring, guilds, councils, pods, and strategic standardization.
 
-**Part 3: Three Waves Framework**  
-[The Three Waves of AI Engineering Transformation](/writings/the-ai-engineering-transformation-three-waves/)  
-From individual productivity to organizational capability, with real company examples.
-
-**Part 4: Hiring Practices**  
-[Hiring for Judgment: Building AI-Effective Teams](/writings/the-ai-engineering-transformation-hiring-practices/)  
-Shifting from speed-based to judgment-based evaluation with new interview techniques.
-
-**Part 5: Team Structures**  
-[New Team Structures for AI Orchestration](/writings/the-ai-engineering-transformation-team-structures/)  
-Guilds, councils, pods, and rotations that enable effective AI collaboration.
-
-**Part 6: Standardization**  
-[When to Standardize: Automation vs. Personal Workflows](/writings/the-ai-engineering-transformation-standardization/)  
-When shared prompts make sense for headless automation vs. personal AI setups.
-
-**Part 7: Measuring Success**  
-[Measuring Success: Metrics and ROI in AI Engineering](/writings/the-ai-engineering-transformation-measuring-success/)  
-Velocity, quality, capability, and business impact indicators.
-
-**Part 8: Risk Mitigation**  
-[Risk Mitigation and Getting Started](/writings/the-ai-engineering-transformation-risk-mitigation/)  
-Common pitfalls, mitigation strategies, and a phased rollout plan.
+**Part 3: Making It Real**  
+[Metrics, risk mitigation, and implementation](/writings/the-ai-engineering-transformation-part-3/)  
+How to measure success, avoid common pitfalls, and implement a pilot-to-scale rollout plan.
 
 ## Key Takeaways
 
@@ -61,6 +41,7 @@ Common pitfalls, mitigation strategies, and a phased rollout plan.
 - **Quality Gates Matter**: Reality testing pods prevent AI-introduced bugs from reaching production
 - **Personal AI Workflows**: Each engineer should have customized AI configurations, not shared presets
 - **Measure What Matters**: Track cycle time, defect rates, and business impact, not lines of code
+- **Three Waves**: Individual → Team → Organizational transformation unlocks compounding advantages
 
 ## Prerequisites
 
@@ -68,7 +49,7 @@ This series complements [The AI Engineer Mindset](/writings/the-ai-engineer-mind
 
 ## Citations
 
-[1] METR Research (2025). *Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity*. https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/
+[1] METR Research (2025). *Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity*. https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/ (Note: Study published mid-2025)
 
 [2] Index.dev (2025). *AI Coding Assistant ROI: Real Productivity Data 2025*. https://www.index.dev/blog/ai-coding-assistants-roi-productivity
 

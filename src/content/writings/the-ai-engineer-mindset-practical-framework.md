@@ -28,6 +28,8 @@ order: 5
 
 ## A Practical Framework for Daily Practice
 
+> *"We are what we repeatedly do. Excellence, then, is not an act, but a habit."* - [Aristotle](https://en.wikipedia.org/wiki/Aristotle) (via [Will Durant](https://en.wikipedia.org/wiki/Will_Durant))
+
 To operationalize this mindset, adopt these specific practices:
 
 ## 1. Daily Orchestration Ritual (5 minutes)
@@ -67,7 +69,7 @@ Before writing code, explain back to me in your own words:
 5. What you're still unclear about
 ```
 
-If the AI's response reveals gaps or misunderstandings, refine context before proceeding. This single habit prevents the vast majority of AI-generated technical debt.
+If the AI's response reveals gaps or misunderstandings, refine context before proceeding. This single habit prevents the vast majority of AI-generated [technical debt](https://en.wikipedia.org/wiki/Technical_debt).
 
 ## 3. Goal-Oriented Prompting Templates
 
@@ -83,7 +85,7 @@ More templates:
 ```
 I'm seeing [symptom] when [condition]. The system should guarantee [invariant] 
 but instead [observed behavior]. Here's the relevant code context: [paste]. 
-Propose 3-5 possible root causes, ranked by likelihood. For each, explain 
+Propose 3-5 possible [root causes](https://en.wikipedia.org/wiki/Root_cause_analysis), ranked by likelihood. For each, explain 
 what evidence would confirm/refute it.
 ```
 
@@ -168,7 +170,7 @@ Different tasks require different tools because different tasks represent differ
 **Role: Code Reviewer**
 - Task: Validating AI-generated code, reality testing
 - Questions to ask your AI:
-  - "I need to spot cargo cult patterns and subtle bugs in AI code. What tools help me validate thoroughly?"
+  - "I need to spot [cargo cult](https://en.wikipedia.org/wiki/Cargo_cult_programming) patterns and subtle bugs in AI code. What tools help me validate thoroughly?"
   - "How do I automate the reality testing checklist we discussed?"
   - "What gives me fast performance and correctness validation?"
 

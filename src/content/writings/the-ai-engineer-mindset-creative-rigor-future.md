@@ -27,13 +27,15 @@ order: 3
 
 Creativity and rigor have always existed in tension for engineers. AI doesn't resolve this tension—it intensifies it magnificently.
 
+> *"In the beginner's mind there are many possibilities, but in the expert's there are few."* - [Shunryu Suzuki](https://en.wikipedia.org/wiki/Shunry%C5%AB_Suzuki)
+
 On the creative side, the liberation is profound. You can explore absurd ideas with almost zero cost. "What if we modeled our entire business domain as a living ecosystem with agents and resources instead of traditional CRUD operations?" The AI will enthusiastically build that world with you, showing consequences, edge cases, and emergent behaviors before you've written more than a few paragraphs of specification.
 
 This is where expressing goals over actions becomes magical. By stating the desired properties and behaviors rather than the implementation, you allow the AI to explore solution spaces you might never have considered.
 
 But this creative freedom demands correspondingly greater discipline on the rigor side. When generation is nearly free, the premium skill becomes discernment. Every suggestion, no matter how elegant, must be subjected to reality testing—performance benchmarks, security analysis, maintainability review, ethical consideration.
 
-The most skilled practitioners develop what I can only describe as refined taste: an almost intuitive sense for what code feels *alive* and coherent versus what feels like sophisticated cargo culting. They can smell when an AI solution is papering over a fundamental misunderstanding of the domain.
+The most skilled practitioners develop what I can only describe as refined taste: an almost intuitive sense for what code feels *alive* and coherent versus what feels like sophisticated [cargo culting](https://en.wikipedia.org/wiki/Cargo_cult_programming). They can smell when an AI solution is papering over a fundamental misunderstanding of the domain.
 
 ## Alive Code vs Cargo Cult Code
 
@@ -41,7 +43,7 @@ The most skilled practitioners develop what I can only describe as refined taste
 
 The term comes from post-WWII Pacific islands where indigenous people built mock airstrips and control towers from bamboo and straw, imitating the structures they'd seen during the war. They hoped cargo planes would return with supplies. They replicated the *form* without understanding the *function*.
 
-In software, cargo cult programming means copying patterns, syntax, and structures that *look* like good code—they have the right shape, the right keywords, the fashionable abstractions—but miss the underlying purpose. The code compiles. It might even pass basic tests. But it doesn't actually solve the problem correctly because the developer (or AI) didn't understand *why* the pattern exists.
+In software, [cargo cult programming](https://en.wikipedia.org/wiki/Cargo_cult_programming) means copying patterns, syntax, and structures that *look* like good code—they have the right shape, the right keywords, the fashionable abstractions—but miss the underlying purpose. The code compiles. It might even pass basic tests. But it doesn't actually solve the problem correctly because the developer (or AI) didn't understand *why* the pattern exists.
 
 AI is particularly prone to this because it pattern-matches across millions of examples without genuine comprehension. It can generate code that looks professional but lacks domain understanding.
 
@@ -67,7 +69,7 @@ class CacheManager:
 ```
 
 Looks reasonable, right? It has locks, async/await, clean structure. But:
-- Locks dictionary grows unbounded (memory leak)
+- Locks dictionary grows unbounded ([memory leak](https://en.wikipedia.org/wiki/Memory_leak))
 - No TTL or eviction (stale data accumulates)
 - No error handling if compute_fn fails
 - Lock persists even for one-time keys
