@@ -129,6 +129,11 @@ breadcrumbItems.push({ label: title, href: undefined });
 	<script define:vars={{ allWritings, currentEntry: entry }}>
 		// Active Reader Sidebar functionality
 		
+		// Flags to prevent duplicate initialization
+		let tocBuilt = false;
+		let relatedBuilt = false;
+		let codeBlocksEnhanced = false;
+		
 		// Reading Progress
 		function updateReadingProgress() {
 			const article = document.querySelector('article');
@@ -158,6 +163,8 @@ breadcrumbItems.push({ label: title, href: undefined });
 
 		// Article Sections (TOC)
 		function buildTableOfContents() {
+			if (tocBuilt) return; // Already built
+			
 			const tocNav = document.getElementById('toc-nav');
 			if (!tocNav) return;
 			
@@ -189,10 +196,14 @@ breadcrumbItems.push({ label: title, href: undefined });
 				
 				tocNav.appendChild(link);
 			});
+			
+			tocBuilt = true; // Mark as built
 		}
 
 		// Related Articles
 		function buildRelatedArticles() {
+			if (relatedBuilt) return; // Already built
+			
 			const relatedContainer = document.getElementById('related-articles');
 			if (!relatedContainer) return;
 			
@@ -242,10 +253,14 @@ breadcrumbItems.push({ label: title, href: undefined });
 				`;
 				relatedContainer.appendChild(articleDiv);
 			});
+			
+			relatedBuilt = true; // Mark as built
 		}
 
 		// Enhanced Code Blocks
 		function enhanceCodeBlocks() {
+			if (codeBlocksEnhanced) return; // Already enhanced
+			
 			const codeBlocks = document.querySelectorAll('.markdown-content pre');
 			
 			codeBlocks.forEach((pre) => {
@@ -302,6 +317,8 @@ breadcrumbItems.push({ label: title, href: undefined });
 					}
 				}
 			});
+			
+			codeBlocksEnhanced = true; // Mark as enhanced
 		}
 
 		// Sidebar collapse functionality
