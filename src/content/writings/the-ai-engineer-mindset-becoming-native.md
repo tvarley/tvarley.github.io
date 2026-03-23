@@ -27,7 +27,9 @@ order: 4
 
 ## Becoming Native to the New Medium
 
-The AI engineer mindset ultimately isn't a collection of techniques or even a set of mental models. It's a complete way of being with technology.
+The AI engineer mindset ultimately isn't a collection of techniques or even a set of [mental models](https://en.wikipedia.org/wiki/Mental_model). It's a complete way of being with technology.
+
+> *"The future is already here — it's just not very evenly distributed."* - [William Gibson](https://en.wikipedia.org/wiki/William_Gibson)
 
 ## The Business Transformation
 
@@ -35,7 +37,7 @@ From a business perspective, this shift transforms engineering teams from groups
 
 **Velocity Multiplication**: Teams see 3-5x increases in velocity as routine tasks—boilerplate generation, test scaffolding, documentation, basic CRUD operations—are delegated to AI. Senior talent focuses on high-leverage activities: architecture decisions, innovation, strategic differentiation, and solving genuinely novel problems.
 
-**Hiring Evolution**: The interview focus shifts from "Can you write a red-black tree from memory?" to "Can you orchestrate an AI to implement a real-time collaborative editing system while articulating the tradeoffs?" You're hiring for:
+**Hiring Evolution**: The interview focus shifts from "Can you write a [red-black tree](https://en.wikipedia.org/wiki/Red-black_tree) from memory?" to "Can you orchestrate an AI to implement a real-time collaborative editing system while articulating the tradeoffs?" You're hiring for:
 - Orchestration skills and prompt literacy
 - Systems thinking and domain modeling
 - Rapid learning and tool mastery
@@ -48,7 +50,7 @@ From a business perspective, this shift transforms engineering teams from groups
 - **Architecture councils**: Senior engineers focusing purely on high-level decisions while AI handles implementation
 - **Reality testing pods**: Dedicated reviewers who validate AI-generated code against domain requirements
 
-The bottleneck shifts from typing speed to thinking clarity. Teams that master this can outpace competitors 10x while maintaining lower technical debt through consistent, well-prompted guidance.
+The bottleneck shifts from typing speed to thinking clarity. Teams that master this can outpace competitors 10x while maintaining lower [technical debt](https://en.wikipedia.org/wiki/Technical_debt) through consistent, well-prompted guidance.
 
 ## The Personal Transformation
 
@@ -56,7 +58,9 @@ Beyond business metrics, this shift demands a personal evolution. It means findi
 
 ## The Blacksmith's Evolution
 
-We will not become obsolete. Consider the blacksmith during the Industrial Revolution:
+We will not become obsolete. Consider the blacksmith during the [Industrial Revolution](https://en.wikipedia.org/wiki/Industrial_Revolution):
+
+> *"It is not the strongest of the species that survives, nor the most intelligent, but the one most responsive to change."* - [Charles Darwin](https://en.wikipedia.org/wiki/Charles_Darwin) (often misattributed)
 
 **Phase 1 - The Craft Era**: Blacksmiths forged every nail, horseshoe, and blade by hand. Mastery took decades. Production was limited by human stamina and skill.
 
