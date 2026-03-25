@@ -7,7 +7,7 @@ const euler = defineCollection({
 		problemNumber: z.number(),
 		title: z.string(),
 		description: z.string(),
-		difficulty: z.enum(['easy', 'medium', 'hard']),
+		difficulty: z.enum(['easy', 'medium', 'hard', 'very-hard']),
 		date: z.coerce.date(),
 		technologies: z.array(z.string()),
 		implementations: z.array(z.object({
