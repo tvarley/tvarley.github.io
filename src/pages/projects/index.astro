@@ -33,6 +33,11 @@ const projects = (await getCollection('projects')).sort(
 
                         <!-- Thumbnail -->
                         <div class="w-full h-32 bg-matte border-b border-white/10 mb-6 flex items-center justify-center relative overflow-hidden rounded-xl">
+                            <img 
+                                src={`/images/thumbnails/${project.id}.jpg`} 
+                                alt={`${project.data.title} Thumbnail`} 
+                                class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                            />
                         </div>
 
                         <!-- Header: Role & Period -->
