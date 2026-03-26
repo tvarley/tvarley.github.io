@@ -33,11 +33,6 @@ const projects = (await getCollection('projects')).sort(
 
                         <!-- Thumbnail -->
                         <div class="w-full h-32 bg-matte border-b border-white/10 mb-6 flex items-center justify-center relative overflow-hidden rounded-xl">
-                            <img 
-                                src={`/images/thumbnails/${project.id}.svg`} 
-                                alt={`${project.data.title} Theme`} 
-                                class="w-16 h-16 object-contain opacity-60 group-hover:opacity-80 transition-opacity duration-300"
-                            />
                         </div>
 
                         <!-- Header: Role & Period -->
