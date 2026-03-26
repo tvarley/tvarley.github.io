@@ -132,6 +132,11 @@ const featuredStandaloneWritings = standaloneWritings.slice(0, 3); // Top 3 stan
       {projects.map((project) => (
         <a href={`/projects/${project.id}/`} class="glass-card group flex flex-col h-full no-underline overflow-hidden">
           <div class="w-full h-40 md:h-48 bg-matte border-b border-white/10 p-4 flex items-center justify-center relative overflow-hidden rounded-t-2xl">
+             <img 
+               src={`/images/thumbnails/${project.id}.svg`} 
+               alt={`${project.data.title} Theme`} 
+               class="w-20 h-20 md:w-24 md:h-24 object-contain opacity-60 group-hover:opacity-80 transition-opacity duration-300"
+             />
           </div>
           <div class="p-6 flex flex-col flex-grow">
             <div class="flex justify-between items-start mb-2">
