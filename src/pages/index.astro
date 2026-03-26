@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import HeroAnimation from '../components/HeroAnimation.astro';
+import WritingCard from '../components/WritingCard.astro';
+import SeriesCard from '../components/SeriesCard.astro';
 import { getCollection } from 'astro:content';
 
 const projects = (await getCollection('projects')).sort(
@@ -10,11 +12,115 @@ const projects = (await getCollection('projects')).sort(
 const problems = (await getCollection('euler')).sort(
   (a, b) => b.data.problemNumber - a.data.problemNumber,
 ).slice(0, 6); // Top 6 most recent
+
+const writings = (await getCollection('writings'))
+  .filter(w => !w.data.draft)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+// Group writings by series for display
+const seriesGroups: Record<string, { posts: typeof writings, title: string, lastDate: Date, description?: string, heroImage?: string, id: string }> = {};
+const standaloneWritings: typeof writings = [];
+
+writings.forEach(post => {
+  if (post.data.series) {
+    if (!seriesGroups[post.data.series]) {
+      seriesGroups[post.data.series] = {
+        posts: [],
+        title: post.data.seriesTitle || post.data.title,
+        lastDate: new Date(0),
+        description: undefined,
+        heroImage: undefined,
+        id: ''
+      };
+    }
+    seriesGroups[post.data.series].posts.push(post);
+
+    const postDate = new Date(post.data.date);
+    if (postDate > seriesGroups[post.data.series].lastDate) {
+      seriesGroups[post.data.series].lastDate = postDate;
+    }
+  } else {
+    if (!post.data.tags?.includes('series')) {
+      standaloneWritings.push(post);
+    }
+  }
+});
+
+// Process series groups
+Object.values(seriesGroups).forEach(group => {
+  group.posts.sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+
+  const primaryPost = group.posts[0];
+  if (primaryPost) {
+    group.id = primaryPost.id;
+    group.title = primaryPost.data.seriesTitle || primaryPost.data.title;
+    group.description = primaryPost.data.summary;
+
+    if (primaryPost.data.heroImage) {
+      group.heroImage = primaryPost.data.heroImage;
+    } else {
+      const postWithImage = group.posts.find(p => p.data.heroImage);
+      if (postWithImage) {
+        group.heroImage = postWithImage.data.heroImage;
+      }
+    }
+  }
+});
+
+// Convert to arrays and sort
+const seriesList = Object.values(seriesGroups).sort((a, b) => b.lastDate.getTime() - a.lastDate.getTime()).slice(0, 3); // Top 3 series
+const featuredStandaloneWritings = standaloneWritings.slice(0, 3); // Top 3 standalone writings
 ---
 
 <Layout>
   <!-- Hero Section -->
   <HeroAnimation />
+
+  <!-- Recent Writings Grid -->
+  <section class="mb-20">
+    <div class="flex items-center justify-between mb-12">
+      <h3 class="text-3xl font-serif font-bold text-white">Recent Essays</h3>
+      <a href="/writings" class="font-mono text-steel-blue hover:text-white text-sm border-b border-steel-blue/30 hover:border-steel-blue transition-colors pb-1">View All &rarr;</a>
+    </div>
+
+    {/* Series Section */}
+    {seriesList.length > 0 && (
+      <div class="mb-12">
+        <div class="flex items-center gap-4 mb-8">
+          <h4 class="text-xl font-mono uppercase tracking-widest text-white">Series</h4>
+          <div class="h-px bg-white/10 flex-1"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+          {seriesList.map((group) => (
+            <SeriesCard
+              seriesTitle={group.title}
+              posts={group.posts}
+              description={group.description}
+              heroImage={group.heroImage}
+              id={group.id}
+            />
+          ))}
+        </div>
+      </div>
+    )}
+
+    {/* Standalone Articles */}
+    {featuredStandaloneWritings.length > 0 && (
+      <div>
+        <div class="flex items-center gap-4 mb-8">
+          <h4 class="text-xl font-mono uppercase tracking-widest text-white">Articles</h4>
+          <div class="h-px bg-white/10 flex-1"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {featuredStandaloneWritings.map((writing) => (
+            <WritingCard writing={writing} />
+          ))}
+        </div>
+      </div>
+    )}
+  </section>
 
   <!-- Featured Projects -->
   <section class="mb-20">
