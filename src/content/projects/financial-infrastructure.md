@@ -52,9 +52,3 @@ priority: 4
 *   **UDP Multicast**: One-to-many distribution to subscribed trading clients with minimal per-client overhead.
 *   **Dedicated Leased Lines**: Private fiber from press room co-location to client data centers — public internet never touches the critical path.
 *   **Hardware Timing**: Lock box interface with nanosecond-precision trigger to minimize the gap between embargo lift and first byte transmitted.
-
-
-
-## Architecture Diagram
-
-![Financial Infrastructure Architecture](/images/diagrams/financial-infrastructure.svg)

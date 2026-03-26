@@ -43,7 +43,3 @@ This repository ([tvarley/euler](https://github.com/tvarley/euler)) contains opt
 *   **Systems**: **C++**, **Rust**, **Go** (Optimized for raw execution speed, safety, and concurrency).
 *   **Enterprise**: **Java** (Demonstrating structured, object-oriented implementations).
 *   **Scripting**: **JavaScript**, **PHP**, **Ruby**, **Python** (Showcasing flexibility and rapid prototyping).
-
-## Generation Pipeline Diagram
-
-![Chain-of-Thought Pipeline](/images/diagrams/euler-solutions.svg)

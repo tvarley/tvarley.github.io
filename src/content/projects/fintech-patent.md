@@ -48,9 +48,3 @@ priority: 5
 ### Integration
 *   **Legacy Modernization**: Strategies for wrapping and exposing COBOL/Mainframe logic as modern APIs.
 *   **Middleware Patterns**: Early implementation of service bus and message queue concepts in a financial context.
-
-
-
-## Architecture Diagram
-
-![FinTech Patent Architecture](/images/diagrams/fintech-patent.svg)

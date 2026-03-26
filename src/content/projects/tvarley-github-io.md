@@ -53,7 +53,3 @@ priority: 6
 *   **Astro**: Chosen for its "Islands Architecture" to minimize hydration costs.
 *   **Tailwind CSS**: Utilized for its utility-first class composability, ideal for LLM generation.
 *   **TypeScript**: Enforced for type safety to reduce hallucinated code errors.
-
-## Agentic Workflow Diagram
-
-![AI Agent Workflow](/images/diagrams/tvarley-github-io.svg)
