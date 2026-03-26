@@ -4,13 +4,18 @@ import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
 	const projects = await getCollection('projects');
-	return projects.map((project) => ({
+	const sortedProjects = projects.sort((a, b) => a.data.priority - b.data.priority);
+	return sortedProjects.map((project, i) => ({
 		params: { slug: project.id },
-		props: project,
+		props: {
+			project,
+			prevProject: i > 0 ? sortedProjects[i - 1] : undefined,
+			nextProject: i < sortedProjects.length - 1 ? sortedProjects[i + 1] : undefined,
+		},
 	}));
 }
 
-const project = Astro.props;
+const { project, prevProject, nextProject } = Astro.props;
 const { Content } = await render(project);
 ---
 
@@ -49,6 +54,32 @@ const { Content } = await render(project);
             </div>
 		</div>
         
+        <!-- Navigation -->
+        {prevProject || nextProject ? (
+            <nav class="mt-20 space-y-8 border-t border-white/10 pt-8">
+                <!-- Previous/Next Navigation -->
+                <div class="grid grid-cols-2 gap-4">
+                    {prevProject ? (
+                        <a href={`/projects/${prevProject.id}/`} class="group flex flex-col items-start p-4 rounded-xl hover:bg-white/5 transition-all text-left">
+                            <span class="text-xs font-mono text-steel-grey mb-1 group-hover:text-steel-blue transition-colors">← Previous Project</span>
+                            <span class="text-white font-serif font-bold text-lg group-hover:translate-x-1 transition-transform">{prevProject.data.title}</span>
+                        </a>
+                    ) : (
+                        <div></div>
+                    )}
+
+                    {nextProject ? (
+                        <a href={`/projects/${nextProject.id}/`} class="group flex flex-col items-end p-4 rounded-xl hover:bg-white/5 transition-all text-right">
+                            <span class="text-xs font-mono text-steel-grey mb-1 group-hover:text-steel-blue transition-colors">Next Project →</span>
+                            <span class="text-white font-serif font-bold text-lg group-hover:-translate-x-1 transition-transform">{nextProject.data.title}</span>
+                        </a>
+                    ) : (
+                        <div></div>
+                    )}
+                </div>
+            </nav>
+        ) : null}
+
         <!-- Back Link -->
         <div class="mt-20 text-center">
             <a href="/projects" class="inline-flex items-center gap-2 text-steel-blue hover:text-white font-mono text-sm transition-colors border border-steel-blue/20 hover:border-steel-blue px-6 py-3 rounded-lg group">

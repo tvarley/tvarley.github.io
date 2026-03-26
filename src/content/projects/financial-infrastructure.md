@@ -4,7 +4,7 @@ period: "2009 - 2012"
 role: "Senior Technical Lead"
 description: "Mission-critical financial data infrastructure delivering embargoed government economic releases to trading systems in under 15 milliseconds."
 tags: ["FinTech", "C++", "Low Latency", "Linux", "High Availability"]
-priority: 4
+priority: 6
 ---
 
 # High-Frequency Financial Infrastructure
@@ -24,11 +24,10 @@ priority: 4
 </style>
 
 <div>
-  <img src="/images/solutions/financial-infrastructure.png" alt="financial-infrastructure Solution Image" class="portrait-img" style="float: left; width: 50%; margin-right: 1rem; margin-bottom: 1rem; object-fit: contain;" />
+  <img src="/images/solutions/financial-infrastructure.png" alt="financial-infrastructure Solution Image" class="portrait-img" style="float: left; width: 50%; margin-right: 2rem; margin-bottom: 1rem; object-fit: contain;" />
   Designed and maintained mission-critical financial data infrastructure centered on a uniquely constrained problem: delivering U.S. government economic releases — **Department of Labor** (Non-Farm Payrolls, CPI, Jobless Claims) and **Treasury** data — from a **physically embargoed press room** to Wall Street trading systems in **under 15 milliseconds** from embargo lift.
 
   Journalists are locked in a secure press room with embargoed data and no internet access. At the exact release time (typically 8:30 AM ET), a **physical lock box** opens, triggering a hardware-timed data burst through a dedicated leased-line pipeline. The race to Wall Street begins at that moment. The market moves before the public reads a headline.
-</div>
 
 ## Key Achievements
 
@@ -41,6 +40,7 @@ priority: 4
 - **Dual Redundancy:** Parallel lock box hardware and failover feed handler pairs ensured no single point of failure during the most market-sensitive moments of the trading calendar.
 - **Sub-Millisecond Monitoring:** Built bespoke latency probes that detected anomalies in the microsecond range, giving the team early warning before jitter could affect client delivery.
 - **Compliance Logging:** Async write-ahead audit trail capturing microsecond-precision timestamps — kept entirely off the critical path to avoid any added latency.
+</div>
 
 ## Technologies
 

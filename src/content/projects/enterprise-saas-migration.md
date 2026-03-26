@@ -4,7 +4,7 @@ period: "2012 - 2014"
 role: "Enterprise Architect"
 description: "Transformed legacy monolithic software into cloud-native microservices architecture, achieving 170% performance boost and 99.9% uptime."
 tags: ["Architecture", "Migration", "C#", "Node.js", "High Availability"]
-priority: 3
+priority: 5
 ---
 
 # Enterprise SaaS Migration
@@ -24,7 +24,7 @@ priority: 3
 </style>
 
 <div>
-  <img src="/images/solutions/enterprise-saas-migration.png" alt="enterprise-saas-migration Solution Image" class="portrait-img" style="float: left; width: 50%; margin-right: 1rem; margin-bottom: 1rem; object-fit: contain;" />
+  <img src="/images/solutions/enterprise-saas-migration.png" alt="enterprise-saas-migration Solution Image" class="portrait-img" style="float: left; width: 50%; margin-right: 2rem; margin-bottom: 1rem; object-fit: contain;" />
   Spearheaded a high-stakes enterprise initiative to modernize a legacy monolithic software suite for a major B2B enterprise company. The project involved transforming a tightly coupled, on-premise style application into a **modern, cloud-native microservices architecture**. This transformation was critical to meeting the demands of a growing global user base and ensuring 24/7 availability.
 </div>
 

@@ -4,7 +4,7 @@ period: "2024 - Present"
 role: "Principal Engineer / AI Architect"
 description: "A high-performance personal platform built 100% via autonomous AI agents, directed by senior engineering architectural patterns. Demonstrates the power of experience-driven agentic workflows."
 tags: ["AI-Native", "Autonomous Agents", "Recursive Prompting", "Astro", "Tailwind CSS", "Model Context Protocol"]
-priority: 6
+priority: 2
 ---
 
 # AI-Native Portfolio & Blog
@@ -24,7 +24,7 @@ priority: 6
 </style>
 
 <div>
-  <img src="/images/solutions/tvarley-github-io.png" alt="tvarley-github-io Solution Image" class="portrait-img" style="float: left; width: 50%; margin-right: 1rem; margin-bottom: 1rem; object-fit: contain;" />
+  <img src="/images/solutions/tvarley-github-io.png" alt="tvarley-github-io Solution Image" style="width: 100%; margin-bottom: 1rem; object-fit: contain;" />
   This website [tvarley.github.io](https://tvarley.github.io) is a living demonstration of **100% AI-native development**. Unlike traditional coding or simple IDE assistance, every component, style, and architectural decision here was executed by **autonomous AI agents** acting on high-level directives. The project proves that when guided by a Principal Engineer's architectural vision, AI agents can deliver production-grade, self-healing software without a single manually written line of code.
 </div>
 

@@ -4,7 +4,7 @@ period: "Ongoing"
 role: "Principal Engineer / AI Architect"
 description: "A repository of 50+ mathematical algorithm solutions generated entirely by AI agents. Showcases how deep engineering expertise guides AI to produce optimal, mathematically rigorous code."
 tags: ["Chain-of-Thought", "Algorithm Optimization", "Polyglot Architecture", "C++", "Java", "Go", "Rust", "Python", "Ruby", "PHP", "JavaScript"]
-priority: 7
+priority: 3
 ---
 
 # AI-Generated Euler Solutions
