@@ -12,6 +12,7 @@ priority: 1
 **Role:** Technical Lead / Principal Engineer | **Period:** 2016 - Present
 
 ## Overview
+
 Architected and built a comprehensive IoT platform designed to optimize water usage and energy consumption across distributed large-scale environments. This project represents a paradigmatic shift to **100% AI-native development**, leveraging advanced LLM agents to accelerate the entire software development lifecycle—from architectural design to code generation and testing. The system manages distributed wireless sensor networks, ingesting real-time data to drive automated environmental controls.
 
 ## AI Engineering Techniques Used

@@ -12,6 +12,7 @@ priority: 5
 **Role:** Inventor | **Period:** Patent Granted (US Pat 6,119,104)
 
 ## Overview
+
 A pioneering innovation in the financial technology sector that established early architectural standards for **multi-channel banking systems**. At a time when digital banking was in its infancy, this solution provided a unified framework for bridging legacy mainframe banking cores with emerging digital channels (web, mobile, ATM, and voice). This work not only solved immediate interoperability challenges but laid the groundwork for modern "omnichannel" banking experiences.
 
 ## Key Achievements

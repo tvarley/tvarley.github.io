@@ -1,52 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" width="960" height="440" font-family="'Courier New', Courier, monospace">
   <defs>
-    <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1" fill="#1e3a5f" opacity="0.4"/></pattern>
-    <marker id="arr-teal" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="#64ffda"/></marker>
-    <marker id="arr-purple" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="#c792ea"/></marker>
-    <marker id="arr-orange" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="#ff9b2e"/></marker>
+    <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1" fill="#1e3a5f"/></pattern>
+    <marker id="arr-teal" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="#cccccc"/></marker>
+    <marker id="arr-purple" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="#888888"/></marker>
+    <marker id="arr-orange" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="#aaaaaa"/></marker>
     <filter id="glow-ai" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     <filter id="glow-teal" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
   </defs>
-  <rect width="960" height="440" fill="#0d1117"/>
-  <rect width="960" height="440" fill="url(#dots)"/>
-  <text x="480" y="34" text-anchor="middle" font-size="13" font-weight="bold" fill="#64ffda" letter-spacing="3">AI-NATIVE EDTECH IOT · END-TO-END DATA PIPELINE</text>
-  <line x1="170" y1="44" x2="790" y2="44" stroke="#64ffda" stroke-width="0.5" opacity="0.4"/>
+  <rect width="960" height="440" fill="#f0f0f0"/>
+  <text x="480" y="34" text-anchor="middle" font-size="13" fill="#cccccc">AI-NATIVE EDTECH IOT · END-TO-END DATA PIPELINE</text>
+  <line x1="170" y1="44" x2="790" y2="44" stroke="#cccccc" stroke-width="0.5"/>
   <!-- Zone labels -->
-  <text x="88" y="66" text-anchor="middle" font-size="8" fill="#ff9b2e" letter-spacing="2" font-weight="bold">PHYSICAL EDGE</text>
-  <text x="272" y="66" text-anchor="middle" font-size="8" fill="#79c0ff" letter-spacing="2" font-weight="bold">INGESTION</text>
-  <text x="468" y="66" text-anchor="middle" font-size="8" fill="#f0c27f" letter-spacing="2" font-weight="bold">PERSISTENCE</text>
-  <text x="664" y="66" text-anchor="middle" font-size="8" fill="#c792ea" letter-spacing="2" font-weight="bold">AI CORE</text>
-  <text x="863" y="66" text-anchor="middle" font-size="8" fill="#64ffda" letter-spacing="2" font-weight="bold">DASHBOARD</text>
+  <text x="88" y="66" text-anchor="middle" font-size="8" fill="#aaaaaa">PHYSICAL EDGE</text>
+  <text x="272" y="66" text-anchor="middle" font-size="8" fill="#666666">INGESTION</text>
+  <text x="468" y="66" text-anchor="middle" font-size="8" fill="#f0c27f">PERSISTENCE</text>
+  <text x="664" y="66" text-anchor="middle" font-size="8" fill="#888888">AI CORE</text>
+  <text x="863" y="66" text-anchor="middle" font-size="8" fill="#cccccc">DASHBOARD</text>
   <!-- IoT Sensor -->
-  <rect x="28" y="80" width="120" height="105" rx="8" fill="#1a0f00" stroke="#ff9b2e" stroke-width="2"/>
-  <rect x="28" y="80" width="120" height="24" rx="8" fill="#ff9b2e" opacity="0.2"/>
-  <text x="88" y="97" text-anchor="middle" font-size="9" fill="#ff9b2e" letter-spacing="1" font-weight="bold">IoT SENSOR</text>
-  <path d="M78,122 Q88,112 98,122" fill="none" stroke="#ff9b2e" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M72,116 Q88,103 104,116" fill="none" stroke="#ff9b2e" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-  <circle cx="88" cy="127" r="3" fill="#ff9b2e"/>
+  <rect x="28" y="80" width="120" height="105" rx="8" fill="#c0c0c0" stroke="#aaaaaa" stroke-width="2"/>
+  <rect x="28" y="80" width="120" height="24" rx="8" fill="#aaaaaa"/>
+  <text x="88" y="97" text-anchor="middle" font-size="9" fill="#aaaaaa">IoT SENSOR</text>
+  <path d="M78,122 Q88,112 98,122" fill="none" stroke="#aaaaaa" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M72,116 Q88,103 104,116" fill="none" stroke="#aaaaaa" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="88" cy="127" r="3" fill="#aaaaaa"/>
   <text x="88" y="151" text-anchor="middle" font-size="9" fill="#ccd6f6">UDP/MQTT</text>
   <text x="88" y="166" text-anchor="middle" font-size="9" fill="#8892b0">Energy · Water</text>
   <text x="88" y="181" text-anchor="middle" font-size="9" fill="#8892b0">Env · Motion</text>
   <!-- Arrow 1 -->
-  <line x1="148" y1="132" x2="212" y2="132" stroke="#ff9b2e" stroke-width="1.5" marker-end="url(#arr-orange)"/>
-  <rect x="148" y="118" width="64" height="16" rx="3" fill="#0d1117"/>
-  <text x="180" y="130" text-anchor="middle" font-size="8" fill="#ff9b2e">raw telemetry</text>
+  <line x1="148" y1="132" x2="212" y2="132" stroke="#aaaaaa" stroke-width="1.5"/>
+  <rect x="148" y="118" width="64" height="16" rx="3" fill="#f0f0f0"/>
+  <text x="180" y="130" text-anchor="middle" font-size="8" fill="#aaaaaa">raw telemetry</text>
   <!-- API Gateway -->
-  <rect x="212" y="80" width="120" height="105" rx="8" fill="#0a1628" stroke="#79c0ff" stroke-width="2"/>
-  <rect x="212" y="80" width="120" height="24" rx="8" fill="#79c0ff" opacity="0.15"/>
-  <text x="272" y="97" text-anchor="middle" font-size="9" fill="#79c0ff" letter-spacing="1" font-weight="bold">API GATEWAY</text>
-  <path d="M272,114 L264,118 L264,130 Q264,138 272,142 Q280,138 280,130 L280,118 Z" fill="none" stroke="#79c0ff" stroke-width="1.5"/>
+  <rect x="212" y="80" width="120" height="105" rx="8" fill="#e0e0e0" stroke="#666666" stroke-width="2"/>
+  <rect x="212" y="80" width="120" height="24" rx="8" fill="#666666"/>
+  <text x="272" y="97" text-anchor="middle" font-size="9" fill="#666666">API GATEWAY</text>
+  <path d="M272,114 L264,118 L264,130 Q264,138 272,142 Q280,138 280,130 L280,118 Z" fill="none" stroke="#666666" stroke-width="1.5"/>
   <text x="272" y="155" text-anchor="middle" font-size="9" fill="#ccd6f6">Node.js</text>
   <text x="272" y="170" text-anchor="middle" font-size="9" fill="#8892b0">Normalize</text>
   <text x="272" y="185" text-anchor="middle" font-size="9" fill="#8892b0">Validate · Route</text>
   <!-- Arrow 2 -->
-  <line x1="332" y1="132" x2="408" y2="132" stroke="#64ffda" stroke-width="1.5" marker-end="url(#arr-teal)"/>
-  <rect x="333" y="118" width="75" height="16" rx="3" fill="#0d1117"/>
-  <text x="370" y="130" text-anchor="middle" font-size="8" fill="#64ffda">ingest + normalize</text>
+  <line x1="332" y1="132" x2="408" y2="132" stroke="#cccccc" stroke-width="1.5"/>
+  <rect x="333" y="118" width="75" height="16" rx="3" fill="#f0f0f0"/>
+  <text x="370" y="130" text-anchor="middle" font-size="8" fill="#cccccc">ingest + normalize</text>
   <!-- Timeseries DB -->
   <rect x="408" y="80" width="120" height="105" rx="8" fill="#0f1a08" stroke="#f0c27f" stroke-width="2"/>
-  <rect x="408" y="80" width="120" height="24" rx="8" fill="#f0c27f" opacity="0.15"/>
-  <text x="468" y="97" text-anchor="middle" font-size="9" fill="#f0c27f" letter-spacing="1" font-weight="bold">TIMESERIES DB</text>
+  <rect x="408" y="80" width="120" height="24" rx="8" fill="#f0c27f"/>
+  <text x="468" y="97" text-anchor="middle" font-size="9" fill="#f0c27f">TIMESERIES DB</text>
   <ellipse cx="468" cy="118" rx="18" ry="5" fill="none" stroke="#f0c27f" stroke-width="1.5"/>
   <line x1="450" y1="118" x2="450" y2="132" stroke="#f0c27f" stroke-width="1.5"/>
   <line x1="486" y1="118" x2="486" y2="132" stroke="#f0c27f" stroke-width="1.5"/>
@@ -55,61 +54,61 @@
   <text x="468" y="170" text-anchor="middle" font-size="9" fill="#8892b0">Time-partitioned</text>
   <text x="468" y="185" text-anchor="middle" font-size="9" fill="#8892b0">Indexed · Windowed</text>
   <!-- Arrow 3 -->
-  <line x1="528" y1="132" x2="604" y2="132" stroke="#c792ea" stroke-width="1.5" marker-end="url(#arr-purple)"/>
-  <rect x="532" y="118" width="68" height="16" rx="3" fill="#0d1117"/>
-  <text x="566" y="130" text-anchor="middle" font-size="8" fill="#c792ea">batch analytics</text>
+  <line x1="528" y1="132" x2="604" y2="132" stroke="#888888" stroke-width="1.5"/>
+  <rect x="532" y="118" width="68" height="16" rx="3" fill="#f0f0f0"/>
+  <text x="566" y="130" text-anchor="middle" font-size="8" fill="#888888">batch analytics</text>
   <!-- AI Agent -->
-  <rect x="604" y="74" width="120" height="117" rx="8" fill="#160d2a" stroke="#c792ea" stroke-width="2.5" filter="url(#glow-ai)"/>
-  <rect x="604" y="74" width="120" height="26" rx="8" fill="#c792ea" opacity="0.2"/>
-  <text x="664" y="93" text-anchor="middle" font-size="9" fill="#c792ea" letter-spacing="1" font-weight="bold">AI AGENT</text>
-  <circle cx="664" cy="116" r="14" fill="none" stroke="#c792ea" stroke-width="1.5"/>
-  <line x1="656" y1="110" x2="664" y2="116" stroke="#c792ea" stroke-width="1.2"/>
-  <line x1="664" y1="116" x2="672" y2="110" stroke="#c792ea" stroke-width="1.2"/>
-  <line x1="658" y1="120" x2="664" y2="116" stroke="#c792ea" stroke-width="1.2"/>
-  <line x1="664" y1="116" x2="670" y2="120" stroke="#c792ea" stroke-width="1.2"/>
-  <line x1="664" y1="116" x2="664" y2="123" stroke="#c792ea" stroke-width="1.2"/>
+  <rect x="604" y="74" width="120" height="117" rx="8" fill="#d0d0d0" stroke="#888888" stroke-width="2.5" filter="url(#glow-ai)"/>
+  <rect x="604" y="74" width="120" height="26" rx="8" fill="#888888"/>
+  <text x="664" y="93" text-anchor="middle" font-size="9" fill="#888888">AI AGENT</text>
+  <circle cx="664" cy="116" r="14" fill="none" stroke="#888888" stroke-width="1.5"/>
+  <line x1="656" y1="110" x2="664" y2="116" stroke="#888888" stroke-width="1.2"/>
+  <line x1="664" y1="116" x2="672" y2="110" stroke="#888888" stroke-width="1.2"/>
+  <line x1="658" y1="120" x2="664" y2="116" stroke="#888888" stroke-width="1.2"/>
+  <line x1="664" y1="116" x2="670" y2="120" stroke="#888888" stroke-width="1.2"/>
+  <line x1="664" y1="116" x2="664" y2="123" stroke="#888888" stroke-width="1.2"/>
   <text x="664" y="152" text-anchor="middle" font-size="9" fill="#ccd6f6">LLM Agents</text>
   <text x="664" y="167" text-anchor="middle" font-size="9" fill="#8892b0">Anomaly detect</text>
   <text x="664" y="182" text-anchor="middle" font-size="9" fill="#8892b0">Pattern analysis</text>
   <!-- Arrow 4 -->
-  <line x1="724" y1="132" x2="800" y2="132" stroke="#64ffda" stroke-width="1.5" marker-end="url(#arr-teal)" filter="url(#glow-teal)"/>
-  <rect x="730" y="118" width="65" height="16" rx="3" fill="#0d1117"/>
-  <text x="762" y="130" text-anchor="middle" font-size="8" fill="#64ffda">insights</text>
+  <line x1="724" y1="132" x2="800" y2="132" stroke="#cccccc" stroke-width="1.5"/>
+  <rect x="730" y="118" width="65" height="16" rx="3" fill="#f0f0f0"/>
+  <text x="762" y="130" text-anchor="middle" font-size="8" fill="#cccccc">insights</text>
   <!-- Dashboard -->
-  <rect x="800" y="80" width="130" height="105" rx="8" fill="#071a1f" stroke="#64ffda" stroke-width="2" filter="url(#glow-teal)"/>
-  <rect x="800" y="80" width="130" height="24" rx="8" fill="#64ffda" opacity="0.15"/>
-  <text x="865" y="97" text-anchor="middle" font-size="9" fill="#64ffda" letter-spacing="1" font-weight="bold">DASHBOARD</text>
-  <rect x="853" y="110" rx="2" width="24" height="16" fill="none" stroke="#64ffda" stroke-width="1.5"/>
-  <line x1="865" y1="126" x2="865" y2="132" stroke="#64ffda" stroke-width="1.5"/>
-  <line x1="859" y1="132" x2="871" y2="132" stroke="#64ffda" stroke-width="1.5"/>
+  <rect x="800" y="80" width="130" height="105" rx="8" fill="#b0b0b0" stroke="#cccccc" stroke-width="2" filter="url(#glow-teal)"/>
+  <rect x="800" y="80" width="130" height="24" rx="8" fill="#cccccc"/>
+  <text x="865" y="97" text-anchor="middle" font-size="9" fill="#cccccc">DASHBOARD</text>
+  <rect x="853" y="110" rx="2" width="24" height="16" fill="none" stroke="#cccccc" stroke-width="1.5"/>
+  <line x1="865" y1="126" x2="865" y2="132" stroke="#cccccc" stroke-width="1.5"/>
+  <line x1="859" y1="132" x2="871" y2="132" stroke="#cccccc" stroke-width="1.5"/>
   <text x="865" y="152" text-anchor="middle" font-size="9" fill="#ccd6f6">Next.js</text>
   <text x="865" y="167" text-anchor="middle" font-size="9" fill="#8892b0">Real-time charts</text>
   <text x="865" y="182" text-anchor="middle" font-size="9" fill="#8892b0">Teacher alerts</text>
   <!-- Feedback loop -->
-  <polyline points="664,191 664,260 272,260 272,185" fill="none" stroke="#c792ea" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr-purple)"/>
-  <rect x="395" y="248" width="150" height="22" rx="4" fill="#16092a" stroke="#c792ea" stroke-width="1" opacity="0.9"/>
-  <text x="470" y="263" text-anchor="middle" font-size="9" fill="#c792ea" font-weight="bold">AI OPTIMIZATION LOOP</text>
-  <rect x="285" y="230" width="115" height="16" rx="3" fill="#0d1117"/>
-  <text x="342" y="242" text-anchor="middle" font-size="8" fill="#c792ea">adjust controls</text>
+  <polyline points="664,191 664,260 272,260 272,185" fill="none" stroke="#888888" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <rect x="395" y="248" width="150" height="22" rx="4" fill="#16092a" stroke="#888888" stroke-width="1"/>
+  <text x="470" y="263" text-anchor="middle" font-size="9" fill="#888888">AI OPTIMIZATION LOOP</text>
+  <rect x="285" y="230" width="115" height="16" rx="3" fill="#f0f0f0"/>
+  <text x="342" y="242" text-anchor="middle" font-size="8" fill="#888888">adjust controls</text>
   <!-- Legend -->
-  <rect x="35" y="305" width="880" height="110" rx="10" fill="#0a0f1a" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
-  <text x="475" y="325" text-anchor="middle" font-size="9" fill="#8892b0" letter-spacing="2">HOW IT WORKS</text>
-  <circle cx="68" cy="346" r="9" fill="#ff9b2e" opacity="0.2" stroke="#ff9b2e" stroke-width="1"/>
-  <text x="68" y="350" text-anchor="middle" font-size="8" fill="#ff9b2e" font-weight="bold">1</text>
+  <rect x="35" y="305" width="880" height="110" rx="10" fill="#a0a0a0" stroke="#ffffff" stroke-width="0.5"/>
+  <text x="475" y="325" text-anchor="middle" font-size="9" fill="#8892b0">HOW IT WORKS</text>
+  <circle cx="68" cy="346" r="9" fill="#aaaaaa" stroke="#aaaaaa" stroke-width="1"/>
+  <text x="68" y="350" text-anchor="middle" font-size="8" fill="#aaaaaa">1</text>
   <text x="85" y="350" font-size="9" fill="#8892b0">Sensors stream raw UDP telemetry from classrooms</text>
-  <circle cx="68" cy="370" r="9" fill="#79c0ff" opacity="0.2" stroke="#79c0ff" stroke-width="1"/>
-  <text x="68" y="374" text-anchor="middle" font-size="8" fill="#79c0ff" font-weight="bold">2</text>
+  <circle cx="68" cy="370" r="9" fill="#666666" stroke="#666666" stroke-width="1"/>
+  <text x="68" y="374" text-anchor="middle" font-size="8" fill="#666666">2</text>
   <text x="85" y="374" font-size="9" fill="#8892b0">Gateway normalizes and validates the chaotic stream</text>
-  <circle cx="68" cy="390" r="9" fill="#f0c27f" opacity="0.2" stroke="#f0c27f" stroke-width="1"/>
-  <text x="68" y="394" text-anchor="middle" font-size="8" fill="#f0c27f" font-weight="bold">3</text>
+  <circle cx="68" cy="390" r="9" fill="#f0c27f" stroke="#f0c27f" stroke-width="1"/>
+  <text x="68" y="394" text-anchor="middle" font-size="8" fill="#f0c27f">3</text>
   <text x="85" y="394" font-size="9" fill="#8892b0">Timeseries DB stores windowed batches for AI consumption</text>
-  <circle cx="480" cy="346" r="9" fill="#c792ea" opacity="0.2" stroke="#c792ea" stroke-width="1"/>
-  <text x="480" y="350" text-anchor="middle" font-size="8" fill="#c792ea" font-weight="bold">4</text>
+  <circle cx="480" cy="346" r="9" fill="#888888" stroke="#888888" stroke-width="1"/>
+  <text x="480" y="350" text-anchor="middle" font-size="8" fill="#888888">4</text>
   <text x="497" y="350" font-size="9" fill="#8892b0">LLM Agent detects anomalies and generates insights</text>
-  <circle cx="480" cy="370" r="9" fill="#64ffda" opacity="0.2" stroke="#64ffda" stroke-width="1"/>
-  <text x="480" y="374" text-anchor="middle" font-size="8" fill="#64ffda" font-weight="bold">5</text>
+  <circle cx="480" cy="370" r="9" fill="#cccccc" stroke="#cccccc" stroke-width="1"/>
+  <text x="480" y="374" text-anchor="middle" font-size="8" fill="#cccccc">5</text>
   <text x="497" y="374" font-size="9" fill="#8892b0">Dashboard surfaces real-time alerts for teachers</text>
-  <circle cx="480" cy="390" r="9" fill="#c792ea" opacity="0.2" stroke="#c792ea" stroke-width="1"/>
-  <text x="480" y="394" text-anchor="middle" font-size="8" fill="#c792ea" font-weight="bold">6</text>
+  <circle cx="480" cy="390" r="9" fill="#888888" stroke="#888888" stroke-width="1"/>
+  <text x="480" y="394" text-anchor="middle" font-size="8" fill="#888888">6</text>
   <text x="497" y="394" font-size="9" fill="#8892b0">AI auto-adjusts Gateway thresholds, closing the loop</text>
 </svg>

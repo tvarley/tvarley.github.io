@@ -12,6 +12,7 @@ priority: 2
 **Role:** Lead Software Engineer | **Period:** 2014 - 2016
 
 ## Overview
+
 Led the engineering and rapid delivery of a cloud-native B2B e-commerce platform. The project aimed to disrupt the promotional products industry by streamlining the supply chain between suppliers and distributors. Delivered within a stringent **4-month timeline**, the platform was architected for extreme scalability and cost-efficiency from day one, serving as a critical revenue channel for the business.
 
 ## Key Achievements

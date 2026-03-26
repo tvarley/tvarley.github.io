@@ -12,6 +12,7 @@ priority: 3
 **Role:** Enterprise Architect | **Period:** 2012 - 2014
 
 ## Overview
+
 Spearheaded a high-stakes enterprise initiative to modernize a legacy monolithic software suite for a major B2B enterprise company. The project involved transforming a tightly coupled, on-premise style application into a **modern, cloud-native microservices architecture**. This transformation was critical to meeting the demands of a growing global user base and ensuring 24/7 availability.
 
 ## Key Achievements

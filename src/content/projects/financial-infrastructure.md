@@ -12,6 +12,7 @@ priority: 4
 **Role:** Senior Technical Lead | **Period:** 2009 - 2012
 
 ## Overview
+
 Designed and maintained mission-critical financial data infrastructure centered on a uniquely constrained problem: delivering U.S. government economic releases — **Department of Labor** (Non-Farm Payrolls, CPI, Jobless Claims) and **Treasury** data — from a **physically embargoed press room** to Wall Street trading systems in **under 15 milliseconds** from embargo lift.
 
 Journalists are locked in a secure press room with embargoed data and no internet access. At the exact release time (typically 8:30 AM ET), a **physical lock box** opens, triggering a hardware-timed data burst through a dedicated leased-line pipeline. The race to Wall Street begins at that moment. The market moves before the public reads a headline.

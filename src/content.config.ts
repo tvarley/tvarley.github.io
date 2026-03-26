@@ -52,6 +52,7 @@ const projects = defineCollection({
 		tags: z.array(z.string()),
 		priority: z.number().default(99),
 		thumbnail: z.string().optional(),
+		heroImage: z.string().optional(),
 		links: z.object({
 			demo: z.string().optional(),
 			repo: z.string().optional(),

@@ -12,6 +12,7 @@ priority: 6
 **Role:** Principal Engineer / AI Architect | **Period:** 2024 - Present
 
 ## Overview
+
 This website [tvarley.github.io](https://tvarley.github.io) is a living demonstration of **100% AI-native development**. Unlike traditional coding or simple IDE assistance, every component, style, and architectural decision here was executed by **autonomous AI agents** acting on high-level directives. The project proves that when guided by a Principal Engineer's architectural vision, AI agents can deliver production-grade, self-healing software without a single manually written line of code.
 
 ## Agentic Engineering & Experience

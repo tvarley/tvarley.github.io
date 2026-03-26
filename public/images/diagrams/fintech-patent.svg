@@ -1,91 +1,90 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 500" width="880" height="500" font-family="'Courier New', Courier, monospace">
   <defs>
-    <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1" fill="#1e3a5f" opacity="0.4"/></pattern>
-    <marker id="arr-teal" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="#64ffda"/></marker>
+    <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1" fill="#1e3a5f"/></pattern>
+    <marker id="arr-teal" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="#cccccc"/></marker>
     <marker id="arr-gold" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="#f0c27f"/></marker>
     <marker id="arr-gold-rev" markerWidth="8" markerHeight="8" refX="1" refY="3" orient="auto-start-reverse" markerUnits="strokeWidth"><path d="M0,3 L8,0 L8,6 z" fill="#f0c27f"/></marker>
     <filter id="glow-patent" x="-35%" y="-35%" width="170%" height="170%"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     <filter id="glow-subtle" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     <radialGradient id="mw-grad" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#64ffda" stop-opacity="0.15"/><stop offset="100%" stop-color="#0d2a22" stop-opacity="0.8"/></radialGradient>
   </defs>
-  <rect width="880" height="500" fill="#0d1117"/>
-  <rect width="880" height="500" fill="url(#dots)"/>
-  <text x="440" y="34" text-anchor="middle" font-size="13" font-weight="bold" fill="#64ffda" letter-spacing="3">FINTECH PATENT · HUB-AND-SPOKE INTEGRATION</text>
-  <line x1="160" y1="44" x2="720" y2="44" stroke="#64ffda" stroke-width="0.5" opacity="0.4"/>
-  <text x="440" y="58" text-anchor="middle" font-size="9" fill="#8892b0" letter-spacing="2">WRITE ONCE · CONNECT EVERYTHING · PROTECT THE CORE</text>
+  <rect width="880" height="500" fill="#f0f0f0"/>
+  <text x="440" y="34" text-anchor="middle" font-size="13" fill="#cccccc">FINTECH PATENT · HUB-AND-SPOKE INTEGRATION</text>
+  <line x1="160" y1="44" x2="720" y2="44" stroke="#cccccc" stroke-width="0.5"/>
+  <text x="440" y="58" text-anchor="middle" font-size="9" fill="#8892b0">WRITE ONCE · CONNECT EVERYTHING · PROTECT THE CORE</text>
   <!-- CHANNELS -->
-  <text x="440" y="86" text-anchor="middle" font-size="9" fill="#79c0ff" letter-spacing="3" font-weight="bold">ACCESS CHANNELS</text>
+  <text x="440" y="86" text-anchor="middle" font-size="9" fill="#666666">ACCESS CHANNELS</text>
   <!-- Web Banking -->
-  <rect x="42" y="96" width="155" height="100" rx="8" fill="#0a1628" stroke="#79c0ff" stroke-width="1.5" filter="url(#glow-subtle)"/>
-  <rect x="42" y="96" width="155" height="24" rx="8" fill="#79c0ff" opacity="0.15"/>
-  <text x="119" y="114" text-anchor="middle" font-size="9" fill="#79c0ff" letter-spacing="1" font-weight="bold">WEB BANKING</text>
-  <rect x="99" y="126" rx="3" width="40" height="28" fill="none" stroke="#79c0ff" stroke-width="1.5"/>
-  <line x1="99" y1="133" x2="139" y2="133" stroke="#79c0ff" stroke-width="1"/>
-  <circle cx="103" cy="130" r="1.5" fill="#79c0ff"/>
-  <circle cx="109" cy="130" r="1.5" fill="#79c0ff"/>
+  <rect x="42" y="96" width="155" height="100" rx="8" fill="#e0e0e0" stroke="#666666" stroke-width="1.5" filter="url(#glow-subtle)"/>
+  <rect x="42" y="96" width="155" height="24" rx="8" fill="#666666"/>
+  <text x="119" y="114" text-anchor="middle" font-size="9" fill="#666666">WEB BANKING</text>
+  <rect x="99" y="126" rx="3" width="40" height="28" fill="none" stroke="#666666" stroke-width="1.5"/>
+  <line x1="99" y1="133" x2="139" y2="133" stroke="#666666" stroke-width="1"/>
+  <circle cx="103" cy="130" r="1.5" fill="#666666"/>
+  <circle cx="109" cy="130" r="1.5" fill="#666666"/>
   <text x="119" y="170" text-anchor="middle" font-size="9" fill="#ccd6f6">React SPA</text>
   <text x="119" y="186" text-anchor="middle" font-size="9" fill="#8892b0">HTTPS · REST</text>
   <!-- Mobile App -->
-  <rect x="232" y="96" width="155" height="100" rx="8" fill="#0a1628" stroke="#79c0ff" stroke-width="1.5" filter="url(#glow-subtle)"/>
-  <rect x="232" y="96" width="155" height="24" rx="8" fill="#79c0ff" opacity="0.15"/>
-  <text x="309" y="114" text-anchor="middle" font-size="9" fill="#79c0ff" letter-spacing="1" font-weight="bold">MOBILE APP</text>
-  <rect x="297" y="124" rx="3" width="24" height="36" fill="none" stroke="#79c0ff" stroke-width="1.5"/>
-  <line x1="304" y1="155" x2="314" y2="155" stroke="#79c0ff" stroke-width="1.5"/>
+  <rect x="232" y="96" width="155" height="100" rx="8" fill="#e0e0e0" stroke="#666666" stroke-width="1.5" filter="url(#glow-subtle)"/>
+  <rect x="232" y="96" width="155" height="24" rx="8" fill="#666666"/>
+  <text x="309" y="114" text-anchor="middle" font-size="9" fill="#666666">MOBILE APP</text>
+  <rect x="297" y="124" rx="3" width="24" height="36" fill="none" stroke="#666666" stroke-width="1.5"/>
+  <line x1="304" y1="155" x2="314" y2="155" stroke="#666666" stroke-width="1.5"/>
   <text x="309" y="170" text-anchor="middle" font-size="9" fill="#ccd6f6">iOS · Android</text>
   <text x="309" y="186" text-anchor="middle" font-size="9" fill="#8892b0">OAuth 2.0 · JWT</text>
   <!-- ATM Network -->
-  <rect x="493" y="96" width="155" height="100" rx="8" fill="#0a1628" stroke="#79c0ff" stroke-width="1.5" filter="url(#glow-subtle)"/>
-  <rect x="493" y="96" width="155" height="24" rx="8" fill="#79c0ff" opacity="0.15"/>
-  <text x="570" y="114" text-anchor="middle" font-size="9" fill="#79c0ff" letter-spacing="1" font-weight="bold">ATM NETWORK</text>
-  <rect x="553" y="122" rx="2" width="34" height="40" fill="none" stroke="#79c0ff" stroke-width="1.5"/>
-  <rect x="558" y="127" rx="1" width="24" height="14" fill="#79c0ff" opacity="0.2"/>
-  <rect x="558" y="147" rx="1" width="24" height="8" fill="none" stroke="#79c0ff" stroke-width="1"/>
+  <rect x="493" y="96" width="155" height="100" rx="8" fill="#e0e0e0" stroke="#666666" stroke-width="1.5" filter="url(#glow-subtle)"/>
+  <rect x="493" y="96" width="155" height="24" rx="8" fill="#666666"/>
+  <text x="570" y="114" text-anchor="middle" font-size="9" fill="#666666">ATM NETWORK</text>
+  <rect x="553" y="122" rx="2" width="34" height="40" fill="none" stroke="#666666" stroke-width="1.5"/>
+  <rect x="558" y="127" rx="1" width="24" height="14" fill="#666666"/>
+  <rect x="558" y="147" rx="1" width="24" height="8" fill="none" stroke="#666666" stroke-width="1"/>
   <text x="570" y="170" text-anchor="middle" font-size="9" fill="#ccd6f6">XFS · ISO 8583</text>
   <text x="570" y="186" text-anchor="middle" font-size="9" fill="#8892b0">Nationwide fleet</text>
   <!-- VRU Voice -->
-  <rect x="683" y="96" width="155" height="100" rx="8" fill="#0a1628" stroke="#79c0ff" stroke-width="1.5" filter="url(#glow-subtle)"/>
-  <rect x="683" y="96" width="155" height="24" rx="8" fill="#79c0ff" opacity="0.15"/>
-  <text x="760" y="114" text-anchor="middle" font-size="9" fill="#79c0ff" letter-spacing="1" font-weight="bold">VOICE · VRU</text>
-  <path d="M748,126 Q748,120 754,120 L756,126 Q750,128 750,132 Q754,140 762,144 Q766,144 768,138 L774,140 Q774,146 768,146 Q754,146 748,126 Z" fill="none" stroke="#79c0ff" stroke-width="1.5"/>
+  <rect x="683" y="96" width="155" height="100" rx="8" fill="#e0e0e0" stroke="#666666" stroke-width="1.5" filter="url(#glow-subtle)"/>
+  <rect x="683" y="96" width="155" height="24" rx="8" fill="#666666"/>
+  <text x="760" y="114" text-anchor="middle" font-size="9" fill="#666666">VOICE · VRU</text>
+  <path d="M748,126 Q748,120 754,120 L756,126 Q750,128 750,132 Q754,140 762,144 Q766,144 768,138 L774,140 Q774,146 768,146 Q754,146 748,126 Z" fill="none" stroke="#666666" stroke-width="1.5"/>
   <text x="760" y="170" text-anchor="middle" font-size="9" fill="#ccd6f6">IVR · DTMF</text>
   <text x="760" y="186" text-anchor="middle" font-size="9" fill="#8892b0">24/7 automated</text>
   <!-- Arrows: channels -> middleware -->
-  <line x1="119" y1="196" x2="340" y2="268" stroke="#64ffda" stroke-width="1.5" marker-end="url(#arr-teal)" filter="url(#glow-subtle)"/>
-  <line x1="309" y1="196" x2="380" y2="268" stroke="#64ffda" stroke-width="1.5" marker-end="url(#arr-teal)"/>
-  <line x1="570" y1="196" x2="500" y2="268" stroke="#64ffda" stroke-width="1.5" marker-end="url(#arr-teal)"/>
-  <line x1="760" y1="196" x2="540" y2="268" stroke="#64ffda" stroke-width="1.5" marker-end="url(#arr-teal)" filter="url(#glow-subtle)"/>
+  <line x1="119" y1="196" x2="340" y2="268" stroke="#cccccc" stroke-width="1.5"/>
+  <line x1="309" y1="196" x2="380" y2="268" stroke="#cccccc" stroke-width="1.5"/>
+  <line x1="570" y1="196" x2="500" y2="268" stroke="#cccccc" stroke-width="1.5"/>
+  <line x1="760" y1="196" x2="540" y2="268" stroke="#cccccc" stroke-width="1.5"/>
   <!-- MIDDLEWARE -->
-  <rect x="260" y="268" width="360" height="100" rx="10" fill="url(#mw-grad)" stroke="#64ffda" stroke-width="3" filter="url(#glow-patent)"/>
-  <rect x="260" y="268" width="360" height="28" rx="10" fill="#64ffda" opacity="0.18"/>
-  <text x="440" y="288" text-anchor="middle" font-size="10" fill="#64ffda" letter-spacing="2" font-weight="bold">UNIFIED TRANSACTION LAYER</text>
+  <rect x="260" y="268" width="360" height="100" rx="10" fill="url(#mw-grad)" stroke="#cccccc" stroke-width="3" filter="url(#glow-patent)"/>
+  <rect x="260" y="268" width="360" height="28" rx="10" fill="#cccccc"/>
+  <text x="440" y="288" text-anchor="middle" font-size="10" fill="#cccccc">UNIFIED TRANSACTION LAYER</text>
   <text x="440" y="306" text-anchor="middle" font-size="9" fill="#ccd6f6">The Patent Core — Universal Translator</text>
   <text x="440" y="324" text-anchor="middle" font-size="9" fill="#8892b0">Channel abstraction · Protocol normalization · Session management</text>
   <text x="440" y="342" text-anchor="middle" font-size="9" fill="#8892b0">Transaction routing · Idempotency · Retry logic · Audit logging</text>
-  <text x="440" y="360" text-anchor="middle" font-size="8" fill="#64ffda">Write business logic once — serve every channel identically</text>
+  <text x="440" y="360" text-anchor="middle" font-size="8" fill="#cccccc">Write business logic once — serve every channel identically</text>
   <!-- Middleware -> Mainframe -->
-  <line x1="440" y1="368" x2="440" y2="398" stroke="#f0c27f" stroke-width="2" marker-start="url(#arr-gold-rev)" marker-end="url(#arr-gold)"/>
-  <rect x="360" y="376" width="160" height="16" rx="3" fill="#0d1117"/>
+  <line x1="440" y1="368" x2="440" y2="398" stroke="#f0c27f" stroke-width="2" marker-start="url(#arr-gold-rev)"/>
+  <rect x="360" y="376" width="160" height="16" rx="3" fill="#f0f0f0"/>
   <text x="440" y="388" text-anchor="middle" font-size="9" fill="#f0c27f">CICS · MQ Series · SNA</text>
   <!-- MAINFRAME -->
   <rect x="270" y="398" width="340" height="82" rx="10" fill="#1a1208" stroke="#f0c27f" stroke-width="2"/>
-  <rect x="270" y="398" width="340" height="26" rx="10" fill="#f0c27f" opacity="0.15"/>
-  <text x="440" y="416" text-anchor="middle" font-size="10" fill="#f0c27f" letter-spacing="2" font-weight="bold">LEGACY MAINFRAME CORE</text>
+  <rect x="270" y="398" width="340" height="26" rx="10" fill="#f0c27f"/>
+  <text x="440" y="416" text-anchor="middle" font-size="10" fill="#f0c27f">LEGACY MAINFRAME CORE</text>
   <text x="440" y="437" text-anchor="middle" font-size="9" fill="#ccd6f6">IBM z/Series · COBOL · VSAM · DB2</text>
   <text x="440" y="455" text-anchor="middle" font-size="9" fill="#8892b0">Core banking · Account ledger · Transaction records</text>
   <text x="440" y="472" text-anchor="middle" font-size="8" fill="#f0c27f">decades of business logic · never direct-accessed by channels</text>
   <!-- No direct access indicators -->
-  <line x1="100" y1="410" x2="270" y2="440" stroke="#ff4444" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
-  <text x="140" y="445" text-anchor="middle" font-size="8" fill="#ff4444" opacity="0.6">no direct</text>
-  <line x1="780" y1="410" x2="610" y2="440" stroke="#ff4444" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
-  <text x="740" y="445" text-anchor="middle" font-size="8" fill="#ff4444" opacity="0.6">no direct</text>
+  <line x1="100" y1="410" x2="270" y2="440" stroke="#ff4444" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="140" y="445" text-anchor="middle" font-size="8" fill="#ff4444">no direct</text>
+  <line x1="780" y1="410" x2="610" y2="440" stroke="#ff4444" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="740" y="445" text-anchor="middle" font-size="8" fill="#ff4444">no direct</text>
   <!-- Callouts -->
-  <rect x="28" y="278" width="220" height="64" rx="8" fill="#071a0f" stroke="#64ffda" stroke-width="0.8" opacity="0.8"/>
-  <text x="138" y="298" text-anchor="middle" font-size="9" fill="#64ffda" font-weight="bold">WHY IT MATTERS</text>
+  <rect x="28" y="278" width="220" height="64" rx="8" fill="#071a0f" stroke="#cccccc" stroke-width="0.8"/>
+  <text x="138" y="298" text-anchor="middle" font-size="9" fill="#cccccc">WHY IT MATTERS</text>
   <text x="138" y="316" text-anchor="middle" font-size="8" fill="#8892b0">Channels never touch the</text>
   <text x="138" y="330" text-anchor="middle" font-size="8" fill="#8892b0">mainframe. Middleware</text>
-  <text x="138" y="344" text-anchor="middle" font-size="8" fill="#64ffda">protects the core.</text>
-  <rect x="632" y="278" width="220" height="64" rx="8" fill="#1a1208" stroke="#f0c27f" stroke-width="0.8" opacity="0.8"/>
-  <text x="742" y="298" text-anchor="middle" font-size="9" fill="#f0c27f" font-weight="bold">THE INNOVATION</text>
+  <text x="138" y="344" text-anchor="middle" font-size="8" fill="#cccccc">protects the core.</text>
+  <rect x="632" y="278" width="220" height="64" rx="8" fill="#1a1208" stroke="#f0c27f" stroke-width="0.8"/>
+  <text x="742" y="298" text-anchor="middle" font-size="9" fill="#f0c27f">THE INNOVATION</text>
   <text x="742" y="316" text-anchor="middle" font-size="8" fill="#8892b0">Add new channels</text>
   <text x="742" y="330" text-anchor="middle" font-size="8" fill="#8892b0">without mainframe</text>
   <text x="742" y="344" text-anchor="middle" font-size="8" fill="#f0c27f">changes. Ever.</text>
