@@ -31,13 +31,8 @@ const projects = (await getCollection('projects')).sort(
                         <!-- Decorative background glow -->
                         <div class="absolute -top-10 -right-10 w-32 h-32 bg-steel-blue/10 rounded-full blur-3xl group-hover:bg-steel-blue/20 transition-all duration-500"></div>
 
-                        <!-- Image Thumbnail -->
+                        <!-- Thumbnail Placeholder -->
                         <div class="w-full h-32 bg-matte border-b border-white/10 mb-6 flex items-center justify-center relative overflow-hidden rounded-xl">
-                            <img 
-                                src={`/images/solutions/${project.id}.png`} 
-                                alt={`${project.data.title} Architecture`} 
-                                class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                            />
                         </div>
 
                         <!-- Header: Role & Period -->
