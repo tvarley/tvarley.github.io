@@ -13,13 +13,22 @@ priority: 4
 
 ## Overview
 
+<style>
+@media (max-width: 768px) {
+  .portrait-img {
+    float: none !important;
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+}
+</style>
+
 <div>
-  <img src="/images/solutions/financial-infrastructure.png" alt="financial-infrastructure Solution Image" style="width: 100%; height: auto; max-height: 400px; object-fit: contain;" />
+  <img src="/images/solutions/financial-infrastructure.png" alt="financial-infrastructure Solution Image" class="portrait-img" style="float: left; width: 50%; margin-right: 1rem; margin-bottom: 1rem; object-fit: contain;" />
+  Designed and maintained mission-critical financial data infrastructure centered on a uniquely constrained problem: delivering U.S. government economic releases — **Department of Labor** (Non-Farm Payrolls, CPI, Jobless Claims) and **Treasury** data — from a **physically embargoed press room** to Wall Street trading systems in **under 15 milliseconds** from embargo lift.
+
+  Journalists are locked in a secure press room with embargoed data and no internet access. At the exact release time (typically 8:30 AM ET), a **physical lock box** opens, triggering a hardware-timed data burst through a dedicated leased-line pipeline. The race to Wall Street begins at that moment. The market moves before the public reads a headline.
 </div>
-
-Designed and maintained mission-critical financial data infrastructure centered on a uniquely constrained problem: delivering U.S. government economic releases — **Department of Labor** (Non-Farm Payrolls, CPI, Jobless Claims) and **Treasury** data — from a **physically embargoed press room** to Wall Street trading systems in **under 15 milliseconds** from embargo lift.
-
-Journalists are locked in a secure press room with embargoed data and no internet access. At the exact release time (typically 8:30 AM ET), a **physical lock box** opens, triggering a hardware-timed data burst through a dedicated leased-line pipeline. The race to Wall Street begins at that moment. The market moves before the public reads a headline.
 
 ## Key Achievements
 

@@ -13,11 +13,20 @@ priority: 5
 
 ## Overview
 
-<div>
-  <img src="/images/solutions/fintech-patent.png" alt="fintech-patent Solution Image" style="width: 100%; height: auto; max-height: 400px; object-fit: contain;" />
-</div>
+<style>
+@media (max-width: 768px) {
+  .portrait-img {
+    float: none !important;
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+}
+</style>
 
-A pioneering innovation in the financial technology sector that established early architectural standards for **multi-channel banking systems**. At a time when digital banking was in its infancy, this solution provided a unified framework for bridging legacy mainframe banking cores with emerging digital channels (web, mobile, ATM, and voice). This work not only solved immediate interoperability challenges but laid the groundwork for modern "omnichannel" banking experiences.
+<div>
+  <img src="/images/solutions/fintech-patent.png" alt="fintech-patent Solution Image" class="portrait-img" style="float: left; width: 50%; margin-right: 1rem; margin-bottom: 1rem; object-fit: contain;" />
+  A pioneering innovation in the financial technology sector that established early architectural standards for **multi-channel banking systems**. At a time when digital banking was in its infancy, this solution provided a unified framework for bridging legacy mainframe banking cores with emerging digital channels (web, mobile, ATM, and voice). This work not only solved immediate interoperability challenges but laid the groundwork for modern "omnichannel" banking experiences.
+</div>
 
 ## Key Achievements
 

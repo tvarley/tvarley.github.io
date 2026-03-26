@@ -13,11 +13,20 @@ priority: 3
 
 ## Overview
 
-<div>
-  <img src="/images/solutions/enterprise-saas-migration.png" alt="enterprise-saas-migration Solution Image" style="width: 100%; height: auto; max-height: 400px; object-fit: contain;" />
-</div>
+<style>
+@media (max-width: 768px) {
+  .portrait-img {
+    float: none !important;
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+}
+</style>
 
-Spearheaded a high-stakes enterprise initiative to modernize a legacy monolithic software suite for a major B2B enterprise company. The project involved transforming a tightly coupled, on-premise style application into a **modern, cloud-native microservices architecture**. This transformation was critical to meeting the demands of a growing global user base and ensuring 24/7 availability.
+<div>
+  <img src="/images/solutions/enterprise-saas-migration.png" alt="enterprise-saas-migration Solution Image" class="portrait-img" style="float: left; width: 50%; margin-right: 1rem; margin-bottom: 1rem; object-fit: contain;" />
+  Spearheaded a high-stakes enterprise initiative to modernize a legacy monolithic software suite for a major B2B enterprise company. The project involved transforming a tightly coupled, on-premise style application into a **modern, cloud-native microservices architecture**. This transformation was critical to meeting the demands of a growing global user base and ensuring 24/7 availability.
+</div>
 
 ## Key Achievements
 
