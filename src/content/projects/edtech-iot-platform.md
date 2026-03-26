@@ -13,6 +13,10 @@ priority: 1
 
 ## Overview
 
+<div style="width: 100%;">
+  <img src="/images/solutions/edtech-iot-platform.png" alt="edtech-iot-platform Solution Image" style="width: 100%; height: auto;" />
+</div>
+
 Architected and built a comprehensive IoT platform designed to optimize water usage and energy consumption across distributed large-scale environments. This project represents a paradigmatic shift to **100% AI-native development**, leveraging advanced LLM agents to accelerate the entire software development lifecycle—from architectural design to code generation and testing. The system manages distributed wireless sensor networks, ingesting real-time data to drive automated environmental controls.
 
 ## AI Engineering Techniques Used

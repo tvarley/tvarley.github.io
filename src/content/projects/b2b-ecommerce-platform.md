@@ -13,7 +13,14 @@ priority: 2
 
 ## Overview
 
-Led the engineering and rapid delivery of a cloud-native B2B e-commerce platform. The project aimed to disrupt the promotional products industry by streamlining the supply chain between suppliers and distributors. Delivered within a stringent **4-month timeline**, the platform was architected for extreme scalability and cost-efficiency from day one, serving as a critical revenue channel for the business.
+<div style="display: flex; gap: 1rem; align-items: flex-start;">
+  <div style="flex: 1;">
+    <img src="/images/solutions/b2b-ecommerce-platform.png" alt="b2b-ecommerce-platform Solution Image" style="width: 100%; height: auto;" />
+  </div>
+  <div style="flex: 1;">
+    Led the engineering and rapid delivery of a cloud-native B2B e-commerce platform. The project aimed to disrupt the promotional products industry by streamlining the supply chain between suppliers and distributors. Delivered within a stringent **4-month timeline**, the platform was architected for extreme scalability and cost-efficiency from day one, serving as a critical revenue channel for the business.
+  </div>
+</div>
 
 ## Key Achievements
 
