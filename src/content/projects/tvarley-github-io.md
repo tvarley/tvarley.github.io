@@ -13,14 +13,11 @@ priority: 6
 
 ## Overview
 
-<div style="display: flex; gap: 1rem; align-items: flex-start;">
-  <div style="flex: 1;">
-    <img src="/images/solutions/tvarley-github-io.png" alt="tvarley-github-io Solution Image" style="width: 100%; height: auto;" />
-  </div>
-  <div style="flex: 1;">
-    This website [tvarley.github.io](https://tvarley.github.io) is a living demonstration of **100% AI-native development**. Unlike traditional coding or simple IDE assistance, every component, style, and architectural decision here was executed by **autonomous AI agents** acting on high-level directives. The project proves that when guided by a Principal Engineer's architectural vision, AI agents can deliver production-grade, self-healing software without a single manually written line of code.
-  </div>
+<div>
+  <img src="/images/solutions/tvarley-github-io.png" alt="tvarley-github-io Solution Image" style="width: 100%; height: auto; max-height: 400px; object-fit: contain;" />
 </div>
+
+This website [tvarley.github.io](https://tvarley.github.io) is a living demonstration of **100% AI-native development**. Unlike traditional coding or simple IDE assistance, every component, style, and architectural decision here was executed by **autonomous AI agents** acting on high-level directives. The project proves that when guided by a Principal Engineer's architectural vision, AI agents can deliver production-grade, self-healing software without a single manually written line of code.
 
 ## Agentic Engineering & Experience
 
