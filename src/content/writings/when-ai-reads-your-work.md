@@ -32,6 +32,8 @@ Today, every line is ingested repeatedly by tools that lack our implicit knowled
 
 The cruel irony: documentation, once the most painful and time-consuming part of the engineering job—the part we procrastinated, delegated, or quietly resented—must now become essential daily practice. What was drudgery is now infrastructure. (It does raise the inevitable question of context size, a matter best reserved for a future article.)
 
+> *"Programs must be written for people to read, and only incidentally for machines to execute."* — Harold Abelson & Gerald Jay Sussman ([*Structure and Interpretation of Computer Programs*](https://en.wikipedia.org/wiki/Structure_and_Interpretation_of_Computer_Programs))
+
 Recent work on context files demonstrates that well-structured base materials allow AI to generate supporting documentation that outperforms sparse human efforts. Quality of written output directly correlates with AI effectiveness across your professional and public presence. Your lazy README haunts you exponentially now.
 
 ## README.md: The AI Onboarding Manual
@@ -83,6 +85,8 @@ And then there are the comments that were never meant to see the light of day—
 - References to related test cases, email discussions, or IM threads that validate or explain the logic
 - Forward-looking comments about planned extensions or known limitations for future AI work
 
+> *"Documentation is a love letter that you write to your future self."* — [Damian Conway](https://en.wikipedia.org/wiki/Damian_Conway)
+
 These comments allow AI to reconstruct the original engineer's intent and decision-making process rather than inferring solely from implementation details. This leads to more coherent extensions, refactors, and feature additions that stay true to the system's foundational principles.
 
 ## Tests as Behavioral Contracts
@@ -129,6 +133,8 @@ Establish systems and processes that create source-controlled documentation in e
 All forms of writing have undergone a phase change. What was once a maintenance burden or casual communication is now core infrastructure for reliable AI collaboration and personal representation. The documentation you skipped writing in 2023 because "the code is self-explanatory" is now costing you in agent hallucinations, misrouted decisions, and emails drafted in a voice you don't recognize.
 
 Individuals and teams that treat their entire written output with discipline gain compounding advantages. The rest are training their replacements to misunderstand them with perfect fidelity.
+
+> *"The great enemy of clear language is insincerity."* — [George Orwell](https://en.wikipedia.org/wiki/George_Orwell)
 
 You and your teammates are no longer the audience. Our AIs are.
 
