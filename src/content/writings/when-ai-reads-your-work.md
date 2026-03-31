@@ -30,7 +30,7 @@ We once maintained docs and communications as checkboxes for human collaborators
 
 Today, every line is ingested repeatedly by tools that lack our implicit knowledge of the domain, history, and preferences. One notes, with some irony, that agents don't just read your code docs—they analyze your email threads for decision history, review IM conversations for context clues, and study your web posts and articles to understand your voice and expertise.
 
-The cruel irony: documentation, once the most painful and time-consuming part of the engineering job—the part we procrastinated, delegated, or quietly resented—must now become essential daily practice. What was drudgery is now infrastructure. (It does raise the inevitable question of context size, a matter best reserved for a future article.)
+The cruel irony: documentation, once the most painful and time-consuming part of the engineering job—the part we procrastinated, delegated, or quietly resented—must now become essential daily practice. What was drudgery is now infrastructure. (This raises the inevitable question of context bloat and token limits, a topic for a future article on context management strategies.)
 
 > *"Programs must be written for people to read, and only incidentally for machines to execute."* — Harold Abelson & Gerald Jay Sussman ([*Structure and Interpretation of Computer Programs*](https://en.wikipedia.org/wiki/Structure_and_Interpretation_of_Computer_Programs))
 
@@ -52,7 +52,7 @@ Your README is no longer a polite welcome mat—it's the foundational context wi
 - Dedicated sections on core mental models, common pitfalls with real scenarios, and debugging decision trees
 - Sample interaction patterns, effective prompt templates tailored to the domain, and examples of past AI contributions
 
-Successful patterns include dedicated instruction files that define boundaries, preferred reasoning approaches, and escalation paths for when the agent encounters ambiguity. When agents can bootstrap correctly from docs alone, downstream tasks succeed at higher rates with fewer clarification loops. This reduces token usage and improves overall efficiency in long-running agent sessions.
+Successful patterns include dedicated instruction files that define boundaries, preferred reasoning approaches, and escalation paths for when the agent encounters ambiguity. Note that an overlarge README can cause context bloat. Keep the core file focused on mental models, invariants, and bootstrap instructions, factoring detailed content into linked supporting files (ARCHITECTURE.md, ADRs) or `llms.txt` for prioritization. When agents can bootstrap correctly from docs alone, downstream tasks succeed at higher rates with fewer clarification loops. This reduces token usage and improves overall efficiency in long-running agent sessions.
 
 ## Documentation: Structured Knowledge for Inference
 
@@ -106,9 +106,9 @@ Engineering teams consistently report that directing agents with precise instruc
 
 The audience shift extends well beyond your codebase. AI systems now routinely generate and consume emails, instant messages, web posts, blog articles, and social content on our behalf.
 
-**Emails:** AI draft responses, summarize long threads, and extract action items. Clear, structured emails with stated context, decisions, and follow-ups become the reference corpus for how AI should represent you. Vague or emotionally charged messages can lead to inappropriate tone in AI-generated replies. Consistent structure—context, decision, action items, rationale—helps AI maintain professional coherence. Your 2am passive-aggressive reply will be studied and replicated.
+**Emails:** AI systems draft responses, summarize long threads, and extract action items. Clear, structured emails with stated context, decisions, and follow-ups become the reference corpus for how AI should represent you. Vague or emotionally charged messages can lead to inappropriate tone in AI-generated replies. Consistent structure—context, decision, action items, rationale—helps AI maintain professional coherence. Your 2am passive-aggressive reply will be studied and replicated.
 
-I once realized, mid-conversation with a vendor, that my AI was effectively talking to their AI via email—we were merely pushing Send.
+I once realized, mid-conversation with a vendor, that my AI was effectively talking to their AI via email—we were merely clicking Send.
 
 **IM Messages:** Slack, Teams, and similar platforms generate massive volumes of conversational context. AI tools analyze these for project status, blocker identification, and decision history. Fragmented threads or ambiguous "thumbs-up" emojis confuse agents attempting to extract requirements. The lost context of an unthreaded "sure" becomes a major roadblock for an LLM trying to reconstruct a decision. Using threaded discussions, explicit summaries, and searchable keywords improves AI's ability to synthesize accurate overviews and suggestions.
 
@@ -124,7 +124,7 @@ This broader corpus means documentation discipline must become a universal habit
 4. **Close the loop with AI**: Regularly use agents to critique, summarize, and enhance your documentation, emails, and posts for clarity and AI-friendliness.
 5. **Quantify results**: Track metrics including successful first-attempt task completion rates, hallucination frequency, tone consistency in generated communications, and time saved in synthesis tasks.
 
-For teams, practical documentation extends to shared context files (AGENTS.md equivalents), standardized decision records, and routine AI-assisted knowledge base maintenance—turning collective tribal knowledge into reliable agent fuel.
+For teams, practical documentation extends to shared context files (AGENTS.md equivalents), standardized decision records, and routine AI-assisted knowledge base maintenance—turning collective tribal knowledge into reliable agent fuel. For leaders implementing these practices at scale, see [The AI Engineering Transformation](/writings/the-ai-engineering-transformation/) for organizational frameworks and measurement strategies.
 
 Establish systems and processes that create source-controlled documentation in easy-to-consume Markdown. Yes, it makes the repository larger, but everything becomes AI-consumable.
 
@@ -139,10 +139,11 @@ Individuals and teams that treat their entire written output with discipline gai
 You and your teammates are no longer the audience. Our AIs are.
 
 ## Further Reading
+- [The AI Engineer Mindset](/writings/the-ai-engineer-mindset/): Orchestration techniques and metacognitive practices for directing AI agents effectively
 - "A Survey on Code Generation with LLM-based Agents" (arXiv:2508.00083): "Code generation agents powered by large language models (LLMs) are revolutionizing the software development paradigm."
 - "From LLMs to LLM-based Agents for Software Engineering" (arXiv:2408.02479): "LLM-based agents... combine LLMs as the core for decision-making and action-taking, addressing some of the inherent limitations of LLMs such as lack of autonomy and self-improvement."
 - "Codified Context: Infrastructure for AI Agents in a Complex Codebase" (arXiv)
 - "Why Your AI Agents Need Contextual Documentation" (Hyperdev): "Documentation structure measurably affects AI accuracy."
 
-*Master version in .internal/research/writings/when-ai-reads-your-work.md. Expanded with communications coverage, team practices, and distinct voice.*
+
 
