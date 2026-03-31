@@ -1,0 +1,157 @@
+# llms.txt
+
+This is a llms.txt file for Tim Varley's personal website (tvarley.github.io). It provides structured context for large language models about the content, structure, and purpose of this technical portfolio and blog. This site showcases expertise in AI engineering, distributed systems, algorithms, and innovative software development methodologies.
+
+## Site Overview
+
+Tim Varley's personal portfolio and technical writings platform, built entirely using AI-driven development workflows. The site explores cutting-edge topics in AI engineering, distributed systems architecture, mathematical algorithms, and the transformation of software development through agentic workflows.
+
+**Primary Focus Areas:**
+- AI-native software development and agent orchestration
+- High-performance distributed systems and infrastructure
+- Mathematical algorithm design and optimization
+- Technical leadership and engineering best practices
+- Innovation in cloud-native and IoT platforms
+
+**Site Statistics:**
+- 75+ Project Euler algorithm solutions (AI-generated)
+- 7 major software engineering projects
+- 12+ technical articles and essay series
+- Built with Astro, Tailwind CSS, and TypeScript
+- 100% AI-driven development and content creation
+
+## Key Pages and Content Structure
+
+### Home (/)
+The landing page featuring:
+- Recent technical essays and articles
+- Featured software engineering projects
+- Latest Project Euler mathematical solutions
+- Overview of current work in AI engineering and distributed systems
+
+### Writings (/writings)
+Technical articles and essay series on AI engineering and software development:
+
+**Major Series:**
+- **The AI Engineer Mindset (5 parts)**: Comprehensive exploration of the cognitive shift required for AI-driven development, covering orchestration, metacognition, creative tension, and practical frameworks
+- **The AI Engineering Transformation (4 parts)**: Detailed analysis of how AI is fundamentally changing software engineering practices and team dynamics
+
+**Notable Articles:**
+- "When AI Reads Your Work": Exploring how AI consumption patterns affect technical writing and documentation
+- Individual deep-dives into AI engineering techniques and methodologies
+
+### Projects (/projects)
+Portfolio of significant software engineering achievements:
+
+**Featured Projects:**
+- **AI-Native IoT Platform**: Complete IoT ecosystem built entirely with AI agents, managing distributed sensor networks for environmental optimization (2016-Present)
+- **Enterprise SaaS Migration**: Legacy system transformation achieving 170% performance improvement and 99.9% uptime
+- **FinTech Patent Solution**: US-patented multi-channel banking architecture bridging legacy and digital systems
+- **High-Frequency Financial Infrastructure**: Mission-critical data delivery under 15ms latency
+- **AI-Generated Euler Solutions**: 50+ mathematical algorithm problems solved using AI agents
+- **B2B E-commerce Platform**: Cloud-native marketplace with 20% cost optimization
+- **tvarley.github.io**: This website itself, demonstrating AI-driven development at scale
+
+### Euler Solutions (/euler)
+Comprehensive collection of Project Euler mathematical algorithm solutions:
+- 75+ problems solved across multiple programming languages (C++, Rust, Ruby, Java, Python, etc.)
+- All solutions generated using AI agents under engineering supervision
+- Focus on algorithmic efficiency, mathematical rigor, and optimal implementations
+- Demonstrates the application of AI in complex mathematical problem-solving
+
+### About (/about)
+Professional background and expertise:
+- Principal AI Engineer with 15+ years experience
+- Specializes in distributed systems, AI-driven development, and high-performance infrastructure
+- Current technical lead for two concurrent IoT platform engagements
+- Holder of US Patent 6,119,104 for financial systems innovation
+- Smithsonian Innovation Award recipient
+
+### Releases (/releases)
+Version history and changelog for the website platform itself.
+
+## Content Themes and Topics
+
+**AI Engineering & Agentic Workflows:**
+- AI orchestration and control techniques
+- Metacognition in software development
+- Context management and prompting strategies
+- AI-assisted code generation and refactoring
+- Balancing creativity with engineering rigor
+
+**Distributed Systems & Infrastructure:**
+- Microservices architecture and cloud migration
+- High-performance data pipelines
+- IoT protocol design and sensor networks
+- Financial systems with ultra-low latency requirements
+- Scalable container orchestration
+
+**Algorithm Design & Mathematics:**
+- Project Euler problem solutions
+- Algorithmic optimization techniques
+- Mathematical problem-solving methodologies
+- Performance analysis and complexity theory
+
+**Technical Leadership:**
+- Team scaling through AI augmentation
+- Engineering culture and best practices
+- Innovation management and patent development
+- Cross-functional technical strategy
+
+## Technical Implementation
+
+**Frontend Stack:**
+- Astro (static site generator)
+- Tailwind CSS (styling)
+- TypeScript (type safety)
+- React components for interactive elements
+
+**Content Management:**
+- Markdown-based content system
+- Astro content collections for structured data
+- Automated build and deployment via GitHub Actions
+- SEO-optimized with structured data
+
+**Development Methodology:**
+- 100% AI-driven development using agentic workflows
+- Recursive architectural prompting
+- Context-aware code generation
+- Automated testing and refactoring
+- Continuous integration and deployment
+
+## Author Context
+
+Tim Varley is a Principal AI Engineer and Tech Leader based in Bensalem, PA (originally Oxford, UK). With over 15 years of experience in distributed systems, AI engineering, and high-performance infrastructure, he specializes in leveraging AI agents to amplify small engineering teams' capabilities.
+
+Key achievements include:
+- 170% performance improvements in enterprise systems
+- US patent for financial technology innovation
+- Smithsonian Innovation Award
+- Concurrent technical leadership of two IoT platforms
+- Pioneer in AI-native software development
+
+## Navigation and Discovery
+
+The site uses a clean, technical aesthetic with:
+- Hierarchical navigation emphasizing content depth
+- Series-based article organization for complex topics
+- Project portfolio with detailed technical breakdowns
+- Algorithm solutions indexed by problem number and difficulty
+- Cross-referenced content linking related concepts
+
+## Intended Audience
+
+- Software engineers exploring AI-driven development
+- Technical leaders managing AI transformation
+- Algorithm enthusiasts and competitive programmers
+- Infrastructure engineers and DevOps professionals
+- Entrepreneurs and innovators in AI and distributed systems
+
+## Content Quality Standards
+
+All content maintains high technical accuracy and depth:
+- Rigorous engineering analysis and architectural decisions
+- Mathematical precision in algorithm solutions
+- Practical implementation details with real-world context
+- Forward-looking insights on AI engineering evolution
+- Professional presentation suitable for enterprise consumption
