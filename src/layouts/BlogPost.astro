@@ -6,6 +6,7 @@ import SeriesNavigationHeader from '../components/SeriesNavigationHeader.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import { getCollection } from 'astro:content';
+import { generateArticleStructuredData } from '../lib/structuredData';
 
 const { title, summary, date, heroImage, entry } = Astro.props;
 
@@ -19,9 +20,32 @@ if (entry?.data?.seriesTitle) {
   breadcrumbItems.push({ label: entry.data.seriesTitle, href: undefined });
 }
 breadcrumbItems.push({ label: title, href: undefined });
+
+// Generate structured data for article
+const articleUrl = `${Astro.site}writings/${entry?.id}/`;
+const structuredData = generateArticleStructuredData({
+    title,
+    description: summary,
+    url: articleUrl,
+    image: heroImage,
+    publishedTime: date.toISOString(),
+    modifiedTime: entry?.data?.updated ? entry.data.updated.toISOString() : date.toISOString(),
+    author: "Tim Varley",
+    tags: entry?.data?.tags || []
+});
 ---
 
-<Layout title={title} description={summary}>
+<Layout
+    title={title}
+    description={summary}
+    image={heroImage}
+    type="article"
+    publishedTime={date.toISOString()}
+    modifiedTime={entry?.data?.updated ? entry.data.updated.toISOString() : date.toISOString()}
+    author="Tim Varley"
+    tags={entry?.data?.tags || []}
+    structuredData={structuredData}
+>
 	<div class="max-w-7xl mx-auto pt-8 px-6">
 		<div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
 			{/* Main Content */}

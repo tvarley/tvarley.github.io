@@ -1,0 +1,46 @@
+---
+// Enhanced Google Analytics 4 Component with Partytown
+const GA_MEASUREMENT_ID = 'G-VXZ74F9RKM'; // Existing measurement ID from Layout.astro
+---
+
+{GA_MEASUREMENT_ID && import.meta.env.PROD && (
+    <>
+        <!-- Google Analytics 4 with Partytown -->
+        <script
+            type="text/partytown"
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        ></script>
+        <script type="text/partytown">
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '{GA_MEASUREMENT_ID}');
+
+            // Custom event tracking helpers
+            window.trackEvent = function(action, category, label, value) {
+                gtag('event', action, {
+                    event_category: category,
+                    event_label: label,
+                    value: value
+                });
+            };
+
+            // Track code copy events
+            window.trackCodeCopy = function(language) {
+                gtag('event', 'code_copy', {
+                    event_category: 'engagement',
+                    event_label: language || 'unknown'
+                });
+            };
+
+            // Track navigation events
+            window.trackNavigation = function(target) {
+                gtag('event', 'navigation', {
+                    event_category: 'engagement',
+                    event_label: target
+                });
+            };
+        </script>
+    </>
+)}

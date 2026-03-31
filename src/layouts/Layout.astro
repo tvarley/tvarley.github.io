@@ -4,36 +4,42 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import InteractiveBackground from '../components/InteractiveBackground.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 import '../styles/global.css';
 import { ClientRouter } from 'astro:transitions';
 
 interface Props {
 	title?: string;
 	description?: string;
-  image?: string;
-  categories?: string[];
+	image?: string;
+	type?: string;
+	publishedTime?: string;
+	modifiedTime?: string;
+	author?: string;
+	tags?: string[];
+	structuredData?: object;
+	categories?: string[];
 }
 
-const { title, description, image, categories } = Astro.props;
+const { title, description, image, type, publishedTime, modifiedTime, author, tags, structuredData, categories } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en" data-theme="dark" class="scroll-smooth">
 	<head>
-		<BaseHead title={title || "Tim Varley"} description={description || "Technical Lead & Software Engineer"} />
-{import.meta.env.PROD && (
-	<>
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-VXZ74F9RKM"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-
-			gtag('config', 'G-VXZ74F9RKM');
-		</script>
-	</>
-)}
+		<BaseHead
+			title={title}
+			description={description}
+			image={image}
+			type={type}
+			publishedTime={publishedTime}
+			modifiedTime={modifiedTime}
+			author={author}
+			tags={tags}
+			structuredData={structuredData}
+		/>
+		<!-- Google Analytics -->
+		<GoogleAnalytics />
     {categories && <meta name="keywords" content={categories.join(', ')}>}
     <!-- KaTeX for math rendering - unified system -->
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.38/dist/katex.min.js"></script>

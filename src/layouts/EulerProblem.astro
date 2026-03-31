@@ -3,6 +3,7 @@ import Layout from './Layout.astro';
 import CodeBlock from '../components/CodeBlock.astro';
 import Description from '../components/Description.astro';
 import SolutionExporter from '../components/SolutionExporter.astro';
+import { generateTechArticleStructuredData } from '../lib/structuredData';
 
 interface Props {
   problemNumber: number;
@@ -23,9 +24,30 @@ interface Props {
 }
 
 const { problemNumber, title, description, difficulty, technologies, implementations, allProblems, prevProblem, nextProblem } = Astro.props;
+
+// Generate structured data for technical article
+const articleUrl = `${Astro.site}euler/problem-${problemNumber.toString().padStart(3, '0')}/`;
+const structuredData = generateTechArticleStructuredData({
+    title: `Euler ${problemNumber}: ${title}`,
+    description,
+    url: articleUrl,
+    publishedTime: new Date().toISOString(), // Use current date as published time
+    modifiedTime: new Date().toISOString(),
+    author: "Tim Varley",
+    tags: technologies
+});
 ---
 
-<Layout title={`Euler ${problemNumber}: ${title}`} description={description}>
+<Layout
+    title={`Euler ${problemNumber}: ${title}`}
+    description={description}
+    type="article"
+    publishedTime={new Date().toISOString()}
+    modifiedTime={new Date().toISOString()}
+    author="Tim Varley"
+    tags={technologies}
+    structuredData={structuredData}
+>
     <article class="max-w-4xl mx-auto py-12 px-6">
     
     <!-- Header -->

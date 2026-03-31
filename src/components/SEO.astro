@@ -1,0 +1,58 @@
+---
+// Custom SEO component with direct meta tags to avoid astro-seo validation issues
+export interface Props {
+    title?: string;
+    description?: string;
+    image?: string;
+    url?: string;
+    type?: string;
+    publishedTime?: string;
+    modifiedTime?: string;
+    author?: string;
+    tags?: string[];
+}
+
+const {
+    title = "Tim Varley - Principal AI Engineer & Tech Leader",
+    description = "Portfolio and technical writings of Tim Varley, exploring AI engineering, algorithms, distributed systems, and innovative problem solving.",
+    image,
+    url = Astro.url.pathname,
+    type = "website",
+    publishedTime,
+    modifiedTime,
+    author = "Tim Varley",
+    tags = []
+} = Astro.props;
+
+const canonicalURL = new URL(url, Astro.site);
+---
+
+<!-- Basic Meta Tags -->
+<meta name="description" content={description} />
+<meta name="author" content={author} />
+<meta name="keywords" content={tags.join(", ")} />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href={canonicalURL.href} />
+
+<!-- Open Graph -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalURL.href} />
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content="Tim Varley" />
+<meta property="og:locale" content="en_US" />
+{image && <meta property="og:image" content={new URL(image, Astro.site).href} />}
+{image && <meta property="og:image:alt" content={title} />}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@timvarley" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{image && <meta name="twitter:image" content={new URL(image, Astro.site).href} />}
+
+<!-- Article specific -->
+{publishedTime && <meta property="article:published_time" content={publishedTime} />}
+{modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+{author && <meta property="article:author" content={author} />}
+{tags.length > 0 && tags.map(tag => <meta property="article:tag" content={tag} />)}
