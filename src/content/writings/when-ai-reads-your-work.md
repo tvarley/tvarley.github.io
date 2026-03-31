@@ -52,7 +52,7 @@ Your README is no longer a polite welcome mat—it's the foundational context wi
 - Dedicated sections on core mental models, common pitfalls with real scenarios, and debugging decision trees
 - Sample interaction patterns, effective prompt templates tailored to the domain, and examples of past AI contributions
 
-Successful patterns include dedicated instruction files that define boundaries, preferred reasoning approaches, and escalation paths for when the agent encounters ambiguity. Note that an overlarge README can cause context bloat. Keep the core file focused on mental models, invariants, and bootstrap instructions, factoring detailed content into linked supporting files (ARCHITECTURE.md, ADRs) or `llms.txt` for prioritization. When agents can bootstrap correctly from docs alone, downstream tasks succeed at higher rates with fewer clarification loops. This reduces token usage and improves overall efficiency in long-running agent sessions.
+Successful patterns include dedicated instruction files that define boundaries, preferred reasoning approaches, and escalation paths for when the agent encounters ambiguity. Note that an overlarge README can cause context bloat. Keep the core file focused on mental models, invariants, and bootstrap instructions, factoring detailed content into linked supporting files (ARCHITECTURE.md, ADRs) or [`llms.txt`](https://llmstxt.org/) for prioritization. When agents can bootstrap correctly from docs alone, downstream tasks succeed at higher rates with fewer clarification loops. This reduces token usage and improves overall efficiency in long-running agent sessions.
 
 ## Documentation: Structured Knowledge for Inference
 
