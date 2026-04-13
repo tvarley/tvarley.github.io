@@ -60,27 +60,40 @@ const { code, language, id, title, showLineNumbers = true, showCopyButton = true
   /* Enhanced mobile code block styles */
   @media (max-width: 768px) {
     .code-block-container {
-      @apply mx-0;
+      margin: 0 -0.5rem; /* Less aggressive edge extension */
+      position: relative;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     }
-
+    
+    /* Add scroll indicator */
+    .code-block-container.has-horizontal-scroll::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 20px;
+      background: linear-gradient(to left, var(--bg-primary), transparent);
+      pointer-events: none;
+      z-index: 1;
+    }
+    
     :global(.expressive-code .frame) {
-      @apply rounded-lg; /* Slightly less rounded */
-      margin: 0 -1rem; /* Extend to edges on mobile */
+      @apply rounded-lg;
+      margin: 0; /* Remove negative margins that cause overflow */
+      min-width: calc(100vw - 2rem); /* Ensure minimum readable width */
     }
-
     :global(.expressive-code .frame-header) {
       @apply px-3 py-2.5;
     }
-
     :global(.expressive-code .frame-title-bar) {
       @apply px-3 py-2.5;
     }
-
     :global(.expressive-code .frame pre) {
       font-size: 0.875rem; /* Slightly smaller font */
       line-height: 1.4;
     }
-
     :global(.expressive-code .copy-button) {
       @apply p-3; /* Larger touch target */
       min-width: 48px;
@@ -88,3 +101,18 @@ const { code, language, id, title, showLineNumbers = true, showCopyButton = true
     }
   }
 </style>
+
+<script>
+function addScrollIndicators() {
+  const codeBlocks = document.querySelectorAll('.code-block-container');
+  
+  codeBlocks.forEach(block => {
+    const pre = block.querySelector('pre');
+    if (pre && pre.scrollWidth > pre.clientWidth) {
+      block.classList.add('has-horizontal-scroll');
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', addScrollIndicators);
+</script>
