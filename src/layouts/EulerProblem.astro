@@ -107,13 +107,18 @@ const structuredData = generateTechArticleStructuredData({
     </header>
 
     <!-- Language Tabs -->
-    <div class="mb-8" id="language-tabs">
+    <div class="mb-8" id="language-tabs" role="tablist">
       <div class="flex flex-wrap items-center gap-2 mb-4 overflow-x-auto">
         {implementations.map((impl, index) => (
           <button
             class={"language-tab whitespace-nowrap px-4 py-2 rounded-lg font-mono text-sm transition-all border " + (index === 0 ? 'bg-steel-blue text-white border-steel-blue' : 'bg-white/5 text-white/80 border-white/10 hover:border-steel-blue/50 hover:text-white hover:bg-steel-blue/10')}
             data-language={impl.language.toLowerCase()}
             data-index={index}
+            role="tab"
+            aria-selected={index === 0 ? 'true' : 'false'}
+            aria-controls={`panel-${impl.language.toLowerCase()}`}
+            id={`tab-${impl.language.toLowerCase()}`}
+            tabindex={index === 0 ? 0 : -1}
           >
             {impl.language}
           </button>
@@ -121,6 +126,11 @@ const structuredData = generateTechArticleStructuredData({
         <button
           class="language-tab all-languages whitespace-nowrap px-4 py-2 rounded-lg font-mono text-sm transition-all border bg-white/5 text-white/80 border-white/10 hover:border-steel-blue/50 hover:text-white hover:bg-steel-blue/10"
           data-language="all"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-all"
+          id="tab-all"
+          tabindex="-1"
         >
           All Languages
         </button>
@@ -137,7 +147,7 @@ const structuredData = generateTechArticleStructuredData({
       </div>
       
       {implementations.map((impl, index) => (
-          <div class={"implementation " + (index === 0 ? '' : 'hidden')} data-language={impl.language.toLowerCase()}>
+          <div class={"implementation " + (index === 0 ? '' : 'hidden')} data-language={impl.language.toLowerCase()} role="tabpanel" aria-labelledby={`tab-${impl.language.toLowerCase()}`} id={`panel-${impl.language.toLowerCase()}`}>
             <CodeBlock
               code={impl.code}
               language={impl.language.toLowerCase()}
@@ -169,7 +179,7 @@ const structuredData = generateTechArticleStructuredData({
           </div>
       ))}
 
-      <div class="implementation hidden" data-language="all">
+      <div class="implementation hidden" data-language="all" role="tabpanel" aria-labelledby="tab-all" id="panel-all">
         {implementations.map((impl, index) => (
           <div>
             <CodeBlock
@@ -305,10 +315,14 @@ const structuredData = generateTechArticleStructuredData({
       document.querySelectorAll('.language-tab').forEach(t => {
         t.classList.remove('bg-steel-blue', 'text-white', 'border-steel-blue');
         t.classList.add('bg-white/5', 'text-white/80', 'border-white/10');
+        t.setAttribute('aria-selected', 'false');
+        t.setAttribute('tabindex', '-1');
       });
       
       tab.classList.remove('bg-white/5', 'text-white/80', 'border-white/10');
       tab.classList.add('bg-steel-blue', 'text-white', 'border-steel-blue');
+      tab.setAttribute('aria-selected', 'true');
+      tab.setAttribute('tabindex', '0');
       
       // Show/hide implementations
       document.querySelectorAll('.implementation').forEach(impl => {
@@ -321,6 +335,26 @@ const structuredData = generateTechArticleStructuredData({
 
       // Update tab indicator
       updateTabIndicator();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      const tabs = document.querySelectorAll('.language-tab');
+      const currentTab = document.activeElement;
+      
+      if (!currentTab.classList.contains('language-tab')) return;
+      
+      const currentIndex = Array.from(tabs).indexOf(currentTab);
+      
+      if (e.key === 'ArrowLeft' && currentIndex > 0) {
+        e.preventDefault();
+        tabs[currentIndex - 1].focus();
+        tabs[currentIndex - 1].click();
+      } else if (e.key === 'ArrowRight' && currentIndex < tabs.length - 1) {
+        e.preventDefault();
+        tabs[currentIndex + 1].focus();
+        tabs[currentIndex + 1].click();
+      }
     });
 
     // Jump to problem functionality - use event delegation
