@@ -293,6 +293,33 @@
   }
 }
 
+/* Mobile touch target improvements for better accessibility */
+@media (max-width: 768px) {
+  .language-tab {
+    min-height: 44px; /* Minimum touch target */
+    padding: 12px 16px; /* Increase padding */
+    display: flex;
+    align-items: center;
+  }
+  
+  .copy-button {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 10px;
+  }
+  
+  .export-btn {
+    min-height: 48px; /* Slightly larger on mobile */
+    padding: 12px 20px;
+  }
+  
+  /* All buttons and links */
+  button, a[role="button"], .interactive-element {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
 /* Select dropdown styling */
 select {
   background-color: rgba(255, 255, 255, 0.05);
