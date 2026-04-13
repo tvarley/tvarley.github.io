@@ -278,9 +278,10 @@ const structuredData = generateTechArticleStructuredData({
 <script>
   // Language tab switching logic - run immediately
   function initLanguageTabs() {
-    const languageTabs = document.querySelectorAll('.language-tab');
-    const implementations = document.querySelectorAll('.implementation');
-    const jumpToProblem = document.getElementById('jump-to-problem');
+    // Check if required elements exist
+    if (document.querySelectorAll('.language-tab').length === 0 || document.querySelectorAll('.implementation').length === 0) {
+      return false; // Not ready yet
+    }
 
     function updateTabIndicator() {
       const activeTab = document.querySelector('.language-tab.bg-steel-blue');
@@ -293,56 +294,71 @@ const structuredData = generateTechArticleStructuredData({
       }
     }
 
-    // Tab switching logic
-    languageTabs.forEach(tab => {
-      tab.addEventListener('click', function() {
-        const language = this.getAttribute('data-language');
-        
-        // Update tab styles
-        languageTabs.forEach(t => {
-          t.classList.remove('bg-steel-blue', 'text-white', 'border-steel-blue');
-          t.classList.add('bg-white/5', 'text-white/80', 'border-white/10');
-        });
-        
-        this.classList.remove('bg-white/5', 'text-white/80', 'border-white/10');
-        this.classList.add('bg-steel-blue', 'text-white', 'border-steel-blue');
-        
-        // Show/hide implementations
-        implementations.forEach(impl => {
-          if (impl.getAttribute('data-language') === language) {
-            impl.classList.remove('hidden');
-          } else {
-            impl.classList.add('hidden');
-          }
-        });
-
-        // Update tab indicator
-        updateTabIndicator();
+    // Tab switching logic - use event delegation to handle dynamic content
+    document.addEventListener('click', function(e) {
+      const tab = e.target.closest('.language-tab');
+      if (!tab) return;
+      
+      const language = tab.getAttribute('data-language');
+      
+      // Update tab styles
+      document.querySelectorAll('.language-tab').forEach(t => {
+        t.classList.remove('bg-steel-blue', 'text-white', 'border-steel-blue');
+        t.classList.add('bg-white/5', 'text-white/80', 'border-white/10');
       });
-    });
-
-    // Jump to problem functionality
-    if (jumpToProblem) {
-      jumpToProblem.addEventListener('change', function() {
-        console.log('Jump to problem selected:', this.value);
-        if (this.value) {
-          window.location.href = `/euler/problem-${this.value.toString().padStart(3, '0')}/`;
+      
+      tab.classList.remove('bg-white/5', 'text-white/80', 'border-white/10');
+      tab.classList.add('bg-steel-blue', 'text-white', 'border-steel-blue');
+      
+      // Show/hide implementations
+      document.querySelectorAll('.implementation').forEach(impl => {
+        if (impl.getAttribute('data-language') === language) {
+          impl.classList.remove('hidden');
+        } else {
+          impl.classList.add('hidden');
         }
       });
-    }
 
-    // Initial indicator position
-    updateTabIndicator();
+      // Update tab indicator
+      updateTabIndicator();
+    });
+
+    // Jump to problem functionality - use event delegation
+    document.addEventListener('change', function(e) {
+      if (e.target.id === 'jump-to-problem') {
+        const select = e.target;
+        console.log('Jump to problem selected:', select.value);
+        if (select.value) {
+          window.location.href = `/euler/problem-${select.value.toString().padStart(3, '0')}/`;
+        }
+      }
+    });
+
+    // Initial indicator position - defer to ensure layout is calculated
+    requestAnimationFrame(updateTabIndicator);
 
     // Update on window resize
     window.addEventListener('resize', updateTabIndicator);
+
+    return true; // Successfully initialized
   }
 
-  // Run immediately if DOM is ready, otherwise wait
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initLanguageTabs);
-  } else {
-    initLanguageTabs();
+  // Try to initialize immediately
+  function tryInit() {
+    if (initLanguageTabs()) {
+      return; // Success
+    }
+
+    // If not ready, wait for next opportunity
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', tryInit);
+    } else {
+      // DOM is ready but elements not found, wait a bit more
+      setTimeout(tryInit, 10);
+    }
   }
+
+  // Start initialization
+  tryInit();
 </script>
 </Layout>
