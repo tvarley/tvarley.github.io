@@ -169,7 +169,7 @@ Moving from Level 2 to Level 5 meant letting go of "I am a person who writes cod
 
 The question isn't whether you use AI. Everyone uses AI now. The question is which identity you're willing to evolve into—and which you're willing to leave behind.
 
-The progression from Level 1 to Level 5 took me about 18 months of deliberate practice. The transitions weren't smooth. Each felt like learning a new discipline. But the compounding returns are real—I build things now that would have been impossible for me two years ago, not because the tools got better but because I learned to use them at a fundamentally different level.
+The progression from Level 1 to Level 5 took me months of deliberate practice — many long hours, frustration, anger, anxiety but perseverance. The transitions weren't smooth. Each felt like learning a new discipline. But the compounding returns are real—I build things now that would have been impossible for me two years ago, not because the tools got better but because I learned to use them at a fundamentally different level.
 
 Those who understand this will build things others can't yet imagine. Those who don't will keep wondering why their productivity gains plateau at 10% while others appear to be playing an entirely different game.
 
@@ -194,4 +194,4 @@ If you want to start making the jump tomorrow morning, try this:
 
 [^4]: Joel Becker et al., "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity", arXiv:2507.09089, July 2025. https://arxiv.org/abs/2507.09089 and Faros.ai "The AI Productivity Paradox" report, 2025.
 
-*All citations are based on publicly available 2024–2025 research. The article can be updated with DOIs or additional sources before publication.*
+*All citations are based on publicly available 2024–2025 research.*
