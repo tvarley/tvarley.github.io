@@ -1,7 +1,9 @@
 ---
 problemNumber: 85
 title: "Counting Rectangles"
-description: "By counting carefully it can be seen that a rectangular grid measuring 3 by 2 contains eighteen rectangles:\n\nAlthough there exists no rectangular grid that contains exactly two million rectangles, find the area of the grid with the nearest solution."
+description: "By counting carefully it can be seen that a rectangular grid measuring 3 by 2 contains eighteen rectangles:\n
+![Rectangular Grid Example](/images/euler/0085_counting_rectangles.png)
+\nAlthough there exists no rectangular grid that contains exactly two million rectangles, find the area of the grid with the nearest solution."
 difficulty: "easy"
 date: "2026-04-12"
 technologies: ["brute force", "mathematics"]

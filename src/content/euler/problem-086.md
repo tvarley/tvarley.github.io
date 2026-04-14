@@ -1,7 +1,10 @@
 ---
 problemNumber: 86
 title: "Cuboid route"
-description: "A spider, S, sits in one corner of a cuboid room, measuring 6 by 5 by 3, and a fly, F, sits in the opposite corner. By travelling on the surfaces of the room the shortest \"straight line\" distance from S to F is 10 and the path is shown on the diagram.\n\nHowever, there are up to three \"shortest\" path candidates for any given cuboid and the shortest straight line distance is the shortest of these.\n\nFind the least value of M such that the number of cuboids with integer dimensions, up to M by M by M, with shortest path integer, first exceeds one million."
+description: "A spider, S, sits in one corner of a cuboid room, measuring 6 by 5 by 3, and a fly, F, sits in the opposite corner. By travelling on the surfaces of the room the shortest \"straight line\" distance from S to F is 10 and the path is shown on the diagram.
+\n
+![Cuboid Path Diagram](/images/euler/0086_cuboid_route.png)
+\nHowever, there are up to three \"shortest\" path candidates for any given cuboid and the shortest straight line distance is the shortest of these.\n\nFind the least value of M such that the number of cuboids with integer dimensions, up to M by M by M, with shortest path integer, first exceeds one million."
 difficulty: "medium"
 date: "2026-04-12"
 technologies: ["brute force", "geometry", "pythagorean theorem"]
@@ -16,7 +19,7 @@ implementations:
           long long count = 0;
           int M = 0;
           const long long TARGET = 1000000;
-          while (count <= TARGET) {
+          wile (count <= TARGET) {
               M++;
               long long current_count = 0;
               for (int a = 1; a <= M; ++a) {
