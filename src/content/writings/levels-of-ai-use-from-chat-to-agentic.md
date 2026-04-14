@@ -18,6 +18,8 @@ Same tools. Same access. Radically different outcomes.
 
 The difference wasn't talent or experience. It was the *level* at which each was actually using AI. One was operating at what I now call Level 2. The other was working at Level 4. No one on the team, including their manager, could see the gap.
 
+I was the one who took 3 days.
+
 That observation crystallized something I'd learned through my own progression from casual user to fully agentic: we talk about AI adoption as if it's binary. You either use it or you don't. The reality is far more nuanced. There are discrete levels of relationship with these tools, each with its own capabilities, blind spots, and requirements.
 
 Research supports this. While adoption rates have reached 90%+[^1], actual productivity gains at the organizational level remain around 5-10% in most studies[^2]. Yet some developers report gains of 27-39%, while others plateau at 8-13%[^3]. The gap isn't in access to the tools. It's in *how* they're being used.
@@ -82,9 +84,9 @@ They built a review loop so that as implementation progressed, the test agent wo
 
 The engineer didn’t write most of the code. They designed the system that wrote the code, monitored it for four hours as agents iterated through edge cases, then spent two hours reviewing and refining the results. The remaining eight hours? Sleep. The agents kept working.
 
-The three-day approach I took? One engineer, one AI, sequential conversations, manual verification, human-bottlenecked at every step. Good code. Slow process.
+The three-day approach the engineer took? One engineer, one AI, sequential conversations, manual verification, human-bottlenecked at every step. Good code. Slow process.
 
-This is the difference between “using AI faster” and “using AI differently.” Studies on high-performing AI teams show orchestration capability is the strongest predictor of productivity gains — not raw prompting skill, not years of experience. The ability to design systems that amplify both human and artificial intelligence.
+This is the difference between “using AI faster” and “using AI differently.” Studies on high-performing AI teams show orchestration capability is the strongest predictor of productivity gains — not raw prompting skill, not years of experience.[^5] The ability to design systems that amplify both human and artificial intelligence.
 
 ### Level 5: The Agentic Native
 
@@ -193,5 +195,7 @@ If you want to start making the jump tomorrow morning, try this:
 [^3]: Dylan Walsh, "How generative AI affects highly skilled workers", MIT Sloan Management Review, November 2024. https://mitsloan.mit.edu/ideas-made-to-matter/how-generative-ai-affects-highly-skilled-workers (junior developers: 27–39% gains; senior developers: 8–13%).
 
 [^4]: Joel Becker et al., "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity", arXiv:2507.09089, July 2025. https://arxiv.org/abs/2507.09089 and Faros.ai "The AI Productivity Paradox" report, 2025.
+
+[^5]: Inference drawn from productivity studies in [^2] and [^4], indicating orchestration patterns as a key differentiator in AI productivity gains.
 
 *All citations are based on publicly available 2024–2025 research.*
