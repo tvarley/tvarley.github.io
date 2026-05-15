@@ -266,7 +266,7 @@ const difficulties = ['easy', 'medium', 'hard'];
       this.filters = {
         difficulty: initialFilters.difficulty || [],
         search: initialFilters.search || '',
-        sort: initialFilters.sort || 'number-asc'
+        sort: initialFilters.sort || 'number-desc'
       };
 
       this.init();
@@ -287,47 +287,67 @@ const difficulties = ['easy', 'medium', 'hard'];
 
       const searchInput = this.element.querySelector('[data-filter="search"]');
       if (searchInput) searchInput.value = this.filters.search;
+
+      // Set initial sort select value
+      const sortSelect = this.element.querySelector('.sort-select');
+      if (sortSelect) sortSelect.value = this.filters.sort;
+    }
+
+    updateElementReference() {
+      const liveElement = document.getElementById('filter-controls');
+      if (liveElement && liveElement !== this.element) {
+        this.element = liveElement;
+        // Re-bind events since element changed
+        this.bindEvents();
+      }
     }
 
     bindEvents() {
+      // Use event delegation to prevent duplicate listeners during client-side navigation
+      
       // Mobile toggle button
-      const mobileToggle = this.element.querySelector('.mobile-toggle-btn');
-      const mobileContent = this.element.querySelector('.mobile-filters-content');
+      document.addEventListener('click', (e) => {
+        const mobileToggle = e.target.closest('.mobile-toggle-btn');
+        if (!mobileToggle) return;
+        
+        const mobileContent = this.element.querySelector('.mobile-filters-content');
+        if (!mobileToggle || !mobileContent) return;
+        
+        const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+        mobileToggle.setAttribute('aria-expanded', !isExpanded);
+        mobileContent.classList.toggle('show');
 
-      if (mobileToggle && mobileContent) {
-        mobileToggle.addEventListener('click', () => {
-          const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
-          mobileToggle.setAttribute('aria-expanded', !isExpanded);
-          mobileContent.classList.toggle('show');
-
-          // Rotate arrow icon
-          const arrow = mobileToggle.querySelector('svg');
-          if (arrow) {
-            arrow.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
-          }
-        });
-      }
+        // Rotate arrow icon
+        const arrow = mobileToggle.querySelector('svg');
+        if (arrow) {
+          arrow.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+      });
 
       // Sort select
-      const sortSelect = this.element.querySelector('.sort-select');
-      if (sortSelect) {
-        sortSelect.value = this.filters.sort;
-        sortSelect.addEventListener('change', (e) => {
-          this.updateSortFilter(e.target.value);
-        });
-      }
+      document.addEventListener('change', (e) => {
+        if (!e.target.matches('.sort-select')) return;
+        if (!this.element.contains(e.target)) return;
+        this.updateSortFilter(e.target.value);
+      });
 
       // Difficulty checkboxes
-      this.element.querySelectorAll('[data-filter="difficulty"]').forEach(checkbox => {
-        checkbox.addEventListener('change', (e) => {
-          this.updateDifficultyFilter(e.target);
-        });
+      document.addEventListener('change', (e) => {
+        if (!e.target.matches('[data-filter="difficulty"]')) return;
+        // Check if target is within a filter-controls element
+        const filterControlsEl = e.target.closest('#filter-controls');
+        if (!filterControlsEl) return;
+        this.updateDifficultyFilter(e.target);
       });
 
       // Search input with debounce
-      const searchInput = this.element.querySelector('[data-filter="search"]');
       let debounceTimer;
-      searchInput.addEventListener('input', (e) => {
+      document.addEventListener('input', (e) => {
+        if (!e.target.matches('[data-filter="search"]')) return;
+        // Check if target is within a filter-controls element
+        const filterControlsEl = e.target.closest('#filter-controls');
+        if (!filterControlsEl) return;
+        
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => {
           this.updateSearchFilter(e.target.value);
@@ -335,7 +355,11 @@ const difficulties = ['easy', 'medium', 'hard'];
       });
 
       // Clear filters button
-      this.element.querySelector('.clear-filters-btn').addEventListener('click', () => {
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.clear-filters-btn')) return;
+        // Check if target is within a filter-controls element
+        const filterControlsEl = e.target.closest('#filter-controls');
+        if (!filterControlsEl) return;
         this.clearAllFilters();
       });
     }
@@ -416,7 +440,7 @@ const difficulties = ['easy', 'medium', 'hard'];
         params.set('search', this.filters.search);
       }
 
-      if (this.filters.sort !== 'number-asc') {
+      if (this.filters.sort !== 'number-desc') {
         params.set('sort', this.filters.sort);
       }
 
@@ -425,14 +449,18 @@ const difficulties = ['easy', 'medium', 'hard'];
     }
 
     render() {
+      // Use live element reference to handle client-side navigation
+      const liveElement = document.getElementById('filter-controls');
+      if (!liveElement) return;
+
       // Update results count
-      const countElement = this.element.querySelector('#results-count');
+      const countElement = liveElement.querySelector('#results-count');
       if (countElement) {
         countElement.textContent = this.filteredProblems.length;
       }
 
       // Update clear filters button
-      const clearBtn = this.element.querySelector('.clear-filters-btn');
+      const clearBtn = liveElement.querySelector('.clear-filters-btn');
       const hasActiveFilters = this.filters.difficulty.length > 0 ||
                               this.filters.search.length > 0;
       if (clearBtn) {
@@ -444,8 +472,11 @@ const difficulties = ['easy', 'medium', 'hard'];
     }
 
     renderActiveFilters() {
-      const activeFiltersContainer = this.element.querySelector('.active-filters');
-      const activeFiltersList = this.element.querySelector('.active-filters-list');
+      const liveElement = document.getElementById('filter-controls');
+      if (!liveElement) return;
+
+      const activeFiltersContainer = liveElement.querySelector('.active-filters');
+      const activeFiltersList = liveElement.querySelector('.active-filters-list');
 
       if (!activeFiltersContainer || !activeFiltersList) return;
 
@@ -455,7 +486,7 @@ const difficulties = ['easy', 'medium', 'hard'];
       // Add difficulty badges
       this.filters.difficulty.forEach(difficulty => {
         const badge = this.createFilterBadge(`Difficulty: ${difficulty}`, () => {
-          const checkbox = this.element.querySelector(`[data-filter="difficulty"][value="${difficulty}"]`);
+          const checkbox = liveElement.querySelector(`[data-filter="difficulty"][value="${difficulty}"]`);
           if (checkbox) {
             checkbox.checked = false;
             this.updateDifficultyFilter(checkbox);
@@ -467,7 +498,7 @@ const difficulties = ['easy', 'medium', 'hard'];
       // Add search badge
       if (this.filters.search) {
         const badge = this.createFilterBadge(`Search: "${this.filters.search}"`, () => {
-          const searchInput = this.element.querySelector('[data-filter="search"]');
+          const searchInput = liveElement.querySelector('[data-filter="search"]');
           if (searchInput) {
             searchInput.value = '';
             this.updateSearchFilter('');
@@ -479,7 +510,7 @@ const difficulties = ['easy', 'medium', 'hard'];
       // Show/hide active filters section
       const hasActiveFilters = this.filters.difficulty.length > 0 ||
                               this.filters.search.length > 0 ||
-                              this.filters.sort !== 'number-asc';
+                              this.filters.sort !== 'number-desc';
       activeFiltersContainer.classList.toggle('hidden', !hasActiveFilters);
     }
 
@@ -504,33 +535,40 @@ const difficulties = ['easy', 'medium', 'hard'];
     }
 
     clearAllFilters() {
+      // Use live element reference
+      const liveElement = document.getElementById('filter-controls');
+      if (!liveElement) return;
+
       // Clear difficulty checkboxes
-      this.element.querySelectorAll('[data-filter="difficulty"]').forEach(checkbox => {
+      liveElement.querySelectorAll('[data-filter="difficulty"]').forEach(checkbox => {
         checkbox.checked = false;
       });
 
       // Clear search input
-      const searchInput = this.element.querySelector('[data-filter="search"]');
+      const searchInput = liveElement.querySelector('[data-filter="search"]');
       if (searchInput) searchInput.value = '';
 
       // Clear sort select
-      const sortSelect = this.element.querySelector('.sort-select');
-      if (sortSelect) sortSelect.value = 'number-asc';
+      const sortSelect = liveElement.querySelector('.sort-select');
+      if (sortSelect) sortSelect.value = 'number-desc';
 
       this.filters = {
         difficulty: [],
         search: '',
-        sort: 'number-asc'
+        sort: 'number-desc'
       };
 
       this.applyFilters();
     }
 
     dispatchFilterEvent() {
+      const liveElement = document.getElementById('filter-controls');
+      if (!liveElement) return;
+      
       const event = new CustomEvent('problemsFiltered', {
         detail: { filteredProblems: this.filteredProblems }
       });
-      this.element.dispatchEvent(event);
+      liveElement.dispatchEvent(event);
     }
 
     getFilteredProblems() {
@@ -538,10 +576,17 @@ const difficulties = ['easy', 'medium', 'hard'];
     }
   }
 
-  // Initialize when DOM is ready
-  document.addEventListener('DOMContentLoaded', () => {
+  // Initialize when DOM is ready or when page loads via client-side navigation
+  document.addEventListener('DOMContentLoaded', initFilterControls);
+  document.addEventListener('astro:page-load', initFilterControls);
+
+  function initFilterControls() {
     const filterElement = document.getElementById('filter-controls');
     if (filterElement) {
+      // Check if already initialized to avoid duplicates
+      if (filterElement.dataset.initialized) return;
+      filterElement.dataset.initialized = 'true';
+
       // Read data from element attributes
       const problems = JSON.parse(filterElement.dataset.problems || '[]');
       const initialFilters = JSON.parse(filterElement.dataset.initialFilters || '{}');
@@ -554,7 +599,7 @@ const difficulties = ['easy', 'medium', 'hard'];
         updateProblemsGrid(e.detail.filteredProblems);
       });
     }
-  });
+  }
 
   function updateProblemsGrid(filteredProblems) {
     const grid = document.getElementById('problems-grid');
