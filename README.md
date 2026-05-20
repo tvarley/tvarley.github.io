@@ -6,6 +6,8 @@ This website serves as a living demonstration of **100% AI-native development**.
 
 ## Development
 
+**Node.js >= 22.12.0 required** (Astro 6).
+
 ```bash
 npm install --legacy-peer-deps
 npm run dev
