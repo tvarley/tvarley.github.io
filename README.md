@@ -7,20 +7,20 @@ This website serves as a living demonstration of **100% AI-native development**.
 ## Development
 
 ```bash
-pnpm install
-pnpm run dev
+npm install --legacy-peer-deps
+npm run dev
 ```
 
 ## Build
 
 ```bash
-pnpm run build
+npm run build
 ```
 
 ## Preview
 
 ```bash
-pnpm run preview
+npm run preview
 ```
 
 ## Deployment
