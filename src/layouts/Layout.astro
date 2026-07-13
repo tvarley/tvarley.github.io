@@ -57,6 +57,108 @@ const { title, description, image, type, publishedTime, modifiedTime, author, ta
             });
         });
     </script>
+    <!-- Mermaid for diagram rendering (CDN) -->
+    <script is:inline src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script is:inline>
+        (function() {
+            var mermaidReady = false;
+            var renderSeq = 0;
+
+            function escapeHtml(s) {
+                return String(s).replace(/[&<>"']/g, function(c) {
+                    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+                });
+            }
+
+            function extractSource(pre) {
+                var codeEl = pre.querySelector('code');
+                var searchRoot = pre.closest('figure') || pre.closest('.expressive-code') || pre.closest('.frame') || pre.parentElement || pre;
+                var source = '';
+                var btn = searchRoot.querySelector ? searchRoot.querySelector('button[data-code]') : null;
+                if (btn && btn.getAttribute('data-code')) {
+                    source = btn.getAttribute('data-code').replace(/\u007F/g, '\n');
+                } else {
+                    var lines = [];
+                    var lineNodes = searchRoot.querySelectorAll ? searchRoot.querySelectorAll('div.ec-line') : [];
+                    for (var i = 0; i < lineNodes.length; i++) {
+                        var t = (lineNodes[i].textContent || '').replace(/\s+$/, '');
+                        if (t) lines.push(t);
+                    }
+                    source = lines.join('\n') || (codeEl ? (codeEl.textContent || '') : '');
+                }
+                if (!source.trim() && codeEl) {
+                    source = (codeEl.textContent || '').trim();
+                }
+                return source;
+            }
+
+            function processBlocks() {
+                if (!window.mermaid) return false;
+                try {
+                    if (!mermaidReady) {
+                        mermaid.initialize({ startOnLoad: false, theme: 'base', securityLevel: 'loose' });
+                        mermaidReady = true;
+                    }
+                    var blocks = document.querySelectorAll('pre[data-language="mermaid"]');
+                    for (var idx = 0; idx < blocks.length; idx++) {
+                        var pre = blocks[idx];
+                        if (pre.dataset.mermaidProcessed === '1') continue;
+                        pre.dataset.mermaidProcessed = '1';
+                        var source = extractSource(pre);
+                        if (!source.trim()) continue;
+
+                        renderSeq += 1;
+                        var id = 'mermaid-diagram-' + renderSeq + '-' + Date.now();
+                        var container = document.createElement('div');
+                        container.className = 'mermaid-diagram my-6 p-4 bg-white/5 rounded border border-white/10 overflow-x-auto';
+                        container.setAttribute('data-mermaid-host', '1');
+
+                        var figureHost = pre.closest('figure');
+                        var insertBeforeNode = figureHost || pre;
+                        if (!insertBeforeNode.parentNode) continue;
+                        insertBeforeNode.parentNode.insertBefore(container, insertBeforeNode);
+                        if (figureHost) {
+                            figureHost.style.display = 'none';
+                        } else {
+                            pre.style.display = 'none';
+                        }
+
+                        (function(host, src, svgId) {
+                            try {
+                                mermaid.render(svgId, src).then(function(result) {
+                                    host.innerHTML = result.svg;
+                                }).catch(function() {
+                                    host.innerHTML = '<pre class="text-xs text-silver">' + escapeHtml(src) + '</pre>';
+                                });
+                            } catch (e) {
+                                host.innerHTML = '<pre class="text-xs text-silver">' + escapeHtml(src) + '</pre>';
+                            }
+                        })(container, source, id + '-svg');
+                    }
+                    return true;
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            function waitForMermaid(attempts) {
+                if (processBlocks()) return;
+                if (attempts <= 0) return;
+                setTimeout(function() { waitForMermaid(attempts - 1); }, 50);
+            }
+
+            function run() {
+                waitForMermaid(100);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', run);
+            } else {
+                run();
+            }
+            document.addEventListener('astro:page-load', run);
+        })();
+    </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
     <ClientRouter />
 	</head>
