@@ -1,79 +1,63 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
+import { getSeriesNavigation, writingHref } from '../lib/series';
 
-// @ts-ignore
-const currentPost = Astro.props.currentPost;
-
-// Early return if no currentPost
-if (!currentPost || !currentPost.data) {
-	// No navigation for posts without series metadata
+interface Props {
+	currentPost?: CollectionEntry<'writings'> | null;
 }
 
-let seriesPosts = [];
-let prevPost = null;
-let nextPost = null;
-let currentIndex = -1;
+const { currentPost } = Astro.props;
 
-if (currentPost?.data?.series) {
-	// Get all writings posts
-	const allPosts = await getCollection('writings');
+const allPosts = await getCollection('writings');
+const { seriesPosts, prevPost, nextPost, currentIndex, seriesTitle } =
+	getSeriesNavigation(allPosts, currentPost);
 
-	// Filter posts that are part of the same series
-	seriesPosts = allPosts
-		.filter(post => post.data.series === currentPost.data.series && post.data.series)
-		.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
-
-	// Find current post's position in the series
-	currentIndex = seriesPosts.findIndex(post => post.id === currentPost.id);
-
-	// Get previous and next posts
-	prevPost = currentIndex > 0 ? seriesPosts[currentIndex - 1] : null;
-	nextPost = currentIndex < seriesPosts.length - 1 ? seriesPosts[currentIndex + 1] : null;
-}
----
+const showNav = seriesPosts.length > 1 && currentIndex >= 0;
 ---
 
-{seriesPosts.length > 1 && (
-	<nav class="border-t border-steel-blue/10 mt-12 pt-8">
-		<div class="flex justify-between items-center">
+{showNav && (
+	<nav class="mt-12 space-y-6 border-t border-white/10 pt-8" aria-label="Series previous and next">
+		<div class="grid grid-cols-2 gap-4">
 			{prevPost ? (
-				<a href={`/writings/${prevPost.id.replace('.md', '')}/`}
-				   class="flex items-center gap-3 text-steel-blue hover:text-white transition-colors group">
-					<svg class="w-4 h-4 rotate-180 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-					</svg>
-					<div class="text-left">
-						<div class="text-sm font-mono uppercase tracking-wider opacity-70">Previous</div>
-						<div class="font-medium">{prevPost.data.title}</div>
-					</div>
+				<a
+					href={writingHref(prevPost)}
+					class="group flex flex-col items-start p-4 rounded-xl hover:bg-white/5 transition-all text-left border border-white/5 hover:border-white/10"
+				>
+					<span class="text-xs font-mono text-steel-grey mb-1 group-hover:text-steel-blue transition-colors">
+						← Previous
+					</span>
+					<span class="text-white font-serif font-bold text-lg group-hover:translate-x-1 transition-transform">
+						{prevPost.data.title}
+					</span>
 				</a>
 			) : (
 				<div></div>
 			)}
 
-			<div class="text-center px-4">
-				<div class="text-sm font-mono text-steel-grey">
-					Part {currentIndex + 1} of {seriesPosts.length}
-				</div>
-				<div class="text-xs text-steel-grey/70 mt-1">
-					{currentPost.data.seriesTitle || currentPost.data.series}
-				</div>
-			</div>
-
 			{nextPost ? (
-				<a href={`/writings/${nextPost.id.replace('.md', '')}/`}
-				   class="flex items-center gap-3 text-steel-blue hover:text-white transition-colors group text-right">
-					<div class="text-right">
-						<div class="text-sm font-mono uppercase tracking-wider opacity-70">Next</div>
-						<div class="font-medium">{nextPost.data.title}</div>
-					</div>
-					<svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-					</svg>
+				<a
+					href={writingHref(nextPost)}
+					class="group flex flex-col items-end p-4 rounded-xl hover:bg-white/5 transition-all text-right border border-white/5 hover:border-white/10"
+				>
+					<span class="text-xs font-mono text-steel-grey mb-1 group-hover:text-steel-blue transition-colors">
+						Next →
+					</span>
+					<span class="text-white font-serif font-bold text-lg group-hover:-translate-x-1 transition-transform">
+						{nextPost.data.title}
+					</span>
 				</a>
 			) : (
 				<div></div>
+			)}
+		</div>
+
+		<div class="text-center">
+			<div class="text-sm font-mono text-steel-grey">
+				Part {currentIndex + 1} of {seriesPosts.length}
+			</div>
+			{seriesTitle && (
+				<div class="text-xs text-steel-grey/70 mt-1">{seriesTitle}</div>
 			)}
 		</div>
 	</nav>
